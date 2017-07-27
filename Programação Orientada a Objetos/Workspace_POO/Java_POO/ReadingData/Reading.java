@@ -2,7 +2,7 @@ import java.util.Scanner;
 import javax.swing.JOptionPane;
 
 public class Reading {
-	private static Scanner scanner;a
+	private static Scanner scanner;
 
 	public static void main(String[] args) {
 		usingJOptionPane();
