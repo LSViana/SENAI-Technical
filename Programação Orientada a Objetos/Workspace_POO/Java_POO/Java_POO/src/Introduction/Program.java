@@ -1,16 +1,12 @@
-package Aula1;
+package Introduction;
 
 public class Program
 {
 	public static void main(String[] args)
 	{
-		int myInt = 128;
-		byte myByte;
-		myByte = (byte) myInt;
-		//
-		System.out.println(myByte);
+		
 	}
-	static void Variaveis()
+	static void Variables()
 	{
 		String nome = "Jorge Rabello";
 		int idade = 29;
@@ -19,8 +15,8 @@ public class Program
 		System.out.printf("Nome: %s\nIdade: %d\nCasado: %b",
 				nome, idade, casado);
 	}
-	static void OlaMundo()
+	static void HelloWorld()
 	{
-		System.out.println("Olá Mundo!");
+		System.out.println("Hello World!");
 	}
 }
