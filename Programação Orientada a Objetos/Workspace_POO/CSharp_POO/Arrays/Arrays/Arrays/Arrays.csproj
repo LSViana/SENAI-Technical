@@ -44,26 +44,29 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MultidimensionalArray.cs" />
-    <Compile Include="PlayingCards.cs" />
+    <Compile Include="Arrays\MultidimensionalArray.cs" />
+    <Compile Include="Arrays\PlayingCards.cs" />
+    <Compile Include="Conditionals\If.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Release_bmiCalc.cs">
+    <Compile Include="Arrays\Release_bmiCalc.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Release_bmiCalc.Designer.cs">
+    <Compile Include="Arrays\Release_bmiCalc.Designer.cs">
       <DependentUpon>Release_bmiCalc.cs</DependentUpon>
     </Compile>
-    <Compile Include="SimpleArray.cs" />
-    <Compile Include="Testing_bmiCalc.cs" />
+    <Compile Include="Arrays\SimpleArray.cs" />
+    <Compile Include="Arrays\Testing_bmiCalc.cs" />
+    <Compile Include="Arrays\UsingLists.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Release_bmiCalc.resx">
+    <EmbeddedResource Include="Arrays\Release_bmiCalc.resx">
       <DependentUpon>Release_bmiCalc.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

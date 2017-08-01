@@ -10,7 +10,7 @@ namespace Arrays
     {
         static void Main(string[] args)
         {
-            new PlayingCards();
+            new Conditionals.If();
             //
             Console.ReadKey();
         }
