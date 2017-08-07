@@ -16,7 +16,7 @@ namespace LinearSearch
             // Ending
             Console.ReadKey();
         }
-
+        
         private static void InsertionSort()
         {
             var j = 0;
