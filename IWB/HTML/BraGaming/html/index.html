@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <title>O Vigia – BraGaming</title>
+    <meta charset="UTF-8">
+</head>
+
+<body>
+    <!--Menu bar-->
+    <header id="header">
+        <nav>
+            <a>Início</a>
+            <a href=".\store.html">Loja</a>
+            <a href=".\developers.html">Desenvolvedores</a>
+        </nav>
+    </header>
+    <!--Navigation-->
+    <nav id="index">
+        <ol>
+            <li><a href="#aboutTheGame">Sobre o Jogo</a>
+                <ul>
+                    <li><a href="#categories">Categorias</a></li>
+                    <li><a href="#characters">Personagens</a></li>
+                </ul>
+            </li>
+        </ol>
+    </nav>
+    <main>
+        <!--Principal Container-->
+        <section id="principalContainer">
+            <section id="presentation">
+                <img src="../image/game_logo.png" height="100" width="100" alt="Logo do Jogo">
+                <h1>O Vigia</h1>
+            </section>
+            <section id="media">
+                <h1>Trailer do Jogo:</h1>
+                <video controls autoplay>
+                    <source src="..\video\video.mp4" type="video/mp4">
+                </video>
+            </section>
+            <section id="aboutTheGame">
+                <h1>Tipos de Personagens</h1>
+                <section>
+                    <h2 id="categories">Categorias</h2>
+                    <ul>
+                        <li>Atacantes
+                            <ul>
+                                <li>Pedrão</li>
+                                <li>José</li>
+                                <li>Sheila</li>
+                            </ul>
+                        </li>
+                        <li>Defensores
+                            <ul>
+                                <li>Vinícius</li>
+                                <li>Érika</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </section>
+                <section>
+                    <h2 id="characters">Personagens</h2>
+                    <ul>
+                        <li>Lucas Viana Soares de Souza</li>
+                    </ul>
+                </section>
+            </section>
+
+            <!--Register Form-->
+            <form>
+                <!--Name Field-->
+                <label for="nameField">Nome</label>
+                <input type="text" id="nameField" name="name">
+                <br>
+                <!--Nickname Field-->
+                <label for="nicknameField">Apelido</label>
+                <input type="text" id="nicknameField" name="nickname">
+                <br>
+
+                <!--Email Field-->
+                <label for="emailField">E-mail</label>
+                <input type="email" id="emailField" name="email">
+                <br>
+
+                <!--Password Field-->
+                <label for="passwordField">Senha</label>
+                <input type="password" id="passwordField" name="password">
+                <br>
+
+                <!--Gender Field-->
+                <label>Gênero</label>
+                <label for="genderMale">Masculino</label>
+                <input type="radio" name="gender" value="male" id="fieldMale">
+                <label for="genderFemale">Feminino</label>
+                <input type="radio" name="gender" value="female" id="fieldFemale">
+                <br>
+
+                <!--Agreement of Terms Field-->
+                <input type="checkbox" name="agreementOfTerms" id="termsField">
+                <label for="termsField">Aceito os termos de contrato.</label>
+                <br><br>
+
+                <!--Save Button-->
+                <button type="submit">Salvar</button>
+            </form>
+        </section>
+    </main>
+</body>
+
+</html>
