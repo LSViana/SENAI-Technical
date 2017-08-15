@@ -60,7 +60,7 @@ public class IMC {
 						JOptionPane.INFORMATION_MESSAGE);
 				// Performing a fix on the values at components
 				height.setValue(0);
-				weight.setValue(0);
+				weight.setValue(0d);
 				break;
 			case 1:
 				JOptionPane.showMessageDialog(null, "Volte sempre, adoramos sua visita!", "Calculadora de IMC",
