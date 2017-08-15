@@ -1,0 +1,30 @@
+[CONTATO DO SENAI]
+Telefone: (11) 3273-5000
+Instagram: https://www.instagram.com/senai_info/
+Facebok: https://www.facebook.com/senaiinformatica/
+
+[ENDEREÇO DO SENAI]
+Al. Barão de Limeira, 539 - Santa Cecília
+CEP: 01202-001 - São Paulo - SP
+
+[Escopo do Projeto]
+Através da nossa rede social os usuários poderão compartilhar suas mídias com seus amigos. São várias opções de upload de mídia  que o usuário poderá utilizar em nossos serviços, como upload de imagens,gifs, músicas ou até vídeos. Ao conectar-se com outros o usuário poderá usufruir de suas mídias compartilhadas ou curtidas também podendo fazer o mesmo nestas. 
+
+[Funcionalidades do Projeto]
+*Cadastro de usuários na rede social;
+*Compartilhamento de mídias:
+	*Imagens;
+	*Vídeos;
+	*Áudios;
+*Conexão com outros usuários;
+*Aprovação de mídais de outros usuários;
+
+[Legenda das Imagens]
+-mídias/Imagens do Projeto/avi_website-apps.png  => Imagens do Software
+-mídias/Imagens do Projeto/avi_website-login_page.png  => Página de login da rede social
+
+[NOME DA EMPRESA]
+AVI Media Solutions
+
+[NOME DO PROJETO]
+AVI - Compartilhamento de Mídias

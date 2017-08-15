@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26430.16
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Loops", "Loops\Loops.csproj", "{ECF7027C-ED47-48A6-B08A-8E8C6FAD3618}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductList", "ProductList\ProductList.csproj", "{6B298FE3-D5FA-474C-AA33-92E6EDDBAD4A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Boxing", "Boxing\Boxing.csproj", "{57BE565B-771F-49A9-AD6E-0424F185A67B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{ECF7027C-ED47-48A6-B08A-8E8C6FAD3618}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ECF7027C-ED47-48A6-B08A-8E8C6FAD3618}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ECF7027C-ED47-48A6-B08A-8E8C6FAD3618}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ECF7027C-ED47-48A6-B08A-8E8C6FAD3618}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6B298FE3-D5FA-474C-AA33-92E6EDDBAD4A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6B298FE3-D5FA-474C-AA33-92E6EDDBAD4A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6B298FE3-D5FA-474C-AA33-92E6EDDBAD4A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6B298FE3-D5FA-474C-AA33-92E6EDDBAD4A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{57BE565B-771F-49A9-AD6E-0424F185A67B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{57BE565B-771F-49A9-AD6E-0424F185A67B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{57BE565B-771F-49A9-AD6E-0424F185A67B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{57BE565B-771F-49A9-AD6E-0424F185A67B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

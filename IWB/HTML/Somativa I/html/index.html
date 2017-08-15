@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <title>AVI - Início</title>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-image: -webkit-gradient(linear, left top, left bottom, from(#FFAAAA), to(#FFDDDD));
+            background-image: -webkit-linear-gradient(top, #FFAAAA, #FFDDDD);
+            background-image: -moz-linear-gradient(top, #FFAAAA, #FFDDDD);
+            background-image: linear-gradient(to bottom, #FFAAAA, #FFDDDD);
+        }
+
+        header {
+            text-align: center;
+            font-weight: 600;
+            border-width: 2px;
+            border-color: red;
+            color: #FF0000;
+            background-color: #FF9999;
+        }
+
+        main {
+            padding: 10px;
+            background-color: #FF8888;
+        }
+
+        .pageId {
+            color: red;
+            text-decoration: none;
+        }
+
+        #enterpriseData {
+            margin-left: 37.5%;
+            width: 25%;
+            height: 220px;
+            background-color: #FF7777;
+        }
+
+        #enterpriseName {
+            color: darkred;
+            font-weight: 600;
+            font-size: 20px;
+            text-align: center;
+            margin-top: 5px;
+        }
+
+        #projectName {
+
+        }
+
+        #enterpriseLogo {
+            margin: 6px;
+            margin-left: 15%;
+            width: 70%;
+        }
+
+        #featuresDemo {
+            margin-left: 25%;
+            width: 50%;
+        }
+    </style>
+</head>
+
+<body>
+    <!--Cabeçalho da Página-->
+    <header>
+        <nav>
+            <a class="pageId" href="index.html">Início</a>
+            <a class="pageId" href="register.html">Cadastro</a>
+        </nav>
+    </header>
+    <!--Corpo de Conteúdo-->
+    <main>
+        <!--Seção de Introdução-->
+        <section id="introduction">
+            <div id="enterpriseData">
+                <h1 id="enterpriseName">Empresa AVI Media Solutions</h1>
+                <img id="enterpriseLogo" src="../image/avi_logo-pequeno.png" alt="Logo da Empresa do Projeto">
+            </div>
+            <div id="projectData">
+                <h2 id="projectName">Projeto AVI - Compartilhamento de Mídias</h2>
+                <img id="featuresDemo" src="../image/propaganda/avi_adv.png" alt="Imagem ilustrativa do Projeto">
+            </div>
+        </section>
+        <!--Seção de Escopo do Projeto-->
+        <section id="scope">
+            <h2>Escopo do Projeto: </h2>
+            <p>Através da nossa rede social os usuários poderão compartilhar suas mídias com seus amigos. São várias opções
+                de upload de mídia que o usuário poderá utilizar em nossos serviços, como upload de imagens,gifs, músicas
+                ou até vídeos. Ao conectar-se com outros o usuário poderá usufruir de suas mídias compartilhadas ou curtidas
+                também podendo fazer o mesmo nestas. </p>
+        </section>
+        <!--Seção de Desenvolvimento do Projeto-->
+        <section id="development">
+            <div id="projectImages">
+                <h3>Imagens do Projeto: </h3>
+                <img src="../image/ImagensDoProjeto/avi_website-apps.png" alt="Aplicativos de Website" />
+                <p>Imagens do Software</p>
+                <img src="../image/ImagensDoProjeto/avi_website-login_page.png" alt="Tela de Autenticação do Site" />
+                <p>Página de Login da Rede</p>
+            </div>
+            <div id="projectVideos">
+                <h3>Vìdeo explicativo do Projeto: </h3>
+                <video autoplay controls>
+                    <source src="../video/github.mp4" type="video/mp4">
+                </video>
+            </div>
+        </section>
+        <!--Seção de Funcionalidades do Projeto-->
+        <section id="features">
+            <h3>Funcionalidades Previstas no Projeto: </h3>
+            <ul>
+                <li>Cadastro de Usuários na Rede Social</li>
+                <li>Compartilhamento de Mídias
+                    <ul>
+                        <li>Imagens</li>
+                        <li>Vídeos</li>
+                        <li>Áudios</li>
+                    </ul>
+                </li>
+                <li>Conexão com outros usuários</li>
+                <li>Aprovação de mídias de outros usuários</li>
+            </ul>
+        </section>
+        <!--Seção de Informações sobre os Desenvolvedores-->
+        <section id="developers">
+            <h3>Desenvolvedores do Projeto: </h3>
+            <table id="group" style="border: solid">
+                <caption>Relação de Desenvolvedores do Projeto</caption>
+                <tr>
+                    <th>Nome</th>
+                    <th>E-mail</th>
+                </tr>
+                <tr>
+                    <td>Meu nome, malucão!</td>
+                    <td>Meu e-mail, malandro.</td>
+                </tr>
+                <tr>
+                    <td>Lucas Viana Soares de Souza</td>
+                    <td>lv201122@gmail.com</td>
+                </tr>
+                <tr>
+                    <td>CHAMA</td>
+                    <td>NÓIS</td>
+                </tr>
+            </table>
+        </section>
+        <!--Seção de Cadastro na Newsletter da Empresa-->
+        <section id="register">
+            <h3>Registre-se!</h3>
+            <p>Deseja inscrever-se em nossa newsletter? Cadastre-se agora!</p>
+            <form>
+                <label for="name">Nome: </label>
+                <input type="text" id="name" /> <br />
+                <label for="email">E-mail: </label>
+                <input type="email" id="email" /> <br />
+                <button type="submit">Enviar Cadastro</button>
+            </form>
+        </section>
+    </main>
+    <!--Rodapé da Página-->
+    <footer style="border: solid">
+        <p>Endereço do SENAI: Al. Barão de Limeira, 539 - Santa Cecília CEP: 01202-001 - São Paulo - SP</p>
+        <p>Contato do SENAI:</p>
+        <p>Telefone: (11) 3273-5000</p><img src="../image/instagram_logo-pequeno.png" alt="Logomarca do Instagram">
+        <p>Instagram: </p>
+        <a href="http://www.instagram.com/senai_info/">http://www.instagram.com/senai_info/</a> <br />
+        <img src="../image/fb_logo-pequeno.png" alt="Logomarca do Facebook">
+        <p>Facebok: </p>
+        <a href="https://www.facebook.com/senaiinformatica/">https://www.facebook.com/senaiinformatica/</a> <br />
+        <img src="../image/senai_logo-pequeno.jpg" alt="Logo do SENAI" />
+        <img src="../image/avi_logo-pequeno.png" alt="Logo da Empresa do Projeto" />
+    </footer>
+</body>
+
+</html>

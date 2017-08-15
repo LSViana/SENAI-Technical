@@ -1,0 +1,18 @@
+[Imagens do Projeto]
+midias/Imagens do Projeto/*
+
+[Imagens ou Vídeo Ilustrativo (Propaganda)]
+mídias/propaganda/*
+
+[Logos da Empresa]
+mídias/avi_logo* (grande, médio e pequeno)
+
+[Logo do SENAI]
+mídias/senai_logo* (grande, médio e pequeno)
+
+[Redes Sociais]
+mídias/fb_logo* (grande, médio e pequeno)
+mídias/instagram_logo* (grande, médio e pequeno)
+
+[Vídeo explicativo do projeto]
+mídias/videos/github.mp4
