@@ -19,7 +19,7 @@ public class IMC {
 		// Components
 		JSpinner weight = new JSpinner(new javax.swing.SpinnerNumberModel(0d, 0d, 300d, 1d));
 		JSpinner height = new JSpinner(new javax.swing.SpinnerNumberModel(0, 0, 300, 10));
-		Object[] components = new Object[] { "Digite seu peso: [kg]", weight, "Digite sua altura: [cm]", height };
+		Object[] components = new Object[] { "Digite seu peso: [kg] (Utilize vírgula)", weight, "Digite sua altura: [cm] (Números inteiros)", height };
 		//
 		Object[] options = new Object[] { "Calcular", "Sair" };
 		// Executing
@@ -38,16 +38,16 @@ public class IMC {
 				if(result < 18.5) {
 					classif = "Abaixo do Peso Normal";
 				}
-				else if(result < 24.9) {
+				else if(result < 25) {
 					classif = "Peso Normal";
 				}
-				else if(result < 29.9) {
+				else if(result < 30) {
 					classif = "Excesso de Peso";
 				}
-				else if(result < 34.9) {
+				else if(result < 35) {
 					classif = "Obesidade Classe I";
 				}
-				else if(result < 39.9) {
+				else if(result < 40) {
 					classif = "Obesidade Classe II";
 				}
 				else {
