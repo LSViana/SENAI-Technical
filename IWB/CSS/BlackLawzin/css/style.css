@@ -1,0 +1,84 @@
+/* RESET */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: red;
+}
+
+#faceContent {
+    width: 50vh;
+    height: 50vh;
+    top: 25vh;
+    position: relative;
+    margin: auto;
+    overflow: hidden;
+}
+
+#faceContent img {
+    width: 30%;
+    height: 30%;
+    margin-left: 35%;
+    margin-top: 35%;
+    animation: spinning 2s linear infinite 2s;
+}
+
+#fire {
+    width: 40vw;
+    height: 40vh;
+    top: 25vh;
+    left: 25vw;
+    position: absolute;
+    margin: auto;
+    animation: pureSpinning 2s linear infinite 2s;
+}
+
+img:nth-child(1) {
+    width: 10%;
+    height: 30%;
+    margin-left: 80%;
+    margin-top: 17%;
+}
+img:nth-child(2) {
+    width: 10%;
+    height: 30%;
+    margin-left: 30%;
+    transform: rotate(180deg);
+}
+
+@keyframes spinning {
+    0% {
+        transform: rotate(0deg);
+        width: 30%;
+        height: 30%;
+    }
+    50% {
+        transform: rotate(180deg);
+        margin-left: 7.5%;
+        margin-top: 7.5%;
+        width: 85%;
+        height: 85%;
+    }
+    100% {
+        transform: rotate(359deg);
+        width: 30%;
+        height: 30%;
+    }
+}
+@keyframes pureSpinning {
+    0% {
+        transform: rotate(0deg);
+    }
+    50% {
+        transform: rotate(180deg);
+        width: 60vw;
+        height: 40vh;
+    }
+    100% {
+        transform: rotate(359deg);
+    }
+}
