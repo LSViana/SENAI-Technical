@@ -1,0 +1,19 @@
+Ordenações Simples:
+	Bubble Sort
+	Insertion Sort
+	Selection Sort
+
+Ordenações Avançadas:
+	Quick Sort
+	Heap Sort
+	Merge Sort
+
+Composição da Apresentação:
+	(Ordenações Simples)
+	Apresentação Eletrônica:
+		Código;
+		Funcionamento;
+	
+	(Ordenações Avançados)
+	Apresentação Eletrônica (Ponto Secundário);
+	Segunda forma de apresentação (Ponto Primário).
