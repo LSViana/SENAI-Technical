@@ -1,21 +1,18 @@
 package execution;
 
-import java.io.IOException;
-import java.io.PrintStream;
-
 import business.Dog;
 import business.Person;
 
 public class Start {
 	public static void main(String[] args) throws Exception {
 		// Brief introduction to declaring variables and using methods
-		// WorkingWithDogs();
+		//workingWithDogs();
 
 		// Creating some examples as an exercise
-		//WorkingWithPeople();
+		//workingWithPeople();
 	}
 
-	private static void WorkingWithPeople() {
+	private static void workingWithPeople() {
 		// #1 First Object
 		Person franca = new Person();
 		franca.name = "França";
@@ -31,7 +28,7 @@ public class Start {
 		franca.ageDifference(juscelino);
 	}
 
-	private static void WorkingWithDogs() {
+	private static void workingWithDogs() {
 		// Defining a new 'Dog' variable
 		Dog franca = new Dog();
 		// Defining new values to instance variables

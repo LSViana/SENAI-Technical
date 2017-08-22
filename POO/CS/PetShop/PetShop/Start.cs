@@ -12,9 +12,8 @@ using System.Reflection;
 //Application.Run(new Form1());
 namespace PetShop
 {
-    static class Program
+    static class Start
     {
-
         /// <summary>
         /// Ponto de entrada principal para o aplicativo.
         /// </summary>
@@ -26,6 +25,15 @@ namespace PetShop
 
             // Creating some examples as an exercise
             //WorkingWithPeople();
+            
+            // Tests to multiply by minus 1 using binary valuess
+            //int a = 3;
+            //Console.WriteLine(a + ":" + InverseSignal(a));
+        }
+
+        private static Int32 InverseSignal(Int32 value)
+        {
+            return (Int32)(0b100000000000000000000000000000000 - value);
         }
 
         private static void WorkingWithPeople()
