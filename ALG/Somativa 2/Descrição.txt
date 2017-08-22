@@ -12,8 +12,10 @@ Composição da Apresentação:
 	(Ordenações Simples)
 	Apresentação Eletrônica:
 		Código;
-		Funcionamento;
+		Funcionamento.
 	
 	(Ordenações Avançados)
-	Apresentação Eletrônica (Ponto Secundário);
-	Segunda forma de apresentação (Ponto Primário).
+	Apresentação Didática:
+		Apresentação Eletrônica (Ponto Secundário);
+		Segunda forma de apresentação (Ponto Primário).
+	
