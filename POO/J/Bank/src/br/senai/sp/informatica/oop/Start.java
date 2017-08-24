@@ -2,36 +2,106 @@
  * @author Lucas Viana
  */
 package br.senai.sp.informatica.oop;
-
+import java.text.NumberFormat;
 import javax.naming.OperationNotSupportedException;
-
-import br.senai.sp.informatica.oop.bank.Account;
+import br.senai.sp.informatica.oop.bank.Product;
+import br.senai.sp.informatica.oop.bank.Employee;
+import br.senai.sp.informatica.accessModifier.AccessModifier;
+import java.util.List;
+import java.util.ArrayList;
 import br.senai.sp.informatica.oop.mathematics.Mathematics;
-
+import br.senai.sp.informatica.oop.bank.Account;
 public class Start {
+	public static NumberFormat formatter = NumberFormat.getCurrencyInstance();
+	//
 	public static void main(String[] args) throws OperationNotSupportedException {
 	    // Some tests with OOP concepts
 		//workingWithAccounts();
 		
 		// Working with methods that return values
 		//workingWithMatematics();
+		
+		// Working with some access modifiers
+		//workingWithAccessModifiers();
+		//workingWithEmployees();
+		workingWithProducts();
 	}
 	
-	private static void workingWithMatematics() {
+	public static void workingWithProducts() {
+		// Declaring the Shopping List
+		List<Product> products = new ArrayList<Product>();
+		// Adding some products and validating their data
+
+		Product orange = new Product();
+		orange.setBarCode(1_111_111_111);
+		orange.setCategory("Juicy Fruits");
+		orange.setPerishable(true);
+		orange.setPrice(2.2);
+		orange.setDescription("A tropical fruit");
+		products.add(orange);
+		
+		Product grape = new Product();
+		grape.setBarCode(1_111_111_112L);
+		grape.setCategory("Purple and Juicy");
+		grape.setPerishable(true);
+		grape.setPrice(1.8);
+		products.add(grape);
+		
+		// Exhibiting the total price of the list
+		double totalPrice = 0;
+		for (Product product : products) {
+			System.out.println(product + "\n");
+			totalPrice += product.getPrice();
+		}
+		System.out.printf("\tTotal price: %s\n", formatter.format(totalPrice));
+	}
+	
+	public static void workingWithEmployees() {
+		Employee employee = new Employee();
+		// Manipulating the 'name' property
+		employee.setName("Lucas");
+		System.out.println(employee);
+		
+		// Manipulating the 'active' property
+		employee.setActive(true);
+		System.out.println(employee);
+	}
+
+	public static void workingWithAccessModifiers() {
+		AccessModifier am = new AccessModifier();
+		// Public field is accessible
+		am.publicField = 0;
+		
+		// Protected field is not accessible, due the miss of inheritance of the current class against the AccessModifier class
+		// am.protectedField = 0;
+		
+		// Private field is not accessible because it is outside the class
+		// am.privateField = 0;
+		
+		// Default/Package field is NOT accessible because it is outside the package where the class was declared
+		// am.defaultField = 0;
+	}
+
+	public static void workingWithMatematics() {
 		// Looking for the highest value
 		System.out.println(Mathematics.highest(4.5, 2d, 13.0, 12d, 0991390123d, 1313.03, 113.2));
-		System.out.println(Mathematics.highest(1,2,3,4,5,6,7, 13));
+		System.out.println(Mathematics.highest(1, 2, 3, 4, 5, 6, 7, 13));
 		System.out.println();
 		// Making the sum of all values
+		System.out.println(Mathematics.sum(1, 2, 3));
 		System.out.println(Mathematics.sum(1, 2, 3));
 		System.out.println(Mathematics.sum(1.2, 2.4, 3.6));
 		System.out.println();
 		// Finding the whole/integer part of a number's square root
 		System.out.println(Mathematics.squareRoot(27));
 		System.out.println(Mathematics.squareRoot(9));
+		System.out.println();
+		// Finding the average between a group of values
+		System.out.println(Mathematics.average(30, 10));
+		System.out.println(Mathematics.average(2.3, 4.5, 9.0, 3.2, 0.1));
 	}
 	
-	private static void workingWithAccounts() throws OperationNotSupportedException {
+	public static void workingWithAccounts() throws OperationNotSupportedException {
 		Account origin = new Account();
 		//
 		origin.name = "Lucas";

@@ -45,8 +45,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Business\AccessModifier.cs" />
     <Compile Include="Business\Account.cs" />
+    <Compile Include="Business\Employee.cs" />
     <Compile Include="Business\Mathematics.cs" />
+    <Compile Include="Business\Product.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>

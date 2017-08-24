@@ -29,6 +29,10 @@ public final class Mathematics {
 			carrier += 2;
 			counter++;
 		}
-		return counter - 1; 
+		return counter - 1;
+	}
+	public static <T extends Number> double average(T... values) {
+		Double sum = sum(values).doubleValue();
+		return sum / values.length;
 	}
 }
