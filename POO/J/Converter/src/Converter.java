@@ -1,8 +1,9 @@
-
 /**
  * This application converts temperature values between many different scales.
  * @author Lucas Viana
  */
+
+// Imports in order to use Java API classes
 import javax.swing.SpinnerNumberModel;
 import javax.swing.ButtonGroup;
 import javax.swing.JOptionPane;

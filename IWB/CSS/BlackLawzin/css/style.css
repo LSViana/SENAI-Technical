@@ -1,0 +1,40 @@
+/* RESET */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: red;
+}
+
+#faceContent {
+    background-color: white;
+    width: 50vw;
+    height: 50vh;
+    top: 25vh;
+    position: relative;
+    margin: auto;
+    overflow: hidden;
+    animation: pureSpinning 2s linear infinite 2s;
+}
+
+#faceContent:nth-child(1) {
+    width: 10px;
+}
+
+@keyframes pureSpinning {
+    0% {
+        transform: rotate(0deg);
+    }
+    50% {
+        transform: rotate(180deg);
+        width: 60vw;
+        height: 40vh;
+    }
+    100% {
+        transform: rotate(359deg);
+    }
+}

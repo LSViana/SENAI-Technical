@@ -1,0 +1,88 @@
+/* Modifying all elements */
+
+* {
+    font-family: 'Segoe UI Light', Tahoma, Geneva, Verdana, sans-serif;
+    color: #dc67f0;
+}
+
+
+/* Applying the same style to many elements */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: light;
+}
+
+
+/* External CSS resource */
+
+body {
+    background-color: #9c27b0;
+    color: navy;
+}
+
+button {
+    font-weight: 900;
+}
+
+a {
+    /* Removing styles of underline and color from link text */
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+}
+
+section {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+table {
+    margin-left: 12.5%;
+    width: 75%;
+    background-color: #ec67f0;
+}
+
+th {
+    color: #9c27b0;
+    font-weight: 900;
+}
+
+img {
+    width: 100%;
+}
+
+#sectionLutePeloFuturo,
+#sectionLutePeloFuturo * {
+    background-color: #333;
+    color: #eee;
+    margin: 10px;
+}
+/* Capturing a child element inside another */
+/* Parent component */
+#sectionLutePeloFuturo h2 {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 72px;
+}
+
+section:hover h2 {
+    background-color: red;
+}
+
+#sectionLutePeloFuturo {
+    /* Manipulating the Border */
+    /* Applying border styles and margin */
+    border-width: 30px;
+    border-style: solid;
+    border-color: #ec67f0;
+    margin: 50px 100px 75px;
+    /* Using padding to create an 'inner margin'  */
+    padding: 20px;
+}
+
+.textoSobreJogo {
+    text-align: center;
+}

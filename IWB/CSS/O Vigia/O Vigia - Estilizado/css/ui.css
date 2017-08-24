@@ -1,0 +1,95 @@
+* {
+    color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    color: rgb(20, 20, 20);
+    background-color: #0001C7;
+}
+
+a {
+    color: #42A5F5;
+    font-size: 36px;
+    font-weight: 900;
+    text-decoration: none;
+    transition: color .4s;
+}
+
+a:hover {
+    color: white;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-style: italic;
+}
+
+h1 {
+    font-size: 52px
+}
+
+h2 {
+    font-size: 44px
+}
+
+h3 {
+    font-size: 36px
+}
+
+h4 {
+    font-size: 28px
+}
+
+h5 {
+    font-size: 20px
+}
+
+h6 {
+    font-size: 8px
+}
+
+input, select {
+    /* Remove a marcação do navegador para demonstrar que aquele elemento está ativo */
+    outline: none;
+    /* Deixa a cor de fundo do elemento transparente */
+    background-color: transparent;
+    /* Remove todas as bordas do elemento */
+    border-style: none;
+    /* Adiciona somente a borda inferior com o estilo sólido (linha única) */
+    border-bottom-style: solid;
+    /* Define a cor da borda inferior do elemento */
+    border-bottom-color: white;
+    border-bottom-width: 2px;
+    padding: 6px 16px 6px 2px;
+    margin-bottom: 10px;
+    /* Transição para 'ativar' o controle visualmente */
+    width: 100px;
+    transition: width .2s, border-color 200ms, padding .2s;
+}
+
+option {
+    background-color: rgb(48, 48, 48);
+}
+
+.articleText {
+    max-width: 700px;
+    /* Define a largura máxima para o bloco (div) */
+    width: 50%;
+    /* Define uma largura que se ajusta ao tamanho da tela */
+    margin-left: auto;
+    /* Mantém a borda esquerda de automática acordo com a tela */
+    margin-right: auto;
+    /* Mantém a borda direita automática de acordo com a tela */
+    text-align: justify;
+}
+
+input:focus, select:focus {
+    width: 300px;
+    border-color: #42A5F5;
+    padding: 6px 16px 2px 2px;
+}
