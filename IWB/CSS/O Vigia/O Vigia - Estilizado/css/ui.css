@@ -1,16 +1,52 @@
 * {
     color: white;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    /* 'box-sizing' configurado para 'border-box' define que o tamanho total do elemento, o tamanho que ele assume após renderizado, não será mais o valor definido em 'height' + 'padding' + 'margin', porém, será exatamente o valor definido em 'height', as custas da diminuição das dimensões do 'content-box' de acordo com os valores definidos para 'padding' e 'margin' para manter as dimensões necessárias no elemento. */
+    box-sizing: border-box;
+    user-select: none;
 }
 
 body {
     color: rgb(20, 20, 20);
-    background-color: #0001C7;
+    background-color: #0073D8;
+    margin: 0px;
+}
+
+#menuSuperior {
+    height: 36px;
+    background-color: #ACF;
+    padding: 6px;
+    position: fixed;
+    width: 100%;
+    top: 0px;
+    z-index: 1;
+}
+
+#promoVideo {
+    position: fixed;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    top: 36px;
+}
+
+#menuSuperior nav {
+    text-align: right;
+}
+
+#menuSuperior nav a {
+    outline: none;
+    border-color: #42A5F5;
+    transition: background-color .2s;
+}
+
+#menuSuperior nav a:hover {
+    background-color: #000136;
 }
 
 a {
     color: #42A5F5;
-    font-size: 36px;
+    font-size: 18px;
     font-weight: 900;
     text-decoration: none;
     transition: color .4s;
@@ -30,23 +66,23 @@ h6 {
 }
 
 h1 {
-    font-size: 52px
+    font-size: 42px
 }
 
 h2 {
-    font-size: 44px
+    font-size: 34px
 }
 
 h3 {
-    font-size: 36px
+    font-size: 26px
 }
 
 h4 {
-    font-size: 28px
+    font-size: 18px
 }
 
 h5 {
-    font-size: 20px
+    font-size: 12px
 }
 
 h6 {

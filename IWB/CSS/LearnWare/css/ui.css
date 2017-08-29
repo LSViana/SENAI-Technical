@@ -1,97 +1,103 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+@import url('https://fonts.googleapis.com/css?family=Anonymous+Pro');
 * {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0px;
-    background-color: snow;
+    box-sizing: border-box;
+    background-color: #212121;
 }
 
-#mainContent {
-    padding: 20px;
-    border-radius: 29px;
-    margin-top: 1vh;
-    margin-bottom: 1vh;
-    margin-left: 1vw;
-    margin-right: 1vw;
-}
-
+/* Header */
+/* It will be moved with the page */
 #containerTop {
     border-radius: 25px;
-    background-color: #D7D7D7;
+    background-color: #4A4A4A;
+    position: fixed;
+    width: 100%;
+    /* Make it to be at the top, it is, it won't be overwritten */
+    z-index: 1000;
 }
 
 #containerTopLogo {
-    background-color: #F0F0F0;
-    border-radius: 1000px; /* Só para garantir */
-    display:block;
-    margin-left: auto;
-    margin-right:auto;
+    background-color: #3C3C3C;
+    /* border-bottom-left-radius: 000px;
+    border-bottom-right-radius: 30px; */
+    display: block;
+    text-align: center;
+}
+
+#containerTopLogo * {
+    background-color: #3C3C3C;
+    display: inline;
+}
+
+#containerTopLogo p:nth-child(1) {
+    font-family: 'Open Sans', sans-serif;
+    color: #4EA6F4;
+    font-size: 36px;
+}
+
+#containerTopLogo p:nth-child(2) {
+    font-family: 'Anonymous Pro', monospace;
+    color: #FF9300;
+    font-size: 40px;
 }
 
 #topLogo {
     display: block;
     margin-left: auto;
-    margin-right:auto;
+    margin-right: auto;
     padding: 10px;
     background-color: transparent;
 }
 
-nav {
+#topBarOptions {
     background-color: transparent;
 }
 
-nav ul {
+#topBarOptions ul {
     background-color: transparent;
     border-radius: 24px;
     display: inline;
 }
 
-#topSlogan {
-    color: #B1B1B1;
-    font-style: italic;
-    font-weight: 500;
-    border-left-style: solid;
-    border-left-color: gray;
-    padding: 2px 10px 2px 2px;
-    display: inline-flex;
-    margin-top: 13px;
-    margin-right: 30px;
-    background-color: transparent;
-}
-#topSlogan * {
+#topBarOptions ul li a {
     display: block;
-    margin: auto;
-    margin-left: 15px;
-    background-color: transparent;
-    color: gray;
+    font-weight: 600;
+    color: #4EA6F4;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    background-color: #4A4A4A;
+    transition: background-color .2s;
 }
 
-.mainColor {    
-    background-color: #E6E6E6;
+#topBarOptions ul li a:hover {
+    background-color: #313131;
 }
 
-nav ul li * {
-    background-color: transparent;
-}
-
-nav ul {
+#topBarOptions ul {
     list-style-type: none;
     overflow: hidden;
 }
 
-nav li {
+#topBarOptions ul li {
+    background-color: gray;
     display: inline-block;
-    background-color: transparent;
+}
+/* Main */
+main {
+    background-color: red;
 }
 
-nav li a:hover {
-    background-color: #CCCCCC;
+#backVideo {
+    z-index: -1;
+    position: fixed;
+    width: 100%;
 }
 
-nav li a {
-    display: block;
-    font-weight: 600;
-    color: #FF7F50;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-    transition: background-color .2s;
+#contentMain {
+    margin-top: 100px;
+    background-color: red;
+    position: absolute;
 }
