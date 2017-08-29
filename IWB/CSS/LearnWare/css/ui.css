@@ -1,11 +1,12 @@
-@import url('https://fonts.googleapis.com/css?family=Open+Sans');
-@import url('https://fonts.googleapis.com/css?family=Anonymous+Pro');
+/* @import url('https://fonts.googleapis.com/css?family=Open+Sans');
+@import url('https://fonts.googleapis.com/css?family=Anonymous+Pro'); */
 * {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0px;
     box-sizing: border-box;
-    background-color: #212121;
+    user-select: none;
 }
+
 
 /* Header */
 /* It will be moved with the page */
@@ -43,14 +44,6 @@
     font-size: 40px;
 }
 
-#topLogo {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 10px;
-    background-color: transparent;
-}
-
 #topBarOptions {
     background-color: transparent;
 }
@@ -59,11 +52,15 @@
     background-color: transparent;
     border-radius: 24px;
     display: inline;
+    padding: 0px;
+    display: flex;
+    justify-content: center;
 }
 
 #topBarOptions ul li a {
     display: block;
-    font-weight: 600;
+    font-size: 12px;
+    font-weight: 700;
     color: #4EA6F4;
     text-align: center;
     padding: 14px 16px;
@@ -85,19 +82,86 @@
     background-color: gray;
     display: inline-block;
 }
-/* Main */
-main {
-    background-color: red;
-}
 
-#backVideo {
-    z-index: -1;
-    position: fixed;
-    width: 100%;
+
+/* Main */
+
+main {
+    background-color: rgba(255, 0, 0, 0.60);
 }
 
 #contentMain {
-    margin-top: 100px;
-    background-color: red;
+    margin-top: 30px;
+    padding-top: 66px;
+    height: calc(100% - 30px);
+    width: 100%;
     position: absolute;
+    background-color: rgba(101, 101, 101, 0.67);
+}
+
+#tradeInfo {
+    border-left-style: solid;
+    border-left-color: #0082C6;
+    margin: 20px;
+    padding: 12px;
+    display: inline-flex;
+    background-color: rgba(0, 0, 0, 0.00);
+}
+
+#tradeInfo * {
+    color: white;
+    display: inline-flex;
+    font-size: 24px;
+}
+
+#tradeName {
+    padding-left: 20px;
+    margin-top: -12px;
+    font-family: 'Ubuntu Mono', sans-serif;
+    font-size: 122px;
+    font-weight: 900;
+    color: #007AC6;
+}
+
+#productName {
+    font-size: 72px;
+    font-weight: 900;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#productDescription {
+    color: white;
+}
+
+#backVideo {
+    background-color: rgba(0, 0, 0, .6);
+    width: 100%;
+    position: fixed;
+    z-index: -1;
+}
+
+#backVideo * {
+    width: 100%;
+    position: fixed;
+}
+
+@media only screen and (max-width: 400px) {
+    * {
+        font-size: 12px;
+    }
+    #contentMain {
+        margin-top: 76px;
+    }
+    #topBarOptions ul li a {
+        font-size: 9px;
+        padding: 11px 11px;
+    }
+    #containerTopLogo p:nth-child(1) {
+        font-size: 26px;
+    }
+    #containerTopLogo p:nth-child(2) {
+        font-size: 28px;
+    }
 }

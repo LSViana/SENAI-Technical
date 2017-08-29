@@ -18,7 +18,7 @@ namespace Bank
             //ExecuteForm();
 
             // Some tests with OOP concepts
-            //WorkingWithAccounts();
+            WorkingWithAccounts();
 
             // Working with methods that return values
             //WorkingWithMathematics();
@@ -26,7 +26,7 @@ namespace Bank
             // Working with some access modifiers
             //WorkingWithAccessModifiers();
             //WorkingWithEmployees();
-            WorkingWithProducts();
+            //WorkingWithProducts();
         }
 
         public static void WorkingWithProducts()
@@ -111,26 +111,34 @@ namespace Bank
 
         public static void WorkingWithAccounts()
         {
-            Account origin = new Account();
+            // Creating and manipulating Customer objects
+            Customer lucas = new Customer("Lucas Viana", "123456789.12");
+            Customer thayto = new Customer("Rafael Thayto", "987654321.98");
             //
-            origin.Name = "Lucas";
-            origin.Balance = 10_000.01;
+            // Creating and manipulating Account objects
+            Account origin = new Account(10_000.01, lucas);
+            //
+            //origin.Name = "Lucas";
+            //origin.Balance = 10_000.01;
             //
             origin.ShowBalance();
             origin.WithDraw(1000);
+            Account.ShowBankBalance();
             origin.ShowBalance();
             origin.Deposit(500);
+            Account.ShowBankBalance();
             //
-            Account destiny = new Account();
+            Account destiny = new Account(3000.99, thayto);
             //
-            destiny.Name = "Rafael";
-            destiny.Balance = 3000.99;
+            //destiny.Name = "Rafael";
+            //destiny.Balance = 3000.99;
             //
             origin.ShowBalance();
             destiny.ShowBalance();
             origin.TransferTo(destiny, 500.01);
             origin.ShowBalance();
             destiny.ShowBalance();
+            Account.ShowBankBalance();
         }
 
         private static void ExecuteForm()

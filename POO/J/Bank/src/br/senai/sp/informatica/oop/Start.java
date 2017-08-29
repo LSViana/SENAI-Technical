@@ -11,12 +11,13 @@ import java.util.List;
 import java.util.ArrayList;
 import br.senai.sp.informatica.oop.mathematics.Mathematics;
 import br.senai.sp.informatica.oop.bank.Account;
+import br.senai.sp.informatica.oop.bank.Customer;
 public class Start {
 	public static NumberFormat formatter = NumberFormat.getCurrencyInstance();
 	//
 	public static void main(String[] args) throws OperationNotSupportedException {
 	    // Some tests with OOP concepts
-		//workingWithAccounts();
+		workingWithAccounts();
 		
 		// Working with methods that return values
 		//workingWithMatematics();
@@ -24,7 +25,7 @@ public class Start {
 		// Working with some access modifiers
 		//workingWithAccessModifiers();
 		//workingWithEmployees();
-		workingWithProducts();
+		//workingWithProducts();
 	}
 	
 	public static void workingWithProducts() {
@@ -102,25 +103,34 @@ public class Start {
 	}
 	
 	public static void workingWithAccounts() throws OperationNotSupportedException {
-		Account origin = new Account();
+		// Creating and manipulating Customer objects
+		Customer lucas = new Customer("Lucas Viana", "123456789.12");
+		Customer thayto = new Customer("Rafael Thayto", "987654321.98");
 		//
-		origin.name = "Lucas";
-		origin.balance = 10_000.01;
+		// Creating and manipulating Account objects
+		Account origin = new Account(10_000.01, lucas);
+		//
+		Account.showBankBalance();
+//		origin.name = "Lucas";
+//		origin.balance = 10_000.01;
 		//
 		origin.showBalance();
 		origin.withDraw(1000);
+		Account.showBankBalance();
 		origin.showBalance();
 		origin.deposit(500);
+		Account.showBankBalance();
 		//
-		Account destiny = new Account();
+		Account destiny = new Account(3000.99, thayto);
 		//
-		destiny.name = "Rafael";
-		destiny.balance = 3000.99;
+//		destiny.name = "Rafael";
+//		destiny.balance = 3000.99;
 		//
 		origin.showBalance();
 		destiny.showBalance();
 		origin.transferTo(destiny, 500.01);
 		origin.showBalance();
 		destiny.showBalance();
+		Account.showBankBalance();
 	}
 }
