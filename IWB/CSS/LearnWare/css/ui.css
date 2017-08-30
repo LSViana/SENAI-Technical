@@ -1,5 +1,5 @@
-/* @import url('https://fonts.googleapis.com/css?family=Open+Sans');
-@import url('https://fonts.googleapis.com/css?family=Anonymous+Pro'); */
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+@import url('https://fonts.googleapis.com/css?family=Anonymous+Pro');
 * {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0px;
@@ -85,9 +85,15 @@
 
 
 /* Main */
-
 main {
     background-color: rgba(255, 0, 0, 0.60);
+}
+
+#translucidBack {
+    width: 100%;
+    position: fixed;
+    background-color: rgba(101, 101, 101, 0.85);
+    z-index: -1;
 }
 
 #contentMain {
@@ -96,31 +102,32 @@ main {
     height: calc(100% - 30px);
     width: 100%;
     position: absolute;
-    background-color: rgba(101, 101, 101, 0.67);
+    /* background-color: rgba(101, 101, 101, 0.5); */
 }
 
-#tradeInfo {
+#coursesInfo {
     border-left-style: solid;
-    border-left-color: #0082C6;
+    border-left-color: #4EA6F4;
     margin: 20px;
-    padding: 12px;
+    padding: 24px;
+    width: 38vw;
+    height: 5vw;
+    align-items: center;
     display: inline-flex;
-    background-color: rgba(0, 0, 0, 0.00);
+    background-color: rgba(186, 186, 186, 0.50);
 }
 
-#tradeInfo * {
-    color: white;
-    display: inline-flex;
+#coursesInfo * {
     font-size: 24px;
+    color: white;
 }
 
-#tradeName {
-    padding-left: 20px;
-    margin-top: -12px;
+#coursesTitle {
+    color: #4EA6F4;
+    display: inline-flex;
+    padding-left: 25px;
+    font-size: 48px;
     font-family: 'Ubuntu Mono', sans-serif;
-    font-size: 122px;
-    font-weight: 900;
-    color: #007AC6;
 }
 
 #productName {
@@ -139,7 +146,7 @@ main {
     background-color: rgba(0, 0, 0, .6);
     width: 100%;
     position: fixed;
-    z-index: -1;
+    z-index: -2;
 }
 
 #backVideo * {
