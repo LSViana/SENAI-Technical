@@ -83,22 +83,8 @@
     display: inline-block;
 }
 
-<<<<<<< HEAD
-nav li a:hover {z'
+nav li a:hover {
     background-color: #CCCCCC;
-=======
-
-/* Main */
-main {
-    background-color: rgba(255, 0, 0, 0.60);
-}
-
-#translucidBack {
-    width: 100%;
-    position: fixed;
-    background-color: rgba(101, 101, 101, 0.85);
-    z-index: -1;
->>>>>>> 408166096234fade82e37db2cf997fd33f4c6d68
 }
 
 #contentMain {

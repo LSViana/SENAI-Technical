@@ -10,6 +10,7 @@ import br.senai.sp.informatica.accessModifier.AccessModifier;
 import java.util.List;
 import java.util.ArrayList;
 import br.senai.sp.informatica.oop.mathematics.Mathematics;
+import enumerations.ChessPiece;
 import br.senai.sp.informatica.oop.bank.Account;
 import br.senai.sp.informatica.oop.bank.Customer;
 public class Start {
@@ -17,7 +18,7 @@ public class Start {
 	//
 	public static void main(String[] args) throws OperationNotSupportedException {
 	    // Some tests with OOP concepts
-		workingWithAccounts();
+		//workingWithAccounts();
 		
 		// Working with methods that return values
 		//workingWithMatematics();
@@ -26,8 +27,17 @@ public class Start {
 		//workingWithAccessModifiers();
 		//workingWithEmployees();
 		//workingWithProducts();
+		
+		// Manipulating enumerations and its values
+		workingWithEnumerations();
 	}
 	
+	public static void workingWithEnumerations() {
+		// Printing all the values in an enumeration
+		for (ChessPiece piece : ChessPiece.values())
+			System.out.println(piece.index + " - " + piece.name());
+	}
+
 	public static void workingWithProducts() {
 		// Declaring the Shopping List
 		List<Product> products = new ArrayList<Product>();

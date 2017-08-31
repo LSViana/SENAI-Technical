@@ -1,4 +1,5 @@
 ﻿using Bank.Business;
+using Bank.Enumerations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,7 +19,7 @@ namespace Bank
             //ExecuteForm();
 
             // Some tests with OOP concepts
-            WorkingWithAccounts();
+            //WorkingWithAccounts();
 
             // Working with methods that return values
             //WorkingWithMathematics();
@@ -27,6 +28,16 @@ namespace Bank
             //WorkingWithAccessModifiers();
             //WorkingWithEmployees();
             //WorkingWithProducts();
+
+            // Manipulating enumerations and its values
+            WorkingWithEnumerations();
+        }
+
+        public static void WorkingWithEnumerations()
+        {
+            // Printing all the values in an enumeration
+            foreach (ChessPiece piece in Enum.GetValues(typeof(ChessPiece)))
+                Console.WriteLine((int)piece + " - " + piece);
         }
 
         public static void WorkingWithProducts()
@@ -40,7 +51,7 @@ namespace Bank
             orange.Category = "Juicy Fruits";
             orange.Perishable = true;
             orange.Price = 2.2;
-            orange.Description  = "A tropical fruit";
+            orange.Description = "A tropical fruit";
             products.Add(orange);
 
             Product grape = new Product();
@@ -89,7 +100,7 @@ namespace Bank
             // am.defaultPrivateField = 0;
         }
 
-        public  static void WorkingWithMathematics()
+        public static void WorkingWithMathematics()
         {
             // Looking for the highest value
             Console.WriteLine(Mathematics.Highest(4.5, 2d, 13.0, 12d, 0991390123d, 1313.03, 113.2));
