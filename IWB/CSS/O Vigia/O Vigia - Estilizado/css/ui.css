@@ -1,16 +1,14 @@
 * {
     color: white;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-body {
-    color: rgb(20, 20, 20);
-    background-color: #0001C7;
+    /* 'box-sizing' configurado para 'border-box' define que o tamanho total do elemento, o tamanho que ele assume após renderizado, não será mais o valor definido em 'height' + 'padding' + 'margin', porém, será exatamente o valor definido em 'height', as custas da diminuição das dimensões do 'content-box' de acordo com os valores definidos para 'padding' e 'margin' para manter as dimensões necessárias no elemento. */
+    box-sizing: border-box;
+    user-select: none;
 }
 
 a {
     color: #42A5F5;
-    font-size: 36px;
+    font-size: 18px;
     font-weight: 900;
     text-decoration: none;
     transition: color .4s;
@@ -20,21 +18,69 @@ a:hover {
     color: white;
 }
 
+.articleText {
+    max-width: 700px;
+    /* Define a largura máxima para o bloco (div) */
+    width: 50%;
+    /* Define uma largura que se ajusta ao tamanho da tela */
+    margin-left: auto;
+    /* Mantém a borda esquerda de automática acordo com a tela */
+    margin-right: auto;
+    /* Mantém a borda direita automática de acordo com a tela */
+    text-align: justify;
+}
+
+
+body {
+    color: rgb(20, 20, 20);
+    background-color: #0073D8;
+    margin: 0px;
+}
+
+.btn {
+    border-radius: 500px;
+    border-style: none;
+    box-shadow: 0px 1px 10px white;
+    padding: 8px 16px;
+    transition: box-shadow .2s;
+}
+
+.btn:hover {
+    box-shadow: 0px 0px 25px white;
+}
+
+.centro {
+    display: block;
+    margin: auto;
+}
+
+.content {
+    display: block;
+    /* margin-left: calc((100% - 800px) / 2); */
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    max-width: 800px;
+    text-align: center;
+}
+
 h1,
 h2,
 h3,
 h4,
 h5,
 h6 {
-    font-style: italic;
+    /* font-style: italic; */
+    font-weight: 600;
 }
 
 h1 {
-    font-size: 52px
+    font-weight: 700;
+    font-size: 62px;
 }
 
 h2 {
-    font-size: 44px
+    font-size: 54px
 }
 
 h3 {
@@ -42,11 +88,11 @@ h3 {
 }
 
 h4 {
-    font-size: 28px
+    font-size: 18px
 }
 
 h5 {
-    font-size: 20px
+    font-size: 12px
 }
 
 h6 {
@@ -72,24 +118,92 @@ input, select {
     transition: width .2s, border-color 200ms, padding .2s;
 }
 
-option {
-    background-color: rgb(48, 48, 48);
-}
-
-.articleText {
-    max-width: 700px;
-    /* Define a largura máxima para o bloco (div) */
-    width: 50%;
-    /* Define uma largura que se ajusta ao tamanho da tela */
-    margin-left: auto;
-    /* Mantém a borda esquerda de automática acordo com a tela */
-    margin-right: auto;
-    /* Mantém a borda direita automática de acordo com a tela */
-    text-align: justify;
-}
-
 input:focus, select:focus {
     width: 300px;
     border-color: #42A5F5;
     padding: 6px 16px 2px 2px;
 }
+
+main {
+    margin-top: 40px;
+}
+
+#menuSuperior {
+    height: 36px;
+    background-color: #ACF;
+    padding: 6px;
+    position: fixed;
+    width: 100%;
+    top: 0px;
+    z-index: 1;
+}
+
+#promoArea p {
+    font-size: larger;
+}
+
+#promoVideo {
+    position: fixed;
+    z-index: -1;
+    width: 100vw;
+    top: 36px;
+}
+
+/* This 'display: inline-block' is able to position the elements as the 'inline', but, it breaks to the next 'row' when the viewport width is reached */
+/* .propaganda {
+    display: inline-block;
+    align-content: center;
+    text-align: center;
+    width: 32.8vw;
+    min-width: 300px;
+}
+
+.propaganda img {
+    width: 100%;
+} */
+
+/* The 'display: *flex*' has many capabilities to help the developer to create its own style */
+/* Parent Configuration */
+.propagandas {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+/* Child Configuration */
+.propaganda {
+    flex: 1;
+    flex-basis: 500px;
+    flex-grow: 0;
+    margin: 20px;
+    text-align: center;
+}
+
+.propaganda img {
+    width: 100%;
+    min-width: 300px;
+}
+
+#menuSuperior nav {
+    text-align: right;
+}
+
+#menuSuperior nav a {
+    outline: none;
+    border-color: #42A5F5;
+    transition: background-color .2s;
+}
+
+#menuSuperior nav a:hover {
+    background-color: #000136;
+}
+
+option {
+    background-color: rgb(48, 48, 48);
+}
+
+#sectionUltimasNoticias {
+    background-color: rgba(170, 204, 255, 0.5);
+    padding: 16px 32px;
+}
+

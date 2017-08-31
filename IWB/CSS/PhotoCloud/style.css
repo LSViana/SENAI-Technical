@@ -1,0 +1,140 @@
+* {
+    box-sizing: border-box;
+    margin: 0px;
+}
+#addButton {
+    position: fixed;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 7vh;
+    width: 7vh;
+    height: 7vh;
+    max-width: 80px;
+    max-height: 80px;
+    border-radius: 999px;
+    background-color: #00BA00;
+    /* Font */
+    font-size: 54px;
+    font-weight: 900;
+    bottom: 10px;
+    right: 10px;
+}
+#addButton a {
+    text-decoration: none;
+    color: white;
+}
+body {
+    background-color: gray;
+}
+.buttons {
+    display: flex;
+    justify-content: space-between;
+}
+.buttons > * {
+    flex: 1;
+    flex-grow: 0;
+    flex-basis: 32px;
+    height: 32px;
+    border-radius: 999px;
+}
+.buttons a:nth-child(1) {
+    background-color: green;
+}
+.buttons a:nth-child(2) {
+    background-color: red;
+}
+.buttons img {
+    width: 100%;
+}
+
+/* .buttons a * {
+    border-radius: 500px;
+    width: 40px;
+    height: 40px;    
+}
+.buttons a:nth-child(1) * {
+    background-color: green;
+}
+.buttons a:nth-child(2) * {
+    background-color: red;
+} */
+.group {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    box-shadow: 0px 5px 14px 0px dimgray;
+    padding: 100px 20px 0px;
+}
+.item {
+    background-color: dimgray;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+.item > * {
+    width: 350px;
+}
+/* .item {
+    margin: 20px;
+    padding-top: 20px;
+    background-color: #3E3E3E;
+    flex-basis: 300px;
+    box-shadow: 0px 0px 0px transparent;
+    transition: box-shadow .5s;
+}
+.item:hover {
+    box-shadow: 0px 5px 25px white;
+}
+.item div {
+    display: flex;
+    justify-content: space-around;
+}
+.item img:first-child {
+    width: 300px;
+    margin-bottom: 20px;
+} */
+main {
+    background-color: gray;
+}
+.topBar {
+    position: fixed;
+    width: 100%;
+    display: flex;
+    flex-wrap: nowrap;
+    background-color: black;
+    justify-content: space-between;
+    padding: 20px;
+}
+.topBar a {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 600;
+    font-size: 32px;
+    color: white;
+    text-decoration: none;
+}
+.topBar a img {
+    height: 40px;
+    width: 40px;
+    background-color: white;
+    border-radius: 999px;
+}
+.topBar form {
+    display: flex;
+    margin: 5px 10vh;
+    flex: 1;
+}
+.topBar form input {
+    min-width: 100px;
+    width: 100%;
+    color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    background-color: #575757;
+    border-style: none;
+    outline: none;
+    padding: 2px 8px;
+    transition: background-color .5s, color .5s;
+}
+.topBar form input:hover {
+    background-color: #919191;
+}

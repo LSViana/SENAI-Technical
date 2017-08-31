@@ -39,5 +39,14 @@ namespace Bank.Business
             }
             return counter - 1;
         }
+        public static T Average<T>(params T[] values)
+        {
+            dynamic sum = values[0];
+            for (int i = 1; i < values.Length; i++)
+            {
+                sum += values[i];
+            }
+            return sum / values.Length;
+        }
     }
 }
