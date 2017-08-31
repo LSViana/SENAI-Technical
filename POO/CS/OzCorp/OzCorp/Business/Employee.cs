@@ -17,7 +17,7 @@ namespace OzCorp.Business
         public Role Post { get; set; }
         public BloodType Blood { get; set; }
         public Gender Gender { get; set; }
-        public Employee(String Name, String RG, long CPF, String Enrollment, String Email, String Password, Role Post, BloodType Blood, Gender Gender)
+        protected Employee(String Name, String RG, long CPF, String Enrollment, String Email, String Password, Role Post, BloodType Blood, Gender Gender)
         {
             this.Name = Name;
             this.RG = RG;

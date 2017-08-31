@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{1C62570E-43E2-4FF8-B174-FA4AF3F2A45D}</ProjectGuid>
+    <ProjectGuid>{268EBB29-1716-4FE0-8395-5FFB3ECC8906}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>OzCorp</RootNamespace>
-    <AssemblyName>OzCorp</AssemblyName>
+    <RootNamespace>Zoo</RootNamespace>
+    <AssemblyName>Zoo</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -42,16 +42,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Business\Analyst.cs" />
-    <Compile Include="Business\BloodType.cs" />
-    <Compile Include="Business\Director.cs" />
-    <Compile Include="Business\Employee.cs" />
-    <Compile Include="Business\Engineer.cs" />
-    <Compile Include="Business\Gender.cs" />
-    <Compile Include="Business\Manager.cs" />
-    <Compile Include="Business\Role.cs" />
-    <Compile Include="Business\Department.cs" />
-    <Compile Include="Business\Secretary.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

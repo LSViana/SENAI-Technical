@@ -13,7 +13,7 @@ public class Employee {
 	private BloodType blood;
 	private Gender gender;
 	
-	public Employee(String name, String rg, long cpf, String enrollment, String email, String password, Role post,
+	protected Employee(String name, String rg, long cpf, String enrollment, String email, String password, Role post,
 			BloodType blood, Gender gender) {
 		super();
 		this.name = name;
