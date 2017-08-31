@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <title>Torres' Matrix</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        * {
+            margin: 0px;
+            cursor: default;
+        }
+
+        body {
+            background-color: pink;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        #topBar {
+            font-weight: 700;
+            text-align: justify;
+            font-size: 22px;
+            width: 100px;
+            height: 120px;
+            padding: 20px;
+            background-color: pink;
+            margin-right: auto;
+            margin-left: auto;
+            margin-top: calc(50vh - 60px);
+            border-color: white;
+            border-style: solid;
+            border-width: 5px;
+            transition: margin-top .5s, border-style .5s;
+        }
+
+        #topBar * {
+            position: fixed;
+        }
+
+        #topBar div:nth-child(1) {
+            color: white;
+            width: 100px;
+            height: 100%;
+            margin: 0px;
+            background-color: transparent;
+            transition: color .5s;
+            z-index: 2;
+        }
+
+        #topBar div:nth-child(2) {
+            position: fixed;
+            margin-top: -26px;
+            width: 100px;
+            height: 172px;
+            background-color: pink;
+            z-index: 1;
+        }
+
+        #topBar:hover {
+            margin-top: calc(50vh);
+            border-color: indianred;
+        }
+
+        #topBar div:nth-child(1):hover {
+            color: indianred;
+        }
+
+        #topBar div:nth-child(3) {
+            height: 100px;
+            width: 100px;
+            top: calc(50vh - 50px);
+            left: calc(50vw - 50px);
+            background-color: black;
+            position: fixed;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div id="topBar">
+            <div>
+                B R E N D A T O R R E S R I G U N A T O R O C H A
+            </div>
+            <div></div>
+            <div>♥</div>
+        </div>
+    </header>
+</body>
+
+</html>
