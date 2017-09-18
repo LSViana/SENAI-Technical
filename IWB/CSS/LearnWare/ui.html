@@ -24,25 +24,89 @@
         <nav id="topBarOptions">
             <ul>
                 <li><a href="#">Início</a></li>
-                <li><a href="#">Projetos</a></li>
-                <li><a href="#">Curiosidades</a></li>
-                <li><a href="#">Contatos</a></li>
+                <li><a href="#labelProducts">Produtos</a></li>
+                <li><a href="#labelCuriosities">Curiosidades</a></li>
+                <li><a href="#labelRegister">Contatos</a></li>
             </ul>
         </nav>
     </div>
     <div id="translucidBack">
     </div>
     <div id="contentMain">
-        <section id="courses">
-            <div id="coursesInfo">
-                <p>Você pode aprender e se especializar em</p>
-                <p id="coursesTitle">Hardware</p>
+        <p class="areaTitle"><span id="labelProducts"></span>Nossos melhores produtos para você:</p>
+        <div id="products">
+            <div class="post">
+                <img src="img/ssd730intel.png" alt="SSD Intel Series 730">
+                <p>Acelere suas transmissões</p>
+                <p>Assim como todo meio de comunicação, o seu computador pode sofrer de ruídos que diminuem a eficiência da
+                    comunicação, mas teste o SSD 730 Intel e acelere sua máquina</p>
             </div>
-            <div id="productInfo">
-                <p id="productDescription">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quia ducimus illum vitae voluptatum delectus ex
-                    commodi praesentium cupiditate reiciendis amet?</p>
+            <div class="post">
+                <img src="img/gtx1080horizontal.png" alt="Placa de Vídeo GTX 1080 Ti">
+                <p>Potência e desempenho</p>
+                <p>Conosco você pode testar as mais novas e bem conceituadas e reconhecidas no mundo placas de vídeo! Entre
+                    em contato e aprenda, divirta-se e sinta o poder! #GTX1080</p>
             </div>
-        </section>
+            <div class="post">
+                <img src="img/inteli9.jpg" alt="Intel Core i9 X-series">
+                <p>Na velocidade da Luz</p>
+                <p>A Intel, líder no mercado há décadas, agora te oferece a sua mais avançada e pura tecnologia para processadores,
+                    nomeadamente, Intel Core i9 X-series, ponha máxima potência e passe as marchas desse possante</p>
+            </div>
+            <div class="post">
+                <img src="img/corsair-aircooler.png" alt="Corsair Air Cooler">
+                <p>Ares do além</p>
+                <p>A Corsair, que vem refrigerando os computadores do mundo há muitos anos agora tornou-se nossa parceira e
+                    é parte da nossa equipe! Se você deseja manter o seu possante sempre pronto para a próxima e na linha
+                    durante as partidas, experimente os ares do além!</p>
+            </div>
+        </div>
+        <p class="areaTitle" id="labelCuriosities">Curiosidades do Nosso Mundo</p>
+        <div id="curiosities">
+            <div>
+                <p>A dupla Fairchild</p>
+                <p>Os chefes da Intel e AMD já trabalharam juntos na empresa Fairchild Semiconductors, onde foram um dos responsáveis
+                    pela criação do primeiro Circuito Integrado.</p>
+            </div>
+            <div>
+                <p>AMD nos trouxe os 64 bits</p>
+                <p>Nos últimos anos foi a AMD a responsável por uma das grandes inovações seguidas até pela Intel, a criação
+                    da arquitetura de 64 bits, que, devido a este fato, é chamada de AMD64.</p>
+            </div>
+            <div>
+                <p>Eletrônicos Microma</p>
+                <p>A Intel já fez muito barulho no mercado de computadores, mas ela também já teve algumas ideias bem inesperadas. Lá em 1972, por exemplo, a empresa tentou abraçar a fabricação de relógios.</p>
+            </div>
+            <div>
+                    <p>O vovô de Santa Clara</p>
+                    <p>O primeiro processador Intel comemora 45 anos em 2016! E claro, a empresa não deixaria passar a data em branco. Criado primeiramente como processador para calculadoras, o Intel 4004 foi lançado em 15 de novembro de 1971.</p>
+                </div>
+        </div>
+        <p class="areaTitle" id="labelRegister">Cadastre-se e faça parte do time!</p>
+        <div id="register">
+            <form action="register" id="formRegister">
+                <div>
+                    <label for="name">Nome Completo:</label>
+                    <input type="text" name="name" id="name">
+                </div>
+                <div>
+                    <label for="email">E-mail:</label>
+                    <input type="text" name="email" id="email">
+                </div>
+                <div>
+                    <label for="tel">Telefone:</label>
+                    <input type="tel" name="tel" id="tel">
+                </div>
+                <div>
+                    <label for="gender">Gênero:</label>
+                    <select name="gender" id="gender">
+                        <option value="feminine">Feminino</option>
+                        <option value="masculine">Masculino</option>
+                    </select>
+                </div>
+            </form>
+            <button type="submit" id="registerButton">Enviar Informações</button>
+        </div>
     </div>
 </body>
 

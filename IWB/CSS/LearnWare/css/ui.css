@@ -7,6 +7,20 @@
     user-select: none;
 }
 
+.areaTitle {
+    padding-left: 10px;
+    margin: 20px;
+    color: #22AAFF;
+    font-weight: 600;
+    font-size: 22px;
+    border-left-style: solid;
+    border-left-color: orange;
+}
+
+.areaTitle span {
+    position: absolute;
+    top: -250px;
+}
 
 /* Header */
 /* It will be moved with the page */
@@ -43,6 +57,188 @@
     color: #FF9300;
     font-size: 40px;
 }
+
+#contentMain {
+    margin-top: 30px;
+    margin-left: 2.5vw;
+    width: 95%;
+    padding: 20px;
+    padding-top: 80px;
+    position: absolute;
+    color: white;
+    background-color: rgba(103, 103, 103, 0.55);
+}
+
+#coursesInfo {
+    display: inline-flex;
+    background-color: rgba(186, 186, 186, 0.50);
+}
+
+#coursesInfo * {
+    font-size: 16px;
+   color: white;
+}
+
+#coursesTitle {
+    color: #4EA6F4;
+    display: inline-flex;
+    padding-left: 25px;
+    font-size: 36px;
+    font-family: 'Ubuntu Mono', sans-serif;
+}
+
+#curiosities {
+    display: flex;
+    flex-flow: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    text-align: center;
+    padding: 10px;
+    background: rgba(186, 186, 186, 0.50);
+}
+
+#curiosities div {
+    flex-basis: 250px;
+    margin: 0px 5px 10px 5px;
+    padding: 10px;
+    background-color: rgba(220, 220, 220, 0.33);
+}
+
+#curiosities p:first-child {
+    color: white;
+    font-weight: 600;
+}
+
+#curiosities p:nth-child(2) {
+    color: #EDEDED;
+    font-weight: 600;
+}
+
+#formRegister {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+#formRegister div {
+    display: flex;
+    text-align: center;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+input, select {
+    background-color: transparent;
+    border-style: none;
+    border-bottom-style: solid;
+    border-bottom-color: white;
+    padding: 4px 8px;
+    color: white;
+    outline: none;
+    transition: padding .5s, background-color .5s;
+}
+
+input:hover, select:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
+input:focus, select:focus {
+    background-color: rgba(255, 255, 255, 0.30);
+}
+
+option {
+    background-color: lightgray;
+}
+
+#productName {
+    font-size: 72px;
+    font-weight: 900;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#backVideo {
+    background-color: rgba(0, 0, 0, .6);
+    width: 100%;
+    position: fixed;
+    z-index: -2;
+}
+
+#backVideo * {
+    width: 100%;
+    position: fixed;
+    filter: grayscale(75%);
+}
+
+.post {
+    background-color: rgba(103, 103, 103, 0.55);
+    border-top-color: rgba(218, 218, 218, 0.84);
+    border-top-style: solid;
+    text-align: center;
+    padding: 5px;
+    margin-bottom: 20px;
+    max-width: 310px;
+}
+
+.post img {
+    width: 100%;
+    max-height: 300px;
+    background-color: rgba(164, 164, 164, 0.17);
+    background-blend-mode: color-burn;
+}
+
+.post *:nth-child(2) {
+    color: orange;
+    font-weight: 600;
+}
+
+.post *:nth-child(3) {
+    color: lightgray;
+    font-weight: 400;
+}
+
+#products {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+#register {
+    padding: 20px;
+    border-top-style: solid;
+    background-color: rgba(211, 211, 211, 0.43);
+    font-weight: 100;
+    font-size: 14px;
+    display: block;
+    color: white;
+}
+
+#registerButton {
+    border-style: none;
+    font-size: 18px;
+    font-weight: 600;
+    background-color: rgba(211, 211, 211, 0.45);
+    color: white;
+    margin: 5px;
+    outline: none;
+    transition: color .5s, background-color .5s;
+}
+
+#registerButton:hover {
+    color: orange;
+}
+
+#registerButton:active {
+    background-color: rgba(244, 244, 244, 0.83);
+}
+
+select {
+    font-weight: 600;
+    border-bottom-width: 2px;
+}
+
 
 #topBarOptions {
     background-color: transparent;
@@ -85,64 +281,6 @@
 
 nav li a:hover {
     background-color: #CCCCCC;
-}
-
-#contentMain {
-    margin-top: 30px;
-    padding-top: 66px;
-    height: calc(100% - 30px);
-    width: 100%;
-    position: absolute;
-    /* background-color: rgba(101, 101, 101, 0.5); */
-}
-
-#coursesInfo {
-    border-left-style: solid;
-    border-left-color: #4EA6F4;
-    margin: 20px;
-    padding: 24px;
-    width: 38vw;
-    height: 5vw;
-    align-items: center;
-    display: inline-flex;
-    background-color: rgba(186, 186, 186, 0.50);
-}
-
-#coursesInfo * {
-    font-size: 24px;
-    color: white;
-}
-
-#coursesTitle {
-    color: #4EA6F4;
-    display: inline-flex;
-    padding-left: 25px;
-    font-size: 48px;
-    font-family: 'Ubuntu Mono', sans-serif;
-}
-
-#productName {
-    font-size: 72px;
-    font-weight: 900;
-    text-align: center;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-#productDescription {
-    color: white;
-}
-
-#backVideo {
-    background-color: rgba(0, 0, 0, .6);
-    width: 100%;
-    position: fixed;
-    z-index: -2;
-}
-
-#backVideo * {
-    width: 100%;
-    position: fixed;
 }
 
 @media only screen and (max-width: 400px) {
