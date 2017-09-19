@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<server auto-publish-setting="2" auto-publish-time="1" configuration-id="/Servers/TomCat Catalina-config" deployDir="wtpwebapps" hostname="localhost" id="TomCat Catalina" name="TomCat Catalina" runtime-id="TomCat Catalina" server-type="org.eclipse.jst.server.tomcat.90" server-type-id="org.eclipse.jst.server.tomcat.90" start-timeout="45" stop-timeout="15" testEnvironment="true" timestamp="2"/>
