@@ -6,12 +6,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="css/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/custom.css">
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/bootstrap.js"></script>
 </head>
 
 <body>
     <header>
         <!-- Base navigation bar model -->
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <nav class="navbar navbar-expand-lg navbar-light bg-blue-light middle-weight">
             <!-- Area to save Brand logo/info -->
             <a class="navbar-brand" href="#">
                 <img src="img/Intel_old_logo.svg.png" height=33 alt="Intel brandlogo">
@@ -22,21 +25,30 @@
   </button>
             
             <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                <ul class="navbar-nav mr-auto mt-2 mt-lg-0 text-align-center">
                     <li class="nav-item active">
-                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="#">Home<span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Link</a>
+                        <a class="nav-link" href="#">Nossos Cursos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link disabled" href="#">Disabled</a>
+                        <a class="nav-link" href="#">Code Experience</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Cursos FIC</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Inscreva-se</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Nossos Serviços (Em Breve)</a>
                     </li>
                 </ul>
-                
-                <form class="form-inline my-2 my-lg-0">
-                    <input class="form-control mr-sm-2" type="text" placeholder="Search">
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                <!-- Search field -->
+                <form class="form-inline my-2 my-lg-0" style="justify-content: center">
+                    <input class="form-control mr-sm-2 bg-extra-blue-light" type="text" placeholder="Search">
+                    <button class="btn btn-outline-blue my-2 my-sm-0" type="submit">Search</button>
                 </form>
             </div>
         </nav>

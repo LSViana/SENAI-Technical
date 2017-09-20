@@ -1,0 +1,80 @@
+* {
+    outline: none;
+    user-select: none;
+}
+
+.bg-purple-light {
+    background-color: #BE3BFF !important;
+}
+
+.bg-purple-dark {
+    background-color: #8001BF !important;
+}
+
+.bg-gray-dark {
+    background-color: #5B5B5B !important;
+}
+
+.bg-light-dark {
+    background-color: #DADADA !important;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #AA00FF;
+    border-color: #AA00FF
+}
+
+.btn-primary:hover {
+    color: #fff;
+    background-color: #9800D9;
+    border-color: #8800CC
+}
+
+.btn-primary.focus,
+.btn-primary:focus {
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, .5)
+}
+
+.btn-primary.disabled,
+.btn-primary:disabled {
+    background-color: #AA00FF;
+    border-color: #AA00FF
+}
+
+.btn-primary.active,
+.btn-primary:active,
+.show>.btn-primary.dropdown-toggle {
+    background-color: #8800CC;
+    background-image: none;
+    border-color: #A000CC
+}
+
+.jumbotron {
+    border-radius: 0px;
+}
+
+.font-weight-middle {
+    font-weight: 600;
+}
+
+.font-weight-light {
+    font-weight: 300;
+}
+
+.card {
+    max-width: 300px;
+    margin-bottom: 30px;
+}
+
+.carousel-inner {
+    border-radius: 20px;
+}
+
+.carousel-item {
+    width: 100vw;
+}
+
+.border-radius-light {
+    border-radius: 5px;
+}
