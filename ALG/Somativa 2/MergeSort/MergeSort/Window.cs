@@ -35,7 +35,7 @@ namespace MergeSort
             {
                 Controls.OfType<Label>().ToList().ForEach(a => a.Dispose());
                 Finished = false;
-                CircleSize = new Size(50, 50);
+                CircleSize = new Size(70, 70);
                 var strNumbers = textBoxNumbers.Text.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
                 Numbers = new List<List<Int32>> { { strNumbers.Select(a => Int32.Parse(a)).ToList() } };
                 ShowMergeSort();
@@ -162,6 +162,7 @@ namespace MergeSort
                 {
                     Anchor = AnchorStyles.None,
                     BorderStyle = BorderStyle.FixedSingle,
+                    Font = new Font("Segoe UI", 16),
                     AutoSize = false,
                     TextAlign = ContentAlignment.MiddleCenter,
                     BackColor = Extensions.RandomColor(),
