@@ -16,16 +16,17 @@ namespace MergeSort
         public MergeSortStep CurrentStep { get; set; } = MergeSortStep.DRAWING;
         public List<List<Int32>> Numbers { get; set; }
         public Size CircleSize { get; set; }
-        private bool finished = false;
+        private bool finished;
         public bool Finished
         {
             get { return finished = false; ; }
-            set { buttonStart.Enabled = value; finished = value; }
+            set { buttonStart.Enabled = value; buttonNext.Enabled = !value; finished = value; }
         }
 
         public Window()
         {
             InitializeComponent();
+            Finished = true;
         }
 
         private void buttonStart_Click(object sender, EventArgs e)
