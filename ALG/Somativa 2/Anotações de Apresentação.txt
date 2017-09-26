@@ -1,0 +1,36 @@
+## BUBBLE SORT
+GRUPO 01: #Caio Oliveira
+	• Bubble Sort
+- Explicação simples e convencional, fácil de se encontrar pela Internet
+- Explicação fora de escopo sobre Arranjo (Array)
+- Explicação fora de escopo sobre Lista Ligada (LinkedList)
+- Explicação de código pouco clara e com pouca visibilidade de código
++ Abordou pontos positivos e negativos sobre o algoritmo
++ Vídeo explicativo com o passo a passo
+
+GRUPO 02: #Vinícius Pacheco
+	• Bubble Sort
+- Explicação simples, pouco clara e que não passa certeza sobre o assunto explicado
+- Explicação igual ao grupo anterior, sem inovação
+- Excesso de texto
++ Exemplo explicado passo a passo
++ Apresentou casos onde não deve ser utilizado tal código
+
+## SELECTION SORT
+GRUPO 01: #Henrique Benjamin
++ Explicação interessante
+- Não terminou a explicação prática do algoritmo
+- Não explicou claramente o código mostrado
+
+GRUPO 02: #Vitor Eiji
++ Exemplo visual interessante
+- Explicação de alguns membros muito padronizada
++ Explicação de alguns membros realmente trazendo o exemplo
+
+## HEAP SORT
+GRUPO 01: #Rayssa
+- Não soube explicar a organização de uma árvore binária em forma de vetor
++ Utilizou exemplos interessantes
+
+GRUPO 02: #
+- asd

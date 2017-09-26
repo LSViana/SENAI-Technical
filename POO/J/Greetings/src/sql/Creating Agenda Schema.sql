@@ -11,7 +11,6 @@ CREATE TABLE Agenda (
 	DateOfBirth DATE,
     CONSTRAINT Email_Unique UNIQUE(Email)
 );
-
 -- Introduction to SQL 'SELECT' command
 SELECT * FROM Agenda;
 SELECT Id, `Name` FROM Agenda;

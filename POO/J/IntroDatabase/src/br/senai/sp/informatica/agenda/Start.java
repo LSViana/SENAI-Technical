@@ -1,6 +1,8 @@
 package br.senai.sp.informatica.agenda;
 
 import java.sql.Connection;
+
+import br.senai.sp.informatica.agenda.data.AgendaDAO;
 import br.senai.sp.informatica.agenda.data.ConnectionFactory;
 
 public class Start {
