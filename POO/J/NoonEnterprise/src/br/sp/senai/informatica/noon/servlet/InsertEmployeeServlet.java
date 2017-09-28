@@ -22,7 +22,8 @@ public class InsertEmployeeServlet extends HttpServlet {
 			String name = req.getParameter("name");
 			String email = req.getParameter("email");
 			String password = req.getParameter("password");
-			EmployeeDAO.insert(new Employee(0, name, email, password));
+			String cpf = req.getParameter("cpf");
+			EmployeeDAO.insert(new Employee(0, name, email, cpf, password));
 			resHTML = "<html>" + "<body>" + "<h3>We did it!</h3>"
 					+ "<p>Your new employee is registered, you can come back to the Form page with the following button:</br>"
 					+ "<a href=\"InsertEmployee.html\">" + "<button>Back to Form</button>" + "</a>" + "</body>"

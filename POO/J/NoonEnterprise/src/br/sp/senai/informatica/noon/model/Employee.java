@@ -1,21 +1,23 @@
 package br.sp.senai.informatica.noon.model;
 
 public class Employee {
-	private int Id;
+	private long Id;
 	private String Name;
 	private String Email;
+	private String CPF;
 	private String Password;
-	public Employee(int id, String name, String email, String password) {
+	public Employee(long id, String name, String email, String cPF, String password) {
 		super();
 		Id = id;
 		Name = name;
 		Email = email;
+		CPF = cPF;
 		Password = password;
 	}
-	public int getId() {
+	public long getId() {
 		return Id;
 	}
-	public void setId(int id) {
+	public void setId(long id) {
 		Id = id;
 	}
 	public String getName() {
@@ -29,6 +31,12 @@ public class Employee {
 	}
 	public void setEmail(String email) {
 		Email = email;
+	}
+	public String getCPF() {
+		return CPF;
+	}
+	public void setCPF(String cPF) {
+		CPF = cPF;
 	}
 	public String getPassword() {
 		return Password;

@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="ISO-8859-1">
-    <title>NoonEnterprise – Add New Employee</title>
+    <title>NoonEnterprise | Add New Employee</title>
     <style>
         * {
             box-sizing: border-box;
@@ -16,6 +16,13 @@
             display: block;
             margin-bottom: 10px;
         }
+        h6 {
+            margin: 0px;
+            margin-top: -10px;
+            color: gray;
+            font-style: italic;
+            font-weight: 100;
+        }
     </style>
 </head>
 
@@ -27,10 +34,15 @@
         <input type="text" name="name">
         <label for="email">E-mail</label>
         <input type="email" name="email">
+        <label for="cpf">CPF</label>
+        <input type="text" name="cpf" id="cpf" maxlength="11">
+        <h6>Maximum length is 11</h6>
         <label for="password">Password</label>
-        <input type="text" name="password">
+        <input type="password" name="password" maxlength="20">
+        <h6>Maximum length is 20</h6>
         <button type="submit">Register</button>
     </form>
+    <a href="/NoonEnterprise/listEmployee"><button>List Employees</button></a>
 </body>
 
 </html>
