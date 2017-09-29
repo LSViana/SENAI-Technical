@@ -15,7 +15,8 @@ public class AgendaDAO {
 	private static String getAll = "SELECT * FROM Agenda";
 	private static String filterName = "SELECT * FROM Agenda WHERE Name LIKE ?;";
 	private static String filterId= "SEELCT * FROM Agenda WHERE Id LIKE ?;";
-	private AgendaDAO() {
+	
+	public AgendaDAO() {
 		// Standard constructor
 	}
 	public static Agenda insert(Agenda agenda) {

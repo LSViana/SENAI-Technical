@@ -6,6 +6,11 @@ public class Agenda {
 	String email;
 	String address;
 	LocalDate dateOfBirth;
+	
+	public Agenda() {
+		// Standard constructor to allow using with JSTL
+	}
+	
 	public Agenda(int id, String name, String email, String address, LocalDate dateOfBirth) {
 		super();
 		this.id = id;

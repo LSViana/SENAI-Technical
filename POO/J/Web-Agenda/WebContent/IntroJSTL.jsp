@@ -9,7 +9,8 @@
 </head>
 <body>
 	<h1>OI</h1>
-	<jsp:useBean id="agenda" class="br.senai.sp.informatica.webagenda.model.Agenda" />
-	{$agenda.Name }
+	<jsp:useBean id="agenda" class="br.senai.sp.informatica.webagenda.model.Agenda">
+		{$agenda.Name }
+	</jsp:useBean>
 </body>
 </html>
