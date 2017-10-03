@@ -12,7 +12,7 @@ public class EmployeeDAO {
 	private static Connection CONNECTION;
 	private static String INSERTINTO = "INSERT INTO Funcionario VALUES(0, ?, ?, ?, ?);";
 	private static String GETALL = "SELECT * FROM Funcionario";
-	public static Employee insert(Employee employee) {
+	public Employee insert(Employee employee) {
 		try {
 			CONNECTION = ConnectionFactory.openConnection();
 			PreparedStatement stmt = CONNECTION.prepareStatement(INSERTINTO);
@@ -27,12 +27,12 @@ public class EmployeeDAO {
 			throw new RuntimeException(e);
 		}
 	}
-	public static List<Employee> getAll() {
+	public List<Employee> getAll() {
 		try {
 			CONNECTION = ConnectionFactory.openConnection();
 			PreparedStatement stmt = CONNECTION.prepareStatement(GETALL);
 			ResultSet resultSet = stmt.executeQuery();
-			List<Employee> result = new ArrayList<>();
+			List<Employee> result = new ArrayList<Employee>();
 			while(resultSet.next()) {
 				result.add(new Employee(resultSet.getInt(1),
 						resultSet.getString(2),

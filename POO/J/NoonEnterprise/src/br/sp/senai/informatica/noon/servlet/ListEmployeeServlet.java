@@ -9,7 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import br.sp.senai.informatica.noon.data.ContactDAO;
 import br.sp.senai.informatica.noon.data.EmployeeDAO;
+import br.sp.senai.informatica.noon.model.Contact;
 import br.sp.senai.informatica.noon.model.Employee;
 
 @WebServlet("/listEmployee")
@@ -55,8 +57,12 @@ public class ListEmployeeServlet extends HttpServlet {
 	protected void service(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		PrintWriter out = res.getWriter();
 		StringBuilder list = new StringBuilder();
-		for (Employee employee : EmployeeDAO.getAll()) {
-			list.append(String.format("<tr><td>%s</td><td>%s</td><td>%s</td></tr>\r\n", employee.getName(), employee.getEmail(), employee.getCPF()));
+		EmployeeDAO employeeDAO = new EmployeeDAO();
+		//ContactDAO contactDAO = new ContactDAO();
+		//for (Contact item : contactDAO.getAll()) {
+		for (Employee item : employeeDAO.getAll()) {
+			//list.append(String.format("<tr><td>%s</td><td>%s</td><td>%s</td></tr>\r\n", item.getName(), item.getEmail(), item.getAdress()));
+			list.append(String.format("<tr><td>%s</td><td>%s</td><td>%s</td></tr>\r\n", item.getName(), item.getEmail(), item.getCPF()));
 		}
 		StringBuilder builder = new StringBuilder(htmlBase.replace("*", list.toString()));
 		out.write(builder.toString());

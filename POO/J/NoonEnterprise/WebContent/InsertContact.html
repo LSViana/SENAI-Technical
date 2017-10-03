@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="ISO-8859-1">
+    <title>NoonEnterprise | Add New Employee</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        
+        body {
+            margin: 10px;
+        }
+        input {
+            display: block;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <h3>Register Your New Employees</h3>
+    <hr>
+    <form action="insertContact" method="post">
+        <label for="name">Name</label>
+        <input type="text" name="name">
+        <label for="email">E-mail</label>
+        <input type="email" name="email">        
+        <label for="address">Address</label>
+        <input type="text" name="address">
+        <label for="dateOfBirthday">Date of Birthday</label>
+        <input type="date" name="dateOfBirthday">
+        <button type="submit">Register</button>
+    </form>
+</body>
+
+</html>
