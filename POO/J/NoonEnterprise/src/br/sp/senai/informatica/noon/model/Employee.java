@@ -1,5 +1,7 @@
 package br.sp.senai.informatica.noon.model;
 
+import java.text.DecimalFormat;
+
 public class Employee {
 	private long Id;
 	private String Name;
