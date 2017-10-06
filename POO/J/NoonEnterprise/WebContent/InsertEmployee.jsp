@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 
@@ -23,10 +24,14 @@
             font-style: italic;
             font-weight: 100;
         }
+       	button {
+       		margin-top: 10px;       	
+       	}
     </style>
 </head>
 
 <body>
+	<c:import url="Noon-Header.jsp"></c:import>
     <h3>Register Your New Employees</h3>
     <hr>
     <form action="insertEmployee" method="post">
@@ -42,7 +47,8 @@
         <h6>Maximum length is 20</h6>
         <button type="submit">Register</button>
     </form>
-    <a href="/NoonEnterprise/listEmployee"><button>List Employees</button></a>
+    <a href="/NoonEnterprise/ListEmployee.jsp"><button>List Employees</button></a>
+    <c:import url="Noon-Footer.jsp"></c:import>
 </body>
 
 </html>
