@@ -4,10 +4,30 @@
 }
 body {
     background-color: #4C4C4C;
+    overflow-x: hidden;
+}
+header {
+    background: url(/Website/img/svg/Background-Header.svg) no-repeat;
+    height: 990px;
+}
+header img {
+    z-index: -1;
+    margin: 9% 13.5%;
+    width: 18vw;
+}
+header h1 {
+    
 }
 #lp-bg-mediumgray {
-    transform: rotate(-20deg);
-    width: 200px;
-    height: 200px;
-    background-color: #8E8C8C;
+    position: fixed;
+    width: 700px;
+    height: 700px;
+    background-color: aqua;
+    transform: translate3d(calc(100vw - 350px), -350px, 0px) rotate(-45deg);
+}
+#lp-bg-lightgray {
+    position: fixed;
+    width: 500px;
+    height: 500px;
+    background-color: red;
 }
