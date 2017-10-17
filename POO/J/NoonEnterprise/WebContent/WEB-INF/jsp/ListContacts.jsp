@@ -1,4 +1,3 @@
-<%@page import="br.sp.senai.informatica.noon.model.Employee"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="f" %>
 <%@ taglib tagdir="/WEB-INF/tags" prefix="lt" %>
@@ -24,34 +23,41 @@
 </head>
 <body>
 	<%--Importing other pages to this, useful to keep all files synchronized--%>
-	<c:import url="Noon-Header.jsp"></c:import>
+	<c:import url="Header.jsp"></c:import>
+	<%--The DAO is now allocated at pure Java files to implement MVC Design Pattern--%>
 	<%--Create a new instance of AgendaDAO--%>
-	<jsp:useBean id="dao" class="br.sp.senai.informatica.noon.data.EmployeeDAO" />
+	<%--<jsp:useBean id="dao" class="br.sp.senai.informatica.noon.data.ContactDAO" />
 	<%--Create a new DAO to register the items at database--%>
 	<table>
 		<tr>
 			<th>Name</th>
 			<th>E-mail</th>
-			<th>CPF</th>
-			<th>Password</th>
+			<th>Address</th>
+			<th>Date of Birthday</th>
+			<th>Remove</th>
 		</tr>
-		<c:forEach var="employee" items="${ dao.all }" varStatus="id">
+		<!--Avoid to use DAO at JSP page to get all contacts, it might be made in the following way-->
+		<c:forEach var="contact" items="${ contacts }" varStatus="id">
+		<%--<c:forEach var="contact" items="${ dao.all }" varStatus="id">--%>
 			<tr style="background-color : #${ id.count % 2 == 0 ? 'EEEEEE' : 'CCCCCC' }">
-				<td>${ employee.name }</td>
+				<td>${ contact.name }</td>
 				<td>
-					<c:if test="${ not empty employee.email }">
-						<a href="mailto:${ employee.email }">${ employee.email }</a>
+					<c:if test="${ not empty contact.email }">
+						<a href="mailto:${ contact.email }">${ contact.email }</a>
 					</c:if>
-					<c:if test="${ empty employee.email }">
+					<c:if test="${ empty contact.email }">
 						E-mail not supplied
 					</c:if>
 				</td>
-				<td>${ employee.CPF }</td>
-				<td>${ employee.password }</td>
+				<td>${ contact.address }</td>
+				<td>${ contact.dateOfBirthday }</td>
+				<td>
+					<a href="mvc?task=RemoveContact&id=${ contact.id }">Remove</a>
+				</td>
 			</tr>
 		</c:forEach>
 	</table>
 	<%--Importing footer to this page--%>
-	<c:import url="Noon-Footer.jsp"></c:import>
+	<c:import url="Footer.jsp"></c:import>
 </body>
 </html>

@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class ConnectionFactory {
+public class ConnectionFactory_Enterprise {
 	private static Connection CONNECTION;
 	private static String URL = "jdbc:mysql://172.16.7.23/empresat";
 	private static String USER = "tarde";
