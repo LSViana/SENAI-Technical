@@ -52,6 +52,10 @@ footer section > div {
     max-width: 840px;
 }
 
+header {
+    overflow: hidden;
+}
+
 header img:nth-child(1) {
     position: absolute;
     width: 130%;
