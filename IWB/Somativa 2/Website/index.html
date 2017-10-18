@@ -5,8 +5,8 @@
     <title>LearnWare</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
@@ -20,7 +20,7 @@
     <main>
         <!--Main characteristics-->
         <!--Slider-->
-        <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+        <div class="carousel slide" data-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item feature active">
                     <img src="img/amd-ryzen-pro.png" alt="AMD® Ryzen® Pro" />
@@ -47,7 +47,7 @@
                     </div>
                 </div>
             </div>
-            <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+            <!--<a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
     <span class="sr-only">Previous</span>
   </a>
@@ -55,6 +55,7 @@
     <span class="carousel-control-next-icon" aria-hidden="true"></span>
     <span class="sr-only">Next</span>
   </a>
+       -->
         </div>
         <!--End of Slider-->
         <div id="main-features">
@@ -62,7 +63,9 @@
         </div>
         <div class="category-area">
             <div class="category-card">
-                <img class="card-border-decoration" src="img/svg/card-border-decoration.svg" alt="Card border decoration">
+                <div>
+                    <img class="card-border-decoration" src="img/svg/card-border-decoration.svg" alt="Card border decoration">
+                </div>
                 <h4>Games</h4>
                 <p class="category-description">Já conhece a <span>GTX 1080 Turbo Edition</span> da Gigabyte e todo seu brilhantismo!</p>
                 <div>
@@ -70,7 +73,9 @@
                 </div>
             </div>
             <div class="category-card">
-                <img class="card-border-decoration" src="img/svg/card-border-decoration.svg" alt="Card border decoration">
+                <div>
+                    <img class="card-border-decoration" src="img/svg/card-border-decoration.svg" alt="Card border decoration">
+                </div>
                 <h4>Armazenamento</h4>
                 <p class="category-description">Precisa de mais jogos e menos falta de espaço? Apresentamos o <span>HyperX SSD Kabum E-Sports</span>!</p>
                 <div>
@@ -78,7 +83,9 @@
                 </div>
             </div>
             <div class="category-card">
-                <img class="card-border-decoration" src="img/svg/card-border-decoration.svg" alt="Card border decoration">
+                <div>
+                    <img class="card-border-decoration" src="img/svg/card-border-decoration.svg" alt="Card border decoration">
+                </div>
                 <h4>Customização</h4>
                 <p class="category-description">Mas e quando o seu amigo é meio esquentadinho? Apresentamos <span>AirCooler Xigmatek Gaia II</span>:</p>
                 <div>
@@ -87,7 +94,9 @@
                 </div>
             </div>
             <div class="category-card">
-                <img class="card-border-decoration" src="img/svg/card-border-decoration.svg" alt="Card border decoration">
+                <div>
+                    <img class="card-border-decoration" src="img/svg/card-border-decoration.svg" alt="Card border decoration">
+                </div>
                 <h4>Memória</h4>
                 <p class="category-description">Se o problema está na memória, transforme-o em uma máquina de guerra <span>HyperX Savage</span>:</p>
                 <div>
@@ -99,27 +108,35 @@
     <footer>
         <!--Area of contacts-->
         <h4>Já que nem sempre vamos estar presentes, encontre-nos por aqui:</h4>
-        <div class="social-media">
-            <div>
-                <img src="img/svg/facebook-orange-logo.svg" alt="Facebook Orange Logo">
+        <section>
+            <div class="social-media">
                 <div>
-                    <h3>Facebook</h3>
-                    <h5>http://fb.com/<span>Learn</span><span>Ware</span></h5>
+                    <img src="img/svg/facebook-orange-logo.svg" alt="Facebook Orange Logo">
+                    <div>
+                        <h3>Facebook</h3>
+                        <p>
+                            <span>http://fb.com/</span>
+                            <span>Learn</span><span>Ware</span>
+                        </p>
+                    </div>
+                </div>
+                <div>
+                    <img src="img/svg/twitter-orange-logo.svg" alt="Facebook Orange Logo">
+                    <div>
+                        <h3>Twitter</h3>
+                        <p>
+                            <span>http://twitter.com/</span>
+                            <span>Learn</span><span>Ware</span>
+                        </p>
+                    </div>
                 </div>
             </div>
-            <div>
-                <img src="img/svg/twitter-orange-logo.svg" alt="Facebook Orange Logo">
-                <div>
-                    <h3>Twitter</h3>
-                    <h5>http://twitter.com/<span>Learn</span><span>Ware</span></h5>
-                </div>
+            <div class="newsletter-area">
+                <h5>Assine nossa <span>Learn</span><span>Ware</span> <span>NewsLetter</span>:</h5>
+                <textarea placeholder="Esperamos que esteja feliz por escrever essas palavras! :)"></textarea>
+                <input type="submit" value="Enviar">
             </div>
-        </div>
-        <div class="newsletter-area">
-            <p>Assine nossa <span>Learn</span><span>Ware</span> NewsLetter:</p>
-            <input type="text" placeholder="Esperamos que esteja feliz por escrever essas palavras! :)">
-            <input type="button" value="Enviar">
-        </div>
+        </section>
     </footer>
     <script src="js/jquery-3.2.1.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
