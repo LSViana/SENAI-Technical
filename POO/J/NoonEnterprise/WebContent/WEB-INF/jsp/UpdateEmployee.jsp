@@ -28,7 +28,6 @@
 	<%--Create a new instance of AgendaDAO--%>
 	<%--<jsp:useBean id="dao" class="br.sp.senai.informatica.noon.data.EmployeeDAO" />--%>
 	<%--Create a new DAO to register the items at database--%>
-	<p>Click at the Employee's name to edit its data</p>
 	<table>
 		<tr>
 			<th>Name</th>
@@ -39,9 +38,7 @@
 		</tr>
 		<c:forEach var="employee" items="${ employees }" varStatus="id">
 			<tr style="background-color : #${ id.count % 2 == 0 ? 'EEEEEE' : 'CCCCCC' }">
-				<td>
-					<a href="mvc?task=ShowEmployee&id=${ employee.id }">${ employee.name }</a>
-				</td>
+				<td>${ employee.name }</td>
 				<td>
 					<c:if test="${ not empty employee.email }">
 						<a href="mailto:${ employee.email }">${ employee.email }</a>
@@ -58,9 +55,6 @@
 			</tr>
 		</c:forEach>
 	</table>
-	<a href="mvc?task=InsertEmployee">
-		<input type="button" value="Insert an Employee" style="margin-top: 20px">
-	</a>
 	<%--Importing footer to this page--%>
 	<c:import url="Noon-Footer.jsp"></c:import>
 </body>

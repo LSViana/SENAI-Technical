@@ -31,24 +31,22 @@
 </head>
 
 <body>
-	<c:import url="Noon-Header.jsp"></c:import>
-    <h3>Register Your New Employees</h3>
+	<c:import url="Header.jsp"></c:import>
+    <h3>Register Your New Contacts</h3>
     <hr>
-    <form action="mvc?task=SaveEmployee" method="post">
+    <form action="mvc?task=SaveContact" method="post">
         <label for="name">Name</label>
         <input type="text" name="name">
         <label for="email">E-mail</label>
         <input type="email" name="email">
-        <label for="cpf">CPF</label>
-        <input type="text" name="cpf" id="cpf" maxlength="11">
-        <h6>Maximum length is 11</h6>
-        <label for="password">Password</label>
-        <input type="password" name="password" maxlength="20">
-        <h6>Maximum length is 20</h6>
+        <label for="address">Address</label>
+        <input type="text" name="address" id="address">
+        <label for="dateOfBirthday">Date of Birthday</label>
+        <input type="date" name="dateOfBirthday" required="required" maxlength="10">
         <button type="submit">Register</button>
     </form>
-    <a href="mvc?task=ListEmployee"><button>List Employees</button></a>
-    <c:import url="Noon-Footer.jsp"></c:import>
+    <a href="mvc?task=ListContact"><button>List Contacts</button></a>
+    <c:import url="Footer.jsp"></c:import>
 </body>
 
 </html>

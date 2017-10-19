@@ -1,3 +1,5 @@
+<%@page import="java.time.format.DateTimeFormatter"%>
+<%@page import="java.time.LocalDate"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="f" %>
 <%@ taglib tagdir="/WEB-INF/tags" prefix="lt" %>
@@ -28,6 +30,7 @@
 	<%--Create a new instance of AgendaDAO--%>
 	<%--<jsp:useBean id="dao" class="br.sp.senai.informatica.noon.data.ContactDAO" />
 	<%--Create a new DAO to register the items at database--%>
+	<p>Click at the Contact's name to edit its data</p>
 	<table>
 		<tr>
 			<th>Name</th>
@@ -40,7 +43,7 @@
 		<c:forEach var="contact" items="${ contacts }" varStatus="id">
 		<%--<c:forEach var="contact" items="${ dao.all }" varStatus="id">--%>
 			<tr style="background-color : #${ id.count % 2 == 0 ? 'EEEEEE' : 'CCCCCC' }">
-				<td>${ contact.name }</td>
+				<td><a href="mvc?task=ShowContact&id=${ contact.id }">${ contact.name }</a></td>
 				<td>
 					<c:if test="${ not empty contact.email }">
 						<a href="mailto:${ contact.email }">${ contact.email }</a>
@@ -50,13 +53,16 @@
 					</c:if>
 				</td>
 				<td>${ contact.address }</td>
-				<td>${ contact.dateOfBirthday }</td>
+				<td>${ contact.formattedDate }</td>
 				<td>
 					<a href="mvc?task=RemoveContact&id=${ contact.id }">Remove</a>
 				</td>
 			</tr>
 		</c:forEach>
 	</table>
+	<a href="mvc?task=InsertContact">
+		<input type="button" value="Insert a Contact" style="margin-top: 20px">
+	</a>
 	<%--Importing footer to this page--%>
 	<c:import url="Footer.jsp"></c:import>
 </body>

@@ -1,6 +1,7 @@
 package br.sp.senai.informatica.noon.model;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class Contact {
 	private int id;
@@ -13,12 +14,12 @@ public class Contact {
 		// Standard Constructor
 	}
 	
-	public Contact(int id, String name, String email, String adress, LocalDate dateOfBirthday) {
+	public Contact(int id, String name, String email, String address, LocalDate dateOfBirthday) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.email = email;
-		this.address = adress;
+		this.address = address;
 		this.dateOfBirthday = dateOfBirthday;
 	}
 	public int getId() {
@@ -50,6 +51,10 @@ public class Contact {
 	}
 	public void setDateOfBirthday(LocalDate dateOfBirthday) {
 		this.dateOfBirthday = dateOfBirthday;
+	}
+	
+	public String getFormattedDate() {
+		return dateOfBirthday.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
 	}
 	
 }

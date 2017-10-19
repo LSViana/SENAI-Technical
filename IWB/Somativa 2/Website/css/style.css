@@ -10,7 +10,7 @@
 
 body {
     background-color: #4b4b4b !important;
-    overflow-x: hidden;
+    overflow-x: hidden !important;
 }
 
 footer {
@@ -53,7 +53,7 @@ footer section > div {
 }
 
 header {
-    overflow: hidden;
+    overflow-x: hidden;
 }
 
 header img:nth-child(1) {

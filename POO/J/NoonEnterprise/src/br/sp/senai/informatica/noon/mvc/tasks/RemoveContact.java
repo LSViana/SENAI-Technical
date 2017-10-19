@@ -19,7 +19,7 @@ public class RemoveContact implements ExecutableTask {
 		ContactDAO c = new ContactDAO();
 		c.delete(id);
 		// Returning the updated page
-		return "WEB-INF/jsp/ListContact.jsp";
+		return "mvc?task=ListContact";
 	}
 
 }
