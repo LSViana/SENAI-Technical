@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="pt">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+    <body>
+        <h1 id="titulo">Este é o título padrão</h1>
+    </body>
+    <script>
+      // Getting element by ID
+      var title = document.getElementById("titulo");
+      // Logging the just loaded element
+      console.log(title);
+      // Changing element text
+      title.innerText = "Este é o título customizado";
+      title.style.color = "red";
+      title.style.fontFamily = "Segoe UI";
+      document.getElementsByTagName("body")[0].style.backgroundColor = "blue";
+    </script>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+    <body>
+        <form>
+            <!--Campo para entrada do texto-->
+            <label>
+                <input type="text" id="inputTexto" onkeyup="changeText()">
+                <button type="button" onclick="changeText()">Alterar Texto</button>
+            </label>
+        </form>
+
+        <!-- Parágrafo que exibirá o texto inserido -->
+        <p id="paragrafo">Insira seu texto no campo acima e clique no botão para me alterar</p>
+    </body>
+    <script>
+        function changeText() {
+            var textContent = document.getElementById("inputTexto").value;
+            var paragraph = document.getElementById("paragrafo");
+            paragraph.innerText = textContent;
+            paragraph.style.fontSize = textContent.length + "px";
+        }
+    </script>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+    <body>
+        <!-- Campos de altura e peso -->
+        <form>
+            <label>
+                Altura: 
+                <input id="inputAltura" type="number">
+            </label>
+            <label>
+                Peso: 
+                <input id="inputPeso" type="number">
+            </label>
+
+            <!-- Marca o resultado do IMC -->
+            <label>
+                IMC:
+                <input readonly id="inputResultado" type="number">
+            </label>
+
+            <!-- Botão de Cálculo -->
+            <button id="btnCalcular" type="button">CALCULAR IMC</button>
+        </form>
+
+        <!-- Parágrafo com o resultado -->
+        <p id="resultado">Resultado: Insira sua altura e peso para calcular IMC</p>
+    </body>
+</html>

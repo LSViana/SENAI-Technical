@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+    <body>
+        <form>
+            <label>
+                Insert the Task:
+                <input type="text" id="inputTask">
+                <button id="buttonAddTask" type="button" onclick="addTask()">Add Task</button>
+            </label>
+        </form>
+
+        <!-- Element where the tasks will be added -->
+        <h2>Task List:</h2>
+        <ul id="taskList">
+        </ul>
+    </body>
+    <script>
+        function addTask() {
+            var taskList = document.getElementById("taskList");
+            var taskName = document.getElementById("inputTask");
+            if(isEmpty(taskName.value))
+                return;
+            // Pedreirão Mode
+            //taskList.innerHTML += "<li>" + taskName.value + "</li>";
+            // Elegant Mode
+            var newItem = document.createElement("li");
+            newItem.innerText = taskName.value;
+            taskList.appendChild(newItem);
+            taskName.value = "";
+        }
+        String.prototype.isEmpty = function() {
+            if(this.length == 0)
+                return true;
+            else
+                return false;
+        }
+    </script>
+</html>

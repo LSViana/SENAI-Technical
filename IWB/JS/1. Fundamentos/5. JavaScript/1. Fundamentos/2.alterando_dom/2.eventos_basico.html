@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="pt">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+    <body>
+        <p id="paragrafo">Clique no botão abaixo para alterar este texto.</p>
+        <form>
+            <button type="button" onclick="changeText()">Alterar texto</button>
+        </form>
+    </body>
+    <script>
+        function changeText() {
+            // Getting the target element
+            var paragraph = document.getElementById("paragrafo");
+            // Changing the text
+            paragraph.innerText = "The text has been changed by click.";
+            paragraph.style.color = "red";
+        }
+    </script>
+</html>
