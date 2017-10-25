@@ -1,0 +1,122 @@
+/* Imported properties */
+@font-family: 'Lato', sans-serif;
+@font-family: 'Indie Flower', cursive;
+/* The rules */
+*, *::after, *::before {
+    margin: 0px;
+    font-family: 'Segoe UI';
+    user-select: none;
+    outline: none;
+}
+audio {
+    display: none;
+}
+body {
+    overflow: hidden;
+    background-color: #000000;
+}
+body img {
+    width: 100vw;
+    z-index: -1;
+    position: absolute;
+}
+#base {
+    background-image: linear-gradient(#f5ff00, rgba(255, 108, 0, 0.72));
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    color: white;
+}
+#base form label {
+    display: block;
+}
+#base div {
+    background-color: rgba(255, 255, 255, 0.1);
+    width: 320px;
+    margin: auto;
+    display: flex;
+    flex-flow: column;
+}
+#base p {
+    color: rgba(255, 255, 255, 0.75);
+    font-weight: 600;
+    text-align: center;
+    font-family: 'Lato';
+    margin: 15px;
+    font-size: 24px;
+}
+#base label {
+    font-weight: 100;
+    margin: 10px;
+}
+#base form {
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-content: center;
+}
+#base input[type="password"] {
+    background-color: rgba(0, 0, 0, 0.1);
+    width: 250px;
+    color: white;
+    margin: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 24px;
+    padding: 7px;
+    border: none;
+    border-bottom: solid 2px white;
+    transition: border-bottom .5s;
+}
+#base input[type="password"]:focus {
+    border-bottom: solid 2px rgba(255, 255, 255, 0.46);
+}
+#base span[border="yes"] {
+    height: 2px;
+    width: 90%;
+    margin-right: auto;
+    margin-left: auto;
+    background-color: rgba(255, 255, 255, 0.44);
+}
+#text {
+    background-color: rgba(253, 0, 165, 0.13) !important;
+    padding: 10px;
+}
+#text h1 {
+    color: rgba(255, 0, 49, 0.51);
+    margin: 10px 10px 5px 10px;
+}
+#text div p {
+    color: rgba(217, 0, 17, 0.57);
+}
+#text span {
+    height: 25px;
+}
+.poem h1 {
+    text-align: center;
+    font-family: 'Indie Flower';
+    font-size: 24px;
+}
+.poem p {
+    font-size: 18px !important;
+    margin: 5px 15px !important;
+}
+.none {
+    display: none;
+}
+.sunset {
+    background-image: none !important;
+    background-color: rgba(230, 50, 50, 0.33);
+}
+/* Rhyme formatting area */
+#text div p, #text h1 {
+    transition: background-color .5s, color .5s, transform .5s;
+}
+#text h1:hover {
+    color: hotpink;
+    transform: scale(1.1);
+}
+#text div p:hover {
+    background-color: rgba(255, 255, 255, 0.4);
+    color: #ff0062;
+}
