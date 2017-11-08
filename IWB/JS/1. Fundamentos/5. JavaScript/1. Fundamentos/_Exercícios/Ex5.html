@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Exercise 5</title>
+    <script>
+        window.onload = () => {
+            var inputNumber = document.getElementsByName("user-text")[0];
+            var results = document.getElementById("results");
+            var vowels = [ "A", "E", "I", "O", "U" ];
+            //
+            inputNumber.addEventListener('keydown', (b) => {
+                var key = b.key;
+                if(!((b.keyCode >= 65 && b.keyCode <= 90) || (b.keyCode >= 97 && b.keyCode <= 122)))
+                    return;
+                var isVowel = vowels.some((value) => { return value.toLowerCase() == key.toLowerCase(); });
+                if(isVowel) {
+                    results.innerHTML += "<br>Vowel";
+                }
+                else {
+                    results.innerHTML += "<br>Consonant";
+                }
+            });
+        };
+    </script>
+</head>
+<body>
+    <form>
+        <label for="user-text">Insert the text:</label>
+        <input type="text" name="user-text">
+    </form>
+    <div id="results">
+
+    </div>
+</body>
+</html>

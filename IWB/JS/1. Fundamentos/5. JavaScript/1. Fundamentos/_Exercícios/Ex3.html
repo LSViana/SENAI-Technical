@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Exercise 3</title>
+    <script>
+        var operation;
+        window.onload = () => {
+            var value1 = document.getElementsByName("value1")[0];
+            var value2 = document.getElementsByName("value2")[0];
+            var result = document.getElementById("result");
+            //
+            Array.from(document.getElementsByTagName('input')).forEach((a, b, c) => {
+                if (a.getAttribute("type") == "button") {
+                    a.addEventListener('click', () => {
+                        var operation = a.id;
+                        var _result = 0;
+                        //
+                        switch (operation) {
+                            case "sum":
+                                _result = Number(value1.value) + Number(value2.value);
+                                break;
+                            case "subtract":
+                                _result = Number(value1.value) - Number(value2.value);
+                                break;
+                            case "multiply":
+                                _result = Number(value1.value) * Number(value2.value);
+                                break;
+                            case "divide":
+                                _result = Number(value1.value) / Number(value2.value);
+                                break;
+                            case "power":
+                                _result = Math.pow(Number(value1.value), Number(value2.value));
+                                break;
+                            case "sqrt1":
+                                _result = Math.sqrt(Number(value1.value));
+                                break;
+                            case "sqrt2":
+                                _result = Math.sqrt(Number(value2.value));
+                                break;
+                        }
+                        //
+                        result.innerText = _result;
+                    })
+                }
+            });
+        };
+    </script>
+</head>
+
+<body>
+    <form>
+        <input type="number" name="value1">
+        <input type="number" name="value2">
+        <input type="button" value="Sum" id="sum">
+        <input type="button" value="Subtract" id="subtract">
+        <input type="button" value="Multiply" id="multiply">
+        <input type="button" value="Divide" id="divide">
+        <input type="button" value="Power" id="power">
+        <input type="button" value="Square Root 1" id="sqrt1">
+        <input type="button" value="Square Root 2" id="sqrt2">
+    </form>
+    <div id="results">
+        <p id="result"></p>
+    </div>
+</body>
+
+</html>

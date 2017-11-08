@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Exercise 4</title>
+</head>
+<script>
+    window.onload = () => {
+        var highwaySpeed = document.getElementById("highwaySpeed");
+        var driverSpeed = document.getElementById("driverSpeed");
+        var result = document.getElementById("result");
+        var buttonProcess = document.getElementById("btn-calculate");
+        //
+        buttonProcess.addEventListener('click', () => {
+            var diff = Number(highwaySpeed.value) - Number(driverSpeed.value);
+            //
+            if(diff <= 10) {
+                result.innerText = "$ 50.00";
+            }
+            else if(diff <= 30) {
+                result.innerText = "$ 100.00";
+            }
+            else {
+                result.innerText = "$ 200.00";
+            }
+        });
+    };
+</script>
+<body>
+    <h1>DETRAN SP – São Paulo City</h1>
+    <p>Insert the highway speed limit and driver's car speed:</p>
+    <form>
+        <input type="number" id="highwaySpeed">
+        <input type="number" id="driverSpeed">
+        <input type="button" value="Process Result" id="btn-calculate">
+    </form>
+    <div id="results">
+        <p id="result"></p>
+    </div>
+</body>
+</html>

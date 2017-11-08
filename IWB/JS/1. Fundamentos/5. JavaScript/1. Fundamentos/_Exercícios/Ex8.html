@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Challenge 2</title>
+    <script>
+        window.onload = () => {
+            var lamp = document.getElementById("lamp");
+            var isLight = false;
+            //
+            lamp.addEventListener('mouseover', () => {
+                lamp.setAttribute("src", "./lamp_on.jpg");
+            });
+            lamp.addEventListener('mouseleave', () => {
+                lamp.setAttribute("src", "./lamp_off.png");
+            });
+        };
+    </script>
+</head>
+<body>
+    <img src="./lamp_off.png" alt="Lamp" id="lamp">
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Exercise 1</title>
+    <style>
+        input {
+            display: block;
+        }
+    </style>
+    <script>
+        window.onload = () => {
+            var name = document.getElementsByName('name')[0];
+            var address = document.getElementsByName('address')[0];
+            var dateOfBirth = document.getElementsByName('dateOfBirth')[0];
+            var dataHolder = document.getElementById('data-holder');
+            var buttonSignUp = document.getElementById('button-signup');
+            //
+            buttonSignUp.addEventListener('click', () => {
+                dataHolder.innerHTML = "";
+                var nameParagraph = document.createElement('p');
+                nameParagraph.innerText = name.value;
+                var addressParagraph = document.createElement('p');
+                addressParagraph.innerText = address.value;
+                var dateOfBirthParagraph = document.createElement('p');
+                dateOfBirthParagraph.innerText = dateOfBirth.value;
+                dataHolder.appendChild(nameParagraph);
+                dataHolder.appendChild(addressParagraph);
+                dataHolder.appendChild(dateOfBirthParagraph);
+            });
+        };
+    </script>
+</head>
+
+<body>
+    <form>
+        <label for="name">Name:</label>
+        <input type="text" name="name">
+        <label for="address">Address:</label>
+        <input type="text" name="address">
+        <label for="dateOfBirth">Date of Birth:</label>
+        <input type="date" name="dateOfBirth">
+        <input type="button" value="Sign Up" id="button-signup">
+    </form>
+    <div id="data-holder">
+    </div>
+</body>
+
+</html>

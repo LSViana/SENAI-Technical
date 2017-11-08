@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Exercise 4</title>
+</head>
+<script>
+    window.onload = () => {
+        var first = document.getElementById("first");
+        var second = document.getElementById("second");
+        var third = document.getElementById("third");
+        var result = document.getElementById("result");
+        var buttonProcess = document.getElementById("btn-calculate");
+        //
+        buttonProcess.addEventListener('click', () => {
+            var avg = (Number(first.value) + Number(second.value) + Number(third.value)) / 3;
+            //
+            if(avg < 5) {
+                result.innerText = "Reprovado";
+            }
+            else if(avg < 9) {
+                result.innerText = "Aprovado";
+            }
+            else {
+                result.innerText = "Aprovado com honras";
+            }
+        });
+    };
+</script>
+<body>
+    <h1>IANES Technical School – Professional Center 1.32</h1>
+    <p>Insert the grades at the following fields: </p>
+    <form>
+        <input type="number" id="first">
+        <input type="number" id="second">
+        <input type="number" id="third">
+        <input type="button" value="Process Result" id="btn-calculate">
+    </form>
+    <div id="results">
+        <p id="result"></p>
+    </div>
+</body>
+</html>

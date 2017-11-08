@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Challenge 1</title>
+    <script>
+        window.onload = () => {
+            var standardColor = "white";
+            var darkColor = "darkgray";
+            var body = document.getElementsByTagName("body")[0];
+            body.style.backgroundColor = standardColor;
+            var btnColorChanger = document.getElementById("color-changer");
+            var isDark = false;
+            //
+            btnColorChanger.addEventListener('click', () => {
+                if(isDark) {
+                    body.style.backgroundColor = standardColor;
+                }
+                else {
+                    body.style.backgroundColor = darkColor;
+                }
+                //
+                isDark = !isDark;
+            });
+        };
+    </script>
+</head>
+<body>
+    <input type="button" id="color-changer">
+</body>
+</html>

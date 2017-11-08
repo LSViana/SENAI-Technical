@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Exercise 2</title>
+    <style>
+        input {
+            display: block;
+        }
+    </style>
+    <script>
+        window.onload = () => {
+            var age = document.getElementsByName("age")[0];
+            var btn = document.getElementById("buttonCalculate");
+            var yearOfBirth = document.getElementById("yearOfBirth");
+            //
+            btn.addEventListener('click', () => {
+                var n = new Date();
+                yearOfBirth.innerHTML = n.getFullYear() - age.value;
+            });
+        };
+    </script>
+</head>
+<body>
+    <form>
+        <label for="age">Age:</label>
+        <input type="number" name="age">
+        <input type="button" value="Calculate" id="buttonCalculate">
+    </form>
+    <div id="yearOfBirth">
+    </div>
+</body>
+</html>
