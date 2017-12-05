@@ -18,7 +18,7 @@ public class UpdateEmployee implements ExecutableTask {
 		String email = req.getParameter("email");
 		String cpf = req.getParameter("cpf");
 		String password = req.getParameter("password");
-
+		
 		EmployeeDAO dao = new EmployeeDAO();
 		try {
 			dao.update(id, name, email, cpf, password);
@@ -27,7 +27,7 @@ public class UpdateEmployee implements ExecutableTask {
 			return null;
 		}
 		
-		return "mvc?task=ListContact";
+		return "mvc?task=ListEmployee";
 	}
 
 }

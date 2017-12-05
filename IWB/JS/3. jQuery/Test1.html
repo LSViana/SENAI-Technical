@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="jquery-3.2.1.min.js"></script>
+    </head>
+    <body>
+        <form>
+            <label for="user-text">Type some text:</label>
+            <input type="text" name="user-text" id="user-text">
+            <button id="user-request" type="button">Change Text</button>
+        </form>
+        <p id="system-result"></p>
+    </body>
+    <script>
+        let $systemResult = $("#system-result");
+        let $userText = $("#user-text");
+        let $userRequest = $("#user-request");
+        $userRequest.bind("click", function() {
+            if($userText.val().trim().length == 0) {
+                alert("Fill the field with a valid text.");
+            }
+            else {
+                $systemResult.text($userText.val().trim());
+            }
+        });
+    </script>
+</html>

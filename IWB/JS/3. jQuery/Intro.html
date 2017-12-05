@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="jquery-3.2.1.min.js"></script>
+        <style>
+            * {
+                overflow: hidden;
+            }
+        </style>
+    </head>
+    <body>
+        <h2>Lucas</h2>
+        <h2>Lucas</h2>
+        <h2>Lucas</h2>
+        <h2>Lucas</h2>
+        <h2>Lucas</h2>
+        <h2>Lucas</h2>
+        <h2>Lucas</h2>
+        <h2>Lucas</h2>
+        <h2>Lucas</h2>
+        <h2>Lucas</h2>
+    </body>
+    <script>
+        var moveRight = false;
+            $("h2").on("", function(a) {
+               $(this).text("I am the JS magician!");
+               $(this).css(
+                   {
+                       "color": "blue",
+                       "font-family": "Segoe UI"
+                   }
+               );
+               $(this).animate(
+                    {"margin-left": moveRight ? "+=100" : "-=100"}, 1000
+                );
+            });
+            $("body")
+            .on("mouseenter", function(a) {
+                moveRight ^= true;
+            });
+        </script>
+</html>

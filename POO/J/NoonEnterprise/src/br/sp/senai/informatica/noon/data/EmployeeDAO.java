@@ -83,14 +83,15 @@ public class EmployeeDAO {
 	}
 	public void update(int id, String name, String email, String cpf, String password) {
 		try {
-			CONNECTION = ConnectionFactory_Agenda.openConnection();
+			CONNECTION = ConnectionFactory_Enterprise.openConnection();
 			PreparedStatement stmt = CONNECTION.prepareStatement(UPDATEBYID);
 			stmt.setString(1, name);
 			stmt.setString(2, email);
 			stmt.setString(3, cpf);
 			stmt.setString(4, password);
 			stmt.setInt(5, id);
-			ConnectionFactory_Agenda.closeConnection(CONNECTION);
+			stmt.executeUpdate();
+			ConnectionFactory_Enterprise.closeConnection(CONNECTION);
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
