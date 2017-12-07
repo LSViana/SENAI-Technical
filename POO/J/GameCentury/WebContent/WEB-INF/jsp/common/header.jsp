@@ -19,7 +19,19 @@
                 <li>Find Us</li>
             </a>
             <a href="/GameCentury/redirect?page=login">
-                <li>Login</li>
+                <li>
+                	<!--<%= (Boolean)request.getAttribute("permission-1") ? "Logout" : "Login" %>-->
+                	<%
+                		String loginText = "Login";
+                		HttpSession httpSession = request.getSession();
+                		Object permission_1 = httpSession.getAttribute("permission-1");
+                		if(permission_1 != null) {
+                			if((Boolean)permission_1 == true)
+                				loginText = "Logout";
+                		}
+                		out.print(loginText);
+                	%>             	
+                </li>
             </a>
         </ul>
     </div>

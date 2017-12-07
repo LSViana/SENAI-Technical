@@ -3,9 +3,11 @@ package br.senai.sp.informatica.servlet;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import br.senai.sp.informatica.data.UserDAO;
 
@@ -32,12 +34,18 @@ public class LoginServlet extends HttpServlet {
 		String password = request.getParameter("password");
 		//
 		UserDAO udao = new UserDAO();
+		HttpSession session = request.getSession();
 		if(udao.doLogin(user, password)) {
-			System.out.println("Logado!");
+			session.setAttribute("permission-1", true);
+			//response.addCookie(new Cookie("permission-1", "true"));
 		}
 		else {
-			System.out.println("Errou!");			
+			session.setAttribute("permission-1", false);
+			//response.addCookie(new Cookie("permission-1", "false"));
 		}
+		//
+		//request.getRequestDispatcher("WEB-INF/jsp/index.jsp").forward(request, response);;
+		request.getRequestDispatcher("redirect?page=index").forward(request, response);
 	}
 
 	/**
