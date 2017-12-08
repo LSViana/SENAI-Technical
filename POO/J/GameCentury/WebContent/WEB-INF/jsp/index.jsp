@@ -12,43 +12,40 @@ pageEncoding="UTF-8" %>
 <body>
 	<%@ include file="common/header.jsp" %>
 	<main>
-		<section id="main-offer">
+		<section id="home">
 			<div>
-				<!--<img src="img/battlefield-base.jpg" alt="Battefield 3 Scene">-->
-				<img src="img/battlefield-chars.png" alt="Battefield 3 Characters">
 				<img id="bf3-premium-logo" src="img/bf3-premium-logo.png" alt="Battlefield 3 Premium Logo">
+				<img src="img/battlefield-chars.png" alt="Battefield 3 Characters">
+				<img src="img/battlefield-base.jpg" alt="Battefield 3 Scene">
 			</div>
 			<div>
-				<h1>O calor da batalha está de volta!</h1>
-				<p>Traga suas armas para o campo de batalha e mostre sua letalidade!</p>
+				<h1>Battle's heat is coming back!</h1>
+				<p>Bring your weapons to ground and air and be <span>lethal</span>!</p>
 			</div>
 		</section>
-		<section>
+		<section id="games">
+			<div class="top-games-selector">
+				<h2>Take a look at our options:</h2>
+				<ul>
+					<li>Call of Duty: MW3</li>
+					<li>Bioshock: Infinite</li>
+					<li>Grand Theft Auto: V</li>
+					<li>Battlefield: Hardline</li>
+				</ul>
+			</div>
+		</section>
+		<section id="about-us">
+			Estranha
+		</section>
+		<section id="find-us">
+			Estranha
+		</section>
+		<section id="login">
 			Estranha
 		</section>
 	</main>
 	<%@ include file="common/footer.jsp" %>
 </body>
-<script>
-	var mainOfferBg = document.getElementById("main-offer");
-	var logoPremium = document.getElementById("bf3-premium-logo");
-	mainOfferBg.addEventListener("mousemove", function() {
-		var e = window.event;
-		// Needed information
-		var width = mainOfferBg.clientWidth;
-		var height = mainOfferBg.clientHeight;
-		var midWidth = width / 2;
-		var midHeight = height / 2;
-	    var posX = e.clientX;
-	    var posY = e.clientY;
-	    // Offset mechanism
-	    var offsetY = -((posY - midHeight) / midHeight) * midHeight / 100;
-	    var offsetX = -((posX - midWidth) / midWidth) * midWidth / 100;
-	    //
-	    var total = Math.abs(offsetX) + Math.abs(offsetY);
-	    var blurRate = (total / 3);
-	    logoPremium.style.transform = "translate(" + offsetX + "px, " + offsetY + "px)";
-	    logoPremium.style.filter = "blur(" + blurRate + "px) saturate(1.75) hue-rotate(5deg) brightness(1.1)";
-	});
-</script>
+<script src="./js/jquery-3.2.1.min.js"></script>
+<script src="./js/main.js"></script>
 </html>
