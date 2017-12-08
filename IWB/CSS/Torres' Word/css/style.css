@@ -1,0 +1,85 @@
+@import url('https://fonts.googleapis.com/css?family=Nunito|Roboto+Slab');
+
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    font-family: 'Nunito';
+    outline: none;
+    user-select: none;
+    color: pink;
+}
+
+body {
+    overflow: hidden;
+}
+
+main {
+    background-image: -webkit-gradient(linear, left top, left bottom, from(rgb(235, 235, 235)), to(whitesmoke));
+    background-image: -webkit-linear-gradient(top, rgb(235, 235, 235), whitesmoke);
+    background-image: -moz-linear-gradient(top, rgb(235, 235, 235), whitesmoke);
+    background-image: linear-gradient(to bottom, rgb(235, 235, 235), whitesmoke);
+    width: 100vw;
+    height: 100vh;
+}
+
+#first-phrase {
+    position: absolute;
+    top: 35vh;
+    left: 40vw;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.quick-exit-right {
+    animation: toright 2s ease-in;
+    left: 100vw !important;
+    opacity: 0;
+}
+
+@keyframes toright {
+    0% {
+        opacity: 1;
+        left: 40vw;
+    }
+    80% {
+        opacity: 0;
+    }
+    100% {
+        left: 100vw;
+    }
+}
+
+#main-word {
+    position: absolute;
+    top: 40vh;
+    left: 40vw;
+}
+
+#main-word input {
+    background-color: transparent;
+    border: none;
+    border-bottom: solid pink 2px;
+    width: 24px;
+    font-size: 24px;
+    text-align: center;
+    font-family: 'Roboto Slab';
+    margin: 2px;
+}
+
+.remove-borders {
+    animation: removeborders 2s ease-in;
+    border-color: transparent !important;
+    font-size: 32px !important;
+}
+
+@keyframes removeborders {
+    0% {
+        border-color: pink;
+        font-size: 24px;
+    }
+    100% {
+        border-color: transparent;
+        font-size: 32px;
+    }
+}
