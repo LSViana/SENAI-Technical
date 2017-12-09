@@ -27,6 +27,9 @@ function initializeInput(input) {
             var freshInput = document.createElement("input");
             mainWord.appendChild(freshInput);
             freshInput.setAttribute("id", "letter" + (letterPosition + 1));
+            freshInput.setAttribute("type", "text");
+            freshInput.setAttribute("autocorrect", "off");
+            freshInput.setAttribute("autocapitalize", "none");
             freshInput.value = this.value.substr(1, 1);
             this.value = this.value.substr(0, 1);
             initializeInput(freshInput);
