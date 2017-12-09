@@ -13,6 +13,7 @@ function initializeInput(input) {
                 var previous = document.getElementById("letter" + (letterPosition - 1));
                 window.getSelection().removeAllRanges();
                 previous.focus();
+                previous.setSelectionRange(1, 1);
             }
             else {
                 this.value = null;
@@ -34,6 +35,7 @@ function initializeInput(input) {
             this.value = this.value.substr(0, 1);
             initializeInput(freshInput);
             freshInput.focus();
+            freshInput.setSelectionRange(1, 1);
         }
         inputs = document.getElementsByTagName("input");
         var word = "";
