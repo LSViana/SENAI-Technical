@@ -11,12 +11,12 @@
 
 body {
     overflow: hidden;
+    background-color: white;
 }
 
 main {
     display: flex;
     flex-flow: column;
-    background: white;
 }
 
 #first-phrase,
