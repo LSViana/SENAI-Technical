@@ -6,28 +6,29 @@ var mainWord = document.getElementById("main-word");
 function initializeInput(input) {
     // Typing
     var letterPosition = Number(input.id.substr(6));
-    input.addEventListener("keydown", function(event) {
-        if(event.code == "Backspace") {
+    input.addEventListener("input", function(event) {
+        if(event.data == null) {
             if(inputs.length != 1) {
                 this.remove();
                 var previous = document.getElementById("letter" + (letterPosition - 1));
-                previous.focus();
                 window.getSelection().removeAllRanges();
+                previous.focus();
             }
             else {
                 this.value = null;
                 return;
             }
         }
-        else if(this.value.length > 0) {
-            if(inputs.length >= 10 || event.key.length > 1) {
+        else if(this.value.length > 1) {
+            if(inputs.length >= 10 || event.data.length > 1) {
+                this.value = this.value.substr(0, 1);
                 return;
             }
             var freshInput = document.createElement("input");
             mainWord.appendChild(freshInput);
-            freshInput.setAttribute("maxlength", "1");
             freshInput.setAttribute("id", "letter" + (letterPosition + 1));
-                freshInput.value = event.key;
+            freshInput.value = this.value.substr(1, 1);
+            this.value = this.value.substr(0, 1);
             initializeInput(freshInput);
             freshInput.focus();
         }
@@ -38,7 +39,6 @@ function initializeInput(input) {
         });
         word = word.toLowerCase().trim();
         if(word == "love") {
-            console.log(1);
             $("#main-box img").css({
                 "display": "unset"
             })
@@ -49,14 +49,14 @@ function initializeInput(input) {
             $("#main-box *").addClass("make-golder");
         }
         else if(word == "like") {
-            console.log(2);
-            $("#main-box p").slideUp(1000);
+            $("#main-box p")
+            .animate({width:'toggle'},350);
+            // .slideRight(1000);
             $("#upper-phrase, #lower-phrase").animate({
                 "opacity": "1"
             });
         }
         else {
-            console.log(3);
             $("#main-box img").css({
                 "display": "none"
             })
