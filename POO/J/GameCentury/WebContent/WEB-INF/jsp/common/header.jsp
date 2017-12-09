@@ -1,26 +1,27 @@
 <div class="full">
     <div class="enterprise-info">
+    	<img src="./img/logo-header.svg">
         <h1 class="title-enterprise">GameCentury</h1>
         <span></span>
         <p>The most wanted game house at Latin America.</p>
     </div>
     <div class="menu">
+    	<!-- <img src="./img/menu-icon-header.svg" /> -->
         <ul>
-            <a href="/GameCentury/redirect?page=home">
+            <a href-smooth="#home">
                 <li>Home</li>
             </a>
-            <a href="/GameCentury/redirect?page=games">
+            <a href-smooth="#games">
                 <li>Games</li>
             </a>
-            <a href="/GameCentury/redirect?page=about-us">
+            <a href-smooth="#about-us">
                 <li>About Us</li>
             </a>
-            <a href="/GameCentury/redirect?page=find-us">
+            <a href-smooth="#find-us">
                 <li>Find Us</li>
             </a>
-            <a href="/GameCentury/redirect?page=login">
+            <a href-smooth="#login">
                 <li>
-                	<!--<%= (Boolean)request.getAttribute("permission-1") ? "Logout" : "Login" %>-->
                 	<%
                 		String loginText = "Login";
                 		HttpSession httpSession = request.getSession();

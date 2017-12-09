@@ -34,12 +34,12 @@ public class RedirectServlet extends HttpServlet {
 		request.setAttribute("permission-1", logged);
 		//
 		switch(page.toLowerCase()) {
-			case "games": forwardPage = "WEB-INF/jsp/games.jsp";
-				break;
-			case "about-us": forwardPage = "WEB-INF/jsp/about-us.jsp";
-				break;
-			case "find-us": forwardPage = "WEB-INF/jsp/find-us.jsp";
-				break;
+//			case "games": forwardPage = "WEB-INF/jsp/games.jsp";
+//				break;
+//			case "about-us": forwardPage = "WEB-INF/jsp/about-us.jsp";
+//				break;
+//			case "find-us": forwardPage = "WEB-INF/jsp/find-us.jsp";
+//				break;
 			case "login":
 				if(logged) {
 					session.setAttribute("permission-1", false);
