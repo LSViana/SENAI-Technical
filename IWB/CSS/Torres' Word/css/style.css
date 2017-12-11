@@ -1,5 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Nunito|Roboto+Slab');
-
+@import url('https://fonts.googleapis.com/css?family=Nunito|Roboto+Slab|Pacifico');
 * {
     margin: 0px;
     padding: 0px;
@@ -12,22 +11,17 @@
 
 body {
     overflow: hidden;
+    background-color: white;
 }
 
 main {
-    background-image: -webkit-gradient(linear, left top, left bottom, from(rgb(235, 235, 235)), to(whitesmoke));
-    background-image: -webkit-linear-gradient(top, rgb(235, 235, 235), whitesmoke);
-    background-image: -moz-linear-gradient(top, rgb(235, 235, 235), whitesmoke);
-    background-image: linear-gradient(to bottom, rgb(235, 235, 235), whitesmoke);
-    width: 100vw;
-    height: 100vh;
+    display: flex;
+    flex-flow: column;
 }
 
-#first-phrase {
-    position: absolute;
-    top: 35vh;
-    left: 40vw;
-    font-size: 20px;
+#first-phrase,
+#second-phrase {
+    font-size: 24px;
     font-weight: 600;
 }
 
@@ -50,10 +44,53 @@ main {
     }
 }
 
+#upper-phrase {
+    margin: 40vh auto 0px auto;
+}
+
+#lower-phrase {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#upper-phrase, #lower-phrase {
+    display: flex;
+    opacity: 0;
+}
+
+#upper-phrase p, #lower-phrase p {
+    color: rgb(255, 103, 131);
+    font-family: 'Nunito';
+    font-size: 20px;
+}
+#lower-phrase p span {
+    font-family: 'Pacifico';
+    font-size: larger;
+}
+
+#upper-phrase > span, #lower-phrase > span {
+    width: 100px;
+}
+
+#main-box {
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#main-box img {
+    display: none;
+    opacity: 0;
+}
+
 #main-word {
-    position: absolute;
-    top: 40vh;
-    left: 40vw;
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#main-word * {
+    margin: 2px !important;
 }
 
 #main-word input {
@@ -65,6 +102,40 @@ main {
     text-align: center;
     font-family: 'Roboto Slab';
     margin: 2px;
+}
+
+.make-pinker {
+    animation: makePinker 1s ease-in;
+    color: pink !important;
+    border-color: pink !important;
+}
+
+@keyframes makePinker {
+    0% {
+        color: goldenrod;
+        border-color: goldenrod;
+    }
+    100% {
+        color: pink;
+        border-color: pink;
+    }
+}
+
+.make-golder {
+    animation: makeGolder 1s ease-in;
+    color: goldenrod !important;
+    border-color: goldenrod !important;
+}
+
+@keyframes makeGolder {
+    0% {
+        color: pink;
+        border-color: pink;
+    }
+    100% {
+        color: goldenrod;
+        border-color: goldenrod;
+    }
 }
 
 .remove-borders {
