@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>jQuery</title>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <script src="js/jquery-3.2.1.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/app.js"></script>
+        <link rel="stylesheet" href="./css/style.css">
+    </head>
+    <body>
+        <main class="container">
+            <div class="row">
+                <section class="col-sm">
+                    <h2>Formulário de Cadastro</h2>
+                    <form>
+                        <div class="row">
+                            <input class="control col-3" placeholder="Nome" id="inputNome" name="nome">
+                            <input class="control col-9" placeholder="Sobrenome" id="inputSobrenome" name="nome">
+                        </div>
+                        <div class="row">
+                            <input class="control col-12" type="date" placeholder="Data de nascimento" id="inputDataNascimento" name="dataNascimento">
+                        </div>
+                        <div class="row">
+                            <input class="control col-12" type="text" mask="0.0" placeholder="CPF" id="inputCpf" name="cpf">
+                        </div>
+                        <div class="row">
+                            <button class="btn btn-primary" id="btnCadastrar" type="button">Salvar</button>
+                        </div>
+                    </form>
+                </section>
+                <section class="col-sm">
+                    <h2>Tabela de Cadastros</h2>
+                    <table id="tabelaCadastros" class="table">
+                        <thead>
+                            <tr>
+                                <th>Nome</th>
+                                <th>Data de Nascimento</th>
+                                <th>CPF</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Aplica o conteúdo da tabela com jQuery aqui -->
+                        </tbody>
+                    </table>
+                </section>
+            </div>
+        </main>
+    </body>
+</html>

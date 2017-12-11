@@ -1,0 +1,75 @@
+@import url('https://fonts.googleapis.com/css?family=Hind');
+
+* {
+    margin: 0px;
+    box-sizing: border-box;
+    outline: none;
+    user-select: none;
+    font-family: 'Hind';    
+}
+
+header {
+    background: linear-gradient(to right, yellow, yellowgreen);
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+#notes-area {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#notes-area div {
+    background: whitesmoke;
+    margin: 6px;
+    padding: 6px;
+    box-shadow: 0px 2px 3px rgba(128, 128, 128, .5);
+    transition: box-shadow .5s;
+}
+
+#notes-area div:hover {
+    box-shadow: 0px 2px 10px rgba(128, 128, 128, .75);
+}
+
+#note-data {
+    margin: 5px;
+    background: white;
+    box-shadow: 0px 0px 10px gray;
+    display: flex;
+}
+
+#note-data * {
+    display: inline;
+}
+
+#note-data p {
+    color: rgb(200, 225, 25);
+    font-weight: 600;
+    line-height: 100%;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+#note-data input {
+    border: none;
+    background-color: transparent;
+    min-height: 100%;
+    width: 50%;
+    transition: background-color .5s;
+    padding: 5px;
+}
+
+#note-data input:focus {
+    background-color: rgb(240, 240, 240);
+}
+
+#note-data button {
+    color: white;
+    background: rgb(200, 225, 25);
+    padding: 3px 6px;
+    max-height: 100%;
+    font-size: larger;
+    border: none;
+}
