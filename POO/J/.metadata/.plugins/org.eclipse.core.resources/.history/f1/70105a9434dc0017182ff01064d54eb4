@@ -1,0 +1,72 @@
+@font-face {
+	font-family: "Purista";
+	src: url("../font/Purista Light.otf") format("opentype");
+}
+
+@font-face {
+	font-family: "Purista Medium";
+	src: url("../font/Purista Medium.otf") format("opentype");
+}
+
+* {
+	margin: 0px;
+	padding: 0px;
+	box-sizing: border-box;
+	font-family: "Purista";
+}
+
+#main-offer div img:nth-child(2) { /*Characters*/
+	width: 100%;
+    position: absolute;
+    z-index: 1;
+}
+
+#main-offer div img:nth-child(3) { /*Background Holder*/
+	width: 100%;
+    filter: grayscale(.75);
+    animation: blinking-ass 5s ease-in infinite;
+}
+
+#main-offer div img:nth-child(1) { /*Premium Logo*/
+    position: absolute;
+    top: 17.5vw;
+    left: 39vw;
+    width: 50vw;
+    z-index: 1;
+    filter: saturate(1.75) hue-rotate(5deg) brightness(1.1);
+}
+
+#main-offer div:nth-child(2) {
+    color: white;
+    position: absolute;
+    top: 8vw;
+    left: 39vw;
+}
+
+#main-offer div h1 {
+	font-family: "Purista Medium";
+	font-size: 3.5vw;
+	color: #ffca00;
+}
+
+#main-offer div p {
+	font-size: 1.8vw;
+}
+
+@keyframes blinking-ass {
+	0% {
+		-webkit-filter: grayscale(0);
+		filter:	grayscale(0);
+	}
+	
+	100% {
+		-webkit-filter: grayscale(1);
+		filter:	grayscale(1);	
+	}
+}
+
+@media screen and (max-width: 840px) {
+	#main-offer div:nth-child(2) {
+		display: none;
+	}	
+}

@@ -1,0 +1,88 @@
+@charset "UTF-8";
+
+* {
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+    font-family: 'Segoe UI';
+    user-select: none;
+    outline: none;
+    text-decoration: none;
+}
+
+.common-text {
+    color: dimgray;
+}
+
+.full {
+    display: flex;
+    background-color: gold;
+}
+
+.full * {
+    color: dimgray;
+}
+
+.full .enterprise-info {
+    display: flex;
+}
+
+.full .enterprise-info * {
+    padding: 10px;
+    line-height: 20px;
+    vertical-align: middle;
+}
+
+.full .enterprise-info p {
+    font-size: 12px;
+    color: rgb(126, 105, 1);
+    font-weight: 600;
+}
+
+.full .enterprise-info span {
+    padding: 10px 0px;
+    background-color: goldenrod;
+    width: 2px;
+    margin: 10px;
+}
+
+.full h6 {
+    padding: 10px;
+}
+
+.menu {
+    margin-left: auto;
+}
+
+.menu ul {
+    display: flex;
+}
+
+.menu ul li {
+    padding: 10px;
+    list-style: none;
+    font-weight: 600;
+    color: goldenrod;
+    background-color: transparent;
+    transition: background-color .2s;
+}
+
+.menu ul li.active {
+    background-color: goldenrod;
+    color: gold;
+}
+
+.menu ul li:hover {
+    background-color: rgba(255, 255, 255, 0.301);
+}
+
+.title-enterprise {
+    color: goldenrod;
+    font-size: 22px;
+}
+
+@media screen and (max-width: 800px) {
+	.menu {
+		display: none;
+	}
+}

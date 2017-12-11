@@ -1,0 +1,54 @@
+1508255134596	Rename package 'br.sp.senai.informatica.noon.mvc.logica'
+1508255771000	Rename field 'DELETE'
+1508255787220	Rename field 'DELETEITEM'
+1508255838223	Rename method 'deleteById'
+1508255898787	Rename local variable 'arg0'
+1508255901814	Rename local variable 'red'
+1508255905848	Rename local variable 'arg1'
+1508257353197	Copy compilation unit
+1508257358916	Copy compilation unit
+1508257380540	Copy compilation unit
+1508258167884	Rename type 'RemoveContact'
+1508263475144	Delete element
+1508263494694	Delete element
+1508264103035	Rename type 'ConnectionFactory_local'
+1508264109066	Rename type 'ConnectionFactory'
+1508264246396	Delete element
+1508264247379	Delete element
+1508264535480	Move 'InsertEmployee.jsp' to 'jsp'
+1508264551385	Move 'ListContacts.jsp' to 'jsp'
+1508264553010	Move 'ListEmployee.jsp' to 'jsp'
+1508264554260	Move 'Noon-Footer.jsp' to 'jsp'
+1508264555807	Move 'Noon-Header.jsp' to 'jsp'
+1508264559040	Move 'Footer.jsp' to 'jsp'
+1508264560572	Move 'Header.jsp' to 'jsp'
+1508426052507	Copy file
+1508427101698	Copy file
+1508427148604	Rename type 'AddContact'
+1508427198972	Copy file
+1508427480094	Rename local variable 'adress'
+1508427709190	Rename local variable 'password'
+1508428542053	Rename local variable 'dateOfBirthday'
+1508429701974	Copy file
+1508430703371	Copy compilation unit
+1508430710553	Copy compilation unit
+1508430817616	Copy file
+1508431041620	Rename local variable 'address'
+1508431046835	Rename local variable 'dateOfBirthday'
+1508432214403	Copy file
+1508432718687	Rename field 'GETBYID'
+1508433107374	Rename field 'DELETE'
+1508433999128	Copy file
+1508434224631	Copy compilation unit
+1508434233212	Rename local variable 'address'
+1508434236035	Rename local variable 'dateOfBirthday'
+1508434388319	Rename local variable 'contact'
+1508434431263	Rename field 'DELETE'
+1508434546606	Rename local variable 'employee'
+1508434781798	Copy compilation unit
+1508435786556	Rename resource 'EditContact.jsp'
+1508435791178	Rename resource 'EditEmployee.jsp'
+1508435838806	Rename type 'EditContact'
+1508435845152	Rename type 'ShowContact'
+1508435889086	Rename type 'ShowEmployee'
+1508435893930	Rename type 'EditEmployee'

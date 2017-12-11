@@ -1,0 +1,6 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="NoonEnterprise">
+    <output-path>$PROJECT_DIR$/classes/artifacts/NoonEnterprise</output-path>
+    <root id="root" />
+  </artifact>
+</component>

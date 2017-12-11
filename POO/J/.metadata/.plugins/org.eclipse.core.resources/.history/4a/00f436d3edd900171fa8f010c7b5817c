@@ -1,0 +1,17 @@
+package br.senai.sp.informatica.data;
+
+import java.sql.Connection;
+
+public class UserDAO {
+	private String loginQuery = "SELECT * FROM `user` WHERE username = ? AND password = ?";
+	private Connection connection;
+	public boolean doLogin(String userName, String password) {
+		connection = ConnectionFactory.getConnection();
+		try {
+
+		}
+		finally {
+			ConnectionFactory.closeConnection(connection);
+		}
+	}
+}

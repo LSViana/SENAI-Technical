@@ -1,0 +1,45 @@
+@font-face {
+	font-family: "Purista";
+	src: url("../font/Purista Light.otf") format("opentype");
+}
+
+@font-face {
+	font-family: "Purista Medium";
+	src: url("../font/Purista Medium.otf") format("opentype");
+}
+
+* {
+	margin: 0px;
+	padding: 0px;
+	box-sizing: border-box;
+	font-family: "Purista";
+}
+
+#main-offer div img:nth-child(1) { /*Scene*/
+	width: 100%;
+}
+
+#main-offer div img:nth-child(1) { /*Characters*/
+	width: 100%;
+}
+
+#main-offer div:nth-child(2) {
+	/* margin-top: calc((100vw * .52) * -1); */
+    color: white;
+}
+
+#main-offer div h1 {
+	font-family: "Purista Medium";
+	font-size: 3.5vw;
+	color: #ffca00;
+}
+
+#main-offer div p {
+	font-size: 1.8vw;
+}
+
+@media screen and (max-width: 700px) {
+	#main-offer div:nth-child(2) {
+		display: none;
+	}
+}

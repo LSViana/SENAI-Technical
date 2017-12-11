@@ -1,0 +1,27 @@
+@charset "UTF-8";
+
+* {
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+    font-family: 'Segoe UI';
+}
+
+.common-text {
+    color: dimgray;
+}
+
+.full {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+.full * {
+    display: block
+}
+
+.title-enterprise {
+    color: goldenrod;
+    font-size: 22px;
+}
