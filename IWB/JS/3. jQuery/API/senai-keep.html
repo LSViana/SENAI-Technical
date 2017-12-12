@@ -5,28 +5,226 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="./js/jquery-3.2.1.min.js"></script>
-    <script src="./js/senai-keep.js"></script>
+    <!-- <script src="./js/senai-main.js"></script> -->
     <link rel="stylesheet" href="./css/senai-style.css">
     <title>SENAI Keep</title>
 </head>
 
 <body>
+    <!-- The <div> to be shown when the user clicks to edit a note -->
+    <div id="note-edit">
+        <form>
+            <input type="text" name="title" placeholder="Title" id="title-edit">
+            <div contenteditable="true" id="text-edit"></div>
+            <!-- <button alt="Remove the current note">remove</button> -->
+        </form>
+    </div>
     <header>
         <form method="post" id="note-data">
-            <!-- <label for="note-title">Title:</label> -->
-            <input type="text" name="note-title">
-            <!-- <label for="note-text">Text:</label> -->
+            <input type="text" name="note-title" placeholder="Note Title">
             <p>//</p>
-            <input type="text" name="note-text">
+            <input type="text" name="note-text" placeholder="Note Text">
             <button type="button" id="save-note">Save</button>
         </form>
     </header>
     <main>
         <section id="user-notes">
-            <!-- <h2>Your personal notes:</h2> -->
             <section id="notes-area">
             </section>
         </section>
     </main>
 </body>
+<script>
+    $(document).ready(function () {
+        var notes = [];
+        var notesKey = "app-notes";
+        var notesArea = $("#notes-area");
+        var saveNote = $("#save-note");
+        // Initializing local variables
+        var noteTitle = $("#note-data input[name=\"note-title\"]");
+        var noteText = $("#note-data input[name=\"note-text\"]");
+        var noteEdit = $("#note-edit");
+        var titleEdit = $("#title-edit");
+        var textEdit = $("#text-edit");
+        var notenoteRect;
+        var editingNote;
+        var noteToEdit;
+        noteEdit.css({
+            "opacity": "0"
+        });
+        // Recovery data from local storage
+        var notesJSON = window.localStorage.getItem(notesKey);
+        if (notesJSON) {
+            notes = JSON.parse(notesJSON);
+            loadNotes(notes);
+        }
+        // Apply all delegates
+        // Save Notes
+        $(saveNote).on("click", function (event) {
+            var note = {
+                title: $(noteTitle).val(),
+                text: $(noteText).val()
+            };
+            console.log(notes);
+            addNote(note, notes.length);
+            notes.push(note);
+            console.log(notes);
+            // Save notes to Local Storage
+            window.localStorage.setItem(notesKey, JSON.stringify(notes));
+            //
+            clearFields();
+        });
+        // Defining all notes' divs elements
+        var notesElements = document.querySelectorAll("#notes-area div");
+        // Edit a note
+        function registerNote(event) {
+            if (editingNote) {
+                noteRect = noteToEdit.getBoundingClientRect();
+                noteEdit.animate({
+                    "left": noteRect.left,
+                    "top": noteRect.top,
+                    "width": noteRect.width,
+                    "height": noteRect.height
+                }, 200);
+                // textEdit.animate({
+                    //     "opacity": "0"
+                    // }, 200);
+                    noteEdit.animate({
+                        "opacity": "0"
+                    }, function () {
+                        noteEdit.css("display", "none");
+                    });
+                    notesArea.animate({
+                        "opacity": "1"
+                    });
+                    $(noteToEdit).animate({
+                        "opacity": "1"
+                    });
+                    noteToEdit = null;
+                    editingNote = false;
+                }
+            var noteIndex = Number($(this).attr("id").substr(5));
+            var el = document.getElementById("note-" + noteIndex);
+            noteToEdit = el;
+            // Set the current note content
+            let noteObject = notes[noteIndex];
+            titleEdit.val(noteObject.title);
+            textEdit.html(noteObject.text);
+            // Show the note and make it animated
+            editingNote = true;
+            noteRect = noteToEdit.getBoundingClientRect();
+            noteEdit.css({
+                "top": noteRect.top,
+                "left": noteRect.left,
+                "height": noteRect.height,
+                "width": noteRect.width,
+                "background": "whitesmoke",
+                "z-index": "1"
+            });
+            noteEdit.css("display", "unset");
+            var notesToShow = $("#notes-area div")
+                .filter(function (index, element) {
+                    return element.style.opacity == 0;
+                })
+            notesToShow.animate({
+                "opacity": "1"
+            });
+            $(this).animate({
+                "opacity": "0"
+            });
+            noteEdit.animate({
+                "opacity": "1"
+            }, function () {
+                noteEdit.css("display", "unset")
+                // textEdit.animate({
+                //     "opacity": "1"
+                // });
+            });
+            noteEdit.animate({
+                "left": "15%",
+                "top": "10%",
+                "width": "70%",
+                "height": "80%"
+            }, 200);
+            notesArea.animate({
+                "opacity": ".2"
+            });
+            event.stopPropagation();
+        }
+        // Avoid closing note editor when click at the current note being edited
+        $(noteEdit).on("click", function (event) {
+            event.stopPropagation();
+        });
+        // Close the note editor
+        $("body").on("click", function (event) {
+            if (editingNote) {
+                // Getting new values to note
+                var titleNote = titleEdit[0].value;
+                var textNote = textEdit[0].innerHTML;
+                // Setting values to note object
+                let noteObject = notes[$(noteToEdit).attr("id").substr(5)];
+                noteObject.text = textNote;
+                noteObject.title = titleNote;
+                window.localStorage.setItem(notesKey, JSON.stringify(notes));
+                // Setting values to HTML elements
+                var titleEl = $(noteToEdit).children("h6")[0];
+                var textEl = $(noteToEdit).children("div")[0];
+                titleEl.innerText = titleNote;
+                textEl.innerHTML = textNote;
+                // Animating the close operation
+                noteRect = noteToEdit.getBoundingClientRect();
+                noteEdit.animate({
+                    "left": noteRect.left,
+                    "top": noteRect.top,
+                    "width": noteRect.width,
+                    "height": noteRect.height
+                }, 200);
+                // textEdit.animate({
+                //     "opacity": "0"
+                // }, 200);
+                noteEdit.animate({
+                    "opacity": "0"
+                }, function () {
+                    noteEdit.css("display", "none");
+                });
+                notesArea.animate({
+                    "opacity": "1"
+                });
+                $(noteToEdit).animate({
+                    "opacity": "1"
+                });
+                noteToEdit = null;
+                editingNote = false;
+            }
+        });
+        // Business functions
+        function clearFields() {
+            $("#note-data input").val("");
+        }
+
+        function loadNotes(notes) {
+            let noteIndex = 0;
+            notes.forEach(note => {
+                addNote(note, noteIndex++);
+            });
+        }
+
+        function addNote(note, noteIndex) {
+            let noteElement = $("<div>");
+            noteElement.attr("id", "note-" + noteIndex);
+            noteElement.css({
+                "opacity": "1"
+            });
+            noteElement.append($("<h6>").text(note.title));
+            noteElement.append($("<div>").attr({
+                "contenteditable": "false",
+                "aria-multiline": "true",
+                "role": "textbox"
+            }).append(note.text));
+            notesArea.append(noteElement);
+            noteElement.on("click", registerNote);
+        }
+    });
+</script>
+
 </html>

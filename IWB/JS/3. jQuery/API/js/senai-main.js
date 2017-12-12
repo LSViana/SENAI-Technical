@@ -35,6 +35,12 @@ $(document).ready(function () {
             // Make the menu appear and show the options
         });
     });
+    // Edit a note
+    Array.prototype.forEach.call(notesElements, function(element, index, array) {
+        element.addEventListener("click", function(event) {
+            
+        });
+    });
     // Business functions
     function clearFields() {
         $("#note-data input").val("");
