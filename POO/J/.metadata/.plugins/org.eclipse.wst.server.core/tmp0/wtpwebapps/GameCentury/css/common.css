@@ -14,6 +14,10 @@
     color: dimgray;
 }
 
+.enterprise-info a {
+	padding: 0px !important;
+}
+
 .enterprise-info img {
 	padding: 0px !important;
     margin: 5px;
@@ -92,6 +96,11 @@
 .title-enterprise {
     color: goldenrod;
     font-size: 22px;
+}
+
+.section-divider {
+	height: 15px;
+	background: linear-gradient(to right, #e4b910, #b48600);
 }
 
 @media screen and (max-width: 840px) {

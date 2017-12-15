@@ -1,6 +1,8 @@
 <div class="full">
     <div class="enterprise-info">
-    	<img src="./img/logo-header.svg">
+    	<a href="./">
+    		<img src="./img/logo-header.svg">
+    	</a>
         <h1 class="title-enterprise">GameCentury</h1>
         <span></span>
         <p>The most wanted game house at Latin America.</p>
@@ -20,7 +22,7 @@
             <a href-smooth="#find-us">
                 <li>Find Us</li>
             </a>
-            <a href-smooth="#login">
+            <a href="redirect?page=login">
                 <li>
                 	<%
                 		String loginText = "Login";

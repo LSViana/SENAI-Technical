@@ -36,6 +36,7 @@ public class LoginServlet extends HttpServlet {
 		UserDAO udao = new UserDAO();
 		HttpSession session = request.getSession();
 		if(udao.doLogin(user, password)) {
+			session.setAttribute("user-login", user);
 			session.setAttribute("permission-1", true);
 			//response.addCookie(new Cookie("permission-1", "true"));
 		}

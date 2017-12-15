@@ -17,3 +17,9 @@ INSERT INTO `user` VALUES(0, 'Rafael', 'thayto', 'thayto777');
 SELECT * FROM `user`;
 
 SELECT * FROM `user` WHERE `username` = 'lsviana';
+
+CREATE TABLE `buy` (
+	`id` int primary key auto_increment,
+	`user` int not null,
+    `datetime` datetime not null
+);
