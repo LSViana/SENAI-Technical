@@ -1,12 +1,4 @@
 INDEX VERSION 1.4+E:\Users\adminLocal\Documents\TI-09\SENAI-Technical\POO\J\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
 1069157713.index
-3831036024.index
-189023025.index
-336631603.index
-1903490102.index
-189023025.index
-336631603.index
-1930142236.index
-164257993.index
-4294873839.index
-2813088990.index
+3693758330.index
+2590183583.index

@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item value="&lt;img src=&quot;img/battlefield-base.jpg&quot; alt=&quot;Battefield 3 Scene&quot;&gt;" key="selection"/>
+		<item value="protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {" key="selection"/>
 		<list key="findhistory">
+			<item value="protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {"/>
 			<item value="&lt;img src=&quot;img/battlefield-base.jpg&quot; alt=&quot;Battefield 3 Scene&quot;&gt;"/>
 			<item value="margin-top: calc((100vw * .52) * -1);"/>
 		</list>
