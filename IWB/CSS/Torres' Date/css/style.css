@@ -49,6 +49,7 @@
 #tl-border {
     width: 80%;
     height: 45px;
+    background-color: red;
     background: url("https://cdn.dribbble.com/users/18903/screenshots/2357091/christmas-pattern-full.png") left top fixed;
     background-size: 300px;
     border-radius: 100vw;
@@ -59,6 +60,7 @@
     height: 30px;
     width: calc(0% - 16px);
     border-radius: 100vw;
+    background-color: white;
     background: url("http://thewallpaper.co/wp-content/uploads/2015/12/green-and-red-christmas-pattern-768x432.png") repeat-x left top fixed;
 }
 
