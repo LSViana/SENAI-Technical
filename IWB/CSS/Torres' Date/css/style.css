@@ -61,7 +61,7 @@
     width: calc(0% - 16px);
     border-radius: 100vw;
     background-color: white;
-    background: url("http://thewallpaper.co/wp-content/uploads/2015/12/green-and-red-christmas-pattern-768x432.png") repeat-x left top fixed;
+    /* background: url("http://thewallpaper.co/wp-content/uploads/2015/12/green-and-red-christmas-pattern-768x432.png") repeat-x left top fixed; */
 }
 
 #tasks {
