@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.7/angular.min.js"></script>
+</head>
+
+<body>
+    <div data-ng-app="ng-intro" data-ng-controler="ng-intro-ctrl" data-ng-init="firstName='Lucas'; lastName='Viana'">
+        <p>First Name:</p>
+        <input type="text" data-ng-model="firstName">
+        <p>Last Name:</p>
+        <input type="text" data-ng-model="lastName">
+        <p>Full Name: {{firstName + " " + lastName}}</p>
+    </div>
+</body>
+<script>
+    var app = angular.module("ng-intro", []);
+    app.controller("ng-intro-ctrl", function($scope) {
+        $scope.firstName = "Lucas";
+        $scope.lastName = "Viana";
+    });
+</script>
+
+</html>

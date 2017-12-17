@@ -111,7 +111,76 @@
     margin: 0em 1.25em 0em 0em;
 }
 
-/* Christmas Special Decoration */
+/* Christmas Decoration */
+.christmas-header {
+    background: url("https://assets.rocketstock.com/uploads/2015/11/Christmas-Backgrounds.gif") bottom left fixed !important;
+    background-size: 100vw !important;
+}
+
+.christmas-header #tl-loader {
+    background: url("http://moziru.com/images/stripe-clipart-twitter-backgrounds-3.gif") top left fixed !important;
+}
+
+.christmas-header #tl-border {
+    background: url("https://followhislight.files.wordpress.com/2014/12/christmas-lights1.jpg") top left fixed !important;
+}
+
+.christmas-header h1 span {
+    color: rgb(0, 200, 0) !important;
+}
+
+/* Disney Decoration */
+.disney-header {
+    background: url("https://s3-eu-west-1.amazonaws.com/images.linnlive.com/088a95d76368918abeed07e2548bca7d/7635094e-4502-420d-a77f-fc8bf2102c0b.jpg") bottom left fixed !important;
+    background-size: 20vw !important;
+}
+
+.disney-header #tl-loader {
+    background: url("https://s3-eu-west-1.amazonaws.com/images.linnlive.com/088a95d76368918abeed07e2548bca7d/7635094e-4502-420d-a77f-fc8bf2102c0b.jpg") bottom left fixed !important;
+    background-size: 20vw !important;
+    filter: saturate(10) hue-rotate(-300deg);
+}
+
+.disney-header #tl-border {
+    background: url("https://secure.parksandresorts.wdpromedia.com/resize/mwImage/1/1200/600/90/secure.parksandresorts.wdpromedia.com/media/abd/refresh/asia-africa-australia/china-vacations/adventures-by-disney-asia-afica-and-australia-china-hero-08-disneyland-shanghai.jpg") fixed !important;
+    background-position-y: 900px !important;
+}
+
+.disney-header h1 {
+    color: rgb(24, 140, 255) !important;
+}
+
+.disney-header h2 {
+    color: rgb(0, 97, 200) !important;
+}
+
+.disney-header h1 span {
+    color: rgb(0, 97, 200) !important;
+}
+
+.disney-main ul li div {
+    border-color: rgb(24, 140, 255) !important;
+    transition: border-color .5s;
+}
+
+.disney-main ul li div:hover {
+    border-color: rgb(90, 178, 255) !important;
+}
+
+.disney-main ul li span span:nth-child(1) {
+    color: blue !important;
+    transition: color .5s;
+}
+
+.disney-main ul li span span:nth-child(2) {
+    color: rgb(24, 140, 255) !important;
+}
+
+.disney-main ul li span span:nth-child(1):hover {
+    color: rgb(63, 117, 255) !important;
+}
+
+/* New Year Decoration */
 .christmas-header {
     background: url("https://assets.rocketstock.com/uploads/2015/11/Christmas-Backgrounds.gif") bottom left fixed !important;
     background-size: 100vw !important;

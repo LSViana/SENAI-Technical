@@ -13,3 +13,4 @@ INSERT INTO `company` VALUES(0, 'Pizza Hut', 'Make It Great', 'https://vignette.
 INSERT INTO `company` VALUES(0, 'Google', 'Don\'t Be Evil', 'https://www.festisite.com/static/partylogo/img/logos/google.png');
 
 SELECT * FROM `company`;
+DELETE  FROM company WHERE id > 3;
