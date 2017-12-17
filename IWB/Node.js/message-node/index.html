@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <link href="css/style.css" rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div>
+                <h1>Message-Node</h1>
+                <span></span>
+                <p>A test project developed with <span>Node.js</span>!</p>
+            </div>
+            <ul>
+                <a href="">
+                    <li>Home</li>
+                </a>
+                <a href="">
+                    <li>Under the Hood</li>
+                </a>
+                <a href="">
+                    <li>Find Us</li>
+                </a>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        {1}
+        <form action="save-company" method="post">
+            <label for="name">Name:</label>
+            <input type="text" name="name">
+            <label for="description">Description:</label>
+            <input type="text" name="description">
+            <label for="image">Image:</label>
+            <input type="url" name="image" id="company-image">
+            <button type="submit">Register</button>
+        </form>
+        <section id="companies">
+            <h3>Companies Registered:</h3>
+            <table>
+                <thead>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Image</th>
+                </thead>
+                <tbody>
+                    {0}
+                </tbody>
+            </table>
+        </section>
+    </main>
+    <footer>
+        <nav>
+            <h3>Message-Node</h3>
+            <span></span>
+            <h4>We are powerful, make it great.</h4>
+        </nav>
+    </footer>
+</body>
+
+</html>
