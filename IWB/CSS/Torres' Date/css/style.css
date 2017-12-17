@@ -90,14 +90,19 @@
     padding-left: 2em;
 }
 
-#tasks ul li span span {
+#tasks ul li span span:nth-child(1) {
     color: darkred;
     font-family: 'Indie Flower';
     transition: color .5s;
 }
 
-#tasks ul li span span:hover {
+#tasks ul li span span:nth-child(1):hover {
     color: red;
+}
+
+#tasks ul li span span:nth-child(2) {
+    color: darkgreen;
+    font-size: smaller;
 }
 
 #tasks ul li div {
