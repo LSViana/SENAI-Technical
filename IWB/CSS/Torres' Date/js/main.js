@@ -30,10 +30,12 @@ function animateTimeline() {
     dateText.textContent = subText;
 };
 // Loading achievements
+
 for (var i = 0; i < notes.length; i++) {
     var note = notes[i];
-    var currDate = new Date(startDate.valueOf());
-    currDate.setDate(startDate.getDate() + i);
+    var currDate = new Date(startDate);
+    currDate.setDate(currDate.getDate() + i + 1);
+    currDate = new Date(currDate.toDateString());
     if (currDate.getTime() <= now.getTime()) {
         var d = note.children.item(0);
         d.classList.add("done");
