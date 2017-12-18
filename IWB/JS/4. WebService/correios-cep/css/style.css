@@ -1,0 +1,33 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+input {
+    display: block;
+}
+
+.section {
+    padding: 25px;
+}
+
+.section form {
+    display: flex;
+    flex-flow: column;
+    width: 25%;
+}
+
+form label {
+    font-variant-caps: unicase;
+    z-index: 1;
+}
+
+form input {
+    border: none;
+    padding: 10px;
+    height: 30px;
+    font-size: 1em;
+    margin: 2px;
+    background-color: whitesmoke;
+}
