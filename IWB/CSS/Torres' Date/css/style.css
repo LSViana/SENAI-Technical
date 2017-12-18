@@ -180,6 +180,58 @@
     color: rgb(63, 117, 255) !important;
 }
 
+/* Miami Decoration */
+.miami-header {
+    background: url("https://photorator.com/photos/images/miami-sunset--30059.jpg") fixed !important;
+    background-size: 100vw !important;
+}
+
+.miami-header #tl-loader {
+    background: url("https://previews.123rf.com/images/sahua/sahua1104/sahua110400015/9447976-japanese-seamless-waves-pattern-in-ocean-colors-Stock-Photo.jpg") bottom left fixed !important;
+    background-size: 12.5vw !important;
+    filter: hue-rotate(180deg);
+}
+
+.miami-header #tl-border {
+    background: url("https://res.cloudinary.com/simpleview/image/upload/c_fill,f_auto,h_520,q_50,w_1024/v1/clients/ftlauderdale/Hollywood_beach_captain_kimo_a56f1211-3e6a-48ec-9dee-1634c7b5a60e.jpg") top left fixed !important;
+    background-size: 100vw !important;
+    background-position-y: -19vw !important;
+}
+
+.miami-header h1 {
+    color: rgb(255, 173, 50) !important;
+}
+
+.miami-header h2 {
+    color: rgb(252, 147, 0) !important;
+}
+
+.miami-header h1 span {
+    color: rgb(252, 147, 0) !important;
+}
+
+.miami-main ul li div {
+    border-color: rgb(255, 190, 24) !important;
+    transition: border-color .5s;
+}
+
+.miami-main ul li div:hover {
+    border-color: rgb(255, 215, 114) !important;
+}
+
+.miami-main ul li span span:nth-child(1) {
+    color: orange !important;
+    transition: color .5s;
+}
+
+.miami-main ul li span span:nth-child(2) {
+    color: orangered !important;
+}
+
+.miami-main ul li span span:nth-child(1):hover {
+    color: rgb(255, 190, 24) !important;
+}
+
 /* New Year Decoration */
 .christmas-header {
     background: url("https://assets.rocketstock.com/uploads/2015/11/Christmas-Backgrounds.gif") bottom left fixed !important;

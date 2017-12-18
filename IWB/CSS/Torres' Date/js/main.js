@@ -23,11 +23,10 @@ var intId = setInterval(function () {
                 // Christmas Theme
                 timeLine.classList.add("christmas-header");
                 tasks.classList.add("christas-main");
-            } else if (textDate.indexOf("18") == 3) {
+            } else if (textDate.indexOf("18") == 3 || textDate.indexOf("19") == 3) {
                 // Miami Theme
                 timeLine.classList.add("miami-header");
                 tasks.classList.add("miami-main");
-            }
             } else if (textDate.indexOf("20") == 3) {
                 // Disney Theme
                 timeLine.classList.add("disney-header");
