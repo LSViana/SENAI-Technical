@@ -87,22 +87,22 @@
                     "height": noteRect.height
                 }, 200);
                 // textEdit.animate({
-                    //     "opacity": "0"
-                    // }, 200);
-                    noteEdit.animate({
-                        "opacity": "0"
-                    }, function () {
-                        noteEdit.css("display", "none");
-                    });
-                    notesArea.animate({
-                        "opacity": "1"
-                    });
-                    $(noteToEdit).animate({
-                        "opacity": "1"
-                    });
-                    noteToEdit = null;
-                    editingNote = false;
-                }
+                //     "opacity": "0"
+                // }, 200);
+                noteEdit.animate({
+                    "opacity": "0"
+                }, function () {
+                    noteEdit.css("display", "none");
+                });
+                notesArea.animate({
+                    "opacity": "1"
+                });
+                $(noteToEdit).animate({
+                    "opacity": "1"
+                });
+                noteToEdit = null;
+                editingNote = false;
+            }
             var noteIndex = Number($(this).attr("id").substr(5));
             var el = document.getElementById("note-" + noteIndex);
             noteToEdit = el;

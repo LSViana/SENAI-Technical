@@ -1,0 +1,271 @@
+@import url('https://fonts.googleapis.com/css?family=Indie+Flower|Oxygen');
+
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    font-family: 'Oxygen';
+    color: dimgray;
+    user-select: none;
+    outline: none;
+}
+
+#timeline {
+    width: 100%;
+    padding: 1em;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    background-image: linear-gradient(to right, rgb(224, 0, 0), rgb(124, 0, 0));
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, .5);
+}
+
+#timeline h1 {
+    color: whitesmoke;
+    font-family: 'Segoe UI Light';
+    margin: 10px 0px;
+}
+
+#timeline h1 span {
+    color: red;
+    font-family: 'Indie Flower';
+    font-size: larger;
+    font-weight: 600;
+}
+
+#timeline h2 {
+    margin: 5px auto 5px 10%;
+    color: white;
+    font-family: 'Indie Flower';
+    font-weight: 600;
+    padding-left: calc(0% * 0.8);
+    opacity: 0;
+}
+
+#timeline * {
+    margin: 5px;
+}
+
+#tl-border {
+    width: 80%;
+    height: 45px;
+    background-color: red;
+    background: url("https://cdn.dribbble.com/users/18903/screenshots/2357091/christmas-pattern-full.png") left top fixed;
+    background-size: 300px;
+    border-radius: 100vw;
+}
+
+#tl-loader {
+    margin: 8px 8px;
+    height: 30px;
+    width: calc(0% - 16px);
+    border-radius: 100vw;
+    background-color: white;
+    /* background: url("http://thewallpaper.co/wp-content/uploads/2015/12/green-and-red-christmas-pattern-768x432.png") repeat-x left top fixed; */
+}
+
+#tasks {
+    width: 60%;
+    padding: 15px;
+    display: flex;
+    margin: 15px auto;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, .5);
+    transition: box-shadow .5s;
+}
+
+#tasks:hover {
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, .5);
+}
+
+#tasks ul {
+    list-style: none;
+}
+
+#tasks ul li {
+    display: flex;
+    font-size: larger;
+    font-weight: 600;
+    margin: 1.5em auto;
+    padding-left: 2em;
+}
+
+#tasks ul li span span:nth-child(1) {
+    color: darkred;
+    font-family: 'Indie Flower';
+    transition: color .5s;
+}
+
+#tasks ul li span span:nth-child(1):hover {
+    color: red;
+}
+
+#tasks ul li span span:nth-child(2) {
+    color: darkgreen;
+    font-size: smaller;
+}
+
+#tasks ul li div {
+    height: 1.25em;
+    width: .75em;
+    margin: 0em 1.25em 0em 0em;
+}
+
+/* Christmas Decoration */
+.christmas-header {
+    background: url("https://assets.rocketstock.com/uploads/2015/11/Christmas-Backgrounds.gif") bottom left fixed !important;
+    background-size: 100vw !important;
+}
+
+.christmas-header #tl-loader {
+    background: url("http://moziru.com/images/stripe-clipart-twitter-backgrounds-3.gif") top left fixed !important;
+}
+
+.christmas-header #tl-border {
+    background: url("https://followhislight.files.wordpress.com/2014/12/christmas-lights1.jpg") top left fixed !important;
+}
+
+.christmas-header h1 span {
+    color: rgb(0, 200, 0) !important;
+}
+
+/* Disney Decoration */
+.disney-header {
+    background: url("https://s3-eu-west-1.amazonaws.com/images.linnlive.com/088a95d76368918abeed07e2548bca7d/7635094e-4502-420d-a77f-fc8bf2102c0b.jpg") bottom left fixed !important;
+    background-size: 20vw !important;
+}
+
+.disney-header #tl-loader {
+    background: url("https://s3-eu-west-1.amazonaws.com/images.linnlive.com/088a95d76368918abeed07e2548bca7d/7635094e-4502-420d-a77f-fc8bf2102c0b.jpg") bottom left fixed !important;
+    background-size: 20vw !important;
+    filter: saturate(10) hue-rotate(-300deg);
+}
+
+.disney-header #tl-border {
+    background: url("https://secure.parksandresorts.wdpromedia.com/resize/mwImage/1/1200/600/90/secure.parksandresorts.wdpromedia.com/media/abd/refresh/asia-africa-australia/china-vacations/adventures-by-disney-asia-afica-and-australia-china-hero-08-disneyland-shanghai.jpg") fixed !important;
+    background-position-y: 900px !important;
+}
+
+.disney-header h1 {
+    color: rgb(24, 140, 255) !important;
+}
+
+.disney-header h2 {
+    color: rgb(0, 97, 200) !important;
+}
+
+.disney-header h1 span {
+    color: rgb(0, 97, 200) !important;
+}
+
+.disney-main ul li div {
+    border-color: rgb(24, 140, 255) !important;
+    transition: border-color .5s;
+}
+
+.disney-main ul li div:hover {
+    border-color: rgb(90, 178, 255) !important;
+}
+
+.disney-main ul li span span:nth-child(1) {
+    color: blue !important;
+    transition: color .5s;
+}
+
+.disney-main ul li span span:nth-child(2) {
+    color: rgb(24, 140, 255) !important;
+}
+
+.disney-main ul li span span:nth-child(1):hover {
+    color: rgb(63, 117, 255) !important;
+}
+
+/* Miami Decoration */
+.miami-header {
+    background: url("https://photorator.com/photos/images/miami-sunset--30059.jpg") fixed !important;
+    background-size: 100vw !important;
+}
+
+.miami-header #tl-loader {
+    background: url("https://previews.123rf.com/images/sahua/sahua1104/sahua110400015/9447976-japanese-seamless-waves-pattern-in-ocean-colors-Stock-Photo.jpg") bottom left fixed !important;
+    background-size: 12.5vw !important;
+    filter: hue-rotate(180deg);
+}
+
+.miami-header #tl-border {
+    background: url("https://res.cloudinary.com/simpleview/image/upload/c_fill,f_auto,h_520,q_50,w_1024/v1/clients/ftlauderdale/Hollywood_beach_captain_kimo_a56f1211-3e6a-48ec-9dee-1634c7b5a60e.jpg") top left fixed !important;
+    background-size: 100vw !important;
+    background-position-y: -19vw !important;
+}
+
+.miami-header h1 {
+    color: rgb(255, 173, 50) !important;
+}
+
+.miami-header h2 {
+    color: rgb(252, 147, 0) !important;
+}
+
+.miami-header h1 span {
+    color: rgb(252, 147, 0) !important;
+}
+
+.miami-main ul li div {
+    border-color: rgb(255, 190, 24) !important;
+    transition: border-color .5s;
+}
+
+.miami-main ul li div:hover {
+    border-color: rgb(255, 215, 114) !important;
+}
+
+.miami-main ul li span span:nth-child(1) {
+    color: orange !important;
+    transition: color .5s;
+}
+
+.miami-main ul li span span:nth-child(2) {
+    color: orangered !important;
+}
+
+.miami-main ul li span span:nth-child(1):hover {
+    color: rgb(255, 190, 24) !important;
+}
+
+/* New Year Decoration */
+.christmas-header {
+    background: url("https://assets.rocketstock.com/uploads/2015/11/Christmas-Backgrounds.gif") bottom left fixed !important;
+    background-size: 100vw !important;
+}
+
+.christmas-header #tl-loader {
+    background: url("http://moziru.com/images/stripe-clipart-twitter-backgrounds-3.gif") top left fixed !important;
+}
+
+.christmas-header #tl-border {
+    background: url("https://followhislight.files.wordpress.com/2014/12/christmas-lights1.jpg") top left fixed !important;
+}
+
+.christmas-header h1 span {
+    color: rgb(0, 200, 0) !important;
+}
+
+.done {
+    border-top: none;
+    border-left: none;
+    border-right: solid 5px green;
+    border-bottom: solid 5px green;
+    transition: border-right-color .5s, border-bottom-color .5s;
+    transform: rotate(45deg);
+}
+
+.done:hover {
+    border-right: solid 5px rgb(0, 200, 0);
+    border-bottom: solid 5px rgb(0, 200, 0);
+}
+
+@media screen and (max-width: 900px) {
+    #tasks {
+        width: 90%;
+    }
+}

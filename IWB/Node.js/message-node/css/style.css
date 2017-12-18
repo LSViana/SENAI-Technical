@@ -1,0 +1,61 @@
+@import url('https://fonts.googleapis.com/css?family=Poiret+One');
+
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    font-family: 'Segoe UI';
+}
+
+header {
+    position: fixed;
+    height: 50px;
+    background: linear-gradient(to right, rgb(182, 255, 152), lightgreen);
+}
+
+nav {
+    display: flex;
+    flex-flow: row;
+    height: 40px;
+    width: calc(100vw - 17px);
+    justify-content: space-between;
+    align-items: center;
+    margin: 5px auto;
+}
+
+nav > div {
+    display: flex;
+}
+
+nav > div > * {
+    height: 40px;
+    margin: 0px 5px;
+}
+
+nav > * {
+    margin: 0px 5px;
+}
+
+nav div p {
+    color: rgb(48, 179, 0);
+    font-weight: 600;
+}
+
+nav div h1 {
+    font-family: 'Poiret One';
+}
+
+nav div h1, nav div p {
+    color: rgba(0, 0, 0, .5);
+    line-height: 40px;
+    vertical-align: center;
+}
+
+nav div > span {
+    width: 2px;
+    background-color: rgba(0, 0, 0, .5);
+}
+
+main {
+    padding-top: 50px;
+}
