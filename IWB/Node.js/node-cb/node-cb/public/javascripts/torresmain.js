@@ -24,11 +24,6 @@ var intId = setInterval(function () {
                 timeLine.classList.add("christmas-header");
                 tasks.classList.add("christas-main");
             } else if (textDate.indexOf("18") == 3) {
-                // Miami Theme
-                timeLine.classList.add("miami-header");
-                tasks.classList.add("miami-main");
-            }
-            } else if (textDate.indexOf("20") == 3) {
                 // Disney Theme
                 timeLine.classList.add("disney-header");
                 tasks.classList.add("disney-main");

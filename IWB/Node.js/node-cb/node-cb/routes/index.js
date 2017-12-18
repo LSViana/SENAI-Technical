@@ -10,4 +10,8 @@ router.get('/helloworld', function(req, res, next) {
   res.render('helloworld', { title: 'Greetings, Universe!' });
 });
 
+router.get("/torresdate", function(req, res, next) {
+  res.render('torresdate', { title: 'Torres Date' });
+});
+
 module.exports = router;
