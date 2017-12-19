@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>
+    <%= title %>
+  </title>
+  <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+</head>
+
+<body>
+  <header>
+    <%- include('header'); %>
+  </header>
+  <main>
+    <section id="message-sender">
+      <form>
+        <label for="message-content">Content:</label>
+        <input type="text" id="message-content" name="message-content" value="">
+        <button type="button" id="button-send">Send</button>
+      </form>
+    </section>
+    <section id="message-box">
+      <div>
+
+      </div>
+      <p>All messages.</p>
+    </section>
+  </main>
+  <footer>
+    <%- include('footer') %>
+  </footer>
+</body>
+<script>
+  // Endpoints
+  const server_EP = "http://172.16.7.32:3000";
+  const message_EP = server_EP + "/api/messages";
+  const lastMessage_EP = server_EP + "/api/last-message";
+  const unreceived_EP = server_EP + "/api/unreceived?date=";
+  // Elements to use
+  const msgContent = document.getElementById("message-content");
+  const buttonSend = document.getElementById("button-send");
+  const msgBox = document.getElementById("message-box");
+  // Variables
+  var appTime = new Date();
+  // Verifying new Messages
+  const intId = setInterval(function() {
+    let promise = fetch(lastMessage_EP);
+    let lastServerTime;
+    promise.then(function(res) {
+      res.text().then(function(dateString) {
+        lastServerTime = new Date(dateString);
+        if(lastServerTime > appTime) {
+          // Updating application time
+          appTime = lastServerTime;
+          // Getting last messages
+          let unreceivedUrl = unreceived_EP + appTime.toISOString();
+          let unreceivedPromise = fetch(unreceivedUrl);
+          unreceivedPromise.then(function(res) {
+            res.json().then(function(unreceivedMessages) {
+              for(let i = 0; i < unreceivedMessages.length; i++) {
+                // Creating the element to keep the message content
+                var msgElement = document.createElement("p");
+                msgElement.innerText = unreceivedMessages[i].content;
+                if(msgBox.children.length == 0) {
+                  msgBox.appendChild(msgElement);
+                }
+                else {
+                  msgBox.insertBefore(msgElement, msgBox.childNodes[0]);
+                }
+              }
+            });
+          });
+        }
+      });
+    })
+    .catch(function(reason) {
+    });
+  }, 1000);
+  // Listening to click to register the message through POST method
+  buttonSend.addEventListener("click", function (ev) {
+    if(!msgContent || msgContent.value.trim().length < 1)
+      return;
+    let msgText = msgContent.value;
+    msgContent.value = null;
+    let promise = fetch(message_EP, {
+      method: 'POST',
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        "messageContent": msgText  
+      })
+    });
+    promise.then(function (response) {
+      response.json().then(function (data) {
+      }).catch(function(err){
+        console.log("JSON conversion");
+      });
+    }).catch(function(err){
+        console.log("Request execution");
+    });
+  });
+</script>
+
+</html>

@@ -18,8 +18,13 @@ SELECT * FROM `user`;
 
 SELECT * FROM `user` WHERE `username` = 'lsviana';
 
+DROP TABLE `buy`;
 CREATE TABLE `buy` (
 	`id` int primary key auto_increment,
 	`user` int not null,
-    `datetime` datetime not null
+    `datetime` datetime not null,
+    `gamename` varchar(128) not null
 );
+
+SELECT * FROM `buy`;
+DELETE FROM `buy` WHERE Id > 0;

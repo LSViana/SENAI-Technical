@@ -919,3 +919,5 @@ java.lang.IllegalArgumentException: Version 9 of project facet java does not exi
 2017-12-18 13:11:30,468 [Worker-10] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory E:\Users\adminLocal\Desktop\Workshops\mural_mil_grau-be\src\main\resources
 2017-12-18 13:11:30,470 [Worker-10] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
 2017-12-18 13:11:30,492 [Worker-10] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory E:\Users\adminLocal\Desktop\Workshops\mural_mil_grau-be\src\test\resources
+2017-12-19 14:29:09,643 [Worker-4] INFO  c.g.t.t.d.PublishedGradleVersions - Gradle version information cache is out-of-date. Trying to update.
+2017-12-19 14:29:20,444 [Worker-4] INFO  c.g.t.t.d.PublishedGradleVersions - Updating Gradle version information cache failed. Using outdated cache.
