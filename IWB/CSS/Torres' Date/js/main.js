@@ -73,10 +73,10 @@ var intId = setInterval(function () {
         currDate.setDate(currDate.getDate() + i);
         currDate = new Date(currDate.toDateString());
         if (currDate <= now) {
+            // Check item
             var d = note.children.item(0);
             d.classList.add("done");
-        }
-        else {
+            // Comment
             var p = note.children.item(1);
             var spanPhrase = p.children.item(0);
             var spanComment = spanPhrase.children.item(1);
