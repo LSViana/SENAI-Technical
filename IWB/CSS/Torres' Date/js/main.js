@@ -81,7 +81,7 @@ var intId = setInterval(function () {
             var spanPhrase = p.children.item(0);
             var spanComment = spanPhrase.children.item(1);
             if(spanComment)
-                spanComment.style.display = "none";
+                spanComment.style.display = "unset";
         }
     }
     clearInterval(intId);
