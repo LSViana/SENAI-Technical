@@ -76,6 +76,12 @@ var intId = setInterval(function () {
             var d = note.children.item(0);
             d.classList.add("done");
         }
+        else {
+            var p = note.children.item(1);
+            var spanPhrase = p.children.item(0);
+            var spanComment = spanPhrase.children.item(1);
+            spanComment.style.display = "none";
+        }
     }
     clearInterval(intId);
 }, 50);
