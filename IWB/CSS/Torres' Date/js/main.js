@@ -77,8 +77,10 @@ var intId = setInterval(function () {
             d.classList.add("done");
         }
         else {
-            var spanComment = note.children.item(1).children.item(0).children.item(1);
-            spanComment.style.display = "unset";
+            var p = note.children.item(1);
+            var spanPhrase = p.children.item(0);
+            var spanComment = spanPhrase.children.item(1);
+            console.log(p + " // " + spanPhrase + " // " + spanComment);
         }
     }
     clearInterval(intId);
