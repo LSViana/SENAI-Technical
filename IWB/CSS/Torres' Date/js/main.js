@@ -80,7 +80,8 @@ var intId = setInterval(function () {
             var p = note.children.item(1);
             var spanPhrase = p.children.item(0);
             var spanComment = spanPhrase.children.item(1);
-            console.log(p + " // " + spanPhrase + " // " + spanComment);
+            if(spanComment)
+                spanComment.style.display = "none";
         }
     }
     clearInterval(intId);
