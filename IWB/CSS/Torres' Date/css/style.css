@@ -103,6 +103,7 @@
 #tasks ul li span span:nth-child(2) {
     color: darkgreen;
     font-size: smaller;
+    display: none;
 }
 
 #tasks ul li div {
