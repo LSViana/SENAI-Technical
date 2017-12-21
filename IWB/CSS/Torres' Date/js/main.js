@@ -30,7 +30,7 @@ var intId = setInterval(function () {
                 // Miami Theme
                 timeLine.classList.add("miami-header");
                 tasks.classList.add("miami-main");
-            } else if (day == 20) {
+            } else if (day >= 20 && day <= 24) {
                 // Disney Theme
                 timeLine.classList.add("disney-header");
                 tasks.classList.add("disney-main");
