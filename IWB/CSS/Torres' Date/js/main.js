@@ -77,9 +77,9 @@ var intId = setInterval(function () {
             var d = note.children.item(0);
             d.classList.add("done");
             // Comment
-            var p = note.children.item(1).childNodes[1].childNodes[3];
-            if(p)
-                p.style.display = "unset";
+            //var p = note.children.item(1).childNodes[1].childNodes[3];
+            //if(p)
+                //p.style.display = "unset";
         }
     }
     clearInterval(intId);
