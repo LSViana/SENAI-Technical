@@ -111,6 +111,24 @@
     margin: 0em 1.25em 0em 0em;
 }
 
+/* Christmas Special Decoration */
+.christmas-header {
+    background: url("https://assets.rocketstock.com/uploads/2015/11/Christmas-Backgrounds.gif") bottom left fixed !important;
+    background-size: 100vw !important;
+}
+
+.christmas-header #tl-loader {
+    background: url("http://moziru.com/images/stripe-clipart-twitter-backgrounds-3.gif") top left fixed !important;
+}
+
+.christmas-header #tl-border {
+    background: url("https://followhislight.files.wordpress.com/2014/12/christmas-lights1.jpg") top left fixed !important;
+}
+
+.christmas-header h1 span {
+    color: rgb(0, 200, 0) !important;
+}
+
 .done {
     border-top: none;
     border-left: none;
