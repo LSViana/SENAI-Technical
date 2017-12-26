@@ -16,7 +16,7 @@ var intId = setInterval(function () {
     var spentDays = new Date((endDate - now)).getTime() / (1000 * 60 * 60 * 24);
     var perc = Math.floor((days - spentDays) / days * 100);
     // Loading some themes
-    var year = now.getYear();
+    var year = now.getFullYear();
     var month = now.getMonth() + 1; // To represent month from 1-12
     var day = now.getDate();
     if (year == 2017) {
