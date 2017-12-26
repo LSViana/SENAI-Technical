@@ -16,10 +16,9 @@ var intId = setInterval(function () {
     var spentDays = new Date((endDate - now)).getTime() / (1000 * 60 * 60 * 24);
     var perc = Math.floor((days - spentDays) / days * 100);
     // Loading some themes
-    var textDate = now.toISOString().substr(0, 10);
-    var year = Number(textDate.substr(0, 4));
-    var month = Number(textDate.substr(5, 2));
-    var day = Number(textDate.substr(8, 2));
+    var year = now.getYear();
+    var month = now.getMonth() + 1; // To represent month from 1-12
+    var day = now.getDate();
     if (year == 2017) {
         if (month == 12) {
             if (day == 25) {
@@ -30,7 +29,7 @@ var intId = setInterval(function () {
                 // Miami Theme
                 timeLine.classList.add("miami-header");
                 tasks.classList.add("miami-main");
-            } else if (day >= 20 && day <= 24) {
+            } else if (day >= 20) {
                 // Disney Theme
                 timeLine.classList.add("disney-header");
                 tasks.classList.add("disney-main");
