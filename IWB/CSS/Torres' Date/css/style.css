@@ -1,0 +1,122 @@
+@import url('https://fonts.googleapis.com/css?family=Indie+Flower|Oxygen');
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    font-family: 'Oxygen';
+    color: dimgray;
+    user-select: none;
+    outline: none;
+}
+
+#timeline {
+    width: 100%;
+    padding: 1em;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    background-image: linear-gradient(to right, red, darkred);
+}
+
+#timeline h1 {
+    color: whitesmoke;
+    font-family: 'Segoe UI Light';
+    margin: 10px 0px;
+}
+
+#timeline h1 span {
+    color: red;
+    font-family: 'Indie Flower';
+    font-size: larger;
+    font-weight: 600;
+}
+
+#timeline h2 {
+    margin: 5px auto 5px 10%;
+    color: white;
+    font-family: 'Indie Flower';
+    font-weight: 600;
+    padding-left: calc(0% * 0.8);
+    opacity: 0;
+}
+
+#timeline * {
+    margin: 5px;
+}
+
+#tl-border {
+    width: 80%;
+    height: 45px;
+    background-image: linear-gradient(to right, rgb(11, 97, 0), green);
+    border-radius: 100vw;
+}
+
+#tl-loader {
+    margin: 8px 8px;
+    height: 30px;
+    width: calc(0% - 16px);
+    border-radius: 100vw;
+    background: white;
+}
+
+#tasks {
+    width: 40%;
+    padding: 15px;
+    display: flex;
+    margin: 15px auto;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, .5);
+    transition: box-shadow .5s;
+}
+
+#tasks:hover {
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, .5);
+}
+
+#tasks ul {
+    list-style: none;
+}
+
+#tasks ul li {
+    display: flex;
+    font-size: larger;
+    font-weight: 600;
+    margin: 1.5em auto;
+    padding-left: 2em;
+}
+
+#tasks ul li span span {
+    color: darkred;
+    font-family: 'Indie Flower';
+    transition: color .5s;
+}
+
+#tasks ul li span span:hover {
+    color: red;
+}
+
+#tasks ul li div {
+    height: 1.25em;
+    width: .75em;
+    margin: 0em 1.25em 0em 0em;
+}
+
+.done {
+    border-top: none;
+    border-left: none;
+    border-right: solid 5px green;
+    border-bottom: solid 5px green;
+    transition: border-right-color .5s, border-bottom-color .5s;
+    transform: rotate(45deg);
+}
+
+.done:hover {
+    border-right: solid 5px rgb(0, 200, 0);
+    border-bottom: solid 5px rgb(0, 200, 0);
+}
+
+@media screen and (max-width: 900px) {
+    #tasks {
+        width: 90%;
+    }
+}
