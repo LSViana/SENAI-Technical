@@ -16,7 +16,7 @@ var dateWidth = dateText.clientWidth;
 var intervalId = setInterval(animateTimeline, interval);
 
 function animateTimeline() {
-    if (i > 1)
+    if (i > 100)
         clearInterval(intervalId);
     tlLoader.style.width = "calc(" + i + "% - 16px)";
     dateText.style.paddingLeft = "calc(-" + (dateWidth / 2) + "px + " + i + "% * 0.8)";
