@@ -33,7 +33,7 @@ var intId = setInterval(function () {
                 // Miami Theme
                 timeLine.classList.add("miami-header");
                 tasks.classList.add("miami-main");
-            } else if (day >= 20 && day <= 24) {
+            } else if (day >= 20) {
                 // Disney Theme
                 timeLine.classList.add("disney-header");
                 tasks.classList.add("disney-main");
@@ -80,9 +80,9 @@ var intId = setInterval(function () {
             var d = note.children.item(0);
             d.classList.add("done");
             // Comment
-            var p = note.children.item(1).childNodes[1].childNodes[3];
-            if(p)
-                p.style.display = "unset";
+            //var p = note.children.item(1).childNodes[1].childNodes[3];
+            //if(p)
+                //p.style.display = "unset";
         }
     }
     clearInterval(intId);
