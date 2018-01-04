@@ -10,13 +10,16 @@ var intId = setInterval(function () {
     var notes = document.querySelectorAll("#tasks ul li");
     var doneTicks = document.querySelectorAll("#tasks ul li div");
     var now = new Date();
+    var limitDate = now;
     var startDate = new Date("2017-12-15 00:00");
     var endDate = new Date("2018-01-01 00:00");
+    if(limitDate > endDate)
+        limitDate = endDate;
     var days = new Date((endDate - startDate)).getTime() / (1000 * 60 * 60 * 24);
-    var spentDays = new Date((endDate - now)).getTime() / (1000 * 60 * 60 * 24);
+    var spentDays = new Date((endDate - limitDate)).getTime() / (1000 * 60 * 60 * 24);
     var perc = Math.floor((days - spentDays) / days * 100);
     // Loading some themes
-    var textDate = now.toISOString().substr(0, 10);
+    var textDate = limitDate.toISOString().substr(0, 10);
     var year = Number(textDate.substr(0, 4));
     var month = Number(textDate.substr(5, 2));
     var day = Number(textDate.substr(8, 2));
