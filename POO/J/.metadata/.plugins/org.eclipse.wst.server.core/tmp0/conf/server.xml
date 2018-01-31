@@ -149,7 +149,7 @@
              Note: The pattern used is equivalent to using pattern="common" -->
         <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs" pattern="%h %l %u %t &quot;%r&quot; %s %b" prefix="localhost_access_log" suffix=".txt"/>
 
-      <Context docBase="E:\Users\adminLocal\Documents\TI-09\SENAI-Technical\POO\J\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\ROOT" path="" reloadable="false"/><Context docBase="E:\Users\adminLocal\Documents\TI-09\SENAI-Technical\POO\J\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\GameCentury" path="/GameCentury" reloadable="true" source="org.eclipse.jst.jee.server:GameCentury"/><Context docBase="E:\Users\adminLocal\Documents\TI-09\SENAI-Technical\POO\J\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\QueryReceiver" path="/QueryReceiver" reloadable="true" source="org.eclipse.jst.jee.server:QueryReceiver"/><Context docBase="E:\Users\adminLocal\Documents\TI-09\SENAI-Technical\POO\J\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\MuralMilGrau" path="/MuralMilGrau" reloadable="true" source="org.eclipse.jst.jee.server:MuralMilGrau"/></Host>
+      <Context docBase="E:\Users\adminLocal\Documents\TI-09\SENAI-Technical\POO\J\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\ROOT" path="" reloadable="false"/><Context docBase="E:\Users\adminLocal\Documents\TI-09\SENAI-Technical\POO\J\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\IntroServlet" path="/IntroServlet" reloadable="true" source="org.eclipse.jst.jee.server:IntroServlet"/></Host>
     </Engine>
   </Service>
 </Server>

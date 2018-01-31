@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="app_name">InterestingCalculation</string>
+  <string name="initial_amount">Initial Amount</string>
+  <string name="interest_rate">Interest Rate</string>
+  <string name="months_amount">Month Amount</string>
+  <string name="final_amount">Final Amount</string>
+  <string name="decimal_standard">0.00</string>
+  <string name="integer_standard">0</string>
+  <string name="clear">Clear</string>
+  <string name="calculate">Calculate</string>
+  <string name="fields_cleared">Fields Cleared</string>
+</resources>
