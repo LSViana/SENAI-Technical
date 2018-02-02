@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Screen Elements</string>
+    <string name="main_message">What do you prefer on Spotify?</string>
+    <string name="podcasts">Podcasts</string>
+    <string name="videos">Videos</string>
+    <string name="vote_button">Vote</string>
+    <string name="voted_text">You voted at %s</string>
+    <string name="are_you_sure">Are you sure about %s?</string>
+    <string name="warning">Just one more thing!</string>
+    <string name="yes">Yes</string>
+    <string name="no">No way</string>
+    <string name="vote_success">Successfully voted!</string>
+    <string name="vote_failed">Well, you can always try again!</string>
+    <string name="rate_us">Would you like to rate us?</string>
+    <string name="rate_attributed">You attributed us %s.</string>
+</resources>
