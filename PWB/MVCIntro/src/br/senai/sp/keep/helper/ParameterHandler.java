@@ -1,6 +1,10 @@
 package br.senai.sp.keep.helper;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatterBuilder;
+import java.time.format.DateTimeParseException;
+import java.time.format.FormatStyle;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -51,10 +55,15 @@ public class ParameterHandler {
 		return result;
 	}
 	
-	public LocalDateTime getLocalDateTime(String key) {
+	public LocalDate getLocalDate(String key) {
 		if(!containsKey(key))
 			return null;
-		return LocalDateTime.parse(parameterMap.get(key));
+		try {
+			return LocalDate.parse(parameterMap.get(key), java.time.format.DateTimeFormatter.ISO_LOCAL_DATE);	
+		}
+		catch(DateTimeParseException e) {
+			return null;
+		}
 	}
 	
 	public Map<String, String> getMap() {

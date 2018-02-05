@@ -1,5 +1,6 @@
 package br.senai.sp.keep.model;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class Task {
@@ -7,15 +8,23 @@ public class Task {
 	private String title;
 	private String description;
 	private Boolean highPriority;
-	private LocalDateTime doneDate;
+	private LocalDate conclusionDate;
 	
-	public Task(Long id, String title, String description, Boolean highPriority, LocalDateTime conclusionDate) {
+	public Task(Long id, String title, String description, Boolean highPriority, LocalDate conclusionDate) {
 		super();
 		this.id = id;
 		this.title = title;
 		this.description = description;
 		this.highPriority = highPriority;
-		this.doneDate = conclusionDate;
+		this.conclusionDate = conclusionDate;
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if(obj instanceof Task) {
+			return getId() == ((Task)obj).getId();
+		}
+		return false;
 	}
 	
 	public Long getId() {
@@ -42,10 +51,13 @@ public class Task {
 	public void setHighPriority(Boolean highPriority) {
 		this.highPriority = highPriority;
 	}
-	public LocalDateTime getDoneDate() {
-		return doneDate;
+	public LocalDate getConclusionDate() {
+		return conclusionDate;
 	}
-	public void setDoneDate(LocalDateTime doneDate) {
-		this.doneDate = doneDate;
-	}	
+	public void setConclusionDate(LocalDate conclusionDate) {
+		this.conclusionDate = conclusionDate;
+	}
+	public String getHighPriorityText() {
+		return highPriority ? "checked" : "unchecked"; 
+	}
 }

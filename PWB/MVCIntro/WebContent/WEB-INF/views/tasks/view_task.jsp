@@ -2,7 +2,9 @@
     pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="jstl" %>
 <!-- URL declarations' area -->
-<jstl:url value="/tasks/view_task" var="view_task" />
+<jstl:url value="/" var="home" />
+<jstl:url value="/tasks/insert_task" var="insert_task" />
+<jstl:url value="/api/tasks/list_tasks" var="list_tasks" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,17 +22,23 @@
 			<textarea name="description" placeholder="Describe the task..." disabled>
 				${task.description}
 			</textarea>
-		</label>		
+		</label>
 		<label>
 			High Priority
-			<input type="checkbox" name="high_priority" disabled value="${task.highPriority}">
+			<input type="checkbox" name="high_priority" disabled ${task.highPriorityText}>
 		</label>
 		<label>
 			Conclusion Date
 			<input type="datetime" name="conclusion_date" disabled value="${task.conclusionDate}">
 		</label>
-		<a href="${view_task}">
-			<input value="Home">
+		<a href="${home}">
+			<input type="button" value="Home">
+		</a>
+		<a href="${insert_task}">
+			<input type="button" value="Insert Tasks">
+		</a>
+		<a href="${list_tasks}">
+			<input type="button" value="List Tasks">
 		</a>
 		</form>
 </body>
