@@ -5,4 +5,7 @@
     <color name="colorAccent">#1ed660</color>
     <color name="standardGray">#616161</color>
     <color name="colorPrimaryDarkDark">#1c8b44</color>
+    <color name="animal_song_background">#f4e8b8</color>
+    <color name="animal_song_foreground">#b9a85d</color>
+    <color name="animal_song_dark">#958440</color>
 </resources>

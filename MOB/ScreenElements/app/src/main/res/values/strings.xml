@@ -13,4 +13,10 @@
     <string name="vote_failed">Well, you can always try again!</string>
     <string name="rate_us">Would you like to rate us?</string>
     <string name="rate_attributed">You attributed us %s.</string>
+    <string name="play_song_message">Through only one click, we play your favorite song!</string>
+    <string name="play_song_button">Play</string>
+    <string name="pause_song_button">Pause</string>
+    <string name="animal_song_activity_label">Animals\' Songs</string>
+    <string name="animal_song_instruction_label">Click to listen your animals!</string>
+    <string name="music_player_top_label">Music Player</string>
 </resources>

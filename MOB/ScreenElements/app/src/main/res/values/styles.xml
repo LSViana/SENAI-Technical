@@ -8,4 +8,10 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="AnimalsSongs" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@color/animal_song_foreground</item>
+        <item name="colorPrimaryDark">@color/animal_song_dark</item>
+        <item name="colorAccent">@color/animal_song_background</item>
+    </style>
+
 </resources>
