@@ -9,21 +9,21 @@ public class UserDAO {
 	
 	static {
 		users = new ArrayList<User>();
+		currentId = 0l;
 	}
 	
 	public static Long currentId;
 	public static List<User> users;
 	
 	public void addUser(User user) {
-		user.setId(currentId++);
+		user.setId(++currentId);
 		users.add(user);
 	}
 	
 	public User search(Long id) {
-		Long currentId = 0L;
 		//
 		for(User user : users) {
-			if(user.getId() == currentId)
+			if(user.getId() == id)
 				return user;
 		}
 		//
@@ -32,6 +32,10 @@ public class UserDAO {
 	
 	public void delete(Long id) {
 		users.remove(search(id));
+	}
+
+	public List<User> getAll() {
+		return users;
 	}
 	
 }

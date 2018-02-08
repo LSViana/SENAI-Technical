@@ -4,10 +4,10 @@ public class User {
 	private Long id;
 	private String firstName;
 	private String lastName;
-	private Gender gender;
+	private GenderClass.Gender gender;
 	private Boolean smoker;
 	
-	public User(Long id, String firstName, String lastName, Gender gender, Boolean smoker) {
+	public User(Long id, String firstName, String lastName, GenderClass.Gender gender, Boolean smoker) {
 		super();
 		this.id = id;
 		this.firstName = firstName;
@@ -33,10 +33,10 @@ public class User {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
-	public Gender getGender() {
+	public GenderClass.Gender getGender() {
 		return gender;
 	}
-	public void setGender(Gender gender) {
+	public void setGender(GenderClass.Gender gender) {
 		this.gender = gender;
 	}
 	public Boolean getSmoker() {

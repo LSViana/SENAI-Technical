@@ -1,12 +1,45 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<c:import url="../head.jsp" />
+<c:url value="/insert_user" var="insert_user" />
+<c:url value="/users/edit_user" var="edit_user" />
+<c:url value="/" var="index" />
+<title>Casino Royale | List Users</title>
 </head>
 <body>
-
+	<table>
+		<thead>
+			<tr>
+				<th>Full Name</th>
+				<th>Gender</th>
+				<th>Smoker</th>
+				<th>Edit</th>
+			</tr>
+		</thead>
+		<tbody>
+			<c:forEach items="${users}" var="user">
+				<tr>
+					<td>${user.firstName} ${user.lastName}</td>
+					<td>${user.gender}</td>
+					<td>${user.smoker}</td>
+					<td>
+						<a href="${edit_user}?id=${user.id}">
+							Edit
+						</a>
+					</td>
+				</tr>
+			</c:forEach>
+		</tbody>
+	</table>
+	<a href="${insert_user}">
+		<button>Insert Users</button>
+	</a>
+	<a href="${index}">
+		<button>Index</button>
+	</a>
 </body>
 </html>

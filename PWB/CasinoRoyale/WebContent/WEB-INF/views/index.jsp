@@ -6,18 +6,22 @@
 <head>
 <c:import url="../head.jsp" />
 <c:url value="/insert_user" var="insert_user" />
-<c:url value="/list_users" var="list_users" />
+<c:url value="/users/list_users" var="list_users" />
 <title>Casino Royale | Welcome</title>
 </head>
 <body>
 	<header>
 		<ul>
-			<a href="${insert_user}">
-				<li>Insert</li>
-			</a>
-			<a href="${list_users}">
-				<li>List</li>
-			</a>
+			<li>
+				<a href="${insert_user}">
+					Insert
+				</a>
+			</li>
+			<li>
+				<a href="${list_users}">
+					List
+				</a>
+			</li>				
 		</ul>
 	</header>
 	<div>
