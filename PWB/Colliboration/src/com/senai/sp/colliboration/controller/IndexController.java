@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @author TI-09
  */
 @Controller
-public class Index {
+public class IndexController {
 	
 	/**
 	 * Every method on a Controller class that returns @String is used as EndPoint according to @RequestMapping
