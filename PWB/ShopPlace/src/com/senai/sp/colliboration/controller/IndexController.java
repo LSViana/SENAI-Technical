@@ -16,12 +16,12 @@ public class IndexController {
 	 */
 	@RequestMapping("/")
 	public String openIndex() {
-		return "index";
+		return "main/index";
 	}
 	
 	@RequestMapping("/about-us")
 	public String openAboutUs() {
-		return "about-us";
+		return "main/about-us";
 	}
 	
 }
