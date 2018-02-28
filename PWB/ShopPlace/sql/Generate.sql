@@ -9,4 +9,6 @@ CREATE TABLE user (
     password varchar(512) not null
 );
 
+TRUNCATE TABLE user;
+
 SELECT * FROM user;

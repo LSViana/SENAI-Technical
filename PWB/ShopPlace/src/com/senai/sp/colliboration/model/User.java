@@ -1,5 +1,7 @@
 package com.senai.sp.colliboration.model;
 
+import org.springframework.util.DigestUtils;
+
 public class User {
 	
 	private Long id;
@@ -48,6 +50,14 @@ public class User {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public void hashPassword() {
+		try {
+			this.password = DigestUtils.md5DigestAsHex(this.password.getBytes("UTF-8"));
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
 	}
 	
 }

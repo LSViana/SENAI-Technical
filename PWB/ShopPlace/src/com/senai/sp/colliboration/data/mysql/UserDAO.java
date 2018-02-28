@@ -1,9 +1,7 @@
 package com.senai.sp.colliboration.data.mysql;
 
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.List;
 
 import org.springframework.stereotype.Repository;
@@ -19,6 +17,9 @@ public class UserDAO extends DAO<User> {
 		//
 		String sql = "INSERT INTO user (name, username, password) VALUES(?, ?, ?)";
 		try {
+			// Hashing user password
+			obj.hashPassword();
+			//
 			PreparedStatement stmt;
 			stmt = connection.prepareStatement(sql);
 			stmt.setString(1, obj.getName());
