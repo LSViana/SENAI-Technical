@@ -11,6 +11,7 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 public class Interceptor extends HandlerInterceptorAdapter {
 	
 	public static final String SHOPPING_PREFIX = "/shopping";
+	public static final String PROFILE_PREFIX = "/profile";
 	
 	@Autowired
 	private SessionManager sessionManager;
@@ -18,7 +19,9 @@ public class Interceptor extends HandlerInterceptorAdapter {
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
-		boolean needAuth = request.getRequestURI().contains(SHOPPING_PREFIX);
+		boolean needAuth =
+				request.getRequestURI().contains(SHOPPING_PREFIX) ||
+				request.getRequestURI().contains(PROFILE_PREFIX);
 		if(needAuth && !sessionManager.isLoggedIn(request.getSession())) {
 			response.setStatus(401);
 			return false;

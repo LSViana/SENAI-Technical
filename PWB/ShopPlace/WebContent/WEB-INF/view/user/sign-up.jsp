@@ -12,11 +12,13 @@
 	<form action="${userRegister}" method="post">
 		<label for="name">Name:</label>
 		<input type="text" name="name">
-		<label for="username">Username:</label>
-		<input type="text" name="username">
+		<label for="email">E-mail:</label>
+		<input type="text" name="email">
 		<label for="password">Password:</label>
 		<input type="password" name="password">
-		<input type="submit" value="Sign-In">
+		<label for="dateOfBirth">Date of Birth:</label>
+		<input type="date" name="dateOfBirth">
+		<input type="submit" value="Sign-Up">
 	</form>
 </body>
 </html>

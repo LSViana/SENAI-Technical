@@ -37,16 +37,19 @@ public class UserController {
 	
 	@PostMapping("/login")
 	public String login(User user, HttpSession session) {
-		removeWrongLogin(session);
-		if(userDAO.authenticate(user)) {
+		user.hashPassword();
+		User authenticated = userDAO.authenticate(user);
+		if(authenticated != null) {
 			sessionManager.setLoggedIn(session, user);
 			return "redirect:" + Interceptor.SHOPPING_PREFIX;
 		}
 		return wrongLogin(session);
 	}
 	
-	private void removeWrongLogin(HttpSession session) {
-		session.setAttribute(WRONG_LOGIN, new Boolean(false));
+	@GetMapping("/logout")
+	private String removeWrongLogin(HttpSession session) {
+		sessionManager.setLoggedOff(session);
+		return "redirect:/";
 	}
 
 	private String wrongLogin(HttpSession session) {
@@ -59,6 +62,17 @@ public class UserController {
 		userDAO.insert(user);
 		sessionManager.setLoggedIn(session, user);
 		return "redirect:" + Interceptor.SHOPPING_PREFIX;
+	}
+	
+	@GetMapping("/profile")
+	public String profile(HttpSession session) {
+		Object obj = session.getAttribute(SessionManager.USER_KEY);
+		if(sessionManager.isLoggedIn(session) && obj instanceof User) {
+			User user = (User)obj;
+			sessionManager.setLoggedIn(session, userDAO.get(user.getId()));
+			return "user/profile";
+		}
+		return "redirect:/";
 	}
 	
 }
