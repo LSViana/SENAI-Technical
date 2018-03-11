@@ -1,0 +1,20 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+:root {
+    --ship-color: darkred;
+}
+
+#game-screen {
+    width: 100vw;
+    height: 100vh;
+    background: gainsboro;
+}
+
+.ship {
+    display: absolute;
+    background: var(--ship-color);
+}

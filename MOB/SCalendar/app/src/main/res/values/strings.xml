@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">SCalendar</string>
+    <string name="saveContact">Save Contact</string>
+    <string name="labelName">Name</string>
+    <string name="labelClassification">Classification</string>
+    <string name="labelTelephone">Telephone</string>
+    <string name="labelEmail">E-mail</string>
+    <string name="labelAddress">Address</string>
+</resources>
