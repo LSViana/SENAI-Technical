@@ -1,7 +1,7 @@
 @Home
 	(User)
-	Sign-Up
-	Sign-In
+	@Sign-Up
+	@Sign-In
 	Change Name and Date Of Birth
 	Change Password (Confirm old)
 	(Games)
@@ -14,4 +14,3 @@
 	View My Animes
 	Change an Anime
 	Delete an Anime
-	
