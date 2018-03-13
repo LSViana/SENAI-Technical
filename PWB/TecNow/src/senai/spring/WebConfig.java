@@ -23,6 +23,7 @@ public class WebConfig implements WebMvcConfigurer {
 	
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
+		// Configuring to filter requests
 		registry
 			.addInterceptor(interceptor)
 			.addPathPatterns("/**");
@@ -30,13 +31,15 @@ public class WebConfig implements WebMvcConfigurer {
 	
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
+		// Configuring to use static resources
 		registry
-			.addResourceHandler("/assets/*")
+			.addResourceHandler("/assets/**")
 			.addResourceLocations("/assets/");
 	}
 	
 	@Override
 	public void configureViewResolvers(ViewResolverRegistry registry) {
+		// Configuring to return views through Controllers
 		InternalResourceViewResolver irvr = new InternalResourceViewResolver();
 		irvr.setViewClass(JstlView.class);
 		irvr.setPrefix("/WEB-INF/view/");

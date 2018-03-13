@@ -15,11 +15,15 @@ CREATE TABLE game (
 	id bigint unsigned auto_increment primary key,
     name varchar(40) not null,
     category enum('shoot', 'rpg', 'platform', 'sport', 'hack and slash', 'other') not null,
-    dateregister datetime not null
+    dateregister datetime not null,
+    iduser bigint unsigned not null,
+    constraint foreign key (iduser) references user(id)
 );
 
 CREATE TABLE anime (
 	id bigint unsigned auto_increment primary key,
     name varchar(40) not null,
-    dateregister datetime not null
+    dateregister datetime not null,
+    iduser bigint unsigned not null,
+    constraint foreign key (iduser) references user(id)
 );

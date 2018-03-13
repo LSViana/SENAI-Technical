@@ -1,0 +1,116 @@
+* {
+	box-sizing: border-box;
+	margin: 0px;
+	padding: 0px;
+	font-family: Segoe UI;
+	outline: none;
+	user-select: none;
+	color: dimgray; 
+}
+
+body {
+	padding: 10px;
+	box-shadow: 0px 0px 10px rgba(0, 0, 0, .5);
+	display: flex;
+	flex-flow: column;
+	justify-content: center;
+	align-items: center;
+	width: 600px;
+	margin: 20px auto;
+}
+
+nav {
+	border-bottom: 1px gray solid;
+	margin-bottom: 10px;
+}
+
+nav h1 a {
+	text-decoration: none;
+	color: deepskyblue;
+}
+
+nav p {
+	font-weight: 600;
+	font-style: italic;
+	margin-top: -5px;
+	color: blue;
+}
+
+body > div {
+	display: flex;
+	flex-flow: row;
+}
+
+body > div p a, body > p a, form input[type="submit"], table tbody tr td[data-type="action"] * {
+	margin: 2px;
+	padding: 5px;
+	text-decoration: none !important;
+	border: none;
+	font-weight: 600 !important;
+	background-color: lightgray;
+	color: dimgray;
+	transition: background-color .5s, color .5s;
+	font-size: small;
+}
+
+form {
+	padding: 10px;
+	margin: 2px;
+	border: 1px gainsboro solid;
+}
+
+body > div, form div {
+	display: flex;
+	flex-flow: column;
+}
+
+body > div div {
+	display: flex;
+	flex-flow: row;
+}
+
+form div label {
+	font-size: small;
+}
+
+form div p {
+	color: blue;
+	font-weight: 600;
+	font-size: xx-small;
+	text-transform: uppercase;
+}
+
+body > p {
+	margin: 10px;
+}
+
+body > div p a:hover, body > p a:hover, form input[type="submit"]:hover, table tbody tr td[data-type="action"] *:hover {
+	color: white;
+	background-color: gray;
+}
+
+table {
+	padding: 2px;
+}
+
+table thead tr th {
+	background-color: dimgray;
+	color: white;
+	font-weight: 600;
+	padding: 5px;
+	text-align: center;
+}
+
+table tbody tr td {
+	background-color: white;
+	text-align: center;
+	padding: 5px;
+}
+
+table tbody tr td[data-type="action"] * {
+	transition: background-color .5s;
+}
+
+table tbody tr td[data-type="action"] *:hover {
+	background-color: dimgray;
+}

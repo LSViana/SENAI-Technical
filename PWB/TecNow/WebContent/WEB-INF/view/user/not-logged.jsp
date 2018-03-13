@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>TecNow – Authentication Error</title>
+<title>TecNow - Authentication Error</title>
 </head>
 <body>
 	<c:import url="/head"></c:import>

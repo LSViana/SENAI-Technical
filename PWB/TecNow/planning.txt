@@ -2,15 +2,15 @@
 	(User)
 	@Sign-Up
 	@Sign-In
-	Change Name and Date Of Birth
-	Change Password (Confirm old)
+	@Change Name and Date Of Birth
+	@Change Password (Confirm old)
 	(Games)
-	Register
-	View My Games
-	Change a Game
-	Delete a Game
+	@Register
+	@View My Games
+	@Change a Game
+	@Delete a Game
 	(Animes)
-	Register
-	View My Animes
+	@Register
+	@View My Animes
 	Change an Anime
-	Delete an Anime
+	@Delete an Anime

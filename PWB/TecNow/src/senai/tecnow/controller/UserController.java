@@ -3,6 +3,8 @@ package senai.tecnow.controller;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -40,12 +42,21 @@ public class UserController {
 	
 	@PostMapping("/register")
 	public String register(
+			HttpServletResponse response,
 			HttpSession session,
 			@RequestParam("name") String name,
 			@RequestParam("email") String email,
 			@RequestParam("dateOfBirth") String dateOfBirth,
 			@RequestParam("password") String password,
 			@RequestParam("gender") String gender) {
+		// Validating name
+		if(name == null || name.length() < 2 || name.length() > 60) {
+			return "redirect:/sign-up?message=name";
+		}
+		if(password == null || password.length() < 2 || password.length() > 20) {
+			return "redirect:/sign-up?message=password";
+		}
+		//
 		Date dob = new Date();
 		try {
 			dob = sdf.parse(dateOfBirth);
@@ -54,10 +65,10 @@ public class UserController {
 		}
 		//
 		if(dob.after(new Date())) {
-			return "redirect:/sign-up?error=date";
+			return "redirect:/sign-up?message=date";
 		}
 		else if(userDAO.existsEmail(email)) {
-			return "redirect:/sign-up?error=email";
+			return "redirect:/sign-up?message=email";
 		}
 		else {
 			User user = new User(-1L, name, email, dob, password, Gender.valueOf(gender));
@@ -80,7 +91,7 @@ public class UserController {
 			return "redirect:/";
 		}
 		else {
-			return "redirect:/sign-in?error=auth";
+			return "redirect:/sign-in?message=auth";
 		}
 	}
 	

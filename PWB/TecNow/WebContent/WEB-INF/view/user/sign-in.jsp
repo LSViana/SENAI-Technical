@@ -8,17 +8,22 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>TecNow – User Sign-In</title>
+<title>TecNow - User Sign-In</title>
 </head>
 <body>
 	<c:import url="/head"></c:import>
 	<form action="${login}" method="post">
-		<label for="email">E-mail</label>
-		<input type="text" name="email">
-		<label for="password">Password</label>
-		<input type="password" name="password">
-		<input type="submit" value="Sign-Up">
-		<p id="auth-error">E-mail ou senha incorretos!</p>
+	<!-- Form to authenticate User -->
+		<div>
+			<label for="email">E-mail</label>
+			<input type="text" name="email">
+		</div>
+		<div>
+			<label for="password">Password</label>
+			<input type="password" name="password">
+		</div>
+		<input type="submit" value="Sign-In">
+		<p id="auth-error">Invalid e-mail or password!</p>
 	</form>
 	<p>
 		<a href="${sign_up}">
@@ -29,7 +34,7 @@
 <script>
 var url = new URL(window.location.href);
 var emailExists = document.getElementById("auth-error");
-var error = url.searchParams.get("error");
+var error = url.searchParams.get("message");
 if(error != undefined && error == "auth") {
 	emailExists.style.display = "unset";
 }

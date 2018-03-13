@@ -10,6 +10,8 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
+import com.sun.istack.internal.logging.Logger;
+
 import senai.tecnow.data.DAO;
 import senai.tecnow.model.Gender;
 import senai.tecnow.model.User;
@@ -133,8 +135,10 @@ public class UserDAO implements DAO<User> {
 			}
 			return true;
 		} catch(SQLIntegrityConstraintViolationException e) {
+			e.printStackTrace();
 			return false;
 		} catch(SQLException e) {
+			e.printStackTrace();
 			return false;
 		} finally {
 			cf.close();

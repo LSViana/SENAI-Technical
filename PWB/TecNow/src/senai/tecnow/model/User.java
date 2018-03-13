@@ -12,7 +12,7 @@ public class User {
 	private Long id;
 	private String name;
 	private String email;
-	@DateTimeFormat(pattern="MM/dd/yyyy")
+	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date dateOfBirth;
 	private String password;
 	private Gender gender;

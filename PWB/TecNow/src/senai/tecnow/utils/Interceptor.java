@@ -26,6 +26,7 @@ public class Interceptor extends HandlerInterceptorAdapter {
 		//
 		if(needAuth && !sessionManager.isLoggedIn(request.getSession())) {
 			response.setStatus(401);
+			request.getRequestDispatcher("/errors").forward(request, response);
 			return false;
 		}
 		else {
