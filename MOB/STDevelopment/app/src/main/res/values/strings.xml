@@ -1,3 +1,19 @@
 <resources>
-    <string name="app_name">STDevelopment</string>
+    <string name="app_name">ST Development</string>
+    <string name="login">Login</string>
+    <string name="username">Username</string>
+    <string name="sthelenadescription">St. Helena is a social institution</string>
+    <string name="history">History</string>
+    <string name="contact">Contact</string>
+    <string name="listing">Listing</string>
+    <string name="fullname">St. Helena Development</string>
+    <string name="historytext">St. Helena Development is from USA and creates many great solutions towards Social Assistance</string>
+    <string name="ouraddress">Our Address</string>
+    <string name="address">Al. Barão de Limeira, 539</string>
+    <string name="message">Message</string>
+    <string name="sendContact">Send Contact</string>
+    <string name="contactsReceived">All Contacts Received</string>
+    <string name="edit">Edit</string>
+    <string name="remove">Remove</string>
+    <string name="saveContact">Save Contact</string>
 </resources>

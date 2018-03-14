@@ -4,50 +4,47 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="sp.senai.stdevelopment.activities.MainActivity">
+    tools:context="sp.senai.stdevelopment.activities.EditContactActivity">
 
-    <TextView
-        android:id="@+id/tvLogin"
+    <Button
+        android:id="@+id/btnSaveContact"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:backgroundTint="@color/colorAccent"
+        android:text="@string/saveContact"
+        android:textColor="@android:color/background_light"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etMessageEdit" />
+
+    <EditText
+        android:id="@+id/etUsernameEdit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
-        android:text="@string/login"
-        android:textAlignment="textStart"
-        android:textColor="@color/colorPrimaryDark"
-        android:textSize="24sp"
-        android:textStyle="bold"
+        android:ems="10"
+        android:hint="@string/username"
+        android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/etUsername"
-        android:layout_width="260sp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="12dp"
-        android:ems="10"
-        android:hint="@string/username"
-        android:inputType="textPersonName"
-        android:textColor="@color/colorPrimaryDark"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvLogin" />
-
-    <Button
-        android:id="@+id/btnLogin"
+        android:id="@+id/etMessageEdit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="12dp"
-        android:backgroundTint="@color/colorAccent"
-        android:text="@string/login"
-        android:textColor="@android:color/background_light"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint="@string/message"
+        android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etUsername" />
+        app:layout_constraintTop_toBottomOf="@+id/etUsernameEdit" />
 </android.support.constraint.ConstraintLayout>

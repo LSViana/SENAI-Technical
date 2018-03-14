@@ -58,7 +58,7 @@ public class StudentDAO extends SQLiteOpenHelper {
         db.insert("student", null, data);
     }
 
-    public List<Student> searchAll(Integer id) {
+    public List<Student> searchAll() {
         String sql = "SELECT id, name, address, email, telephone, classification FROM student";
         SQLiteDatabase db = getReadableDatabase();
         Cursor c = db.rawQuery(sql, null);

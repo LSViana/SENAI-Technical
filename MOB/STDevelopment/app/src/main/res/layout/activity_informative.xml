@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="sp.senai.stdevelopment.activities.InformativeActivity">
+
+    <ImageView
+        android:id="@+id/ivSt1"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:contentDescription="@string/sthelenadescription"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/sthelena_1" />
+
+    <ImageView
+        android:id="@+id/ivSt2"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:contentDescription="@string/sthelenadescription"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/ivSt1"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/sthelena_2" />
+
+    <ImageView
+        android:id="@+id/ivSt3"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:contentDescription="@string/sthelenadescription"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ivSt1"
+        app:srcCompat="@drawable/sthelena_3" />
+
+    <ImageView
+        android:id="@+id/ivSt4"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:contentDescription="@string/sthelenadescription"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/ivSt3"
+        app:layout_constraintTop_toBottomOf="@+id/ivSt2"
+        app:srcCompat="@drawable/sthelena_4" />
+
+    <Button
+        android:id="@+id/btnHistory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:backgroundTint="@color/colorAccent"
+        android:text="@string/history"
+        android:textColor="@android:color/background_light"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ivSt3" />
+
+    <Button
+        android:id="@+id/btnContact"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:backgroundTint="@color/colorAccent"
+        android:text="@string/contact"
+        android:textColor="@android:color/background_light"
+        app:layout_constraintEnd_toStartOf="@+id/btnList"
+        app:layout_constraintStart_toEndOf="@+id/btnHistory"
+        app:layout_constraintTop_toBottomOf="@+id/ivSt4" />
+
+    <Button
+        android:id="@+id/btnList"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="8dp"
+        android:backgroundTint="@color/colorAccent"
+        android:text="@string/listing"
+        android:textColor="@android:color/background_light"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ivSt4" />
+</android.support.constraint.ConstraintLayout>
