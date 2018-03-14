@@ -1,0 +1,7 @@
+STDevelopment
+	Login
+		Mensagem "Bem-vindo, " + username
+	Informativa
+	História
+	Contato
+	Listagem
