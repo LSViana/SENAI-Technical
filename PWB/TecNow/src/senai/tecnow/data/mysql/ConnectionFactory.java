@@ -13,7 +13,7 @@ public class ConnectionFactory {
 	
 	public void open() {
 		try {
-			connection = java.sql.DriverManager.getConnection("jdbc:mysql://localhost:3306/tecnow", "root", "root132");
+			connection = java.sql.DriverManager.getConnection("jdbc:mysql://localhost:3306/tecnow?serverTimeZone=UTC", "root", "root132");
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}

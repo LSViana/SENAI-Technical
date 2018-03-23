@@ -60,7 +60,7 @@ public class ContactDAO extends SQLiteOpenHelper {
         SQLiteDatabase db = getWritableDatabase();
         ContentValues cv = new ContentValues();
         //
-        cv.put("name", obj.getName()D);
+        cv.put("name", obj.getName());
         cv.put("message", obj.getMessage());
         //
         db.update(tableName, cv, "id = ?", new String[] { obj.getId().toString() });
