@@ -15,8 +15,7 @@ public class UserJPA extends AbstractJPA<User> implements UserDAO {
 	@Override
 	public List<User> getAll() {
 		Query query = getSession().createQuery("SELECT u.name FROM User u");
-
-		 getSession().createSQLQuery("").list();
+		getSession().createSQLQuery("").list();
 		return query.list();
 	}
 

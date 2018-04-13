@@ -1,0 +1,33 @@
+*{
+	box-sizing: border-box;;
+}
+
+.col *{
+	width: 100%;
+}
+
+.col + .col{
+	margin-left: 16px;
+}
+
+.flex-grid .col{
+}
+
+.flex-grid .row{
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.row + .row{
+	margin-top: 16px;
+}
+
+@media screen and (max-width: 659px){
+	.flex-grid .row{
+		flex-wrap: wrap;
+	}
+	
+	.flex-grid .row .col{
+		flex-shrink: 0;
+	}
+}

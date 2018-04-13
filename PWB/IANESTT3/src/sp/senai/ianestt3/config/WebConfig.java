@@ -11,7 +11,7 @@ import org.springframework.web.servlet.view.JstlView;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan("br.senai.sp.jucacontrol")
+@ComponentScan("sp.senai.ianestt3")
 @Import(value=HibernateConfig.class)
 public class WebConfig implements WebMvcConfigurer {
 	@Override

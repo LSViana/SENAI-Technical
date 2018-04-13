@@ -1,0 +1,51 @@
+Pessoa
+	Id
+	NomeCompleto
+	Cpf
+	DataNascimento
+	EnderecoId
+Usuario
+	Id
+	IdPessoa
+Controle
+	IdUsuario
+	IdConta
+Endereco
+	Id
+	Estado
+	Cidade
+	Logradouro
+	NumeroCasa
+	Complemento
+Agencia
+	Id
+	EnderecoId
+	GerenteId
+Funcionario
+	Id
+	IdPessoa
+	CargoId
+Trabalha
+	IdAgencia
+	IdFuncionario
+Gerente
+	Id
+	IdFuncionario
+Cargo
+	Id
+	Nome
+Conta
+	NumeroIdentificacao
+	AgenciaId
+Transacao
+	Id
+	ContaOrigemId
+	ContaDestinoId
+	DataHora
+	Valor
+
+Ordem
+@Endereco
+@Agencia
+@Pessoa, Usuario, Funcionario
+@Outras
