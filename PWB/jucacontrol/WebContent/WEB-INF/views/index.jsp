@@ -58,8 +58,8 @@
 			<form:form modelAttribute="usuario" action="${urlAutenticarUsuario}" method="post" style="color: white">
 				<form:input path="email" cssStyle="color: white;" maxlength="120" />
 				<form:errors path="email" title="Usuário não autenticado" />
-				<form:password path="senha" cssStyle="color: white;" />
-				<form:errors path="senha" title="Usuário não autenticado" maxlength="20" />
+				<form:password path="senha" cssStyle="color: white;" maxlength="20" />
+				<form:errors path="senha" title="Usuário não autenticado"/>
 				<!-- <label>
 					E-mail
 					<input name="email" type="email" required="required" maxlength="120" id="inputEmail" cssStyle="color: white;"/>
@@ -68,7 +68,7 @@
 					Senha
 					<input name="senha" type="password" required="required" maxlength="20" cssStyle="color: white;" />
 				</label> -->
-				<button class="btn" type="submit">ENTRAR</button>
+				<button class="btn" type="submit">LOGIN</button>
 			</form:form>
 		</div>	
 	</div>

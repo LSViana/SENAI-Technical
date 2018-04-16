@@ -25,7 +25,7 @@
 		</li>
 	</ul>
 	<ul class="top-menu-items aln-items-center no-list txt-aln-r">
-		<li>${usuarioLogado.nome}</li>
+		<li>${usuarioAutenticado.nome}</li>
 		<li><a href="${urlSair}">Sair</a></li>
 	</ul>
 </header>

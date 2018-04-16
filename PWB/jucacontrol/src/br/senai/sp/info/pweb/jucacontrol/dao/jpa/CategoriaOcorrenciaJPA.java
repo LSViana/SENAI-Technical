@@ -14,7 +14,7 @@ import br.senai.sp.info.pweb.jucacontrol.models.CategoriaOcorrencia;
 @Repository
 @Transactional
 public class CategoriaOcorrenciaJPA implements CategoriaOcorrenciaDAO {
-	
+
 	@Autowired
 	private SessionFactory sessionFactory;
 
@@ -28,13 +28,13 @@ public class CategoriaOcorrenciaJPA implements CategoriaOcorrenciaDAO {
 		String hql = "FROM CategoriaOcorrencia c WHERE c.id = :id";
 		Query query = sessionFactory.getCurrentSession().createQuery(hql);
 		query.setParameter("id", id);
-		
+
 		//Executa e armazena o resultado
 		List<CategoriaOcorrencia> resultado = query.list();
-		
+
 		if(!resultado.isEmpty()) {
 			return resultado.get(0);
-		}else {
+		} else {
 			return null;
 		}
 	}
@@ -44,10 +44,10 @@ public class CategoriaOcorrenciaJPA implements CategoriaOcorrenciaDAO {
 		String hql = "FROM CategoriaOcorrencia c WHERE c.nome = :nome";
 		Query query = sessionFactory.getCurrentSession().createQuery(hql);
 		query.setParameter("nome", nome);
-		
+
 		//Executa e armazena o resultado
 		List<CategoriaOcorrencia> resultado = query.list();
-		
+
 		if(!resultado.isEmpty()) {
 			return resultado.get(0);
 		}else {

@@ -26,12 +26,15 @@ import br.senai.sp.info.pweb.jucacontrol.models.Usuario;
 @Controller
 public class UsuarioController {
 	
-	private static final String USUARIO_KEY = "usuarioAutenticado";
+	public static final String USUARIO_KEY = "usuarioAutenticado";
 	@Autowired
 	private UsuarioDAO usuarioDAO;
 	
 	@GetMapping(value = {"/", ""})
-	public String abrirLogin(Model model) {
+	public String abrirLogin(Model model, HttpSession sessao) {
+		if(sessao.getAttribute("usuarioAutenticado") != null) {
+			return "redirect:/app";
+		}
 		model.addAttribute("usuario", new Usuario());
 		return "index";
 	}
@@ -170,8 +173,8 @@ public class UsuarioController {
 	}
 	
 	@GetMapping({"/sair"})
-	public String logout() {
-		
+	public String logout(HttpSession sessao) {
+		sessao.invalidate();
 		return "redirect:/";
 	}
 

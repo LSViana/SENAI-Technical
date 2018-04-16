@@ -10,7 +10,7 @@
 
 <%--Botões de gerenciamento --%>
 <div class="float-btn-group">
-	<c:if test="${usuarioLogado.tipo eq 'ADMINISTRADOR'}">
+	<c:if test="${usuarioAutenticado.tipo eq 'ADMINISTRADOR'}">
 		<a title="Usuários do sistema" class="btn" href="${urlVisualizarUsuarios}">
 			<img alt="Usuários do sistema" src="${assets}/images/user.png">
 		</a>

@@ -109,7 +109,7 @@ public class Usuario {
 		this.caminhoFoto = caminhoFoto;
 	}
 	
-	public boolean getAdministrador() {
+	public boolean isAdministrador() {
 		return this.tipo.equals(TiposUsuario.ADMINISTRADOR);
 	}
 }

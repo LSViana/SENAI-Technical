@@ -119,6 +119,12 @@ public class Ocorrencia {
 	public void setDataModificacao(Date dataModificacao) {
 		this.dataModificacao = dataModificacao;
 	}
-	
+
+	@Override
+	public String toString() {
+		return "Ocorrencia [id=" + id + ", categoria=" + categoria + ", emissor=" + emissor + ", tecnico=" + tecnico
+				+ ", titulo=" + titulo + ", descricao=" + descricao + ", dataCadastro=" + dataCadastro
+				+ ", dataModificacao=" + dataModificacao + ", dataConclusao=" + dataConclusao + "]";
+	}
 	
 }

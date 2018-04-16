@@ -21,7 +21,7 @@ public class PersistenceConfig {
 	public DataSource getDataSource() {
 		BasicDataSource dataSource = new BasicDataSource();
 		dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
-		dataSource.setUrl("jdbc:mysql://localhost:3306/jucacontrol_production?serverTimezone=UTC");
+		dataSource.setUrl("jdbc:mysql://localhost:3306/jucacontrol_production?serverTimezone=UTC&useTimezone=true");
 		dataSource.setUsername("root");
 		dataSource.setPassword("root132");
 		
