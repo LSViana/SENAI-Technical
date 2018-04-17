@@ -1,0 +1,49 @@
+DROP DATABASE IF EXISTS claronet_production;
+
+CREATE DATABASE claronet_production DEFAULT CHARACTER SET utf8 COLLATE utf8_bin;
+
+USE claronet_production;
+
+CREATE TABLE branch (
+	id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+    description VARCHAR(256) NOT NULL
+);
+
+CREATE TABLE subscriber_type (
+	id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+    description VARCHAR(256) NOT NULL
+);
+
+CREATE TABLE subscriber (
+	id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(48) NOT NULL,
+    id_branch BIGINT UNSIGNED NOT NULL,
+    id_subscriber_type BIGINT UNSIGNED NOT NULL,
+    CONSTRAINT FOREIGN KEY(id_branch) REFERENCES branch(id),
+    CONSTRAINT FOREIGN KEY(id_subscriber_type) REFERENCES subscriber_type(id)
+);
+
+CREATE TABLE county (
+	id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+    description VARCHAR(128) NOT NULL
+);
+
+CREATE TABLE address (
+	id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+    description VARCHAR(256) NOT NULL,
+    complement VARCHAR(64) NOT NULL,
+    district VARCHAR(64) NOT NULL,
+    CEP CHAR(8) NOT NULL,
+    id_county BIGINT UNSIGNED NOT NULL,
+    id_subscriber BIGINT UNSIGNED NOT NULL,
+    CONSTRAINT FOREIGN KEY(id_county) REFERENCES county(id),
+    CONSTRAINT FOREIGN KEY(id_subscriber) REFERENCES subscriber(id)
+);
+
+CREATE TABLE contact (
+	id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+    ddd NUMERIC(2, 0) NOT NULL,
+    telephone NUMERIC(9, 0) NOT NULL,
+    id_address BIGINT UNSIGNED NOT NULL,
+    CONSTRAINT FOREIGN KEY(id_address) REFERENCES address(id)
+);

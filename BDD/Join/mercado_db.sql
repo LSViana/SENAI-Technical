@@ -1,0 +1,89 @@
+DROP DATABASE IF EXISTS bdo_mercado;
+
+CREATE DATABASE bdo_mercado;
+
+USE bdo_mercado;
+
+CREATE TABLE endereco
+(
+	id BIGINT UNSIGNED AUTO_INCREMENT,
+	cidade VARCHAR(40) NOT NULL,
+    bairro VARCHAR(40) NOT NULL,
+    logradouro VARCHAR(30) NOT NULL,
+    numero SMALLINT UNSIGNED NOT NULL,
+    
+    PRIMARY KEY(id)
+);
+
+CREATE TABLE cliente
+(
+	id BIGINT UNSIGNED AUTO_INCREMENT,
+    endereco_id BIGINT UNSIGNED NOT NULL,
+    nome VARCHAR(80) NOT NULL,
+    cpf CHAR(11) NOT NULL UNIQUE,
+    
+    PRIMARY KEY(id),
+    
+    FOREIGN KEY(endereco_id)
+		REFERENCES endereco(id)
+		ON DELETE CASCADE
+		ON UPDATE CASCADE
+);
+
+CREATE TABLE categoria
+(
+	id BIGINT UNSIGNED AUTO_INCREMENT,
+    nome VARCHAR(40) NOT NULL UNIQUE,
+    
+    PRIMARY KEY(id)
+);
+
+CREATE TABLE produto
+(
+	id BIGINT UNSIGNED AUTO_INCREMENT,
+    nome VARCHAR(40) NOT NULL UNIQUE,
+    categoria_id BIGINT UNSIGNED NOT NULL,
+    preco NUMERIC(12, 2) UNSIGNED NOT NULL,
+    
+    PRIMARY KEY(id),
+    
+    FOREIGN KEY(categoria_id)
+		REFERENCES categoria(id)
+		ON DELETE CASCADE
+		ON UPDATE CASCADE
+);
+
+CREATE TABLE venda
+(
+	id BIGINT UNSIGNED AUTO_INCREMENT,
+    cliente_id BIGINT UNSIGNED,
+    dataVenda DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    
+    PRIMARY KEY(id),
+    
+    FOREIGN KEY(cliente_id)
+		REFERENCES cliente(id)
+		ON DELETE CASCADE
+        ON UPDATE CASCADE
+);
+
+CREATE TABLE itens_venda
+(
+	id BIGINT UNSIGNED AUTO_INCREMENT,
+    produto_id BIGINT UNSIGNED NOT NULL,
+    venda_id BIGINT UNSIGNED NOT NULL,
+    preco NUMERIC(12, 2) NOT NULL,
+    qntd INT UNSIGNED NOT NULL DEFAULT 1,
+    
+    PRIMARY KEY(id),
+    
+    FOREIGN KEY(produto_id)
+		REFERENCES produto(id)
+		ON DELETE CASCADE
+        ON UPDATE CASCADE,
+        
+	FOREIGN KEY(venda_id)
+		REFERENCES venda(id)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE
+);
