@@ -66,12 +66,12 @@ public class OcorrenciaController {
 	}
 
 	@PostMapping("/ocorrencia/salvar")
-	public String salvar(@Valid Ocorrencia ocorrencia, @RequestParam(required = true) Long categoriaId, BindingResult br, HttpSession sessao) {
+	public String salvar(@Valid Ocorrencia ocorrencia, BindingResult br, HttpSession sessao, Model model) {
 		if(br.hasErrors()) {
+			model.addAttribute("categorias", catOcorrenciaDAO.buscarTodos());
 			return "ocorrencia/form";
 		}
 		ocorrencia.setDataModificacao(new Date());
-		ocorrencia.setCategoria(catOcorrenciaDAO.buscar(categoriaId));
 		Usuario u = (Usuario)sessao.getAttribute(UsuarioController.USUARIO_KEY);
 		ocorrencia.setEmissor(u);
 		if(ocorrencia.getId() == null) {

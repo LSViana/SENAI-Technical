@@ -11,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "ocorrencia")
@@ -22,6 +24,7 @@ public class Ocorrencia {
 	
 	@ManyToOne
 	@JoinColumn(nullable = false, name = "categoria_id")
+	@NotNull
 	private CategoriaOcorrencia categoria;
 	
 	@ManyToOne
@@ -33,10 +36,13 @@ public class Ocorrencia {
 	private Usuario tecnico;
 	
 	@Column(length = 30, nullable = false, unique = false)
+	@Size(min=1, max=30)
+	@NotNull
 	private String titulo;
 	
 	@Column(nullable = false, unique = false)
-	@Lob
+	@Lob // Long Object, changes from VARCHAR(n) to TEXT at database
+	@NotNull
 	private String descricao;
 	
 	@Column(nullable = false)

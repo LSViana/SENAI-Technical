@@ -35,11 +35,7 @@
 			</div>
 			<div class="row">
 				<div class="col flex-1">
-					<select id="categoriaId" name="categoriaId">
-						<c:forEach items="${categorias}" var="categoria" >
-							<option value="${categoria.id}">${categoria.nome}</option>
-						</c:forEach>
-					</select>
+					<form:select path="categoria.id" items="${categorias}" itemValue="id" itemLabel="nome"></form:select>
 					<form:errors path="categoria" />
 				</div>
 			</div>
