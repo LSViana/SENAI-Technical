@@ -1,4 +1,10 @@
 <resources>
     <string name="app_name">Meus Livros</string>
-    <string name="action_settings">Settings</string>
+    <string name="item_preferences">Preferências</string>
+    <string name="change_color_text">Mudar Cor</string>
+    <string name="blue_text">Azul</string>
+    <string name="yellow_text">Amarelo</string>
+    <string name="red_text">Vermelho</string>
+    <string name="green_text">Verde</string>
+    <string name="black_text">Preto</string>
 </resources>
