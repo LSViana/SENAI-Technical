@@ -156,7 +156,7 @@ public class UsuarioController {
 		
 		// Verificando se houveram erros no binding result
 		if(brUsuario.hasFieldErrors("email") || 
-				brUsuario.hasFieldErrors("senha")) {			
+				brUsuario.hasFieldErrors("senha")) {	
 			return "index";
 		}
 		
