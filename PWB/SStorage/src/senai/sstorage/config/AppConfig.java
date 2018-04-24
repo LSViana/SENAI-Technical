@@ -18,7 +18,7 @@ import senai.sstorage.interceptors.AuthenticationInterceptor;
 
 @Configuration
 @EnableWebMvc
-//@Import(value = PersistenceConfig.class)
+@Import(value = PersistenceConfig.class)
 @ComponentScan(value = "senai.sstorage")
 public class AppConfig implements WebMvcConfigurer {
 	
