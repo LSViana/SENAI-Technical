@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">SRent</string>
+    <string name="welcome_splash_text">Welcome to</string>
+    <string name="srent">SRent</string>
+</resources>

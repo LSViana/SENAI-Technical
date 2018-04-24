@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Duration Calculator</string>
+    <string name="calculateText">Calculate</string>
+    <string name="loadingText">Loading</string>
+</resources>
