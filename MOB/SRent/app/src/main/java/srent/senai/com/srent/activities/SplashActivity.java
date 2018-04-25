@@ -1,13 +1,15 @@
-package srent.senai.com.srent;
+package srent.senai.com.srent.activities;
 
 import android.content.Intent;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import srent.senai.com.srent.R;
+
 public class SplashActivity extends AppCompatActivity {
 
-    private static int SPLASH_OUT_TIME = 5000;
+    private static int SPLASH_OUT_TIME = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

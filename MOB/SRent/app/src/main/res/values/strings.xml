@@ -2,4 +2,14 @@
     <string name="app_name">SRent</string>
     <string name="welcome_splash_text">Welcome to</string>
     <string name="srent">SRent</string>
+    <string name="vehicleSplashTitle">SRent – Vehicle Data</string>
+    <string name="busText">Bus</string>
+    <string name="vanText">Van</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="rentBusTitle">SRent – Rent a Bus</string>
+    <string name="startDateText">Start Date</string>
+    <string name="endDateText">End Date</string>
+    <string name="includeDriverText">Include Driver</string>
 </resources>
