@@ -3,11 +3,13 @@ package senai.sstorage.jobs;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
+import org.springframework.stereotype.Component;
 
 import senai.sstorage.dao.UserDAO;
 import senai.sstorage.models.User;
 import senai.sstorage.models.UserType;
 
+@Component
 public class CreateAdministratorJob implements ApplicationListener<ContextRefreshedEvent> {
 	
 	@Autowired
@@ -26,7 +28,7 @@ public class CreateAdministratorJob implements ApplicationListener<ContextRefres
 		admin.hashPassword();
 		//
 		logJob("Verifying Administrator existence...");
-		if(userDAO.searchByEmail(admin.getEmail()) != null) {
+		if(userDAO.searchByEmail(admin.getEmail()) == null) {
 			logJob("Creating Administrator...");
 			userDAO.persist(admin);
 		} else {

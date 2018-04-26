@@ -1,0 +1,28 @@
+Cadastro de usuário (somente administrador);
+Alteração de usuário (somente administrador);
+@ Autenticação (login através de sessão);
+Alterar dados do usuário autenticado (Nome e sobrenome);
+Alterar senha; (informar antiga e nova, confirmar se a senha antiga fornecida for igual a
+atual do banco de dados);
+Excluir usuário (somente administrador);
+Listar usuários (somente administradores);
+Cadastrar patrimônio (somente administrador);
+Listar patrimônios;
+Alterar patrimônio (somente administrador);
+Excluir patrimônio (somente administrador);
+Cadastrar ambiente (somente administrador);
+Listar ambiente;
+Alterar ambiente (somente administrador);
+Excluir ambiente (somente administrador);
+Cadastrar item de patrimônio;
+Excluir item de patrimônio (somente administrador);
+Listar itens de patrimônio (ao clicar em um patrimônio específico);
+	Exibir nome do patrimônio;
+	Exibir categoria do patrimônio;
+	Onde está no momento;
+	Data da última atualização (último movimento);
+	Solicitar baixa; (Ao dar baixa no item, ele não poderá ser visualizado na lista
+		comum, ele deve ser exibido em uma lista de itens solicitados para baixa);
+	Dar baixa em item (somente administrador);
+Realizar movimentação;
+Visualizar movimentações de um determinado item;

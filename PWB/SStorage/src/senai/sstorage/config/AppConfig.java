@@ -6,6 +6,8 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
+import org.springframework.web.multipart.MultipartResolver;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
@@ -53,6 +55,13 @@ public class AppConfig implements WebMvcConfigurer {
 	@Bean
 	public AuthenticationInterceptor getAuthenticationInterceptor() {
 		return new AuthenticationInterceptor();
+	}
+	
+	@Bean
+	public MultipartResolver getMultipartResolver() {
+		CommonsMultipartResolver mpr = new CommonsMultipartResolver();
+		mpr.setMaxUploadSize(5 * 1024 * 1024);
+		return mpr;
 	}
 	
 	@Override

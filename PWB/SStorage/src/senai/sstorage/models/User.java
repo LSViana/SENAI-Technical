@@ -22,7 +22,7 @@ public class User {
 	
 	@Column(length = 20, nullable = false, unique = false)
 	@NotNull
-	@Size(min = 1, max = 30)
+	@Size(min = 1, max = 20)
 	private String firstName;
 	
 	@Column(length = 40, nullable = false, unique = false)
@@ -35,9 +35,9 @@ public class User {
 	@Email
 	private String email;
 	
-	@Column(length = 64, nullable = false, unique = false)
+	@Column(length = 32, nullable = false, unique = false)
 	@NotNull
-	@Size(min = 6, max = 24)
+	@Size(min = 6, max = 32)
 	private String password;
 	
 	@NotNull
