@@ -12,7 +12,7 @@ import java.util.List;
 import srent.senai.com.srent.models.Bus;
 import srent.senai.com.srent.models.Van;
 
-public class VanDAO extends SQLiteOpenHelper {
+public class VanDAO extends SQLiteOpenHelper implements DAO<Van, Long> {
 
     // It must be static for it to be initialized with the class and not the instance
     private static final String DB_NAME = "srent";

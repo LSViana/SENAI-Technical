@@ -13,4 +13,8 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+    <style name="AppDialog" parent="Theme.AppCompat.Light.Dialog">
+        <item name="colorAccent">@color/colorPrimary</item>
+    </style>
+
 </resources>

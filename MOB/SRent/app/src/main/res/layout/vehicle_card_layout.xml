@@ -11,7 +11,7 @@
 
     <ImageView
         android:id="@+id/vehicle_card_ivMain"
-        android:layout_width="90dp"
+        android:layout_width="140dp"
         android:layout_height="90dp"
         android:layout_gravity="center"
         android:layout_marginBottom="8dp"
@@ -20,14 +20,13 @@
         android:layout_marginTop="8dp"
         android:background="@color/cardview_light_background"
         android:maxHeight="90dp"
-        android:maxWidth="90dp"
+        android:maxWidth="140dp"
         app:srcCompat="@mipmap/ic_launcher" />
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
-        android:background="@color/colorPrimaryDark"
         android:orientation="vertical">
 
         <TextView

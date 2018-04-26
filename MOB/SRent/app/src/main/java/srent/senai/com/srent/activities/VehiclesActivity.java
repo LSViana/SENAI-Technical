@@ -1,10 +1,14 @@
 package srent.senai.com.srent.activities;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.Toast;
+
+import java.util.List;
 
 import srent.senai.com.srent.R;
 import srent.senai.com.srent.adapters.BusViewAdapter;
@@ -13,8 +17,13 @@ import srent.senai.com.srent.data.BusDAO;
 import srent.senai.com.srent.data.VanDAO;
 import srent.senai.com.srent.models.Bus;
 import srent.senai.com.srent.models.Van;
+import srent.senai.com.srent.models.Vehicle;
+import srent.senai.com.srent.models.VehicleType;
 
 public class VehiclesActivity extends AppCompatActivity {
+
+    public static String VEHICLE_TYPE_CODE = "vehicletype";
+    public static String VEHICLE_ID_CODE = "vehicleid";
 
     private RecyclerView rvBus;
     private RecyclerView rvVan;
@@ -26,6 +35,8 @@ public class VehiclesActivity extends AppCompatActivity {
     private VanDAO vanDAO;
     private VanOnClickListener vanListener;
     private BusOnClickListener busListener;
+    private List<Bus> currentBusList;
+    private List<Van> currentVanList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,8 +81,8 @@ public class VehiclesActivity extends AppCompatActivity {
         rvBus.setLayoutManager(lmBus);
         rvVan.setLayoutManager(lmVan);
         // Using a custom Adapter
-        busAdapter = new BusViewAdapter(vanListener, busDAO.searchAll(), false);
-        vanAdapter = new VanViewAdapter(busListener, vanDAO.searchAll(), false);
+        busAdapter = new BusViewAdapter(busListener, busDAO.searchAll(), false);
+        vanAdapter = new VanViewAdapter(vanListener, vanDAO.searchAll(), false);
         // Setting Adapter to RecyclerView
         rvBus.setAdapter(busAdapter);
         rvVan.setAdapter(vanAdapter);
@@ -82,11 +93,13 @@ public class VehiclesActivity extends AppCompatActivity {
         super.onResume();
         //
         if(busAdapter == null || vanAdapter == null) {
-            busAdapter = new BusViewAdapter(vanListener, busDAO.searchAll(), false);
-            vanAdapter = new VanViewAdapter(busListener, vanDAO.searchAll(), false);
+            busAdapter = new BusViewAdapter(busListener, busDAO.searchAll(), false);
+            vanAdapter = new VanViewAdapter(vanListener, vanDAO.searchAll(), false);
         }
-        busAdapter.setVehicles(busDAO.searchAll());
-        vanAdapter.setVehicles(vanDAO.searchAll());
+        currentBusList = busDAO.searchAll();
+        currentVanList = vanDAO.searchAll();
+        busAdapter.setVehicles(currentBusList);
+        vanAdapter.setVehicles(currentVanList);
         //
         busAdapter.notifyDataSetChanged();
         vanAdapter.notifyDataSetChanged();
@@ -96,7 +109,13 @@ public class VehiclesActivity extends AppCompatActivity {
 
         @Override
         public void onClick(View view) {
-
+            Vehicle vehicle = currentBusList.get(rvBus.getChildLayoutPosition(view));
+            VehicleType vt = VehicleType.BUS;
+            //
+            Intent vehicleRequestIntent = new Intent(getBaseContext(), VehicleRequestActivity.class);
+            vehicleRequestIntent.putExtra(VEHICLE_TYPE_CODE, vt.toString());
+            vehicleRequestIntent.putExtra(VEHICLE_ID_CODE, vehicle.getId());
+            startActivity(vehicleRequestIntent);
         }
     }
 

@@ -103,8 +103,21 @@ public class VehicleRequest {
     }
 
     public Double calculatePrice() {
-        // TODO
-        return 10.0;
+        if(getVehicle() == null)
+            return 0d;
+        //
+        Long diff = Math.abs(endDate.getTime() - startDate.getTime());
+        Long totalSeconds = diff / 1000;
+        Long totalMinutes = totalSeconds / 60;
+        Long totalHours = totalMinutes / 60;
+        Long totalDays = totalHours / 24;
+        //
+        Double passengerMultiplier = 1d;
+        passengerMultiplier += (getPassengerAmount() / 10d);
+        //
+        Double driverMultiplier = getIncludesDriver() ? 1.2 : 1;
+        //
+        return getVehicle().getPrice() * (totalDays + 1) * passengerMultiplier * driverMultiplier;
     }
 
 }

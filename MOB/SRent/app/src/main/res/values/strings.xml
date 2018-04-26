@@ -8,8 +8,18 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="rentBusTitle">SRent – Rent a Bus</string>
+    <string name="rentBusTitle">SRent – Rent a Vehicle</string>
     <string name="startDateText">Start Date</string>
     <string name="endDateText">End Date</string>
     <string name="includeDriverText">Include Driver</string>
+    <string name="passengerAmountText">Passenger Amount</string>
+    <string name="originAddressText">Origin Address</string>
+    <string name="destinyAddressText">Destiny Address</string>
+    <string name="requestVehicleText">Request Vehicle</string>
+
+    <!-- Errors -->
+    <string name="error_01_novehiclefound">No vehicle found! [Error 01]</string>
+    <string name="errorEndDateOutOfBoundsMessage">You must select an End Date after the Start Date</string>
+    <string name="errorStartDateOutOfBoundsMessage">You must select a Start Date before the End Date</string>
+    <string name="requestSuccessText">Request successfully saved! Total value: US$ %.02f</string>
 </resources>

@@ -15,7 +15,7 @@ a {
 .mdl-button--raised.mdl-button--colored {
 	background-color: rgb(255, 61, 0) !important;
 }
-
+b
 .custom-white-bold-text {
 	color: white !important;
 	font-weight: 600;

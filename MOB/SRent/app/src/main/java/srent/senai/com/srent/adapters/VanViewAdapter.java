@@ -39,7 +39,7 @@ public class VanViewAdapter extends RecyclerView.Adapter<VanViewAdapter.VehicleV
             super(itemView);
             imageView = itemView.findViewById(R.id.vehicle_card_ivMain);
             tvName = itemView.findViewById(R.id.vehicle_card_tvName);
-            tvDescription = itemView.findViewById(R.id.vehicle_card_tvDescription);
+            tvDescription = itemView.findViewById(R.id.vehicle_card_tvPrice);
         }
 
         public void fill(Van v) {

@@ -11,7 +11,7 @@ import java.util.List;
 
 import srent.senai.com.srent.models.Bus;
 
-public class BusDAO extends SQLiteOpenHelper {
+public class BusDAO extends SQLiteOpenHelper implements DAO<Bus, Long> {
 
     // It must be static for it to be initialized with the class and not the instance
     private static final String DB_NAME = "srent";

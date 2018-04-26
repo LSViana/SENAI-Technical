@@ -42,7 +42,7 @@ public class BusViewAdapter extends RecyclerView.Adapter<BusViewAdapter.VehicleV
             super(itemView);
             imageView = itemView.findViewById(R.id.vehicle_card_ivMain);
             tvName = itemView.findViewById(R.id.vehicle_card_tvName);
-            tvDescription = itemView.findViewById(R.id.vehicle_card_tvDescription);
+            tvDescription = itemView.findViewById(R.id.vehicle_card_tvPrice);
             parentLayout = itemView.findViewById(R.id.vehicle_card_parent);
         }
 
