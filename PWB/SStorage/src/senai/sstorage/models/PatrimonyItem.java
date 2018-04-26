@@ -8,8 +8,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import com.sun.istack.internal.NotNull;
-
 @Entity
 @Table(name = "patrimony_item")
 public class PatrimonyItem {
@@ -20,12 +18,12 @@ public class PatrimonyItem {
 	
 	@ManyToOne
 	@JoinColumn(name = "id_patrimony")
-	@NotNull
+	@javax.validation.constraints.NotNull
 	private Patrimony patrimony;
 	
 	@ManyToOne
 	@JoinColumn(name = "id_environment")
-	@NotNull
+	@javax.validation.constraints.NotNull
 	private Environment environment;
 	
 	@ManyToOne

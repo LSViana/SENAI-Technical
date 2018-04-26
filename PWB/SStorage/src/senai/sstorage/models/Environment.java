@@ -8,8 +8,6 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
-import com.sun.istack.internal.NotNull;
-
 @Entity
 @Table(name = "environment")
 public class Environment {
@@ -19,7 +17,7 @@ public class Environment {
 	private Long id;
 	
 	@Column(length = 40, nullable = false, unique = false)
-	@NotNull
+	@javax.validation.constraints.NotNull
 	@Size(min = 1, max = 40)
 	private String name;
 
