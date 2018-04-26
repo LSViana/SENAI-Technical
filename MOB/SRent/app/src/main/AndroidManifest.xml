@@ -11,7 +11,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".activities.VehiclesActivity"
-            android:theme="@style/AppNoActionBar"></activity>
+            android:theme="@style/AppNoActionBar" />
         <activity
             android:name=".activities.SplashActivity"
             android:theme="@style/AppNoActionBar">
@@ -23,6 +23,9 @@
         </activity>
         <activity
             android:name=".activities.VehicleRequestActivity"
+            android:theme="@style/AppNoActionBar" />
+        <activity
+            android:name=".activities.VehicleRequestListActivity"
             android:theme="@style/AppNoActionBar"></activity>
     </application>
 

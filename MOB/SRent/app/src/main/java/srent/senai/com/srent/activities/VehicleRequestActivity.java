@@ -83,10 +83,11 @@ public class VehicleRequestActivity extends AppCompatActivity {
                 DatePickerDialog dpg = new DatePickerDialog(VehicleRequestActivity.this, R.style.AppDialog, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker datePicker, int year, int month, int dayOfMonth) {
-                        startCalendar = new GregorianCalendar(year, month, dayOfMonth);
+                        GregorianCalendar startCalendar = new GregorianCalendar(year, month, dayOfMonth);
                         if(startCalendar.after(endCalendar)) {
                             Toast.makeText(VehicleRequestActivity.this, R.string.errorStartDateOutOfBoundsMessage, Toast.LENGTH_SHORT).show();
                         } else {
+                            VehicleRequestActivity.this.startCalendar = startCalendar;
                             setStartDate();
                         }
                     }
@@ -100,10 +101,11 @@ public class VehicleRequestActivity extends AppCompatActivity {
                 DatePickerDialog dpg = new DatePickerDialog(VehicleRequestActivity.this, R.style.AppDialog, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker datePicker, int year, int month, int dayOfMonth) {
-                        endCalendar = new GregorianCalendar(year, month, dayOfMonth);
+                        GregorianCalendar endCalendar = new GregorianCalendar(year, month, dayOfMonth);
                         if(endCalendar.before(startCalendar)) {
                             Toast.makeText(VehicleRequestActivity.this, R.string.errorEndDateOutOfBoundsMessage, Toast.LENGTH_SHORT).show();
                         } else {
+                            VehicleRequestActivity.this.endCalendar = endCalendar;
                             setEndDate();
                         }
                     }

@@ -35,12 +35,14 @@ public class VanDAO extends SQLiteOpenHelper implements DAO<Van, Long> {
                 "price NUMBER NOT NULL" +
                 ");", TABLE_NAME);
         sqLiteDatabase.execSQL(sql);
+        sqLiteDatabase.close();
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
         String sql = String.format("DROP TABLE IF EXISTS %s", TABLE_NAME);
         sqLiteDatabase.execSQL(sql);
+        sqLiteDatabase.close();
     }
 
     public void insert(Van obj) {
@@ -53,12 +55,14 @@ public class VanDAO extends SQLiteOpenHelper implements DAO<Van, Long> {
         cv.put("price", obj.getPrice());
         //
         db.insert(TABLE_NAME, null, cv);
+        db.close();
     }
 
     public void delete (Long id) {
         SQLiteDatabase db = getWritableDatabase();
         //
         db.delete(TABLE_NAME, "id = ?", new String[] { id.toString() });
+        db.close();
     }
 
     public void update(Van obj) {
@@ -70,6 +74,7 @@ public class VanDAO extends SQLiteOpenHelper implements DAO<Van, Long> {
         cv.put("price", obj.getPrice());
         //
         db.update(TABLE_NAME, cv, "id = ?", new String[] { obj.getId().toString() });
+        db.close();
     }
 
     public List<Van> searchAll() {
@@ -83,6 +88,7 @@ public class VanDAO extends SQLiteOpenHelper implements DAO<Van, Long> {
             result.add(new Van(c.getLong(columnIndex++), c.getString(columnIndex++), c.getString(columnIndex++), c.getInt(columnIndex++), c.getDouble(columnIndex++)));
         }
         //
+        db.close();
         return result;
     }
 
@@ -93,7 +99,9 @@ public class VanDAO extends SQLiteOpenHelper implements DAO<Van, Long> {
         //
         while(c.moveToNext()) {
             int columnIndex = 0;
-            return new Van(c.getLong(columnIndex++), c.getString(columnIndex++), c.getString(columnIndex++), c.getInt(columnIndex++), c.getDouble(columnIndex++));
+            Van result = new Van(c.getLong(columnIndex++), c.getString(columnIndex++), c.getString(columnIndex++), c.getInt(columnIndex++), c.getDouble(columnIndex++));
+            db.close();
+            return result;
         }
         //
         return null;

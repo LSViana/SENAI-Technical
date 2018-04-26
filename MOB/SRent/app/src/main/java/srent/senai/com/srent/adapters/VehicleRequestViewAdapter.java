@@ -36,6 +36,8 @@ public class VehicleRequestViewAdapter extends RecyclerView.Adapter<VehicleReque
         private final TextView tvPrice;
         private final TextView tvStartDate;
         private final TextView tvEndDate;
+        private final TextView tvOriginAddress;
+        private final TextView tvDestinyAddress;
 
         public VehicleRequestViewHolder(View itemView) {
             super(itemView);
@@ -44,14 +46,18 @@ public class VehicleRequestViewAdapter extends RecyclerView.Adapter<VehicleReque
             tvPrice = itemView.findViewById(R.id.vr_card_tvPrice);
             tvStartDate = itemView.findViewById(R.id.vr_card_tvStartDate);
             tvEndDate = itemView.findViewById(R.id.vr_card_tvEndDate);
+            tvOriginAddress = itemView.findViewById(R.id.vr_card_tvOriginAddress);
+            tvDestinyAddress = itemView.findViewById(R.id.vr_card_tvDestinyAddress);
         }
 
         public void fill(VehicleRequest vr) {
             imageView.setImageBitmap(BitmapFactory.decodeResource(itemView.getResources(), vr.getVehicle().getImageResId()));
-            tvName.setText(vr.getVehicle().getImageResId());
+            tvName.setText(vr.getVehicle().getName());
             tvPrice.setText(String.format("US$ %.02f", vr.calculatePrice()));
             tvStartDate.setText(sdf.format(vr.getStartDate()));
             tvEndDate.setText(sdf.format(vr.getEndDate()));
+            tvOriginAddress.setText(vr.getOriginAddress());
+            tvDestinyAddress.setText(vr.getDestinyAddress());
         }
     }
 

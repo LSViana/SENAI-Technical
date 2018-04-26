@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.Toast;
+import android.widget.Button;
 
 import java.util.List;
 
@@ -37,6 +37,7 @@ public class VehiclesActivity extends AppCompatActivity {
     private BusOnClickListener busListener;
     private List<Bus> currentBusList;
     private List<Van> currentVanList;
+    private Button btnVehicleRequestList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +50,19 @@ public class VehiclesActivity extends AppCompatActivity {
         //pretendDataInsertion();
         //
         initializeRecyclerView();
+        //
+        initializeTopBar();
+    }
+
+    private void initializeTopBar() {
+        btnVehicleRequestList = findViewById(R.id.btnVehicleRequestList);
+        btnVehicleRequestList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent vehicleListIntent = new Intent(VehiclesActivity.this, VehicleRequestListActivity.class);
+                startActivity(vehicleListIntent);
+            }
+        });
     }
 
     private void pretendDataInsertion() {
@@ -70,7 +84,7 @@ public class VehiclesActivity extends AppCompatActivity {
         vanListener = new VanOnClickListener();
         busListener = new BusOnClickListener();
         // Getting Components
-        rvBus = findViewById(R.id.rvBus);
+        rvBus = findViewById(R.id.rvVehiclesRequests);
         rvVan = findViewById(R.id.rvVan);
         // Configuration RecyclerView
         rvBus.setHasFixedSize(true);
@@ -123,7 +137,13 @@ public class VehiclesActivity extends AppCompatActivity {
 
         @Override
         public void onClick(View view) {
-
+            Vehicle vehicle = currentBusList.get(rvBus.getChildLayoutPosition(view));
+            VehicleType vt = VehicleType.VAN;
+            //
+            Intent vehicleRequestIntent = new Intent(getBaseContext(), VehicleRequestActivity.class);
+            vehicleRequestIntent.putExtra(VEHICLE_TYPE_CODE, vt.toString());
+            vehicleRequestIntent.putExtra(VEHICLE_ID_CODE, vehicle.getId());
+            startActivity(vehicleRequestIntent);
         }
     }
 }

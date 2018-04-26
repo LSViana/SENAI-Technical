@@ -51,12 +51,15 @@ public class VehicleRequestDAO extends SQLiteOpenHelper {
                 "includesDriver NUMBER NOT NULL" +
                 ");", TABLE_NAME);
         sqLiteDatabase.execSQL(sql);
+        sqLiteDatabase.close();
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
         String sql = String.format("DROP TABLE IF EXISTS %s", TABLE_NAME);
         sqLiteDatabase.execSQL(sql);
+        onCreate(sqLiteDatabase);
+        sqLiteDatabase.close();
     }
 
     public void insert(VehicleRequest obj) {
@@ -73,12 +76,14 @@ public class VehicleRequestDAO extends SQLiteOpenHelper {
         cv.put("includesDriver", obj.getIncludesDriver() ? 1 : 0);
         //
         db.insert(TABLE_NAME, null, cv);
+        db.close();
     }
 
     public void delete (Long id) {
         SQLiteDatabase db = getWritableDatabase();
         //
         db.delete(TABLE_NAME, "id = ?", new String[] { id.toString() });
+        db.close();
     }
 
     public void update(VehicleRequest obj) {
@@ -95,6 +100,7 @@ public class VehicleRequestDAO extends SQLiteOpenHelper {
         cv.put("includesDriver", obj.getIncludesDriver() ? 1 : 0);
         //
         db.update(TABLE_NAME, cv, "id = ?", new String[] { obj.getId().toString() });
+        db.close();
     }
 
     public List<VehicleRequest> searchAll() {
@@ -130,6 +136,7 @@ public class VehicleRequestDAO extends SQLiteOpenHelper {
             //
             result.add(vr);
         }
+        db.close();
         //
         return result;
     }

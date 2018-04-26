@@ -34,12 +34,14 @@ public class BusDAO extends SQLiteOpenHelper implements DAO<Bus, Long> {
                 "price NUMBER NOT NULL" +
                 ");", TABLE_NAME);
         sqLiteDatabase.execSQL(sql);
+        sqLiteDatabase.close();
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
         String sql = String.format("DROP TABLE IF EXISTS %s", TABLE_NAME);
         sqLiteDatabase.execSQL(sql);
+        sqLiteDatabase.close();
     }
 
     public void insert(Bus obj) {
@@ -52,6 +54,7 @@ public class BusDAO extends SQLiteOpenHelper implements DAO<Bus, Long> {
         cv.put("price", obj.getPrice());
         //
         db.insert(TABLE_NAME, null, cv);
+        db.close();
     }
 
     public void delete (Long id) {
@@ -69,6 +72,7 @@ public class BusDAO extends SQLiteOpenHelper implements DAO<Bus, Long> {
         cv.put("price", obj.getPrice());
         //
         db.update(TABLE_NAME, cv, "id = ?", new String[] { obj.getId().toString() });
+        db.close();
     }
 
     public List<Bus> searchAll() {
@@ -82,6 +86,7 @@ public class BusDAO extends SQLiteOpenHelper implements DAO<Bus, Long> {
             result.add(new Bus(c.getLong(columnIndex++), c.getString(columnIndex++), c.getString(columnIndex++), c.getInt(columnIndex++), c.getDouble(columnIndex++)));
         }
         //
+        db.close();
         return result;
     }
 
@@ -92,9 +97,12 @@ public class BusDAO extends SQLiteOpenHelper implements DAO<Bus, Long> {
         //
         while(c.moveToNext()) {
             int columnIndex = 0;
-            return new Bus(c.getLong(columnIndex++), c.getString(columnIndex++), c.getString(columnIndex++), c.getInt(columnIndex++), c.getDouble(columnIndex++));
+            Bus result = new Bus(c.getLong(columnIndex++), c.getString(columnIndex++), c.getString(columnIndex++), c.getInt(columnIndex++), c.getDouble(columnIndex++));
+            db.close();
+            return result;
         }
         //
+        db.close();
         return null;
     }
 

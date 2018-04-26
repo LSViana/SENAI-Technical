@@ -22,4 +22,7 @@
     <string name="errorEndDateOutOfBoundsMessage">You must select an End Date after the Start Date</string>
     <string name="errorStartDateOutOfBoundsMessage">You must select a Start Date before the End Date</string>
     <string name="requestSuccessText">Request successfully saved! Total value: US$ %.02f</string>
+    <string name="vehicleRequestText">Vehicle Requests</string>
+    <string name="seeRequestsText">Requests</string>
+    <string name="vehicleRequestsSplashTitle">SRent – Request Data</string>
 </resources>
