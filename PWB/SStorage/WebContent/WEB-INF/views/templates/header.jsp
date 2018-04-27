@@ -7,9 +7,12 @@
 <link rel="stylesheet" href="${headerCss}" />
 <div class="mdl-layout__header-row mdl-layout__header is-casting-shadow">
 	<!-- Title -->
-	<a href="${main}"><span class="mdl-layout-title"> <span
-			class="custom-white-bold-text">${title}</span> | Start Page
-	</span></a>
+	<a href="${main}">
+		<span class="mdl-layout-title">
+			<span class="custom-white-bold-text">${title}</span>
+			| Start Page
+		</span>
+	</a>
 	<div class="mdl-layout-spacer"></div>
 	<!-- Navigation -->
 	<nav class="mdl-navigation custom-topnav">
@@ -22,19 +25,20 @@
 				</a>
 			</c:when>
 			<c:otherwise>
+				<c:choose>
+					<c:when test="${user_auth.type eq 'ADMINISTRATOR'}">
+						<a class="mdl-navigation__link" href="${adminIndex}">
+							<button id="sign-in-button"
+								class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect">Manage
+								Application</button>
+						</a>
+					</c:when>
+				</c:choose>
 				<a class="mdl-navigation__link" href="${openLogout}">
 					<button id="sign-in-button"
 						class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect">Sign
 						Out</button>
 				</a>
-				<c:choose>
-					<c:when test="${user_auth.type eq 'ADMINISTRATOR'}">
-						<a class="mdl-navigation__link" href="${adminIndex}">
-							<button id="sign-in-button"
-								class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect">Manage Application</button>
-						</a>
-					</c:when>
-				</c:choose>
 			</c:otherwise>
 		</c:choose>
 	</nav>

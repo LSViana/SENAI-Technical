@@ -12,12 +12,13 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartResolver;
 
-import senai.sstorage.SessionUtils;
 import senai.sstorage.dao.UserDAO;
+import senai.sstorage.models.Environment;
+import senai.sstorage.models.Patrimony;
 import senai.sstorage.models.User;
+import senai.sstorage.utils.SessionUtils;
 
 @Controller
 @RequestMapping("/user")
@@ -69,12 +70,39 @@ public class UserController {
 	}
 	
 	@Controller
-	@RequestMapping("/app/user/api")
-	public class UserAPIController {
+	@RequestMapping("/adm")
+	public class UserAdminAPIController {
 		
-		@PostMapping("/new")
+		@GetMapping(value = { "/", "" })
+		public String index() {
+			return "admin/index";
+		}
+
+		// Users
+		@GetMapping("/user/create")
+		public String openUserCreate(Model model) {
+			model.addAttribute(new User());
+			return "admin/users/form";
+		}
+		
+		@PostMapping("user/new")
 		public String create(@Valid User user, BindingResult br) {
 			return null;
+		}
+		
+		// Patrimonies
+		@GetMapping("/patrimony/create")
+		public String openPatrimonyCreate(Model model) {
+			model.addAttribute(new Patrimony());
+			model.addAttribute("users", userDAO.searchAll());
+			return "admin/patrimonies/form";
+		}
+		
+		// Environments
+		@GetMapping("/environment/create")
+		public String openEnvironmentCreate(Model model) {
+			model.addAttribute(new Environment());
+			return "admin/environment/form";
 		}
 		
 	}

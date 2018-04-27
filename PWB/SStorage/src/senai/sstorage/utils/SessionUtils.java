@@ -1,4 +1,4 @@
-package senai.sstorage;
+package senai.sstorage.utils;
 
 import javax.servlet.http.HttpSession;
 
