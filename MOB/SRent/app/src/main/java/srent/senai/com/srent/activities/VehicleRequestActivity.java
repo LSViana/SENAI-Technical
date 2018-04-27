@@ -1,6 +1,7 @@
 package srent.senai.com.srent.activities;
 
 import android.app.DatePickerDialog;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -14,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -35,6 +37,7 @@ public class VehicleRequestActivity extends AppCompatActivity {
     private Long vehicleId;
     private ImageView imageView;
     private TextView tvName;
+    private TextView tvCapacity;
     private TextView tvPrice;
     private FloatingActionButton btnStartDate;
     private TextView tvStartDate;
@@ -60,6 +63,7 @@ public class VehicleRequestActivity extends AppCompatActivity {
         // Getting Components
         imageView = findViewById(R.id.request_card_ivMain);
         tvName = findViewById(R.id.request_card_tvName);
+        tvCapacity = findViewById(R.id.request_card_tvCapacity);
         tvPrice = findViewById(R.id.request_card_tvPrice);
         tvStartDate = findViewById(R.id.request_card_tvStartDate);
         btnStartDate = findViewById(R.id.request_card_btnStartDate);
@@ -126,7 +130,19 @@ public class VehicleRequestActivity extends AppCompatActivity {
                     Toast.makeText(VehicleRequestActivity.this, "You must insert a value to Passenger Amount", Toast.LENGTH_SHORT).show();
                     return;
                 }
+                if(originAddress.length() < 3) {
+                    Toast.makeText(VehicleRequestActivity.this, "You must insert a valid value to Origin Address", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if(destinyAddress.length() < 3) {
+                    Toast.makeText(VehicleRequestActivity.this, "You must insert a valid value to Destiny Address", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 Integer passengerAmount = Integer.parseInt(etPassengerAmount.getText().toString());
+                if(vehicle.getCapacity() < passengerAmount) {
+                    Toast.makeText(VehicleRequestActivity.this, String.format("You must insert a valid value to Capacity. This vehicle has a maximum capacity of %s", vehicle.getCapacity()), Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 // Set All Data
                 currentVehicleRequest.setVehicleType(vehicleType);
                 currentVehicleRequest.setVehicle(vehicle);
@@ -174,8 +190,9 @@ public class VehicleRequestActivity extends AppCompatActivity {
     private void loadVehicle(DAO dao) {
         vehicle = (Vehicle) dao.search(vehicleId);
         //
-        imageView.setImageBitmap(BitmapFactory.decodeResource(getResources(), vehicle.getImageResId()));
+        imageView.setImageBitmap(vehicle.getBitmap());
         tvName.setText(String.format("%s: %s", vehicle.getName(), vehicle.getDescription()));
+        tvCapacity.setText(String.format("%s: %d", getString(R.string.capacityText), vehicle.getCapacity()));
         tvPrice.setText(String.format("US$ %.02f", vehicle.getPrice()));
     }
 }

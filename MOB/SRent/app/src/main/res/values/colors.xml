@@ -11,4 +11,5 @@
     <color name="colorAccentPastel">#c2e669</color>
     <color name="colorAccentSecondaryPastel">#f73ea193</color>
     <color name="colorAccentSecondaryDarkPastel">#f1066659</color>
+    <color name="dark_7per8_transparent">#10000000</color>
 </resources>

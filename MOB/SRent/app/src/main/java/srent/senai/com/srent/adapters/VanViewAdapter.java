@@ -1,10 +1,7 @@
 package srent.senai.com.srent.adapters;
 
 import android.graphics.BitmapFactory;
-import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
-import android.util.LogPrinter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,7 +12,6 @@ import java.util.List;
 
 import srent.senai.com.srent.R;
 import srent.senai.com.srent.models.Van;
-import srent.senai.com.srent.models.Vehicle;
 
 public class VanViewAdapter extends RecyclerView.Adapter<VanViewAdapter.VehicleViewHolder> {
 
@@ -43,7 +39,7 @@ public class VanViewAdapter extends RecyclerView.Adapter<VanViewAdapter.VehicleV
         }
 
         public void fill(Van v) {
-            imageView.setImageBitmap(BitmapFactory.decodeResource(itemView.getResources(), v.getImageResId()));
+            imageView.setImageBitmap(v.getBitmap());
             tvName.setText(v.getName());
             tvDescription.setText(String.format("US$ %.02f", v.getPrice()));
         }

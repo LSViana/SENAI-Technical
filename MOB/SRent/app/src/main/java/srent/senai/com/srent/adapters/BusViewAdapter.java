@@ -1,23 +1,17 @@
 package srent.senai.com.srent.adapters;
 
 import android.graphics.BitmapFactory;
-import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.List;
 
 import srent.senai.com.srent.R;
-import srent.senai.com.srent.activities.VehiclesActivity;
 import srent.senai.com.srent.models.Bus;
-import srent.senai.com.srent.models.Vehicle;
 
 public class BusViewAdapter extends RecyclerView.Adapter<BusViewAdapter.VehicleViewHolder> {
 
@@ -47,7 +41,7 @@ public class BusViewAdapter extends RecyclerView.Adapter<BusViewAdapter.VehicleV
         }
 
         public void fill(Bus v) {
-            imageView.setImageBitmap(BitmapFactory.decodeResource(itemView.getResources(), v.getImageResId()));
+            imageView.setImageBitmap(v.getBitmap());
             tvName.setText(v.getName());
             tvDescription.setText(String.format("US$ %.02f", v.getPrice()));
         }

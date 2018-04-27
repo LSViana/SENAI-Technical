@@ -8,7 +8,7 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="rentBusTitle">SRent – Rent a Vehicle</string>
+    <string name="rentVehicleTitle">SRent – Rent a Vehicle</string>
     <string name="startDateText">Start Date</string>
     <string name="endDateText">End Date</string>
     <string name="includeDriverText">Include Driver</string>
@@ -19,10 +19,23 @@
 
     <!-- Errors -->
     <string name="error_01_novehiclefound">No vehicle found! [Error 01]</string>
+    <string name="error_02_imageuploaderror">Error selecting image! [Error 02]</string>
     <string name="errorEndDateOutOfBoundsMessage">You must select an End Date after the Start Date</string>
     <string name="errorStartDateOutOfBoundsMessage">You must select a Start Date before the End Date</string>
     <string name="requestSuccessText">Request successfully saved! Total value: US$ %.02f</string>
     <string name="vehicleRequestText">Vehicle Requests</string>
     <string name="seeRequestsText">Requests</string>
     <string name="vehicleRequestsSplashTitle">SRent – Request Data</string>
+    <string name="registerVehicleTitle">SRent – Register a Vehicle</string>
+    <string name="vehicleTypeText">Vehicle Type</string>
+    <string name="nameText">Name</string>
+    <string name="descriptionText">Description</string>
+    <string name="vehicleImageText">Vehicle Image</string>
+    <string name="capacity">Capacity</string>
+    <string name="selectImageText">Select Image</string>
+    <string name="price">Price</string>
+    <string name="insertVehicleText">Insert Vehicle</string>
+    <string name="imageSuccessfullyAddedText">Image successfully added!</string>
+    <string name="vehicleSuccessfullyInsertedText">%s successfully inserted!</string>
+    <string name="capacityText">Capacity</string>
 </resources>

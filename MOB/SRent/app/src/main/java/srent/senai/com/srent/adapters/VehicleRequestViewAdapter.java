@@ -9,12 +9,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import srent.senai.com.srent.R;
 import srent.senai.com.srent.data.VehicleRequestDAO;
-import srent.senai.com.srent.models.Bus;
 import srent.senai.com.srent.models.VehicleRequest;
 
 public class VehicleRequestViewAdapter extends RecyclerView.Adapter<VehicleRequestViewAdapter.VehicleRequestViewHolder> {
@@ -38,6 +36,7 @@ public class VehicleRequestViewAdapter extends RecyclerView.Adapter<VehicleReque
         private final TextView tvEndDate;
         private final TextView tvOriginAddress;
         private final TextView tvDestinyAddress;
+        private final TextView tvCapacity;
 
         public VehicleRequestViewHolder(View itemView) {
             super(itemView);
@@ -48,16 +47,18 @@ public class VehicleRequestViewAdapter extends RecyclerView.Adapter<VehicleReque
             tvEndDate = itemView.findViewById(R.id.vr_card_tvEndDate);
             tvOriginAddress = itemView.findViewById(R.id.vr_card_tvOriginAddress);
             tvDestinyAddress = itemView.findViewById(R.id.vr_card_tvDestinyAddress);
+            tvCapacity = itemView.findViewById(R.id.vr_card_tvCapacity);
         }
 
         public void fill(VehicleRequest vr) {
-            imageView.setImageBitmap(BitmapFactory.decodeResource(itemView.getResources(), vr.getVehicle().getImageResId()));
+            imageView.setImageBitmap(vr.getVehicle().getBitmap());
             tvName.setText(vr.getVehicle().getName());
             tvPrice.setText(String.format("US$ %.02f", vr.calculatePrice()));
             tvStartDate.setText(sdf.format(vr.getStartDate()));
             tvEndDate.setText(sdf.format(vr.getEndDate()));
             tvOriginAddress.setText(vr.getOriginAddress());
             tvDestinyAddress.setText(vr.getDestinyAddress());
+            tvCapacity.setText(String.format("%d", vr.getPassengerAmount()));
         }
     }
 

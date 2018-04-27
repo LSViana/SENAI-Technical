@@ -1,6 +1,7 @@
 package srent.senai.com.srent.activities;
 
 import android.content.Intent;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -38,6 +39,7 @@ public class VehiclesActivity extends AppCompatActivity {
     private List<Bus> currentBusList;
     private List<Van> currentVanList;
     private Button btnVehicleRequestList;
+    private FloatingActionButton btnRegisterVehicle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,14 +49,14 @@ public class VehiclesActivity extends AppCompatActivity {
         busDAO = new BusDAO(this);
         vanDAO = new VanDAO(this);
         //
-        //pretendDataInsertion();
+//        pretendDataInsertion();
         //
         initializeRecyclerView();
         //
-        initializeTopBar();
+        initializeComponents();
     }
 
-    private void initializeTopBar() {
+    private void initializeComponents() {
         btnVehicleRequestList = findViewById(R.id.btnVehicleRequestList);
         btnVehicleRequestList.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,20 +65,32 @@ public class VehiclesActivity extends AppCompatActivity {
                 startActivity(vehicleListIntent);
             }
         });
+        btnRegisterVehicle = findViewById(R.id.fabRegisterVehicle);
+        btnRegisterVehicle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent vehicleRegisterIntent = new Intent(VehiclesActivity.this, VehicleRegisterActivity.class);
+                startActivity(vehicleRegisterIntent);
+            }
+        });
     }
 
     private void pretendDataInsertion() {
-        // Bus
-        busDAO.insert(new Bus(1l, "Blue Bus", "Air-conditioning and three lateral doors", R.drawable.blue_bus, 239.99));
-        busDAO.insert(new Bus(2l, "Dark Red Bus", "Air-conditioning, three parts, four doors at each side and extra-long body", R.drawable.darkred_bus, 499.99));
-        busDAO.insert(new Bus(3l, "Green Bus", "Three and two doors scheme and long body", R.drawable.green_bus, 329.99));
-        busDAO.insert(new Bus(4l, "Orange Bus", "Only two right-side doors and medium body", R.drawable.orange_bus, 239.99));
-        busDAO.insert(new Bus(5l, "Silver Bus", "Experimental electric vehicle, only three right-side doors, no pollution and long body", R.drawable.silver_bus, 699.99));
-        // Van
-        vanDAO.insert(new Van(1l, "Blue Van", "Air-conditioning and two lateral doors", R.drawable.blue_van, 219.99));
-        vanDAO.insert(new Van(2l, "Orange Van", "Air-conditioning and two lateral doors", R.drawable.orange_van, 219.99));
-        vanDAO.insert(new Van(3l, "Red Van", "Air-conditioning and two lateral doors", R.drawable.red_van, 219.99));
-        vanDAO.insert(new Van(4l, "White Van", "Air-conditioning, never used before and two lateral doors", R.drawable.white_van, 299.99));
+//        SharedPreferences sp = getSharedPreferences("srent", MODE_PRIVATE);
+//        if(sp.contains("db_created"))
+//            return;
+//        sp.edit().putBoolean("db_created", true);
+//        // Bus
+//        busDAO.insert(new Bus(1l, "Blue Bus", "Air-conditioning and three lateral doors", R.drawable.blue_bus, 239.99));
+//        busDAO.insert(new Bus(2l, "Dark Red Bus", "Air-conditioning, three parts, four doors at each side and extra-long body", R.drawable.darkred_bus, 499.99));
+//        busDAO.insert(new Bus(3l, "Green Bus", "Three and two doors scheme and long body", R.drawable.green_bus, 329.99));
+//        busDAO.insert(new Bus(4l, "Orange Bus", "Only two right-side doors and medium body", R.drawable.orange_bus, 239.99));
+//        busDAO.insert(new Bus(5l, "Silver Bus", "Experimental electric vehicle, only three right-side doors, no pollution and long body", R.drawable.silver_bus, 699.99));
+//        // Van
+//        vanDAO.insert(new Van(1l, "Blue Van", "Air-conditioning and two lateral doors", R.drawable.blue_van, 219.99));
+//        vanDAO.insert(new Van(2l, "Orange Van", "Air-conditioning and two lateral doors", R.drawable.orange_van, 219.99));
+//        vanDAO.insert(new Van(3l, "Red Van", "Air-conditioning and two lateral doors", R.drawable.red_van, 219.99));
+//        vanDAO.insert(new Van(4l, "White Van", "Air-conditioning, never used before and two lateral doors", R.drawable.white_van, 299.99));
     }
 
     private void initializeRecyclerView() {
@@ -137,7 +151,7 @@ public class VehiclesActivity extends AppCompatActivity {
 
         @Override
         public void onClick(View view) {
-            Vehicle vehicle = currentBusList.get(rvBus.getChildLayoutPosition(view));
+            Vehicle vehicle = currentBusList.get(rvVan.getChildLayoutPosition(view));
             VehicleType vt = VehicleType.VAN;
             //
             Intent vehicleRequestIntent = new Intent(getBaseContext(), VehicleRequestActivity.class);

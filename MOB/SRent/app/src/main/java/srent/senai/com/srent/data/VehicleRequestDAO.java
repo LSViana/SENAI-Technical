@@ -21,8 +21,8 @@ public class VehicleRequestDAO extends SQLiteOpenHelper {
     private static SimpleDateFormat sdf = new SimpleDateFormat(VehicleRequestDAO.DATE_PATTERN);
 
     // It must be static for it to be initialized with the class and not the instance
-    private static final String DB_NAME = "srent";
-    private static final Integer DB_VERSION = 3;
+    private static final String DB_NAME = VanDAO.DB_NAME;
+    private static final Integer DB_VERSION = VanDAO.DB_VERSION;
     private static final String TABLE_NAME = "vehiclerequest";
 
     private BusDAO busDAO;
@@ -34,12 +34,12 @@ public class VehicleRequestDAO extends SQLiteOpenHelper {
         busDAO = new BusDAO(context);
         vanDAO = new VanDAO(context);
 //        onUpgrade(getWritableDatabase(), 2, 3);
-//        onCreate(getWritableDatabase());
+        onCreate(getWritableDatabase());
     }
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        String sql = String.format("CREATE TABLE %s (" +
+        String sql = String.format("CREATE TABLE IF NOT EXISTS %s (" +
                 "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "vehicleType TEXT NOT NULL, " +
                 "vehicleId NUMBER NOT NULL, " +
@@ -51,7 +51,7 @@ public class VehicleRequestDAO extends SQLiteOpenHelper {
                 "includesDriver NUMBER NOT NULL" +
                 ");", TABLE_NAME);
         sqLiteDatabase.execSQL(sql);
-        sqLiteDatabase.close();
+        //sqLiteDatabase.close();
     }
 
     @Override
@@ -59,7 +59,7 @@ public class VehicleRequestDAO extends SQLiteOpenHelper {
         String sql = String.format("DROP TABLE IF EXISTS %s", TABLE_NAME);
         sqLiteDatabase.execSQL(sql);
         onCreate(sqLiteDatabase);
-        sqLiteDatabase.close();
+        //sqLiteDatabase.close();
     }
 
     public void insert(VehicleRequest obj) {
@@ -76,14 +76,14 @@ public class VehicleRequestDAO extends SQLiteOpenHelper {
         cv.put("includesDriver", obj.getIncludesDriver() ? 1 : 0);
         //
         db.insert(TABLE_NAME, null, cv);
-        db.close();
+        //db.close();
     }
 
     public void delete (Long id) {
         SQLiteDatabase db = getWritableDatabase();
         //
         db.delete(TABLE_NAME, "id = ?", new String[] { id.toString() });
-        db.close();
+        //db.close();
     }
 
     public void update(VehicleRequest obj) {
@@ -100,7 +100,7 @@ public class VehicleRequestDAO extends SQLiteOpenHelper {
         cv.put("includesDriver", obj.getIncludesDriver() ? 1 : 0);
         //
         db.update(TABLE_NAME, cv, "id = ?", new String[] { obj.getId().toString() });
-        db.close();
+        //db.close();
     }
 
     public List<VehicleRequest> searchAll() {
@@ -136,7 +136,7 @@ public class VehicleRequestDAO extends SQLiteOpenHelper {
             //
             result.add(vr);
         }
-        db.close();
+        //db.close();
         //
         return result;
     }

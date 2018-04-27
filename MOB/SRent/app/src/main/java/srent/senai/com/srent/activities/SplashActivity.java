@@ -9,7 +9,7 @@ import srent.senai.com.srent.R;
 
 public class SplashActivity extends AppCompatActivity {
 
-    private static int SPLASH_OUT_TIME = 1;
+    private static int SPLASH_OUT_TIME = 4000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
