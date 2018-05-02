@@ -18,14 +18,25 @@ public class Bookmark {
 	@JsonIgnore
 	@ManyToOne
 	private Account account;
-	
+
 	private String uri;
 	
 	private String description;
+	
+	private Bookmark() {
+		// JPA only
+	}
 
 	public Bookmark(Long id, Account account, String uri, String description) {
 		super();
 		this.id = id;
+		this.account = account;
+		this.uri = uri;
+		this.description = description;
+	}
+
+	public Bookmark(Account account, String uri, String description) {
+		super();
 		this.account = account;
 		this.uri = uri;
 		this.description = description;
