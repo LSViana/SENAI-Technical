@@ -30,6 +30,12 @@ public class Account {
 		// JPA only
 	}
 
+	public Account(String username, String password) {
+		super();
+		this.username = username;
+		this.password = password;
+	}
+
 	public Account(Long id, String username, String password, Set<Bookmark> bookmarks) {
 		super();
 		this.id = id;
