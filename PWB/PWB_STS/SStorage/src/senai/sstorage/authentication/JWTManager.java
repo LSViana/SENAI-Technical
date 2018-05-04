@@ -17,7 +17,7 @@ import com.auth0.jwt.exceptions.JWTCreationException;
 import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.auth0.jwt.interfaces.DecodedJWT;
 
-import senai.sstorage.api.APIAttributes;
+import senai.sstorage.api.TemplateController;
 import senai.sstorage.exceptions.BadRequestException;
 import senai.sstorage.exceptions.UnauthorizedException;
 
@@ -70,7 +70,7 @@ public final class JWTManager {
 			throw new RuntimeException(e);
 		}
 		Authority auth = Authority
-				.valueOf(decoded.getClaim(APIAttributes.USER_AUTH).asString().toUpperCase());
+				.valueOf(decoded.getClaim(TemplateController.HEADER_USER_AUTH).asString().toUpperCase());
 		Date expiresAt = decoded.getExpiresAt();
 		if(expiresAt.getTime() < new Date().getTime()) {
 			throw new UnauthorizedException("Token expired");
@@ -81,13 +81,17 @@ public final class JWTManager {
 		return auth;
 	}
 	
+	public static DecodedJWT decodeToken(String token) throws JWTVerificationException, IllegalArgumentException, UnsupportedEncodingException {
+		return JWT.require(Algorithm.HMAC512(TOKEN_SECRET)).build().verify(token);
+	}
+	
 	public static void devalidateToken(String token) throws BadRequestException {
 		try {
 			if(blackListTokens.contains(token))
 				throw new BadRequestException();
 			DecodedJWT decoded = JWT.require(Algorithm.HMAC512(TOKEN_SECRET)).build().verify(token);
 		} catch(Exception e) {
-			throw new BadRequestException();
+			throw new BadRequestException("Token already logged out");
 		}
 		blackListTokens.add(token);
 	}

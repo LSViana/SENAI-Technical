@@ -1,18 +1,18 @@
 ADMINISTRATOR
 	USER
-	@#CRUD
+	@#C#R#U#D
 	PATRIMONY
-	@CRUD
+	@#C#R#U#D
 	Environment
-	@CRUD
-	Patrimony
+	@#C#R#U#D
+	Patrimony Category
 	@CRUD
 	Patrimony Item
-	@CRD (not U)
+	@#C#R#D (not U)
 		Show: patrimony name, patrimony category, where the patrimony is, last movement, @ADMIN request "baixa" (delete)
 	Movement
-	Perform Movement
-	List Movements of a Patrimony Item
+		#Perform Movement
+		#List Movements of a Patrimony Item
 ALL
 	Authenticate
 LOGGED IN
