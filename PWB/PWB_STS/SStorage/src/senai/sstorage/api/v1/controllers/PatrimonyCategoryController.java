@@ -22,7 +22,6 @@ import senai.sstorage.authentication.JWTManager;
 import senai.sstorage.exceptions.EntityNotFoundException;
 import senai.sstorage.exceptions.UnauthorizedException;
 import senai.sstorage.exceptions.ValidationException;
-import senai.sstorage.models.Environment;
 import senai.sstorage.models.PatrimonyCategory;
 import senai.sstorage.service.PatrimonyCategoryService;
 import senai.sstorage.utils.WebUtils;

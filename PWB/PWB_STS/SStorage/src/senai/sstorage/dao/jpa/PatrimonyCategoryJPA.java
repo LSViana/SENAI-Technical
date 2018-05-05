@@ -8,7 +8,6 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import senai.sstorage.dao.PatrimonyCategoryDAO;
-import senai.sstorage.models.Patrimony;
 import senai.sstorage.models.PatrimonyCategory;
 
 @Repository

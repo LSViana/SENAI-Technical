@@ -6,7 +6,7 @@ ADMINISTRATOR
 	Environment
 	@#C#R#U#D
 	Patrimony Category
-	@CRUD
+	@#C#R#U#D
 	Patrimony Item
 	@#C#R#D (not U)
 		Show: patrimony name, patrimony category, where the patrimony is, last movement, @ADMIN request "baixa" (delete)

@@ -24,7 +24,6 @@ import senai.sstorage.exceptions.EntityNotFoundException;
 import senai.sstorage.exceptions.UnauthorizedException;
 import senai.sstorage.exceptions.ValidationException;
 import senai.sstorage.models.Patrimony;
-import senai.sstorage.models.User;
 import senai.sstorage.service.PatrimonyService;
 import senai.sstorage.utils.WebUtils;
 
