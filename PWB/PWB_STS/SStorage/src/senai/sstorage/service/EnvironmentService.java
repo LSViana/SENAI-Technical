@@ -6,6 +6,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 
 import senai.sstorage.dao.EnvironmentDAO;
 import senai.sstorage.exceptions.EntityNotFoundException;
@@ -21,8 +22,10 @@ public class EnvironmentService {
 	public Environment create(Environment env, BindingResult br) throws ValidationException {
 		if(br.hasErrors())
 			throw new ValidationException("Validation Exception");
-		if(envDAO.searchByName(env.getName()) != null) 
-			throw new ValidationException("Duplicated Name");
+		if(envDAO.searchByName(env.getName()) != null)  {
+			br.addError(new FieldError("environment", "name", "Name already in use"));
+			throw new ValidationException("Name already in use");
+		}
 		envDAO.persist(env);
 		return env;
 	}

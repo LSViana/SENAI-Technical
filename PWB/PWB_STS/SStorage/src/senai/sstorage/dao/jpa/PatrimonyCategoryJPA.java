@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import senai.sstorage.dao.PatrimonyCategoryDAO;
+import senai.sstorage.models.Patrimony;
 import senai.sstorage.models.PatrimonyCategory;
 
 @Repository
@@ -48,6 +49,14 @@ public class PatrimonyCategoryJPA implements PatrimonyCategoryDAO {
 	@Override
 	public void persist(PatrimonyCategory obj) {
 		factory.getCurrentSession().persist(obj);
+	}
+
+	@Override
+	public PatrimonyCategory searchByName(String name) {
+		List<PatrimonyCategory> cats = factory.getCurrentSession().createQuery("FROM PatrimonyCategory pc WHERE pc.name = :name").setParameter("name", name).list();
+		if(cats.size() > 0)
+			return cats.get(0);
+		return null;
 	}
 
 }

@@ -26,8 +26,8 @@ public class UserService {
 		if(br.hasErrors())
 			throw new ValidationException();
 		if(userDAO.searchByEmail(obj.getEmail()) != null) {
-			br.addError(new FieldError("user", "email", "This e-mail is already in use"));
-			throw new ValidationException();
+			br.addError(new FieldError("user", "email", "E-mail already in use"));
+			throw new ValidationException("E-mail already in use");
 		}
 		userDAO.persist(obj);
 		return obj;
