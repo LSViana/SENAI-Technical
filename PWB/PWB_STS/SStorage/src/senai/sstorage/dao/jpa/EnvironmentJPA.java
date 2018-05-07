@@ -6,9 +6,9 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-import senai.sstorage.models.Environment;
 
 import senai.sstorage.dao.EnvironmentDAO;
+import senai.sstorage.models.Environment;
 
 @Repository
 @Transactional

@@ -1,8 +1,8 @@
-package senai.sstorage.dao;
+package wstemplate.project.dao;
 
 import org.springframework.stereotype.Repository;
 
-import senai.sstorage.models.User;
+import wstemplate.project.models.User;
 
 @Repository
 public interface UserDAO extends DAO<User> {

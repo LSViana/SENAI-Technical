@@ -1,0 +1,20 @@
+ADMINISTRATOR
+	USER
+	@#C#R#U#D
+	PATRIMONY
+	@#C#R#U#D
+	Environment
+	@#C#R#U#D
+	Patrimony Category
+	@#C#R#U#D
+	Patrimony Item
+	@#C#R#D (not U)
+		Show: patrimony name, patrimony category, where the patrimony is, last movement, @ADMIN request "baixa" (delete)
+	Movement
+		#Perform Movement
+		#List Movements of a Patrimony Item
+ALL
+	Authenticate
+LOGGED IN
+	Change First and Last Name
+	Change Password
