@@ -28,6 +28,11 @@ function onLoadUniversal(ev) {
         logo.setAttribute("src", APP_ICON_SRC);
         logo.setAttribute("alt", APP_NAME + " Logo");
     }
+    const secLogos = Array.from(document.querySelectorAll(".e-sec-logo"));
+    for(let logo of secLogos) {
+        logo.setAttribute("src", APP_SECOND_ICON_SRC);
+        logo.setAttribute("alt", APP_NAME + " Logo");
+    }
     // Names
     const names = Array.from(document.querySelectorAll(".e-name"));
     for(let name of names) {
@@ -51,7 +56,7 @@ function onLoadUniversal(ev) {
             form.addEventListener("submit", onFormSend);
     }
     // Showing Body
-    document.querySelector("body").style.display = "unset";
+    document.querySelector("body").style.display = "flex";
 }
 //#endregion
 
@@ -61,32 +66,30 @@ function onLoadUniversal(ev) {
  * @param {Event} e 
  */
 function onFormSend(e) {
-    let formData = new FormData(e.srcElement);
+    let form = e.srcElement;
+    let formData = new FormData(form);
     let keys = Array.from(formData.keys());
     let payload = {};
     for(let key of keys) {
         payload[key] = formData.get(key);
     }
-    let method = e.srcElement.getAttribute("data-method");
-    let router = ROUTES[e.srcElement.getAttribute("data-router")];
-    let callback = window[e.srcElement.getAttribute("data-callback")];
+    let method = form.getAttribute("data-method");
+    let router = ROUTES[form.getAttribute("data-router")];
+    let callback = window[form.getAttribute("data-callback")];
     if(!callback)
-        throw Error("Invalid method " + e.srcElement.getAttribute("data-callback") + " as callback");
+        throw Error("Invalid method " + form.getAttribute("data-callback") + " as callback");
     // Performing HTTP Request
     fetch(router, {
         headers: {
             "Content-Type": "application/json",
         },
-        method: e.srcElement.getAttribute("data-method"),
+        method: form.getAttribute("data-method"),
         body: JSON.stringify(payload)
     })
         .then(function (fulfilled) {
-            callback(fulfilled);
+            callback(fulfilled, form);
         }, function(rejected) {
-            callback(rejected);
-        })
-        .catch(function (rejected) {
-            callback(rejected);
+            callback(rejected, form);
         });
 }
 //#endregion

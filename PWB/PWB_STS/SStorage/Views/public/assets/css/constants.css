@@ -12,7 +12,11 @@
     --huge: 48px;
     --big-huge: 72px;
     /* Colors */
-    --back-color: #fee13e;
-    --back-color-dark: #e4ca36;
+    --back-color: #fccf17;
+    --back-color-dark: #f4bb32;
     --fore-color: #273b87;
+    --fore-sec-color: #3cc93f;
+    --fore-sec-color-dark: #207e22;
+    --fore-terc-color: #03c6d8;
+    --error-color: #eb3939;
   }

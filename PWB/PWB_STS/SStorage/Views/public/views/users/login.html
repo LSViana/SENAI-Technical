@@ -8,10 +8,11 @@
     <link rel="stylesheet" href="/assets/css/constants.css">
     <link rel="stylesheet" href="/assets/css/main.css">
     <link rel="stylesheet" href="/assets/css/users.css">
+    <link rel="stylesheet" href="/assets/css/form.css">
     <title>{0} – Login</title>
 </head>
 
-<body style="display: none">
+<body style="display: none;">
     <header>
         <nav id="top-bar">
             <img class="e-logo">
@@ -34,7 +35,9 @@
             <h2>Fucking Awesome &lt;3</h2>
             <div id="form-container">
                 <div id="form-header">
-                    <h3>Dive into <span class="e-name">{0}</span></h3>
+                    <h3>Dive into</h3>
+                    <img class="e-sec-logo">
+                    <h3><span class="e-name">{0}</span></h3>
                 </div>
                 <div id="form-main">
                     <form id="main-form" data-automate data-method="post" data-router="api-login" data-callback="handleLogin">
@@ -50,14 +53,21 @@
                     </form>
                 </div>
                 <div id="form-footer">
-                    Social Media is Cool
+                    <p>Social Media is Cool</p>
                 </div>
             </div>
         </section>
     </main>
+    <footer>
+        <h3>Fucking Awesome Footer</h3>
+        <h4>With so much</h4>
+        <h5>Text</h5>
+        <h6>Is coming</h6>
+    </footer>
 </body>
 <script src="/assets/js/constants.js"></script>
 <script src="/assets/js/universal.js"></script>
 <script src="/assets/js/users.js"></script>
+<script src="/assets/js/form.js"></script>
 
 </html>
