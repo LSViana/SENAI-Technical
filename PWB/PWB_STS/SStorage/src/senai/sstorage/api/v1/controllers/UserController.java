@@ -52,11 +52,11 @@ public class UserController extends TemplateController {
 	public ResponseEntity<Object> authenticate(@RequestBody(required = true) User user) {
 		try {
 			// Verifying if the user is already logged in
-			Collection<User> usersLoggedIn = activeTokens.values();
-			for(User loggedIn : usersLoggedIn) {
-				if(loggedIn.getEmail().equalsIgnoreCase(user.getEmail()))
-					return ResponseEntity.status(HttpStatus.CONFLICT).header(HEADER_XREASON, "This user is already authenticated.").build();
-			}
+//			Collection<User> usersLoggedIn = activeTokens.values();
+//			for(User loggedIn : usersLoggedIn) {
+//				if(loggedIn.getEmail().equalsIgnoreCase(user.getEmail()))
+//					return ResponseEntity.status(HttpStatus.CONFLICT).header(HEADER_XREASON, "This user is already authenticated.").build();
+//			}
 			//
 			User fromDb = service.authenticate(user);
 			Map<String, String> payloads = new HashMap<String, String>();

@@ -1,0 +1,89 @@
+#form-container {
+    margin: var(--small);
+    padding: var(--medium);
+    background-color: var(--back-color);
+}
+
+#form-container > div {
+    display: flex;
+    flex-flow: row;
+    justify-content: center;
+    align-items: center;
+}
+
+#form-footer {
+    font-style: italic;
+}
+
+#form-header > h3 {
+    font-weight: 100;
+    font-size: 28px;
+    margin-bottom: var(--small);
+}
+
+#form-header > h3 span {
+    font-weight: 600;
+}
+
+#form-header > img {
+    height: var(--huge);
+    filter: saturate(0);
+}
+
+#form-main {
+    background-color: var(--fore-color);
+}
+
+#form-main, #form-main * {
+    color: var(--back-color);
+}
+
+#form-main input, #form-main select {
+    border: none;
+    border-bottom: 1px solid var(--back-color);
+    background-color: rgba(0, 0, 0, 0);
+    width: 100%;
+    padding: var(--small);
+}
+
+#main-form {
+    width: 100%;
+    display: flex;
+    flex-flow: column;
+}
+
+#main-form > button {
+    background-color: var(--back-color);
+    color: var(--fore-color);
+    margin: var(--small);
+    padding: var(--small) var(--medium);
+    font-size: larger;
+    border: none;
+}
+
+#main-form > div {
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    margin: var(--small);
+}
+
+#main-form > div label {
+    font-size: smaller;
+    margin-right: auto;
+}
+
+#user-form {
+    margin: var(--medium);
+    padding: var(--small);
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#user-form > h2 {
+    font-size: 12px;
+    color: rgba(0, 0, 0, .05);
+}

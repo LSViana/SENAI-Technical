@@ -1,0 +1,18 @@
+:root {
+    /* Spans */
+    --quick: .3s;
+    --average: .5s;
+    --pronlonged: 1s;
+    /* Sizes */
+    --tiny: 2px;
+    --small: 6px;
+    --tiny-small: 8px;
+    --medium: 12px;
+    --big: 24px;
+    --huge: 48px;
+    --big-huge: 72px;
+    /* Colors */
+    --back-color: #fee13e;
+    --back-color-dark: #e4ca36;
+    --fore-color: #273b87;
+  }

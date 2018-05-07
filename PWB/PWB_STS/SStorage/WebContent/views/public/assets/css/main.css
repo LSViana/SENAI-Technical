@@ -1,0 +1,70 @@
+@import url('https://fonts.googleapis.com/css?family=Ubuntu:300,400,700');
+
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+  font-family: 'Ubuntu', 'Segoe UI';
+  color: var(--fore-color);
+  user-select: none;
+  outline-color: var(--back-color);
+}
+
+a {
+  text-decoration: none;
+}
+
+#top-bar {
+  width: 100vw;
+  background-color: var(--back-color);
+  display: flex;
+  flex-flow: row;
+  padding: var(--small);
+}
+
+#top-bar > .e-logo {
+  height: var(--huge);
+  margin: auto var(--small);
+}
+
+#top-bar > h2 {
+  margin: auto 0px;
+}
+
+#top-bar > *[divider] {
+  position: relative;
+  min-width: var(--tiny);
+  margin: var(--small);
+  background: var(--fore-color);
+}
+
+#top-menu, #user-options {
+  display: flex;
+  flex-flow: row;
+  flex-wrap: wrap;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+}
+
+#top-menu li, #user-options li {
+  padding: var(--tiny-small);
+  margin: var(--tiny);
+  transition: background-color var(--quick);
+}
+
+#top-menu li {
+  font-weight: 600;
+}
+
+#top-menu li:hover, #user-options li:hover {
+  background-color: var(--back-color-dark);
+}
+
+#user-options {
+  margin-left: auto;
+}
+
+ul {
+  list-style: none;
+}

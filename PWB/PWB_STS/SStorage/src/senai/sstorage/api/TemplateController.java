@@ -14,7 +14,7 @@ public abstract class TemplateController {
 	// Headers
 	public static final String HEADER_XREASON = "X-Reason";
 	public static final String HEADER_XEXCEPTIONMESSAGE = "X-Exception-Message";
-	public static final String HEADER_TOKEN = "X-Token";
+	public static final String HEADER_TOKEN = "X-Auth-Token";
 	public static final String HEADER_USER_ID = "X-Id";
 	public static final String HEADER_USER_EMAIL = "X-Email";
 	public static final String HEADER_USER_AUTH = "X-User-Auth";

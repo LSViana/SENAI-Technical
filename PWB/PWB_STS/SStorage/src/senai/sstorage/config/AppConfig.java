@@ -5,12 +5,14 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 
+import senai.sstorage.interceptors.CorsInterceptor;
 import senai.sstorage.utils.WebUtils;
 
 //import senai.sstorage.interceptors.AuthenticationInterceptor;
@@ -59,6 +61,11 @@ public class AppConfig implements WebMvcConfigurer {
 //		return new AuthenticationInterceptor();
 //	}
 	
+	@Bean
+	public CorsInterceptor getCorsInterceptor() {
+		return new CorsInterceptor();
+	}
+	
 //	@Bean
 //	public MultipartResolver getMultipartResolver() {
 //		CommonsMultipartResolver mpr = new CommonsMultipartResolver();
@@ -66,10 +73,10 @@ public class AppConfig implements WebMvcConfigurer {
 //		return mpr;
 //	}
 	
-//	@Override
-//	public void addInterceptors(InterceptorRegistry registry) {
-//		registry.addInterceptor(getAuthenticationInterceptor())
-//		.addPathPatterns("/**");
-//	}
+	@Override
+	public void addInterceptors(InterceptorRegistry registry) {
+		registry.addInterceptor(getCorsInterceptor())
+		.addPathPatterns("/**");
+	}
 
 }
