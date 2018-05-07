@@ -1,4 +1,0 @@
-eclipse.preferences.version=1
-newFileTemplateName=JSP HTML5
-newTagFileTemplateName=New Tag File
-org.eclipse.wst.sse.ui.custom_templates=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?><templates><template autoinsert\="true" context\="jsp_new" deleted\="false" description\="A personal modified JSP file to create projects" enabled\="true" name\="JSP HTML5">&lt;%@ page language\="java" contentType\="text/html; charset\=${encoding}"&\#13;\r\npageEncoding\="${encoding}" %&gt;&\#13;\r\n&\#13;\r\n&lt;\!DOCTYPE html&gt;&\#13;\r\n&lt;html&gt;&\#13;\r\n&lt;head&gt;&\#13;\r\n\t&lt;meta charset\="UTF-8"&gt;&\#13;\r\n\t&lt;title&gt;Insert title here...&lt;/title&gt;&\#13;\r\n&lt;/head&gt;&\#13;\r\n&lt;body&gt;&\#13;\r\n\t${cursor}&\#13;\r\n&lt;/body&gt;&\#13;\r\n&lt;/html&gt;</template></templates>

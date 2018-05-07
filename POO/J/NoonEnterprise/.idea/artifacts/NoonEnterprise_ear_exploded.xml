@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="exploded-ear" name="NoonEnterprise:ear exploded">
-    <output-path>$PROJECT_DIR$/classes/artifacts/NoonEnterprise_ear_exploded</output-path>
-    <root id="root">
-      <element id="javaee-facet-resources" facet="NoonEnterprise/javaeeApplication/javaEEApplication" />
-    </root>
-  </artifact>
-</component>

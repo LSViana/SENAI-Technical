@@ -14,10 +14,11 @@ public abstract class TemplateController {
 	// Headers
 	public static final String HEADER_XREASON = "X-Reason";
 	public static final String HEADER_XEXCEPTIONMESSAGE = "X-Exception-Message";
-	public static final String HEADER_TOKEN = "Token";
-	public static final String HEADER_USER_ID = "Id";
-	public static final String HEADER_USER_EMAIL = "Email";
-	public static final String HEADER_USER_AUTH = "User-Auth";
+	public static final String HEADER_TOKEN = "X-Token";
+	public static final String HEADER_USER_ID = "X-Id";
+	public static final String HEADER_USER_EMAIL = "X-Email";
+	public static final String HEADER_USER_AUTH = "X-User-Auth";
+	public static final String HEADER_USERNAME = "X-Username";
 
 	public ResponseEntity<Object> entityNotFound(Exception e) {
 		return ResponseEntity.notFound().header(HEADER_XREASON, INVALID_ENTITY_AUTHENTICATION).header(HEADER_XEXCEPTIONMESSAGE, e.getMessage()).build();

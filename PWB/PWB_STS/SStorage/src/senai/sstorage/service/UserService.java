@@ -15,12 +15,37 @@ import senai.sstorage.exceptions.BadRequestException;
 import senai.sstorage.exceptions.EntityNotFoundException;
 import senai.sstorage.exceptions.ValidationException;
 import senai.sstorage.models.User;
+import senai.sstorage.service.models.ChangeNames;
+import senai.sstorage.service.models.ChangePassword;
+import senai.sstorage.utils.PasswordUtils;
 
 @Service
 public class UserService {
 	
 	@Autowired
 	private UserDAO userDAO;
+	
+	public User changeNames(User obj, ChangeNames changeNames) throws ValidationException {
+		String hashPassword = PasswordUtils.hashString(changeNames.getCurrentPassword());
+		if(obj.getPassword().equals(hashPassword)) {
+			obj.setFirstName(changeNames.getFreshFirstName());
+			obj.setLastName(changeNames.getFreshLastName());
+			userDAO.update(obj);
+			return obj;
+		}
+		throw new ValidationException("Invalid password verification");
+	}
+	
+	public User changePassword(User obj, ChangePassword ChangePassword) throws ValidationException {
+		String hashPassword = PasswordUtils.hashString(ChangePassword.getCurrentPassword());
+		if(obj.getPassword().equals(hashPassword)) {
+			obj.setPassword(ChangePassword.getFreshPassword());
+			obj.hashPassword();
+			userDAO.update(obj);
+			return obj;
+		}
+		throw new ValidationException("Invalid password verification");
+	}
 
 	public User create(User obj, BindingResult br) throws ValidationException {
 		if(br.hasErrors())

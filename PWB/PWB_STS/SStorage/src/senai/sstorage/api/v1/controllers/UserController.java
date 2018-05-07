@@ -7,10 +7,12 @@ import java.util.Map;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -28,6 +30,8 @@ import senai.sstorage.exceptions.UnauthorizedException;
 import senai.sstorage.exceptions.ValidationException;
 import senai.sstorage.models.User;
 import senai.sstorage.service.UserService;
+import senai.sstorage.service.models.ChangeNames;
+import senai.sstorage.service.models.ChangePassword;
 import senai.sstorage.utils.WebUtils;
 
 @RestController
@@ -45,8 +49,15 @@ public class UserController extends TemplateController {
 	private Map<String, User> activeTokens = new HashMap<>();
 
 	@PostMapping("/authenticate")
-	public ResponseEntity<Object> authenticate(@RequestBody User user) {
+	public ResponseEntity<Object> authenticate(@RequestBody(required = true) User user) {
 		try {
+			// Verifying if the user is already logged in
+			Collection<User> usersLoggedIn = activeTokens.values();
+			for(User loggedIn : usersLoggedIn) {
+				if(loggedIn.getEmail().equalsIgnoreCase(user.getEmail()))
+					return ResponseEntity.status(HttpStatus.CONFLICT).header(HEADER_XREASON, "This user is already authenticated.").build();
+			}
+			//
 			User fromDb = service.authenticate(user);
 			Map<String, String> payloads = new HashMap<String, String>();
 			payloads.put(HEADER_USER_ID, fromDb.getId().toString());
@@ -54,7 +65,7 @@ public class UserController extends TemplateController {
 			payloads.put(HEADER_USER_AUTH, Authority.parseUserType(fromDb.getType()).toString());
 			String token = JWTManager.generateToken(payloads);
 			activeTokens.put(token, fromDb);
-			return ResponseEntity.ok().header(HEADER_TOKEN, token).header("Username",  String.format("%s %s", fromDb.getFirstName(), fromDb.getLastName())).build();
+			return ResponseEntity.ok().header(HEADER_TOKEN, token).header(HEADER_USERNAME,  String.format("%s %s", fromDb.getFirstName(), fromDb.getLastName())).build();
 		} catch (BadRequestException e) {
 			return invalidEntitySupplied(e);
 		} catch (EntityNotFoundException e) {
@@ -64,8 +75,50 @@ public class UserController extends TemplateController {
 		}
 	}
 	
+	@PatchMapping("/changenames")
+	public ResponseEntity<Object> logout(
+			@RequestHeader(name = HEADER_TOKEN, required = true) String token,
+			@RequestBody(required = true) ChangeNames changeNames) {
+		try {
+			JWTManager.validateToken(token, Authority.REGULAR);
+			//
+			User currentUser = activeTokens.get(token);
+			try {
+				service.changeNames(currentUser, changeNames);
+				return ResponseEntity.ok(currentUser);
+			} catch (ValidationException e) {
+				return validationError(e);
+			}
+		} catch (UnauthorizedException e) {
+			return unauthorized(e);
+		} catch (Exception e) {
+			return internalError(e);
+		}
+	}
+	
+	@PatchMapping("/changepassword")
+	public ResponseEntity<Object> logout(
+			@RequestHeader(name = HEADER_TOKEN, required = true) String token,
+			@RequestBody(required = true) ChangePassword changePassword) {
+		try {
+			JWTManager.validateToken(token, Authority.REGULAR);
+			//
+			User currentUser = activeTokens.get(token);
+			try {
+				service.changePassword(currentUser, changePassword);
+				return ResponseEntity.ok(currentUser);
+			} catch (ValidationException e) {
+				return validationError(e);
+			}
+		} catch (UnauthorizedException e) {
+			return unauthorized(e);
+		} catch (Exception e) {
+			return internalError(e);
+		}
+	}
+	
 	@GetMapping("/logout")
-	public ResponseEntity<Object> logout(@RequestHeader(name = HEADER_TOKEN) String token) {
+	public ResponseEntity<Object> logout(@RequestHeader(name = HEADER_TOKEN, required = true) String token) {
 		try {
 			if(activeTokens.containsKey(token)) {
 				JWTManager.devalidateToken(token);
@@ -81,7 +134,7 @@ public class UserController extends TemplateController {
 	}
 	
 	@PostMapping
-	public ResponseEntity<Object> create(@RequestHeader(name = HEADER_TOKEN) String token, @RequestBody @Valid User user, BindingResult br) {
+	public ResponseEntity<Object> create(@RequestHeader(name = HEADER_TOKEN, required = true) String token, @RequestBody(required = true) @Valid User user, BindingResult br) {
 		try {
 			// Authenticate Administrator
 			JWTManager.validateToken(token, Authority.ADMINISTRATOR);
@@ -99,7 +152,7 @@ public class UserController extends TemplateController {
 	}
 	
 	@GetMapping
-	public ResponseEntity<Object> get(@RequestHeader(name = HEADER_TOKEN) String token) {
+	public ResponseEntity<Object> get(@RequestHeader(name = HEADER_TOKEN, required = true) String token) {
 		try {
 			JWTManager.validateToken(token, Authority.ADMINISTRATOR);
 			// Returning User List
@@ -113,7 +166,7 @@ public class UserController extends TemplateController {
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<Object> get(@RequestHeader(name = HEADER_TOKEN) String token, @PathVariable(name = "id") Long id) {
+	public ResponseEntity<Object> get(@RequestHeader(name = HEADER_TOKEN, required = true) String token, @PathVariable(name = "id") Long id) {
 		try {
 			JWTManager.validateToken(token, Authority.ADMINISTRATOR);
 			//
@@ -129,7 +182,7 @@ public class UserController extends TemplateController {
 	}
 	
 	@PutMapping("/{id}")
-	public ResponseEntity<Object> update(@RequestHeader(name = HEADER_TOKEN) String token, @PathVariable(name = "id") Long id, @RequestBody @Valid User user, BindingResult br) {
+	public ResponseEntity<Object> update(@RequestHeader(name = HEADER_TOKEN, required = true) String token, @PathVariable(name = "id") Long id, @RequestBody(required = true) @Valid User user, BindingResult br) {
 		try {
 			JWTManager.validateToken(token, Authority.ADMINISTRATOR);
 			//
@@ -149,7 +202,7 @@ public class UserController extends TemplateController {
 	}
 	
 	@DeleteMapping("/{id}")
-	public ResponseEntity<Object> delete(@RequestHeader(name = HEADER_TOKEN) String token, @PathVariable(name = "id") Long id) {
+	public ResponseEntity<Object> delete(@RequestHeader(name = HEADER_TOKEN, required = true) String token, @PathVariable(name = "id") Long id) {
 		try {
 			JWTManager.validateToken(token, Authority.ADMINISTRATOR);
 			//
