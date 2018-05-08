@@ -23,20 +23,24 @@ const ROUTES = {
   "router-about": "/views/about/about.html",
   // CSS
   "router-css-main": "http://localhost:3000/assets/css/main.css",
+  "router-css-login": "http://localhost:3000/assets/css/login.css",
   "router-css-universal": "http://localhost:3000/assets/css/universal.css",
   "router-css-constants": "http://localhost:3000/assets/css/constants.css",
   "router-css-fa": "http://localhost:3000/assets/external/font-awesome.min.css",
   "router-css-bs": "http://localhost:3000/assets/external/bootstrap.min.css",
   "router-css-mdb": "http://localhost:3000/assets/external/mdb.min.css",
+  // JS
+  "router-js-form": "http://localhost:3000/assets/js/form.js",
+  "router-js-users": "http://localhost:3000/assets/js/users.js",
   // API
   "api-login": SERVER + API_PREFIX + USERS_PREFIX + "/authenticate"
 };
 //#endregion
 
-//#region Other Assets
-const ASSETS = {
- "mini-box": "/assets/img/mini-box.svg"
-};
+//#region Texts
+const TEXTS = {
+  "e-text-explore": "Explore"
+}
 //#endregion
 
 //#region CSS Classes

@@ -1,4 +1,5 @@
 :root {
+    /* Sizes */
     --tiny: 2px;
     --small: 6px;
     --medium: 12px;
@@ -7,4 +8,6 @@
     --big-huge: 72px;
     --huge-2: calc(2 * var(--huge));
     --huge-3: calc(3 * var(--huge));
+    /* Colors */
+    --app-color: #651fff;
 }

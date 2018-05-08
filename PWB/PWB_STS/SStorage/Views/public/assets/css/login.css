@@ -1,0 +1,21 @@
+.form-control:focus,
+.form-control:focus {
+    border-bottom: 1px solid var(--app-color) !important;
+    -webkit-box-shadow: 0 1px 0 0 var(--app-color) !important;
+    box-shadow: 0 1px 0 0 var(--app-color) !important;
+}
+
+.form-control:focus+label,
+.form-control:focus+label {
+    color: #4f4f4f !important;
+}
+
+.form-control:focus {
+    border-bottom: 1px solid var(--app-color) !important;
+    -webkit-box-shadow: 0 1px 0 0 var(--app-color) !important;
+    box-shadow: 0 1px 0 0 var(--app-color) !important;
+}
+
+.form-control:focus+label {
+    color: #4f4f4f !important;
+}

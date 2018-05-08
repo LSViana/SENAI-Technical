@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link class="e-router router-css-main" rel="stylesheet" type="text/css">
+    <link class="e-router router-css-login" rel="stylesheet" type="text/css">
     <link class="e-router router-css-constants" rel="stylesheet" type="text/css">
     <link class="e-router router-css-universal" rel="stylesheet" type="text/css">
     <link class="e-router router-css-fa" rel="stylesheet" type="text/css">
@@ -30,7 +31,7 @@
             </div>
             <div>
                 <div class="navbar-nav">
-                    <a class="nav-item nav-link active e-router router-login">Login</a>
+                    <a class="nav-item nav-link active e-router router-register">Register</a>
                 </div>
             </div>
         </nav>
@@ -41,51 +42,31 @@
                 <div class="pres-background-inner">
                 </div>
             </div>
-            <div class="pres-header rounded">
-                <h3 class="m-0">
-                    <span class="e-name font-weight-bold fa-2x">{0}</span>
-                </h3>
-                <img class="e-logo img-w-medium m-1 p-2 white rounded-circle material-shadow">
-                <h3 class="fa-2x m-0">stores more than items.</h3>
-            </div>
-            <div class="pres-main">
-                <div class="card mt-auto mb-auto w-100 max-width-400px m-4">
-                    <div class="card-header deep-purple accent-4 white-text e-name">{0} is the
-                        <span class="font-weight-bold">ready-to-go</span> solution</div>
-                    <div class="card-body d-flex flex-column">
-                        <p class="card-text dark-grey-text">We handle services relative to hosting patrimonies and managing
-                            <span class="font-weight-bold">movements</span> through
-                            <span class="font-weight-bold">environments</span>.</p>
-                        <a class="btn deep-purple accent-4 mt-auto e-router router-register">Create Account</a>
+            <section class="d-flex justify-content-center align-items-center w-100 p-4 position-relative">
+                <div class="d-flex flex-column justify-content-center">
+                    <img class="e-logo form-top-image img-w-small img-h-small mr-auto ml-auto p-2 white material-shadow-dark rounded-circle">
+                    <div class="card rounded">
+                        <div class="card-body pt-5">
+                            <form data-automate data-method="post" data-router="api-login" data-callback="handleLogin">
+                                <p class="h4 text-center deep-purple-text">Sign up</p>
+                                <div class="md-form">
+                                    <i class="fa fa-envelope prefix dark-grey-text"></i>
+                                    <input type="email" id="email" class="form-control">
+                                    <label for="email" class="font-weight-normal">Your email</label>
+                                </div>
+                                <div class="md-form">
+                                    <i class="fa fa-lock prefix dark-grey-text"></i>
+                                    <input type="password" id="password" class="form-control">
+                                    <label for="password" class="font-weight-normal">Your password</label>
+                                </div>
+                                <div class="text-center py-4 mt-3">
+                                    <button class="btn btn-deep-purple">Login</button>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
-                <div class="features p-3">
-                    <div class="card card-body dark-grey-text w-300px m-2">
-                        <h4 class="card-title amber-text accent-1">
-                            <i class="fa fa-dropbox mr-2"></i>Patrimonies</h4>
-                        <p class="card-text">Our platform allows you to simply register and edit items in a blink of eye.</p>
-                        <a class="btn amber e-router router-login mt-auto e-text e-text-explore">{0} Environments</a>
-                    </div>
-                    <div class="card card-body dark-grey-text w-300px m-2">
-                        <h4 class="card-title orange-text w-300px">
-                            <i class="fa fa-envira mr-2"></i>Environments</h4>
-                        <p class="card-text">You can manage your patrimonies through environments, recovering or sending them to there.</p>
-                        <a class="btn orange router e-router-login mt-auto">Explore Patrimonies</a>
-                    </div>
-                    <div class="card card-body dark-grey-text w-300px m-2">
-                        <h4 class="card-title deep-orange-text">
-                            <i class="fa fa-arrows-alt mr-2"></i>Movements</h4>
-                        <p class="card-text e-name">The old paper sheets to register are now handled by us, leave the {0} makes it for you.</p>
-                        <a class="btn deep-orange e-router router-login mt-auto">Explore Movements</a>
-                    </div>
-                    <div class="card card-body dark-grey-text w-300px m-2">
-                        <h4 class="card-title dark-orange-text accent-4">
-                            <i class="fa fa-lock mr-2"></i>Access Control</h4>
-                        <p class="card-text">Our automated system provides you a clear manage system to your users.</p>
-                        <a class="btn dark-orange e-router router-login mt-auto">Explore Access Control</a>
-                    </div>
-                </div>
-            </div>
+            </section>
         </section>
     </main>
     <footer>
@@ -119,6 +100,8 @@
             </div>
         </footer>
     </footer>
+    <script class="e-router router-js-form"></script>
+    <script class="e-router router-js-users"></script>
     <script src="/assets/js/constants.js"></script>
     <script src="/assets/js/universal.js"></script>
 </body>
