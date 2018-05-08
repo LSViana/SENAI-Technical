@@ -1,22 +1,10 @@
 :root {
-    /* Spans */
-    --quick: .3s;
-    --average: .5s;
-    --pronlonged: 1s;
-    /* Sizes */
     --tiny: 2px;
     --small: 6px;
-    --tiny-small: 8px;
     --medium: 12px;
     --big: 24px;
     --huge: 48px;
     --big-huge: 72px;
-    /* Colors */
-    --back-color: #fccf17;
-    --back-color-dark: #f4bb32;
-    --fore-color: #273b87;
-    --fore-sec-color: #3cc93f;
-    --fore-sec-color-dark: #207e22;
-    --fore-terc-color: #03c6d8;
-    --error-color: #eb3939;
-  }
+    --huge-2: calc(2 * var(--huge));
+    --huge-3: calc(3 * var(--huge));
+}

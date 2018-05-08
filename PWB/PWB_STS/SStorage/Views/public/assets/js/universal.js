@@ -13,13 +13,17 @@ var head;
 function onLoadUniversal(ev) {
     // Initializing
     head = document.querySelector("head");
+    // CSS and JS
+    const linkCSS = ``;
+    const linkJS = ``;
+    head.innerHTML += linkCSS + linkJS;
     // Title
     const title = document.querySelector("head title");
     title.innerHTML = title.innerHTML.replace("{0}", APP_NAME);
     // Fav Icon
     const link = document.createElement("link");
     link.setAttribute("rel", "shortcut icon");
-    link.setAttribute("href", APP_ICON_SRC);
+    link.setAttribute("href", APP_FAVICON_SRC);
     link.setAttribute("type", "image/x-icon");
     head.appendChild(link);
     // Logos
@@ -32,6 +36,11 @@ function onLoadUniversal(ev) {
     for(let logo of secLogos) {
         logo.setAttribute("src", APP_SECOND_ICON_SRC);
         logo.setAttribute("alt", APP_NAME + " Logo");
+    }
+    // Other assets
+    const assets = Array.from(document.querySelectorAll(".asset"));
+    for(let asset of assets) {
+        asset.setAttribute("src", ASSETS[asset.getAttribute("data-asset")]);
     }
     // Names
     const names = Array.from(document.querySelectorAll(".e-name"));
@@ -56,7 +65,7 @@ function onLoadUniversal(ev) {
             form.addEventListener("submit", onFormSend);
     }
     // Showing Body
-    document.querySelector("body").style.display = "flex";
+    document.querySelector("body").style.display = "";
 }
 //#endregion
 

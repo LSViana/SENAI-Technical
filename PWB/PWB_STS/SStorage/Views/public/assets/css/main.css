@@ -1,109 +1,58 @@
-@import url('https://fonts.googleapis.com/css?family=Ubuntu:300,400,700');
-
-* {
-  margin: 0px;
-  padding: 0px;
-  box-sizing: border-box;
-  font-family: 'Ubuntu', 'Segoe UI';
-  color: var(--fore-color);
-  user-select: none;
-  outline-color: var(--back-color);
+.features {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
 }
 
-a {
-  text-decoration: none;
+.pres {
+    display: flex;
+    flex-flow: row;
+    flex-wrap: wrap;
+    justify-content: start;
+    position: relative;
+    overflow: hidden;
 }
 
-body {
-  display: flex;
-  flex-flow: column;
-  min-height: 100vh;
-  min-width: 100vw;
+.pres-background-outer {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: -1000;
 }
 
-button, form, li {
-  border-radius: var(--tiny);
+.pres-background-inner {
+    background-image: url("https://www.menagetotal.ca/wp-content/uploads/2017/11/rack2.jpg");
+    background-position: center;
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    filter: grayscale(1);
 }
 
-footer {
-  display: flex;
-  flex-flow: row;
-  justify-content: start;
-  align-items: center;
-  background-color: var(--fore-sec-color);
-  padding: var(--medium);
+.pres-background-outer::before {
+    content: "";
+    z-index: 1;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #661fff7b;
+    filter: brightness(.8) saturate(2);
 }
 
-footer * {
-  color: var(--fore-sec-color-dark);
+.pres-header {
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    margin: var(--huge) var(--small);
+    flex-grow: 1;
 }
 
-footer > *:not(:first-child) {
-  margin-left: var(--small);
-}
-
-main {
-  flex-grow: 1;
-  display: flex;
-  flex-flow: column;
-  justify-content: center;
-  align-items: center;
-  background: url("https://hdqwalls.com/download/android-material-design-2560x1440.jpg") no-repeat center/cover;
-  /* background: url("https://www.clintonfitch.com/wp-content/uploads/2011/12/Android-Marshmallow-6.jpg") no-repeat center/cover; */
-  /* background: url("https://wallpaperstudio10.com/static/wpdb/wallpapers/3840x2160/167578.jpg") no-repeat center/cover; */
-}
-
-#top-bar {
-  width: 100vw;
-  background-color: var(--back-color);
-  display: flex;
-  flex-flow: row;
-  padding: var(--small);
-}
-
-.e-logo, .e-sec-logo {
-  height: var(--huge);
-  margin: auto var(--small);
-}
-
-#top-bar > h2 {
-  margin: auto 0px;
-}
-
-#top-bar > *[divider] {
-  position: relative;
-  min-width: var(--tiny);
-  margin: var(--small);
-  background: var(--fore-color);
-}
-
-#top-menu, #user-options {
-  display: flex;
-  flex-flow: row;
-  flex-wrap: wrap;
-  position: relative;
-  justify-content: center;
-  align-items: center;
-}
-
-#top-menu li, #user-options li {
-  padding: var(--tiny-small);
-  margin: var(--tiny);
-  transition: background-color var(--quick);
-}
-
-#top-menu li {
-  font-weight: 600;
-}
-
-#top-menu li:hover, #user-options li:hover {
-  background-color: var(--back-color-dark);
-}
-
-#user-options {
-  margin-left: auto;
-}
-
-ul {
-  list-style: none;
+.pres-main {
+    display: flex;
+    flex-flow: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 5;
 }

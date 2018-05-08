@@ -11,6 +11,7 @@ function handleLogin(response, form) {
         // Saving data to LocalStorage
         localStorage.setItem(XUSERNAME, username);
         localStorage.setItem(XTOKEN, token);
+        // Redirecting to home page
     } else if (response.status == 404) {
         let oldErrors = Array.from(document.querySelectorAll(".form-error"));
         for(let error of oldErrors)
