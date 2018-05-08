@@ -6,7 +6,7 @@ ADMINISTRATOR
 	Environment
 	@#C#R#U#D
 	Patrimony Category
-	@#C#R#U#D
+	@CRUD
 	Patrimony Item
 	@#C#R#D (not U)
 		Show: patrimony name, patrimony category, where the patrimony is, last movement, @ADMIN request "baixa" (delete)
@@ -14,7 +14,7 @@ ADMINISTRATOR
 		#Perform Movement
 		#List Movements of a Patrimony Item
 ALL
-	Authenticate
+	#Authenticate
 LOGGED IN
-	Change First and Last Name
-	Change Password
+	#Change First and Last Name
+	#Change Password

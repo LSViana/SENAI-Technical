@@ -14,6 +14,45 @@ a {
   text-decoration: none;
 }
 
+body {
+  display: flex;
+  flex-flow: column;
+  min-height: 100vh;
+  min-width: 100vw;
+}
+
+button, form, li {
+  border-radius: var(--tiny);
+}
+
+footer {
+  display: flex;
+  flex-flow: row;
+  justify-content: start;
+  align-items: center;
+  background-color: var(--fore-sec-color);
+  padding: var(--medium);
+}
+
+footer * {
+  color: var(--fore-sec-color-dark);
+}
+
+footer > *:not(:first-child) {
+  margin-left: var(--small);
+}
+
+main {
+  flex-grow: 1;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  background: url("https://hdqwalls.com/download/android-material-design-2560x1440.jpg") no-repeat center/cover;
+  /* background: url("https://www.clintonfitch.com/wp-content/uploads/2011/12/Android-Marshmallow-6.jpg") no-repeat center/cover; */
+  /* background: url("https://wallpaperstudio10.com/static/wpdb/wallpapers/3840x2160/167578.jpg") no-repeat center/cover; */
+}
+
 #top-bar {
   width: 100vw;
   background-color: var(--back-color);
@@ -22,7 +61,7 @@ a {
   padding: var(--small);
 }
 
-#top-bar > .e-logo {
+.e-logo, .e-sec-logo {
   height: var(--huge);
   margin: auto var(--small);
 }

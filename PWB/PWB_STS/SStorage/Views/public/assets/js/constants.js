@@ -1,6 +1,7 @@
 //#region Application
 const APP_NAME = "SStorage";
-const APP_ICON_SRC = "https://upload.wikimedia.org/wikipedia/en/1/10/Stroman_High_School%2C_Victoria%2C_Texas%2C_S_Logo.png";
+const APP_ICON_SRC = "/assets/img/darkblue_logo.png";
+const APP_SECOND_ICON_SRC = "/assets/img/sweetred_logo.png";
 //#endregion
 
 //#region WebService
@@ -9,6 +10,7 @@ const API_PREFIX = "/api/v1";
 const USERS_PREFIX = "/users";
 const XREASON = "X-Reason";
 const XTOKEN = "X-Auth-Token";
+const XUSERNAME = "X-Username";
 //#endregion
 
 //#region Routes
@@ -20,4 +22,8 @@ const ROUTES = {
   // API
   "api-login": SERVER + API_PREFIX + USERS_PREFIX + "/authenticate"
 };
+//#endregion
+
+//#region CSS Classes
+const FORM_ERROR = "form-error";
 //#endregion

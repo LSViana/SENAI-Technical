@@ -1,7 +1,8 @@
 #form-container {
     margin: var(--small);
-    padding: var(--medium);
-    background-color: var(--back-color);
+    padding: var(--big);
+    background-image: radial-gradient(39vw at 100% 100%, #eaa736, #ffde1f);
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, .5);
 }
 
 #form-container > div {
@@ -11,14 +12,58 @@
     align-items: center;
 }
 
+.form-error {
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    margin: var(--small);
+    background: var(--error-color);
+    padding: var(--small);
+}
+
+.form-error * {
+    margin: var(--tiny);
+}
+
+.form-error p:first-child {
+    background-color: var(--back-color);
+    color: var(--error-color) !important;
+    text-align: center;
+    width: var(--big);
+    height: var(--big);
+    font-weight: 600;
+    line-height: var(--big);
+    vertical-align: middle;
+    border-radius: 50%;
+}
+
+.form-error p:last-child {
+    flex-grow: 1;
+    font-variant: small-caps;
+}
+
 #form-footer {
     font-style: italic;
+}
+
+#form-footer * {
+    color: var(--error-color);
+}
+
+#form-header {
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    justify-content: center;
 }
 
 #form-header > h3 {
     font-weight: 100;
     font-size: 28px;
-    margin-bottom: var(--small);
+}
+
+#form-header * {
+    color: var(--error-color) !important;
 }
 
 #form-header > h3 span {
@@ -27,11 +72,6 @@
 
 #form-header > img {
     height: var(--huge);
-    filter: saturate(0);
-}
-
-#form-main {
-    background-color: var(--fore-color);
 }
 
 #form-main, #form-main * {
@@ -40,7 +80,9 @@
 
 #form-main input, #form-main select {
     border: none;
-    border-bottom: 1px solid var(--back-color);
+    border-bottom: 1px solid var(--error-color);
+    color: var(--error-color);
+    font-weight: 600;
     background-color: rgba(0, 0, 0, 0);
     width: 100%;
     padding: var(--small);
@@ -53,8 +95,8 @@
 }
 
 #main-form > button {
-    background-color: var(--back-color);
-    color: var(--fore-color);
+    background-color: var(--error-color);
+    color: var(--back-color);
     margin: var(--small);
     padding: var(--small) var(--medium);
     font-size: larger;
@@ -70,6 +112,7 @@
 }
 
 #main-form > div label {
+    color: var(--error-color);
     font-size: smaller;
     margin-right: auto;
 }
