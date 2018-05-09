@@ -15,7 +15,7 @@
     <title>{0} – Welcome</title>
 </head>
 
-<body style="display: none" class="min-height-100vh d-flex flex-column" only-out="router-main">
+<body style="display: none" class="min-height-100vh d-flex flex-column" only-in="router-main">
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark deep-purple accent-3">
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
@@ -38,26 +38,23 @@
                 </div>
             </div>
             <section class="d-flex justify-content-center align-items-center w-100 p-4 position-relative">
-                <div class="d-flex flex-column justify-content-center">
-                    <img class="e-logo form-top-image img-w-small img-h-small mr-auto ml-auto p-2 white material-shadow-dark rounded-circle">
+                <div class="d-flex flex-row justify-content-center">
+                    <img class="e-logo form-left-image img-w-small img-h-small mt-auto mb-auto p-2 white material-shadow-dark rounded-circle">
                     <div class="card rounded">
-                        <div class="card-body pt-5">
-                            <form id="login-form" data-automate data-method="POST" data-router="api-login" data-callback="handleLogin">
-                                <p class="h4 text-center deep-purple-text">Sign In</p>
-                                <div class="md-form">
-                                    <i class="fa fa-envelope prefix dark-grey-text"></i>
-                                    <input type="email" id="email" name="email" class="form-control">
-                                    <label for="email" class="font-weight-normal">Your email</label>
-                                </div>
-                                <div class="md-form">
-                                    <i class="fa fa-lock prefix dark-grey-text"></i>
-                                    <input type="password" id="password" name="password" class="form-control">
-                                    <label for="password" class="font-weight-normal">Your password</label>
-                                </div>
-                                <div class="text-center py-4">
-                                    <button class="btn deep-purple accent-4">Login</button>
-                                </div>
-                            </form>
+                        <div class="card-body pt-5 pb-5 pl-5">
+                            <h4 class="card-title dark-orange-text accent-4 mb-4">
+                                <i class="fa fa-lock mr-2"></i>Access Control</h4>
+                            <table id="users-table" class="table table-hover dark-grey-text" data-source="api-list-user">
+                                <thead>
+                                    <tr>
+                                        <th data-mapping="firstName lastName">Name</th>
+                                        <th data-mapping="email">E-mail</th>
+                                        <th data-mapping="type">Type</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
@@ -95,9 +92,8 @@
             </div>
         </footer>
     </footer>
-    
+
     <script class="e-router router-js-form"></script>
-    <script class="e-router router-js-login"></script>
     <script src="/assets/js/constants.js"></script>
     <script src="/assets/js/universal.js"></script>
 </body>
