@@ -52,7 +52,7 @@ public final class JWTManager {
 		try {
 			return tokenBuilder.sign(Algorithm.HMAC512(TOKEN_SECRET));
 		} catch (IllegalArgumentException | JWTCreationException | UnsupportedEncodingException e) {
-			throw new RuntimeException();
+			throw new RuntimeException(e);
 		}
 	}
 

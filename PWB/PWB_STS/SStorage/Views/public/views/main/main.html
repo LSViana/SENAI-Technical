@@ -30,7 +30,7 @@
             </div>
             <div>
                 <div class="navbar-nav">
-                    <a class="nav-item nav-link active e-router router-login">Login</a>
+                    <a class="nav-item nav-link active e-router router-login e-text" data-text-out="login" data-text-in="logout" data-action-in="performLogout">{0}</a>
                 </div>
             </div>
         </nav>
@@ -41,7 +41,7 @@
                 <div class="pres-background-inner">
                 </div>
             </div>
-            <div class="pres-header rounded">
+            <div class="pres-header rounded ml-5 mr-5">
                 <h3 class="m-0">
                     <span class="e-name font-weight-bold fa-2x">{0}</span>
                 </h3>
@@ -49,7 +49,7 @@
                 <h3 class="fa-2x m-0">stores more than items.</h3>
             </div>
             <div class="pres-main">
-                <div class="card mt-auto mb-auto w-100 max-width-400px m-4">
+                <div class="card mt-auto mb-auto w-100 max-width-400px m-4 vanish-login">
                     <div class="card-header deep-purple accent-4 white-text e-name">{0} is the
                         <span class="font-weight-bold">ready-to-go</span> solution</div>
                     <div class="card-body d-flex flex-column">
@@ -64,25 +64,25 @@
                         <h4 class="card-title amber-text accent-1">
                             <i class="fa fa-dropbox mr-2"></i>Patrimonies</h4>
                         <p class="card-text">Our platform allows you to simply register and edit items in a blink of eye.</p>
-                        <a class="btn amber e-router router-login mt-auto e-text e-text-explore">{0} Environments</a>
+                        <a class="btn amber e-router router-login mt-auto e-text" data-text-out="explore" data-text-in="manage" data-router-in="router-envs">{0} Environments</a>
                     </div>
                     <div class="card card-body dark-grey-text w-300px m-2">
                         <h4 class="card-title orange-text w-300px">
                             <i class="fa fa-envira mr-2"></i>Environments</h4>
                         <p class="card-text">You can manage your patrimonies through environments, recovering or sending them to there.</p>
-                        <a class="btn orange router e-router-login mt-auto">Explore Patrimonies</a>
+                        <a class="btn orange e-router router-login mt-auto e-text" data-text-out="explore" data-text-in="manage" data-router-in="router-pats">{0} Patrimonies</a>
                     </div>
                     <div class="card card-body dark-grey-text w-300px m-2">
                         <h4 class="card-title deep-orange-text">
                             <i class="fa fa-arrows-alt mr-2"></i>Movements</h4>
                         <p class="card-text e-name">The old paper sheets to register are now handled by us, leave the {0} makes it for you.</p>
-                        <a class="btn deep-orange e-router router-login mt-auto">Explore Movements</a>
+                        <a class="btn deep-orange e-router router-login mt-auto e-text" data-text-out="explore" data-text-in="manage" data-router-in="router-movs">{0} Movements</a>
                     </div>
                     <div class="card card-body dark-grey-text w-300px m-2">
                         <h4 class="card-title dark-orange-text accent-4">
                             <i class="fa fa-lock mr-2"></i>Access Control</h4>
                         <p class="card-text">Our automated system provides you a clear manage system to your users.</p>
-                        <a class="btn dark-orange e-router router-login mt-auto">Explore Access Control</a>
+                        <a class="btn dark-orange e-router router-login mt-auto e-text" data-text-out="explore" data-text-in="manage" data-router-in="router-users">{0} Access Control</a>
                     </div>
                 </div>
             </div>
@@ -119,6 +119,7 @@
             </div>
         </footer>
     </footer>
+    
     <script src="/assets/js/constants.js"></script>
     <script src="/assets/js/universal.js"></script>
 </body>

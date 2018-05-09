@@ -1,3 +1,5 @@
+// This JS file is added to pages after window.onload event
+
 /**
  * Handle the login request to the API
  * @param {Response} response
@@ -12,9 +14,10 @@ function handleLogin(response, form) {
         localStorage.setItem(XUSERNAME, username);
         localStorage.setItem(XTOKEN, token);
         // Redirecting to home page
+        window.location.href = ROUTES["router-main"];
     } else if (response.status == 404) {
         let oldErrors = Array.from(document.querySelectorAll(".form-error"));
-        for(let error of oldErrors)
+        for (let error of oldErrors)
             error.remove();
         //
         addFormError(form, "password", response.headers.get(XREASON));
