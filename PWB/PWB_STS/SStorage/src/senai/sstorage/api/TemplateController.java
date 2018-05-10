@@ -1,8 +1,18 @@
 package senai.sstorage.api;
 
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.ResponseEntity.BodyBuilder;
+import org.springframework.stereotype.Component;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 
+import senai.sstorage.utils.WebUtils;
+
+@Component
 public abstract class TemplateController {
 	
 	public static final String VALIDATION_EXCEPTION = "Validation exception";
@@ -26,6 +36,14 @@ public abstract class TemplateController {
 
 	public ResponseEntity<Object> validationError(Exception e) {
 		return ResponseEntity.unprocessableEntity().header(HEADER_XREASON, VALIDATION_EXCEPTION).header(HEADER_XEXCEPTIONMESSAGE, e.getMessage()).build();
+	}
+	
+	public ResponseEntity<Object> validationError(Exception e, BindingResult br) {
+		BodyBuilder bb = ResponseEntity.unprocessableEntity().header(HEADER_XREASON, VALIDATION_EXCEPTION).header(HEADER_XEXCEPTIONMESSAGE, e.getMessage());
+		for(FieldError fe : br.getFieldErrors()) {
+			bb.header("X-" + fe.getField(), fe.getDefaultMessage());
+		}
+		return bb.build();
 	}
 
 	public ResponseEntity<Object> unauthorized(Exception e) {

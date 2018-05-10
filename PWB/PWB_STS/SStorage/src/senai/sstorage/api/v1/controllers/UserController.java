@@ -145,7 +145,7 @@ public class UserController extends TemplateController {
 		} catch (UnauthorizedException e) {
 			return unauthorized(e);
 		} catch (ValidationException e) {
-			return validationError(e);
+			return validationError(e, br);
 		} catch(Exception e) {
 			return internalError(e);
 		}
@@ -190,7 +190,7 @@ public class UserController extends TemplateController {
 				User updated = service.update(id, user, br);
 				return ResponseEntity.ok(updated);
 			} catch (ValidationException e) {
-				return validationError(e);
+				return validationError(e, br);
 			} catch (EntityNotFoundException e) {
 				return entityNotFound(e);
 			}

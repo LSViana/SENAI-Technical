@@ -2,60 +2,112 @@
     user-select: none;
     outline-color: var(--app-color);
 }
+
 /* Colors */
+
 .deep-purple.opacity-50 {
     background-color: #661fff80 !important;
 }
+
 .dark-orange {
     background-color: #f13800 !important;
 }
+
 .dark-orange-text {
     color: #f13800 !important;
 }
+
+.border-left-deep-purple-accent-4 {
+    border-left: 1px #6200ea solid;
+}
+
+.border-left-2px {
+    border-left-width: 2px;
+}
+
 /* Sizes */
+
 .img-w-medium {
     width: var(--huge-3);
 }
+
 .img-w-small {
     width: var(--huge-2);
 }
+
 .img-h-small {
     height: var(--huge-2);
 }
+
 .w-300px {
     width: 300px;
 }
+
 .min-height-100vh {
     min-height: 100vh;
 }
+
 .max-width-300px {
     max-width: 300px;
 }
+
 .max-width-400px {
     max-width: 400px;
 }
+
 .min-width-400px {
     min-width: 400px;
 }
+
 .min-width-400px {
     min-width: 400px;
 }
+
 /* Shadows */
+
 .material-shadow {
     box-shadow: 1px 1px 5px rgba(105, 105, 105, 0.5);
 }
+
 .material-shadow-dark {
     box-shadow: 1px 1px 5px rgba(105, 105, 105, 0.8);
 }
+
 /* Layout */
+
 .flex-grow-1 {
     flex-grow: 1;
 }
+
 .form-top-image {
     margin-bottom: -2em;
     z-index: 1;
 }
+
 .form-left-image {
     margin-right: -2em;
     z-index: 1;
+}
+
+.md-form-font-size {
+    font-size: 1.75rem !important;
+}
+
+label input[type=radio] {
+    opacity: 0;
+    display: none;
+}
+
+/* Corporate Identity */
+
+table td:first-child {
+    font-weight: 900;
+}
+
+.form-check-input {
+    font-family: Arial !important;
+}
+
+.deep-purple.accent-4.active {
+    background: #4500a7 !important;
 }

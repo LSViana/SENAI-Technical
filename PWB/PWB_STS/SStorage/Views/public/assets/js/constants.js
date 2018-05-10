@@ -19,6 +19,11 @@ const XTOKEN = "X-Auth-Token";
 const XUSERNAME = "X-Username";
 //#endregion
 
+//#region Common Pages Addresses
+const EDITPAGE = "edit.html";
+//#endregion
+
+
 //#region Routes
 const ROUTES = {
   // Pages
@@ -27,23 +32,26 @@ const ROUTES = {
   "router-register": "/views/users/register.html",
   "router-about": "/views/about/about.html",
   "router-users": "/views/users/users.html",
+  "router-user-add": "/views/users/add.html",
+  "router-user-edit": "/views/users/edit.html",
   "router-envs": "/views/envs/envs.html",
   "router-movs": "/views/movs/movs.html",
   "router-pats": "/views/pats/pats.html",
   "router-patcats": "/views/patcats/patcats.html",
   "router-patitems": "/views/patitems/patitems.html",
   // CSS
-  "router-css-main": "http://localhost:3000/assets/css/main.css",
-  "router-css-login": "http://localhost:3000/assets/css/login.css",
-  "router-css-universal": "http://localhost:3000/assets/css/universal.css",
-  "router-css-constants": "http://localhost:3000/assets/css/constants.css",
-  "router-css-fa": "http://localhost:3000/assets/external/font-awesome.min.css",
-  "router-css-bs": "http://localhost:3000/assets/external/bootstrap.min.css",
-  "router-css-mdb": "http://localhost:3000/assets/external/mdb.min.css",
+  "router-css-main": "/assets/css/main.css",
+  "router-css-login": "/assets/css/login.css",
+  "router-css-users": "/assets/css/users.css",
+  "router-css-universal": "/assets/css/universal.css",
+  "router-css-constants": "/assets/css/constants.css",
+  "router-css-fa": "/assets/external/font-awesome.min.css",
+  "router-css-bs": "/assets/external/bootstrap.min.css",
+  "router-css-mdb": "/assets/external/mdb.min.css",
   // JS
-  "router-js-form": "http://localhost:3000/assets/js/form.js",
-  "router-js-login": "http://localhost:3000/assets/js/login.js",
-  "router-js-users": "http://localhost:3000/assets/js/users.js",
+  "router-js-form": "/assets/js/form.js",
+  "router-js-login": "/assets/js/login.js",
+  "router-js-users": "/assets/js/users.js",
   // API
   "api-login": SERVER + API_PREFIX + USERS_PREFIX + "/authenticate",
   "api-logout": SERVER + API_PREFIX + USERS_PREFIX + "/logout",

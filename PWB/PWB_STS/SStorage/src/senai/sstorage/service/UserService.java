@@ -72,10 +72,15 @@ public class UserService {
 
 	public User update(Long id, User obj, BindingResult br) throws ValidationException, EntityNotFoundException {
 		if(br.hasErrors())
-			throw new ValidationException();
+			throw new ValidationException("Validation exception");
 		User fromDb = userDAO.search(id);
 		if(fromDb == null)
 			throw new EntityNotFoundException();
+		fromDb = userDAO.searchByEmail(obj.getEmail());
+		if(fromDb != null) {
+			br.addError(new FieldError("user", "email", "E-mail already in use"));
+			throw new ValidationException("E-mail already in use");
+		}
 		BeanUtils.copyProperties(obj, fromDb, "id");
 		userDAO.update(fromDb);
 		return fromDb;

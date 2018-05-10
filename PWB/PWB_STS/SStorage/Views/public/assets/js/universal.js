@@ -69,25 +69,34 @@ function performTableLists() {
             continue;
         }
         let tbody = document.querySelector(`#${tableId} tbody`);
-        let router = ROUTES[table.getAttribute("data-source")];
-        if (!router) {
+        let route = ROUTES[table.getAttribute("data-source")];
+        if (!route) {
             console.error(`Invalid 'data-source' specified: ${table.getAttribute("data-source")}`);
             continue;
         }
         let tableHeaders = Array.from(document.querySelectorAll(`#${tableId} > thead > tr > th`));
         let mappings = [];
+        let actions = {};
         for (let header of tableHeaders) {
-            // Starts from 1
-            let index = mappings.push([]) - 1;
-            let mappingParts = header.getAttribute("data-mapping").split(" ");
-            for (let mappingPart of mappingParts) {
-                mappings[index].push(mappingPart);
+            if (header.getAttribute("data-mapping")) {
+                // Starts from 1
+                let index = mappings.push([]) - 1;
+                let mappingParts = header.getAttribute("data-mapping").split(" ");
+                for (let mappingPart of mappingParts) {
+                    mappings[index].push(mappingPart);
+                }
+            } else if (header.getAttribute("data-table-action")) {
+                actions[header.getAttribute("data-table-action")] = header.getAttribute("data-icon");
             }
         }
+        // Getting Path to Edit Page, According to the Current Entity
+        let location = window.location;
+        let editAddress = [location.protocol + "//" + location.hostname + location.pathname.substr(0, location.pathname.lastIndexOf("/"))].join("") + "/" + EDITPAGE + `?id={0}`;
+        console.log(editAddress);
         // Getting data from API
         let headers = {};
         headers[XTOKEN] = getToken();
-        fetch(router, {
+        fetch(route, {
             method: "GET",
             headers
         }).then(function (response) {
@@ -95,12 +104,36 @@ function performTableLists() {
                 .then(function (data) {
                     for (let item of data) {
                         let tr = document.createElement("tr");
+                        tr.setAttribute("data-entity-id", item.id);
                         for (let mapping of mappings) {
                             let td = document.createElement("td");
-                            for(let property of mapping) {
+                            for (let property of mapping) {
                                 td.innerText += item[property] + " ";
                             }
                             tr.appendChild(td);
+                        }
+                        for (let action in actions) {
+                            // Building elements
+                            let td = document.createElement("td");
+                            td.setAttribute("data-td-action", action);
+                            let aEl = document.createElement("a");
+                            aEl.classList.add("d-flex");
+                            aEl.classList.add("justify-content-center");
+                            let fa_Icon = document.createElement("i");
+                            fa_Icon.classList.add("fa");
+                            fa_Icon.classList.add(actions[action]);
+                            aEl.appendChild(fa_Icon);
+                            td.appendChild(aEl);
+                            tr.appendChild(td);
+                            // Adding custom routes to @EDIT and @DELETE operations
+                            if(action == "edit") {
+                                aEl.setAttribute("href", editAddress.replace("{0}", item.id));
+                            } else if(action == "delete") {
+                                console.log(route);
+                                aEl.addEventListener("click", function(ev) {
+                                    deleteEntity(route, item.id, function(response) { if(response.status == 200) tr.remove(); });
+                                });
+                            }
                         }
                         tbody.appendChild(tr);
                     }
@@ -123,6 +156,25 @@ function verifyAccessControl() {
         if (body.getAttribute("only-in"))
             window.location.href = ROUTES[body.getAttribute("only-in")];
     }
+}
+
+/**
+ * Performs a HTTP DELETE request to the specified route adding "/{id}" to its end
+ * @param {String} route 
+ * @param {Number} id 
+ * @param {Function} callback
+ */
+function deleteEntity(route, id, callback) {
+    let headers = {};
+    headers[XTOKEN] = getToken();
+    fetch(route + "/" + id, {
+        headers,
+        method: "DELETE"
+    }).then((response) => {
+        callback(response);
+    }, (rejected) => {
+        callback(rejected);
+    });
 }
 
 function updateDOMWithLoginState() {
@@ -256,10 +308,13 @@ function onFormSend(e) {
     if (!callback)
         throw Error("Invalid method " + form.getAttribute("data-callback") + " as callback");
     // Performing HTTP Request
+    let headers = {
+        "Content-Type": "application/json",
+    };
+    if(isLoggedIn())
+        headers[XTOKEN] = getToken();
     fetch(router, {
-            headers: {
-                "Content-Type": "application/json",
-            },
+            headers,
             method: form.getAttribute("data-method"),
             body: JSON.stringify(payload)
         })
