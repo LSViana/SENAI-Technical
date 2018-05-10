@@ -56,12 +56,12 @@ const ROUTES = {
   // API
   "api-login": SERVER + API_PREFIX + USERS_PREFIX + "/authenticate",
   "api-logout": SERVER + API_PREFIX + USERS_PREFIX + "/logout",
-  "api-list-user": SERVER + API_PREFIX + USERS_PREFIX,
-  "api-list-env": SERVER + API_PREFIX + ENV_PREFIX,
-  "api-list-mov": SERVER + API_PREFIX + MOV_PREFIX,
-  "api-list-pat": SERVER + API_PREFIX + PAT_PREFIX,
-  "api-list-patcat": SERVER + API_PREFIX + PATCAT_PREFIX,
-  "api-list-patitem": SERVER + API_PREFIX + PATITEM_PREFIX,
+  "api-user": SERVER + API_PREFIX + USERS_PREFIX,
+  "api-env": SERVER + API_PREFIX + ENV_PREFIX,
+  "api-mov": SERVER + API_PREFIX + MOV_PREFIX,
+  "api-pat": SERVER + API_PREFIX + PAT_PREFIX,
+  "api-patcat": SERVER + API_PREFIX + PATCAT_PREFIX,
+  "api-patitem": SERVER + API_PREFIX + PATITEM_PREFIX,
 };
 //#endregion
 

@@ -148,6 +148,30 @@ function performTableLists() {
     }
 }
 
+/**
+ * Returns an Object from the address supplied
+ * @param {String} address 
+ * @param {Number} id
+ * @param {(value:Object)} callback
+ */
+function getEntity(address, id, callback) {
+    let headers = {};
+    headers[XTOKEN] = getToken();
+    fetch(address + "/" + id, {
+        headers,
+        method: "GET"
+    }).then(function (response) {
+        response.json()
+            .then(function (value) {
+                callback(value);
+            }, function(rejected) {
+                callback(value);
+            });
+    }, function (rejected) {
+        callback(value);
+    });
+}
+
 function verifyAccessControl() {
     let body = document.querySelector("body");
     let loggedIn = isLoggedIn();
@@ -330,11 +354,13 @@ function onFormSend(e) {
     let headers = {
         "Content-Type": "application/json",
     };
+    let hasId = Boolean(form.id.value);
     if(isLoggedIn())
         headers[XTOKEN] = getToken();
     fetch(router, {
             headers,
-            method: form.getAttribute("data-method"),
+            // Verifying if it is an INSERT or UPDATE
+            method: hasId ? form.getAttribute("data-update-method") : form.getAttribute("data-method"),
             body: JSON.stringify(payload)
         })
         .then(function (response) {
