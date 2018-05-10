@@ -29,7 +29,9 @@ public abstract class TemplateController {
 	public static final String HEADER_USER_EMAIL = "X-Email";
 	public static final String HEADER_USER_AUTH = "X-User-Auth";
 	public static final String HEADER_USERNAME = "X-Username";
-
+	public static final String HEADER_ID = "X-Id";
+	public static final String HEADER_AUTH_NUMBER = "X-Auth-Level";
+	
 	public ResponseEntity<Object> entityNotFound(Exception e) {
 		return ResponseEntity.notFound().header(HEADER_XREASON, INVALID_ENTITY_AUTHENTICATION).header(HEADER_XEXCEPTIONMESSAGE, e.getMessage()).build();
 	}

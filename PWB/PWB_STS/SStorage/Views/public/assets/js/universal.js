@@ -37,7 +37,7 @@ function onLoadUniversal(ev) {
     // Showing Body
     showBody();
     // Updating DOM according to Login State
-    updateDOMWithLoginState();
+    updateDOMWithAuthLevel();
     // Perform API Calls
     performAPICalls();
 }
@@ -91,8 +91,11 @@ function performTableLists() {
         }
         // Getting Path to Edit Page, According to the Current Entity
         let location = window.location;
-        let editAddress = [location.protocol + "//" + location.hostname + location.pathname.substr(0, location.pathname.lastIndexOf("/"))].join("") + "/" + EDITPAGE + `?id={0}`;
-        console.log(editAddress);
+        let editAddress;
+        if(location.port)
+            editAddress = [location.protocol + "//" + location.hostname + ":" + location.port + location.pathname.substr(0, location.pathname.lastIndexOf("/"))].join("") + EDITPAGE + `?id={0}`;
+        else
+            editAddress = [location.protocol + "//" + location.hostname + location.pathname.substr(0, location.pathname.lastIndexOf("/"))].join("") + EDITPAGE + `?id={0}`;
         // Getting data from API
         let headers = {};
         headers[XTOKEN] = getToken();
@@ -129,7 +132,6 @@ function performTableLists() {
                             if(action == "edit") {
                                 aEl.setAttribute("href", editAddress.replace("{0}", item.id));
                             } else if(action == "delete") {
-                                console.log(route);
                                 aEl.addEventListener("click", function(ev) {
                                     deleteEntity(route, item.id, function(response) { if(response.status == 200) tr.remove(); });
                                 });
@@ -150,7 +152,17 @@ function verifyAccessControl() {
     let body = document.querySelector("body");
     let loggedIn = isLoggedIn();
     if (loggedIn) {
-        if (body.getAttribute("only-out"))
+        let authPage = body.getAttribute("min-auth");
+        if(authPage != null) {
+            let authLevel = getAuthLevel();
+            if(authLevel < authPage) {
+                let route = body.getAttribute("min-auth-router");
+                if(!route)
+                    throw Error("When using 'min-auth' you must define an attribute 'min-auth-router' with the destiny if not allowed");
+                window.location.href = ROUTES[route];
+            }
+        }
+        else if (body.getAttribute("only-out"))
             window.location.href = ROUTES[body.getAttribute("only-out")];
     } else {
         if (body.getAttribute("only-in"))
@@ -177,13 +189,20 @@ function deleteEntity(route, id, callback) {
     });
 }
 
-function updateDOMWithLoginState() {
+function updateDOMWithAuthLevel() {
     let loggedIn = isLoggedIn();
     // Vanishing components that shouldn't be shown on LoggedIn
     if (loggedIn) {
+        // Removing elements that shouldn't be shown at any auth level
         let vanishLogin = Array.from(document.querySelectorAll(".vanish-login"));
         for (let vanish of vanishLogin) {
             vanish.style.display = "none";
+        }
+        // Removing elements that shouldn't be shown according to auth level
+        let authLevel = getAuthLevel();
+        let unauthorizedElements = Array.from(document.querySelectorAll(`*[min-auth-show]`)).filter(function (el) { return Number(el.getAttribute("min-auth-show")) > authLevel });
+        for(let el of unauthorizedElements) {
+            el.style.display = "none";
         }
     } else {
         // Showing components that shouldn't be shown on LoggedIn
@@ -337,6 +356,13 @@ function isLoggedIn() {
  */
 function getToken() {
     return localStorage.getItem(XTOKEN);
+}
+
+/**
+ * @returns {Number}
+ */
+function getAuthLevel() {
+    return Number(localStorage.getItem(XAUTHLEVEL));
 }
 
 function performLogout() {

@@ -17,10 +17,12 @@ const PATITEM_PREFIX = "/patrimonyitems";
 const XREASON = "X-Reason";
 const XTOKEN = "X-Auth-Token";
 const XUSERNAME = "X-Username";
+const XID = "X-Id";
+const XAUTHLEVEL = "X-Auth-Level";
 //#endregion
 
 //#region Common Pages Addresses
-const EDITPAGE = "edit.html";
+const EDITPAGE = "/form.html";
 //#endregion
 
 
@@ -32,8 +34,7 @@ const ROUTES = {
   "router-register": "/views/users/register.html",
   "router-about": "/views/about/about.html",
   "router-users": "/views/users/users.html",
-  "router-user-add": "/views/users/add.html",
-  "router-user-edit": "/views/users/edit.html",
+  "router-user-form": "/views/users/form.html",
   "router-envs": "/views/envs/envs.html",
   "router-movs": "/views/movs/movs.html",
   "router-pats": "/views/pats/pats.html",

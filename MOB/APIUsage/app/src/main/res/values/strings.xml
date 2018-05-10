@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">API Usage</string>
+    <string name="cepQuery">CEP Query</string>
+    <string name="typeYourCEP">Type your CEP</string>
+    <string name="query">Query</string>
+    <string name="result">Result</string>
+    <string name="cepNotFound">CEP not found, try again!</string>
+    <string name="typeYourCNPJ">Type your CNPJ</string>
+    <string name="cnpjQuery">CNPJ Query</string>
+    <string name="cnpjNotFound">CNPJ not found, try again!</string>
+</resources>

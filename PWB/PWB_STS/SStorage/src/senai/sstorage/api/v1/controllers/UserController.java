@@ -59,13 +59,14 @@ public class UserController extends TemplateController {
 //			}
 			//
 			User fromDb = service.authenticate(user);
+			Authority authority = Authority.parseUserType(fromDb.getType());
 			Map<String, String> payloads = new HashMap<String, String>();
 			payloads.put(HEADER_USER_ID, fromDb.getId().toString());
 			payloads.put(HEADER_USER_EMAIL, fromDb.getEmail());
-			payloads.put(HEADER_USER_AUTH, Authority.parseUserType(fromDb.getType()).toString());
+			payloads.put(HEADER_USER_AUTH, authority.toString());
 			String token = JWTManager.generateToken(payloads);
 			activeTokens.put(token, fromDb);
-			return ResponseEntity.ok().header(HEADER_TOKEN, token).header(HEADER_USERNAME,  String.format("%s %s", fromDb.getFirstName(), fromDb.getLastName())).build();
+			return ResponseEntity.ok().header(HEADER_TOKEN, token).header(HEADER_USERNAME,  String.format("%s %s", fromDb.getFirstName(), fromDb.getLastName())).header(HEADER_ID, fromDb.getId().toString()).header(HEADER_AUTH_NUMBER, authority.getLevel().toString()).build();
 		} catch (BadRequestException e) {
 			return invalidEntitySupplied(e);
 		} catch (EntityNotFoundException e) {

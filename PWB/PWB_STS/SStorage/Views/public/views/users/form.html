@@ -15,7 +15,7 @@
     <title>{0} – Welcome</title>
 </head>
 
-<body style="display: none" class="min-height-100vh d-flex flex-column" only-in="router-main">
+<body style="display: none" class="min-height-100vh d-flex flex-column" only-in="router-main" min-auth="2" min-auth-router="router-main">
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark deep-purple accent-3">
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
@@ -43,6 +43,7 @@
                     <div class="card rounded">
                         <div class="card-body pt-5">
                             <form id="register-form" data-automate data-method="POST" data-router="api-list-user" data-callback="handleRegisterUser">
+                                <input type="text" name="id" style="display: none" />
                                 <p class="h4 text-center deep-purple-text">Register User</p>
                                 <div class="md-form">
                                     <i class="fa fa-align-left prefix dark-grey-text"></i>

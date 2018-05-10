@@ -10,9 +10,13 @@ function handleLogin(response, form) {
         // Getting data from response
         let username = response.headers.get(XUSERNAME);
         let token = response.headers.get(XTOKEN);
+        let id = response.headers.get(XID);
+        let authLevel = response.headers.get(XAUTHLEVEL);
         // Saving data to LocalStorage
         localStorage.setItem(XUSERNAME, username);
         localStorage.setItem(XTOKEN, token);
+        localStorage.setItem(XID, id);
+        localStorage.setItem(XAUTHLEVEL, authLevel);
         // Redirecting to home page
         window.location.href = ROUTES["router-main"];
     } else if (response.status == 404) {
