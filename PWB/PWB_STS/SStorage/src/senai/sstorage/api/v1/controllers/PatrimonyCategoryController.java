@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -51,7 +52,7 @@ public class PatrimonyCategoryController extends TemplateController {
 					return internalError(e);
 				}
 			} catch (ValidationException e) {
-				return validationError(e);
+				return validationError(e, br);
 			}
 		} catch (UnauthorizedException e) {
 			return unauthorized(e);
@@ -107,6 +108,7 @@ public class PatrimonyCategoryController extends TemplateController {
 		}
 	}
 	
+	@PutMapping("/{id}")
 	public ResponseEntity<Object> update(@RequestHeader(name = HEADER_TOKEN) String token, @PathVariable(name = "id") Long id, @RequestBody @Valid PatrimonyCategory patCat, BindingResult br) {
 		try {
 			JWTManager.validateToken(token, Authority.ADMINISTRATOR);
@@ -115,7 +117,7 @@ public class PatrimonyCategoryController extends TemplateController {
 				PatrimonyCategory updated = service.update(id, patCat, br);
 				return ResponseEntity.ok(updated);
 			} catch (ValidationException e) {
-				return validationError(e);
+				return validationError(e, br);
 			} catch (EntityNotFoundException e) {
 				return entityNotFound(e);
 			}

@@ -15,7 +15,7 @@
     <title>{0} – Welcome</title>
 </head>
 
-<body style="display: none" class="min-height-100vh d-flex flex-column" only-out="router-main">
+<body style="display: none" class="min-height-100vh d-flex flex-column" only-in="router-main" min-auth="2" min-auth-router="router-main">
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark deep-purple accent-3">
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
@@ -42,20 +42,16 @@
                     <img class="e-logo form-top-image img-w-small img-h-small mr-auto ml-auto p-2 white material-shadow-dark rounded-circle">
                     <div class="card rounded">
                         <div class="card-body pt-5">
-                            <form id="login-form" data-automate data-method="POST" data-router="api-login" data-callback="handleLogin">
-                                <p class="h4 text-center deep-purple-text">Sign In</p>
+                            <form id="register-form" data-automate data-method="POST" data-update-method="PUT" data-router="api-env" data-callback="handleRegisterEnv">
+                                <input type="text" name="id" id="id" style="display: none" />
+                                <p class="h4 text-center deep-purple-text">Register Environment</p>
                                 <div class="md-form">
-                                    <i class="fa fa-envelope prefix dark-grey-text"></i>
-                                    <input type="email" id="email" name="email" class="form-control">
-                                    <label for="email" class="font-weight-normal">Your email</label>
-                                </div>
-                                <div class="md-form">
-                                    <i class="fa fa-lock prefix dark-grey-text"></i>
-                                    <input type="password" id="password" name="password" class="form-control">
-                                    <label for="password" class="font-weight-normal">Your password</label>
+                                    <i class="fa fa-align-left prefix dark-grey-text"></i>
+                                    <input type="text" id="name" name="name" class="form-control" required>
+                                    <label for="name" class="font-weight-normal">Environment name</label>
                                 </div>
                                 <div class="text-center py-4">
-                                    <button class="btn deep-purple accent-4">Login</button>
+                                    <button class="btn deep-purple accent-4" type="submit" data-update-text="Update">Register</button>
                                 </div>
                             </form>
                         </div>
@@ -97,7 +93,7 @@
     </footer>
 
     <script class="e-router router-js-form"></script>
-    <script class="e-router router-js-login"></script>
+    <script class="e-router router-js-envs"></script>
     <script src="/assets/js/constants.js"></script>
     <script src="/assets/js/universal.js"></script>
     <!-- External -->

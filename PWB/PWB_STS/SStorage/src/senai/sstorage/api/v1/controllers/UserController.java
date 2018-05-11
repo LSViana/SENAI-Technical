@@ -1,15 +1,20 @@
 package senai.sstorage.api.v1.controllers;
 
+import java.lang.reflect.Field;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.validation.Valid;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.DataBinder;
+import org.springframework.validation.Validator;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -46,6 +51,9 @@ public class UserController extends TemplateController {
 	@Autowired
 	private WebUtils webUtils;
 	
+	@Autowired
+	private Validator validator;
+	
 	private Map<String, User> activeTokens = new HashMap<>();
 
 	@PostMapping("/authenticate")
@@ -71,6 +79,38 @@ public class UserController extends TemplateController {
 			return invalidEntitySupplied(e);
 		} catch (EntityNotFoundException e) {
 			return entityNotFound(e);
+		} catch (Exception e) {
+			return internalError(e);
+		}
+	}
+	
+	@PatchMapping("/{id}")
+	public ResponseEntity<Object> updatePartial(@RequestHeader(name = HEADER_TOKEN, required = true) String token, @PathVariable(name = "id") Long id, @RequestBody @Valid User user, BindingResult br) {
+		try {
+			JWTManager.validateToken(token, Authority.ADMINISTRATOR);
+			User fromDb = service.read(id);
+			//
+			BindingResult freshBr = new DataBinder(user).getBindingResult();
+			if(fromDb != null) {
+				if(user.getPassword() == null || user.getPassword().length() == 0) {
+					user.setPassword(fromDb.getPassword());
+					validator.validate(user, freshBr);
+				}
+				else {
+					validator.validate(user, freshBr);
+					user.hashPassword();
+				}
+				br = freshBr;
+			} else
+				throw new EntityNotFoundException();
+			//
+			BeanUtils.copyProperties(user, fromDb);
+			// Performing the common changes
+			return update(token, id, fromDb, br);
+		} catch (EntityNotFoundException e) {
+			return entityNotFound(e);
+		} catch (UnauthorizedException e) {
+			return unauthorized(e);
 		} catch (Exception e) {
 			return internalError(e);
 		}

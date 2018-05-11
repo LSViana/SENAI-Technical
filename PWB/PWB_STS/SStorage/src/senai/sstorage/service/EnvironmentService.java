@@ -42,11 +42,14 @@ public class EnvironmentService {
 	}
 	
 	public Environment update(Long id, Environment env, BindingResult br) throws ValidationException, EntityNotFoundException {
-		if(br.hasErrors())
+		if(br.hasErrors()) {			
 			throw new ValidationException("Validation Exception");
+		}
 		Environment fromDb = envDAO.search(id);
-		if(envDAO.searchByName(env.getName()) != null) 
+		if(envDAO.searchByName(env.getName()) != null)  {
+			br.addError(new FieldError("environment", "name", "Name is already in use"));
 			throw new ValidationException("Duplicated Name");
+		}
 		if(fromDb == null)
 			throw new EntityNotFoundException("ID not found");
 		BeanUtils.copyProperties(env, fromDb, "id");

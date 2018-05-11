@@ -16,6 +16,28 @@
 </head>
 
 <body style="display: none" class="min-height-100vh d-flex flex-column" only-in="router-main" min-auth="2" min-auth-router="router-main">
+    <!-- Modal Area -->
+    <div class="modal fade" id="modal-userchanged" tabindex="-1" role="dialog" aria-labelledby="modal-userchanged" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modal-userchanged-title">You've changed your own user profile.</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    You must perform login again, your credentials will be revalidated and you will be able to keep navigating after that! :)
+                </div>
+                <div class="modal-footer">
+                    <a class="e-router router-main">
+                        <button type="button" class="btn deep-purple accent-4" data-dismiss="modal">Go to Main</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal Area -->
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark deep-purple accent-3">
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
@@ -42,8 +64,8 @@
                     <img class="e-logo form-top-image img-w-small img-h-small mr-auto ml-auto p-2 white material-shadow-dark rounded-circle">
                     <div class="card rounded">
                         <div class="card-body pt-5">
-                            <form id="register-form" data-automate data-method="POST" data-update-method="PUT" data-router="api-user" data-callback="handleRegisterUser">
-                                <input type="text" name="id" style="display: none" />
+                            <form id="register-form" data-automate data-method="POST" data-update-method="PATCH" data-router="api-user" data-callback="handleRegisterUser">
+                                <input type="text" name="id" id="id" style="display: none" />
                                 <p class="h4 text-center deep-purple-text">Register User</p>
                                 <div class="md-form">
                                     <i class="fa fa-align-left prefix dark-grey-text"></i>
@@ -80,7 +102,7 @@
                                     </div>
                                 </div>
                                 <div class="text-center py-4">
-                                    <button class="btn deep-purple accent-4">Register</button>
+                                    <button class="btn deep-purple accent-4" type="submit" data-update-text="Update">Register</button>
                                 </div>
                             </form>
                         </div>
@@ -125,6 +147,11 @@
     <script class="e-router router-js-users"></script>
     <script src="/assets/js/constants.js"></script>
     <script src="/assets/js/universal.js"></script>
+    <!-- External -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.13.0/umd/popper.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.4.5/js/mdb.min.js"></script>
 </body>
 
 </html>

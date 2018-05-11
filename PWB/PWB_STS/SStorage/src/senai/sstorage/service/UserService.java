@@ -77,10 +77,11 @@ public class UserService {
 		if(fromDb == null)
 			throw new EntityNotFoundException();
 		fromDb = userDAO.searchByEmail(obj.getEmail());
-		if(fromDb != null) {
+		if(fromDb != null && fromDb.getId() != id) {
 			br.addError(new FieldError("user", "email", "E-mail already in use"));
 			throw new ValidationException("E-mail already in use");
 		}
+		fromDb = userDAO.search(id);
 		BeanUtils.copyProperties(obj, fromDb, "id");
 		userDAO.update(fromDb);
 		return fromDb;

@@ -16,10 +16,10 @@ var forms, names, body, title, link, logos, text, routers;
 function onLoadUniversal(ev) {
     // Initializing
     head = document.querySelector("head");
+    // Scripts
+    // importScripts();
     // Verifying Access Control
     verifyAccessControl();
-    // Scripts
-    importScripts();
     // Title
     updateTitle();
     // Fav Icon
@@ -92,7 +92,7 @@ function performTableLists() {
         // Getting Path to Edit Page, According to the Current Entity
         let location = window.location;
         let editAddress;
-        if(location.port)
+        if (location.port)
             editAddress = [location.protocol + "//" + location.hostname + ":" + location.port + location.pathname.substr(0, location.pathname.lastIndexOf("/"))].join("") + EDITPAGE + `?id={0}`;
         else
             editAddress = [location.protocol + "//" + location.hostname + location.pathname.substr(0, location.pathname.lastIndexOf("/"))].join("") + EDITPAGE + `?id={0}`;
@@ -129,11 +129,13 @@ function performTableLists() {
                             td.appendChild(aEl);
                             tr.appendChild(td);
                             // Adding custom routes to @EDIT and @DELETE operations
-                            if(action == "edit") {
+                            if (action == "edit") {
                                 aEl.setAttribute("href", editAddress.replace("{0}", item.id));
-                            } else if(action == "delete") {
-                                aEl.addEventListener("click", function(ev) {
-                                    deleteEntity(route, item.id, function(response) { if(response.status == 200) tr.remove(); });
+                            } else if (action == "delete") {
+                                aEl.addEventListener("click", function (ev) {
+                                    deleteEntity(route, item.id, function (response) {
+                                        if (response.status == 200) tr.remove();
+                                    });
                                 });
                             }
                         }
@@ -164,7 +166,7 @@ function getEntity(address, id, callback) {
         response.json()
             .then(function (value) {
                 callback(value);
-            }, function(rejected) {
+            }, function (rejected) {
                 callback(value);
             });
     }, function (rejected) {
@@ -177,16 +179,15 @@ function verifyAccessControl() {
     let loggedIn = isLoggedIn();
     if (loggedIn) {
         let authPage = body.getAttribute("min-auth");
-        if(authPage != null) {
+        if (authPage != null) {
             let authLevel = getAuthLevel();
-            if(authLevel < authPage) {
+            if (authLevel < authPage) {
                 let route = body.getAttribute("min-auth-router");
-                if(!route)
+                if (!route)
                     throw Error("When using 'min-auth' you must define an attribute 'min-auth-router' with the destiny if not allowed");
                 window.location.href = ROUTES[route];
             }
-        }
-        else if (body.getAttribute("only-out"))
+        } else if (body.getAttribute("only-out"))
             window.location.href = ROUTES[body.getAttribute("only-out")];
     } else {
         if (body.getAttribute("only-in"))
@@ -224,8 +225,10 @@ function updateDOMWithAuthLevel() {
         }
         // Removing elements that shouldn't be shown according to auth level
         let authLevel = getAuthLevel();
-        let unauthorizedElements = Array.from(document.querySelectorAll(`*[min-auth-show]`)).filter(function (el) { return Number(el.getAttribute("min-auth-show")) > authLevel });
-        for(let el of unauthorizedElements) {
+        let unauthorizedElements = Array.from(document.querySelectorAll(`*[min-auth-show]`)).filter(function (el) {
+            return Number(el.getAttribute("min-auth-show")) > authLevel
+        });
+        for (let el of unauthorizedElements) {
             el.style.display = "none";
         }
     } else {
@@ -237,24 +240,24 @@ function updateDOMWithAuthLevel() {
     }
 }
 
-function importScripts() {
-    body = document.querySelector("body");
-    const addresses = [
-        "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js",
-        "https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.13.0/umd/popper.min.js",
-        "https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.min.js",
-        "https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.0/js/mdb.min.js",
-    ];
-    //
-    let index = 0;
-    for (let address of addresses) {
-        let script = document.createElement("script");
-        script.setAttribute("src", addresses[index]);
-        script.setAttribute("type", "text/javascript");
-        body.appendChild(script)
-        index++;
-    }
-}
+// function importScripts() {
+//     // body = document.querySelector("body");
+//     const addresses = [
+//         "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js",
+//         "https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.13.0/umd/popper.min.js",
+//         "https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.0/js/mdb.min.js",
+//         "https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.min.js",
+//     ];
+//     //
+//     let index = 0;
+//     for (let address of addresses) {
+//         let script = document.createElement("script");
+//         script.setAttribute("src", addresses[index]);
+//         script.setAttribute("type", "text/javascript");
+//         head.appendChild(script)
+//         index++;
+//     }
+// }
 
 function updateRouters() {
     routers = Array.from(document.querySelectorAll(".e-router"));
@@ -345,7 +348,6 @@ function onFormSend(e) {
     for (let key of keys) {
         payload[key] = formData.get(key);
     }
-    let method = form.getAttribute("data-method");
     let router = ROUTES[form.getAttribute("data-router")];
     let callback = window[form.getAttribute("data-callback")];
     if (!callback)
@@ -355,12 +357,15 @@ function onFormSend(e) {
         "Content-Type": "application/json",
     };
     let hasId = Boolean(form.id.value);
-    if(isLoggedIn())
+    if (isLoggedIn())
         headers[XTOKEN] = getToken();
+    let method = hasId ? form.getAttribute("data-update-method") : form.getAttribute("data-method");
+    if(hasId && form.id.value.toString().trim())
+        router += `/${form.id.value.toString().trim()}`;
     fetch(router, {
             headers,
             // Verifying if it is an INSERT or UPDATE
-            method: hasId ? form.getAttribute("data-update-method") : form.getAttribute("data-method"),
+            method,
             body: JSON.stringify(payload)
         })
         .then(function (response) {
@@ -391,6 +396,13 @@ function getAuthLevel() {
     return Number(localStorage.getItem(XAUTHLEVEL));
 }
 
+/**
+ * @returns {Number}
+ */
+function getId() {
+    return Number(localStorage.getItem(XID));
+}
+
 function performLogout() {
     let router = ROUTES["api-logout"];
     let tokenHeader = XTOKEN;
@@ -400,11 +412,22 @@ function performLogout() {
         method: "GET",
         headers
     }).then(function (res) {
-        localStorage.removeItem(XTOKEN);
-        localStorage.removeItem(XUSERNAME);
+        clearLocalStorage();
         window.location.href = ROUTES["router-main"];
     }, function (rejected) {
-        alert("Something went out wrong with your logout operation.");
+        alert("Something went out wrong with your logout operation. We've disconnected you, try again later.");
+        clearLocalStorage();
+        window.location.href = ROUTES["router-main"];
     });
+}
+
+/**
+ * Clear all user sensitive data from Local Storage
+ */
+function clearLocalStorage() {
+    localStorage.removeItem(XTOKEN);
+    localStorage.removeItem(XUSERNAME);
+    localStorage.removeItem(XAUTHLEVEL);
+    localStorage.removeItem(XID);
 }
 //#endregion

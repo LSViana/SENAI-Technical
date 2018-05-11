@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link class="e-router router-css-main" rel="stylesheet" type="text/css">
     <link class="e-router router-css-login" rel="stylesheet" type="text/css">
+    <link class="e-router router-css-users" rel="stylesheet" type="text/css">
     <link class="e-router router-css-constants" rel="stylesheet" type="text/css">
     <link class="e-router router-css-universal" rel="stylesheet" type="text/css">
     <link class="e-router router-css-fa" rel="stylesheet" type="text/css">
@@ -15,7 +16,7 @@
     <title>{0} – Welcome</title>
 </head>
 
-<body style="display: none" class="min-height-100vh d-flex flex-column" only-out="router-main">
+<body style="display: none" class="min-height-100vh d-flex flex-column" only-in="router-main" min-auth="2" min-auth-router="router-main">
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark deep-purple accent-3">
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
@@ -29,6 +30,11 @@
                     <a class="nav-item nav-link e-router router-about">About</a>
                 </div>
             </div>
+            <div>
+                <div class="navbar-nav">
+                    <a class="nav-item nav-link active e-router router-login e-text" data-text-out="login" data-text-in="logout" data-action-in="performLogout">{0}</a>
+                </div>
+            </div>
         </nav>
     </header>
     <main class="d-flex flex-column flex-grow-1">
@@ -38,26 +44,31 @@
                 </div>
             </div>
             <section class="d-flex justify-content-center align-items-center w-100 p-4 position-relative">
-                <div class="d-flex flex-column justify-content-center">
-                    <img class="e-logo form-top-image img-w-small img-h-small mr-auto ml-auto p-2 white material-shadow-dark rounded-circle">
+                <div class="d-flex flex-row justify-content-center">
+                    <img class="e-logo form-left-image img-w-small img-h-small mt-auto mb-auto p-2 white material-shadow-dark rounded-circle">
                     <div class="card rounded">
-                        <div class="card-body pt-5">
-                            <form id="login-form" data-automate data-method="POST" data-router="api-login" data-callback="handleLogin">
-                                <p class="h4 text-center deep-purple-text">Sign In</p>
-                                <div class="md-form">
-                                    <i class="fa fa-envelope prefix dark-grey-text"></i>
-                                    <input type="email" id="email" name="email" class="form-control">
-                                    <label for="email" class="font-weight-normal">Your email</label>
-                                </div>
-                                <div class="md-form">
-                                    <i class="fa fa-lock prefix dark-grey-text"></i>
-                                    <input type="password" id="password" name="password" class="form-control">
-                                    <label for="password" class="font-weight-normal">Your password</label>
-                                </div>
-                                <div class="text-center py-4">
-                                    <button class="btn deep-purple accent-4">Login</button>
-                                </div>
-                            </form>
+                        <div class="card-body pt-4 pb-4 pl-5 grey-text">
+                            <div class="mb-4 d-flex flex-row flex-wrap align-items-center">
+                                <h4 class="card-title orange-text w-300px">
+                                    <i class="fa fa-window-restore mr-2"></i>Patrimony Categories</h4>
+                                <a class="e-router router-patcat-form ml-auto mr-3">
+                                    <button type="button" class="btn deep-purple accent-4 rounded">Add Patrimony Category</button>
+                                </a>
+                            </div>
+                            <div class="border-left-deep-purple-accent-4 border-left-2px pl-3 m-2">
+                                <h4>Patrimony Categories</h4>
+                                <table id="patcats-table" class="table table-hover dark-grey-text" data-source="api-patcat">
+                                    <thead>
+                                        <tr>
+                                            <th data-mapping="name">Name</th>
+                                            <th data-table-action="edit" data-icon="fa-pencil">Edit</th>
+                                            <th data-table-action="delete" data-icon="fa-trash">Delete</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -97,7 +108,7 @@
     </footer>
 
     <script class="e-router router-js-form"></script>
-    <script class="e-router router-js-login"></script>
+    <script class="e-router router-js-users"></script>
     <script src="/assets/js/constants.js"></script>
     <script src="/assets/js/universal.js"></script>
     <!-- External -->

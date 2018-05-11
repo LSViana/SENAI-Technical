@@ -5,7 +5,17 @@
  */
 function handleRegisterUser(response, form) {
     if(response.ok) {
-        window.location.href = ROUTES["router-users"];
+        if(form.id && form.id.name && form.id.value == getId()) {
+            let modal = $("#modal-userchanged");
+            if(modal) {
+                modal.modal();
+                modal.on('hidden.bs.modal', function (e) {
+                    performLogout();
+                    })
+            }
+        } else {
+            window.location.href = ROUTES["router-users"];
+        }
     } else {
         let customHeaderKeys = Array.from(response.headers.keys()).filter(function(key) { return key.toLowerCase().startsWith("x-") });
         for(let key of customHeaderKeys) {

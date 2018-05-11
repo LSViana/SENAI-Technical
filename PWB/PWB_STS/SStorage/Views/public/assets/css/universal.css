@@ -111,3 +111,7 @@ table td:first-child {
 .deep-purple.accent-4.active {
     background: #4500a7 !important;
 }
+
+th {
+    text-align: center !important;
+}

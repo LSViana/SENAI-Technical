@@ -14,8 +14,9 @@ const FORM_ERROR_HTML = `<div class="card bg-danger m-0">
  * @param {String} message
  */
 function addFormError(form, inputName, message) {
+    let inputNameLC = inputName.toLowerCase();
     // Getting input
-    let input = document.querySelector(`#${form.getAttribute("id")} *[name='${inputName}']`);
+    let input = Array.from(document.querySelectorAll(`#${form.getAttribute("id")} *[name]`)).filter(function(el) { return el.getAttribute("name").toLowerCase() == inputNameLC; })[0];
     if (!input)
         return;
     // Removing old errors
@@ -86,36 +87,57 @@ function selectRadioButton(radio) {
  */
 function fillForm(form, value) {
     let formId = form.getAttribute("id");
-    if(!formId) {
+    if (!formId) {
         console.log(form);
         throw Error(`The form must have ID`);
     }
-    let inputNames = Array.from(document.querySelectorAll(`#${form.getAttribute("id")} input[name]`)).map(function(el) { return el.name });
+    // Setting Update Text to the Button
+    let button = document.querySelector(`#${form.getAttribute("id")} button[type=submit]`);
+    button.innerText = button.getAttribute("data-update-text");
+    //
+    let inputNames = Array.from(document.querySelectorAll(`#${form.getAttribute("id")} input[name]`)).map(function (el) {
+        return el.name
+    });
     // Getting unique values
-    inputNames = inputNames.filter(function(el, index) { return inputNames.indexOf(el) == index });
-    for(let property in value) {
-        if(form[property]) {
+    inputNames = inputNames.filter(function (el, index) {
+        return inputNames.indexOf(el) == index
+    });
+    for (let property in value) {
+        //
+        if (form[property]) {
             // Removing property from Input Names to avoid required
             let indexOfName = inputNames.indexOf(property);
-            if(indexOfName != -1)
+            if (indexOfName != -1)
                 inputNames.splice(indexOfName, 1);
             // Text Fields
-            if(form[property].name) {
+            if (form[property].name) {
                 /**
                  * @type {HTMLInputElement}
                  */
                 let input = form[property];
-                input.value = value[property];
+                let inputValue = value[property];
+                input.value = inputValue;
+                // Adding "active to the label if there is any data"
+                if (inputValue) {
+                    let inputId = input.getAttribute("id");
+                    if (!inputId) {
+                        console.log(input);
+                        throw Error("The input must have an ID");
+                    }
+                    let label = document.querySelector(`label[for=${inputId}]`);
+                    if(label)
+                        label.classList.add("active");
+                }
             } else {
                 /**
                  * @type {Array}
                  */
                 let obj = form[property];
                 // Radio Buttons
-                if(obj.constructor.name == "RadioNodeList") {
-                    for(let radio of obj) {
-                        if(radio.name == property) {
-                            if(radio.value == value[property]) {
+                if (obj.constructor.name == "RadioNodeList") {
+                    for (let radio of obj) {
+                        if (radio.name == property) {
+                            if (radio.value == value[property]) {
                                 selectRadioButton(radio.parentElement);
                             }
                         }
@@ -125,9 +147,9 @@ function fillForm(form, value) {
         }
     }
     // Removing required from the not needed input fields, according to values received from API
-    for(let inputName of inputNames) {
+    for (let inputName of inputNames) {
         let input = form[inputName];
-        if(input && input.name) {
+        if (input && input.name) {
             input.removeAttribute("required");
         }
     }
@@ -137,10 +159,10 @@ function verifyEntityIdPresence() {
     let location = new URL(window.location.href);
     let id = location.searchParams.get("id");
     // Verifying ID presence
-    if(id) {
+    if (id) {
         let forms = Array.from(document.querySelectorAll("form[data-router]"));
-        for(let form of forms) {
-            let value = getEntity(ROUTES[form.getAttribute("data-router")], id, function(value) {
+        for (let form of forms) {
+            let value = getEntity(ROUTES[form.getAttribute("data-router")], id, function (value) {
                 fillForm(form, value);
             });
         }
