@@ -60,6 +60,7 @@ const ROUTES = {
   "router-js-users": "/assets/js/users.js",
   "router-js-envs": "/assets/js/envs.js",
   "router-js-patcats": "/assets/js/patcats.js",
+  "router-js-pats": "/assets/js/pats.js",
   // API
   "api-login": SERVER + API_PREFIX + USERS_PREFIX + "/authenticate",
   "api-logout": SERVER + API_PREFIX + USERS_PREFIX + "/logout",

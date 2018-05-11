@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="intro.api.senai.com.apiusage.activities.StartActivity">
+    tools:context="intro.api.senai.com.apiusage.activities.CEPActivity">
 
     <TextView
         android:id="@+id/textView"

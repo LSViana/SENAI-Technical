@@ -16,14 +16,13 @@ const FORM_ERROR_HTML = `<div class="card bg-danger m-0">
 function addFormError(form, inputName, message) {
     let inputNameLC = inputName.toLowerCase();
     // Getting input
-    let input = Array.from(document.querySelectorAll(`#${form.getAttribute("id")} *[name]`)).filter(function(el) { return el.getAttribute("name").toLowerCase() == inputNameLC; })[0];
+    let input = Array.from(document.querySelectorAll(`#${form.getAttribute("id")} *[name]`)).filter(function (el) {
+        return el.getAttribute("name").toLowerCase() == inputNameLC;
+    })[0];
     if (!input)
         return;
     // Removing old errors
-    let oldErrors = Array.from(document.querySelectorAll(`#${form.getAttribute("id")} div[data-entity-error=${inputName}]`));
-    for (let oldError of oldErrors) {
-        oldError.remove();
-    }
+    removeFormInputErrors(form, inputName);
     //
     if (!form.getAttribute("id")) {
         console.log(form);
@@ -45,6 +44,21 @@ let inputRadios = Array.from(document.querySelectorAll("label input[type=radio]"
 });
 for (let input of inputRadios) {
     input.addEventListener("click", handleRadioLabelClick);
+}
+
+function removeFormErrors(form) {
+    let oldErrors = Array.from(document.querySelectorAll(`#${form.getAttribute("id")} div[data-entity-error]`));
+    for (let oldError of oldErrors) {
+        oldError.remove();
+    }
+}
+
+function removeFormInputErrors(form, inputName) {
+    let oldErrors = Array.from(document.querySelectorAll(`#${form.getAttribute("id")} div[data-entity-error=${inputName}]`));
+    for (let oldError of oldErrors) {
+        oldError.remove();
+    }
+    return oldErrors;
 }
 
 /**
@@ -103,7 +117,6 @@ function fillForm(form, value) {
         return inputNames.indexOf(el) == index
     });
     for (let property in value) {
-        //
         if (form[property]) {
             // Removing property from Input Names to avoid required
             let indexOfName = inputNames.indexOf(property);
@@ -117,16 +130,21 @@ function fillForm(form, value) {
                 let input = form[property];
                 let inputValue = value[property];
                 input.value = inputValue;
-                // Adding "active to the label if there is any data"
-                if (inputValue) {
-                    let inputId = input.getAttribute("id");
-                    if (!inputId) {
-                        console.log(input);
-                        throw Error("The input must have an ID");
+                let idParts = input.id.split(".");
+                if (idParts.length < 2) {
+                    // Adding "active to the label if there is any data"
+                    if (inputValue) {
+                        let inputId = input.getAttribute("id");
+                        if (!inputId) {
+                            console.log(input);
+                            throw Error("The input must have an ID");
+                        }
+                        let label = document.querySelector(`label[for=${inputId}]`);
+                        if (label)
+                            label.classList.add("active");
                     }
-                    let label = document.querySelector(`label[for=${inputId}]`);
-                    if(label)
-                        label.classList.add("active");
+                } else {
+                    fillInputDropdown(input);
                 }
             } else {
                 /**
@@ -155,16 +173,79 @@ function fillForm(form, value) {
     }
 }
 
+/**
+ * Input element that corresponds to the DropDown to be filled
+ * @param {HTMLInputElement} input 
+ */
+function fillInputDropdown(input) {
+    let buttonDropdown = Array.from(document.querySelectorAll(`*[data-input-id="${input.getAttribute("id")}"]`))[0];
+    let entityRouter = ROUTES[buttonDropdown.getAttribute("data-router")];
+    let propertyLabels = buttonDropdown.getAttribute("data-element-label").split(" ");
+    let listElement = document.getElementById(`${buttonDropdown.getAttribute("data-list-element")}`);
+    if (!listElement)
+        throw Error(`ID not found: ${buttonDropdown.getAttribute("data-list-element")}`);
+    let token = getToken();
+    let headers = {};
+    headers[XTOKEN] = token;
+    fetch(entityRouter, {
+        headers,
+        method: "GET"
+    }).then(function (response) {
+        response.json().then(function (value) {
+            for (let item of value) {
+                let text = "";
+                for (let property of propertyLabels)
+                    text += item[property] + " ";
+                let aEl = document.createElement("a");
+                aEl.setAttribute("class", "dropdown-item");
+                aEl.innerText = text;
+                aEl.setAttribute("data-entity-id", item.id);
+                // Adding handlers
+                aEl.addEventListener("click", function () {
+                    /**
+                     * @type {HTMLElement}
+                     */
+                    let el = this;
+                    //
+                    buttonDropdown.innerText = text;
+                    input.value = el.getAttribute("data-entity-id");
+                    input.entity = item;
+                });
+                // Appending elements to the List Element
+                listElement.appendChild(aEl);
+            }
+        }, function (rejected) {
+            console.error(rejected);
+        });
+    }, function (rejected) {
+        console.error(rejected);
+    });
+}
+
 function verifyEntityIdPresence() {
     let location = new URL(window.location.href);
     let id = location.searchParams.get("id");
+    let forms = Array.from(document.querySelectorAll("form[data-router]"));
     // Verifying ID presence
     if (id) {
-        let forms = Array.from(document.querySelectorAll("form[data-router]"));
         for (let form of forms) {
             let value = getEntity(ROUTES[form.getAttribute("data-router")], id, function (value) {
                 fillForm(form, value);
             });
+        }
+    }
+    // Filling all DropDown properties
+    for (let form of forms) {
+        if (!form.getAttribute("id")) {
+            console.log(form);
+            throw Error("Form must have an ID");
+        }
+        let inputs = Array.from(document.querySelectorAll(`#${form.getAttribute("id")} input[id]`));
+        for(let input of inputs) {
+            let idParts = input.getAttribute("id").split(".");
+            if(idParts.length > 1) {
+                fillInputDropdown(input);
+            }
         }
     }
 }
