@@ -1,6 +1,7 @@
 package senai.sstorage.service;
 
 import java.util.Collection;
+import java.util.Date;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,7 @@ public class PatrimonyService {
 		if(br.hasErrors()) {
 			throw new ValidationException("Validation Exception");
 		}
+		obj.setDatetime(new Date());
 		patrimonyDAO.persist(obj);
 		return obj;
 	}

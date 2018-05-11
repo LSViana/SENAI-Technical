@@ -342,12 +342,31 @@ function updateTexts() {
  */
 function onFormSend(e) {
     let form = e.srcElement;
+    // Removing form errors before sending
+    removeFormErrors(form);
+    //
     let formData = new FormData(form);
     let keys = Array.from(formData.keys());
     let payload = {};
     for (let key of keys) {
-        payload[key] = formData.get(key);
+        let input = form[key];
+        if(input.constructor.name == "RadioNodeList") {
+            payload[key] = input.value;
+        } else if(input) {
+            let idParts = input.getAttribute("id").split(".");
+            if (idParts.length < 2) {
+                payload[key] = formData.get(key);
+            } else {
+                if(input.entity && input.entity.id) {                
+                    payload[key] = input.entity;
+                } else {
+                    addFormError(form, input.getAttribute("name"), "You must fill this field!");
+                    return;
+                }
+            }
+        }
     }
+    //
     let router = ROUTES[form.getAttribute("data-router")];
     let callback = window[form.getAttribute("data-callback")];
     if (!callback)
@@ -360,7 +379,7 @@ function onFormSend(e) {
     if (isLoggedIn())
         headers[XTOKEN] = getToken();
     let method = hasId ? form.getAttribute("data-update-method") : form.getAttribute("data-method");
-    if(hasId && form.id.value.toString().trim())
+    if (hasId && form.id.value.toString().trim())
         router += `/${form.id.value.toString().trim()}`;
     fetch(router, {
             headers,

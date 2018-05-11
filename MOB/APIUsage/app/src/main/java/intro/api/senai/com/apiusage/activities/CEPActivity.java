@@ -10,22 +10,28 @@ import android.widget.Toast;
 
 import intro.api.senai.com.apiusage.R;
 import intro.api.senai.com.apiusage.models.CEP;
+import intro.api.senai.com.apiusage.retrofit.config.RetrofitConfig;
 import intro.api.senai.com.apiusage.utils.AppUtils;
+import intro.api.senai.com.apiusage.utils.CEPRestService;
 import intro.api.senai.com.apiusage.utils.HttpService;
 
-public class StartActivity extends AppCompatActivity {
+public class CEPActivity extends AppCompatActivity {
 
     private TextView tvResult;
     private EditText etCEP;
     private Button btnQuery;
     private HttpService httpService;
+    private RetrofitConfig retroFitConfig;
+    private CEPRestService cepRestService;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
         // Starting fields
-        httpService = new HttpService();
+        retroFitConfig = new RetrofitConfig();
+        cepRestService = retroFitConfig.getCEPRest();
+
         // Getting Components
         etCEP = findViewById(R.id.etCEP);
         btnQuery = findViewById(R.id.btnQuery);
@@ -36,7 +42,7 @@ public class StartActivity extends AppCompatActivity {
             public void onClick(View view) {
                 CEP cepFromAPI = httpService.getObject(AppUtils.API_CEP_URL + "/" + etCEP.getText(), CEP.class);
                 if(cepFromAPI == null) {
-                    Toast.makeText(StartActivity.this, R.string.cepNotFound, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(CEPActivity.this, R.string.cepNotFound, Toast.LENGTH_SHORT).show();
                 } else {
                     tvResult.setText(cepFromAPI.toString());
                 }

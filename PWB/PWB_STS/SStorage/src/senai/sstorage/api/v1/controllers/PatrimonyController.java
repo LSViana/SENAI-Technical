@@ -54,7 +54,7 @@ public class PatrimonyController extends TemplateController {
 					return internalError(e);
 				}
 			} catch (ValidationException e) {
-				return validationError(e);
+				return validationError(e, br);
 			}
 		} catch (UnauthorizedException e) {
 			return unauthorized(e);
