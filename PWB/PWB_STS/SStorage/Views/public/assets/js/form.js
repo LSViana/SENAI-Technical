@@ -144,7 +144,11 @@ function fillForm(form, value) {
                             label.classList.add("active");
                     }
                 } else {
-                    fillInputDropdown(input);
+                    // Adding options to DropDown
+                    fillInputDropdown(input, function () {
+                        let aEl = document.querySelector(`a[data-entity-item="${property}"][data-entity-id="${value[property].id}"]`);
+                        selectDropDownItem(aEl);
+                    });
                 }
             } else {
                 /**
@@ -176,8 +180,9 @@ function fillForm(form, value) {
 /**
  * Input element that corresponds to the DropDown to be filled
  * @param {HTMLInputElement} input 
+ * @param {()} callback
  */
-function fillInputDropdown(input) {
+function fillInputDropdown(input, callback) {
     let buttonDropdown = Array.from(document.querySelectorAll(`*[data-input-id="${input.getAttribute("id")}"]`))[0];
     let entityRouter = ROUTES[buttonDropdown.getAttribute("data-router")];
     let propertyLabels = buttonDropdown.getAttribute("data-element-label").split(" ");
@@ -200,26 +205,38 @@ function fillInputDropdown(input) {
                 aEl.setAttribute("class", "dropdown-item");
                 aEl.innerText = text;
                 aEl.setAttribute("data-entity-id", item.id);
+                aEl.setAttribute("data-entity-item", input.name);
+                aEl.options = {
+                    button: buttonDropdown,
+                    input: input,
+                    item: item
+                };
                 // Adding handlers
                 aEl.addEventListener("click", function () {
-                    /**
-                     * @type {HTMLElement}
-                     */
-                    let el = this;
-                    //
-                    buttonDropdown.innerText = text;
-                    input.value = el.getAttribute("data-entity-id");
-                    input.entity = item;
+                    selectDropDownItem(aEl);
                 });
                 // Appending elements to the List Element
                 listElement.appendChild(aEl);
             }
+            // End fill of operations
+            if (callback)
+                callback();
         }, function (rejected) {
             console.error(rejected);
         });
     }, function (rejected) {
         console.error(rejected);
     });
+}
+
+/**
+ * Selects the anchor element, changes its button text and input value
+ * @param {HTMLAnchorElement} aEl The <a> (anchor) element to select
+ */
+function selectDropDownItem(aEl) {
+    aEl.options.button.innerText = aEl.innerText;
+    aEl.options.input.value = aEl.getAttribute("data-entity-id");
+    aEl.options.input.entity = aEl.options.item;
 }
 
 function verifyEntityIdPresence() {
@@ -240,11 +257,14 @@ function verifyEntityIdPresence() {
             console.log(form);
             throw Error("Form must have an ID");
         }
-        let inputs = Array.from(document.querySelectorAll(`#${form.getAttribute("id")} input[id]`));
-        for(let input of inputs) {
-            let idParts = input.getAttribute("id").split(".");
-            if(idParts.length > 1) {
-                fillInputDropdown(input);
+        // If there is no ID, it is, the Form hasn't been filled, if it did, avoid this operation because it is going to duplicate all drop down items
+        if (!new URL(window.location.href).searchParams.get("id")) {
+            let inputs = Array.from(document.querySelectorAll(`#${form.getAttribute("id")} input[id]`));
+            for (let input of inputs) {
+                let idParts = input.getAttribute("id").split(".");
+                if (idParts.length > 1) {
+                    fillInputDropdown(input, null);
+                }
             }
         }
     }

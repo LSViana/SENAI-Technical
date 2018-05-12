@@ -49,7 +49,7 @@
                     <div class="card rounded">
                         <div class="card-body pt-4 pb-4 pl-5 grey-text">
                             <div class="mb-4 d-flex flex-row flex-wrap align-items-center">
-                                <h4 class="card-title amber-text accent-1">
+                                <h4 class="card-title amber-text">
                                     <i class="fa fa-dropbox mr-2"></i>Patrimonies</h4>
                                 <a class="e-router router-pat-form ml-auto mr-3">
                                     <button type="button" class="btn deep-purple accent-4 rounded ml-4">Add Patrimony</button>
@@ -61,6 +61,8 @@
                                     <thead>
                                         <tr>
                                             <th data-mapping="name">Name</th>
+                                            <th data-mapping="patrimonyCategory.name">Patrimony Category</th>
+                                            <th data-mapping="user.firstName user.lastName">User Name</th>
                                             <th data-table-action="edit" data-icon="fa-pencil">Edit</th>
                                             <th data-table-action="delete" data-icon="fa-trash">Delete</th>
                                         </tr>
@@ -69,6 +71,16 @@
                                     </tbody>
                                 </table>
                             </div>
+                            <a class="e-router router-patcats ml-auto">
+                                <button type="button" class="btn amber accent-4 rounded">
+                                        <i class="fa fa-window-maximize mr-2"></i>Access Patrimony Categories
+                                </button>
+                            </a>
+                            <a class="e-router router-patitems ml-auto">
+                                    <button type="button" class="btn amber accent-4 rounded">
+                                            <i class="fa fa-window-maximize mr-2"></i>Access Patrimony Items
+                                    </button>
+                                </a>
                         </div>
                     </div>
                 </div>

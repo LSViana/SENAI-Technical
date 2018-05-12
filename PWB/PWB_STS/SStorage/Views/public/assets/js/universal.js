@@ -111,7 +111,16 @@ function performTableLists() {
                         for (let mapping of mappings) {
                             let td = document.createElement("td");
                             for (let property of mapping) {
-                                td.innerText += item[property] + " ";
+                                let propertyParts = property.split(".");
+                                if(propertyParts.length < 2)
+                                    td.innerText += item[property] + " ";
+                                else {
+                                    let value = item[propertyParts[0]];
+                                    for (let index = 1; index < propertyParts.length; index++) {
+                                        value = value[propertyParts[index]];
+                                    }
+                                    td.innerText += value + " ";
+                                }
                             }
                             tr.appendChild(td);
                         }

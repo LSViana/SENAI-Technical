@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.auth0.jwt.interfaces.DecodedJWT;
+
 import senai.sstorage.api.TemplateController;
 import senai.sstorage.authentication.Authority;
 import senai.sstorage.authentication.JWTManager;
@@ -24,7 +26,9 @@ import senai.sstorage.exceptions.EntityNotFoundException;
 import senai.sstorage.exceptions.UnauthorizedException;
 import senai.sstorage.exceptions.ValidationException;
 import senai.sstorage.models.Patrimony;
+import senai.sstorage.models.User;
 import senai.sstorage.service.PatrimonyService;
+import senai.sstorage.service.UserService;
 import senai.sstorage.utils.WebUtils;
 
 @RestController
@@ -37,15 +41,25 @@ public class PatrimonyController extends TemplateController {
 	public PatrimonyService service;
 
 	@Autowired
+	public UserService userService;
+
+	@Autowired
 	public WebUtils webUtils;
 
 	@PostMapping
-	public ResponseEntity<Object> create(@RequestHeader(name = HEADER_TOKEN) String token, @RequestBody @Valid Patrimony patrimony,
-			BindingResult br) {
+	public ResponseEntity<Object> create(@RequestHeader(name = HEADER_TOKEN) String token,
+			@RequestBody @Valid Patrimony patrimony, BindingResult br) {
 		try {
 			JWTManager.validateToken(token, Authority.ADMINISTRATOR);
 			//
 			try {
+				if (patrimony.getUser() == null) {
+					// Setting user from Token
+					DecodedJWT decoded = JWTManager.decodeToken(token);
+					String userIdString = decoded.getClaim(HEADER_USER_ID).asString();
+					User user = userService.read(Long.parseLong(userIdString));
+					patrimony.setUser(user);
+				}
 				service.create(patrimony, br);
 				try {
 					return ResponseEntity.created(webUtils.getUri(API_V1 + ADDRESS + "/" + patrimony.getId()))
@@ -94,9 +108,10 @@ public class PatrimonyController extends TemplateController {
 			return internalError(e);
 		}
 	}
-	
+
 	@GetMapping("/{id}")
-	public ResponseEntity<Object> get(@RequestHeader(name = HEADER_TOKEN) String token, @PathVariable(name = "id") Long id) {
+	public ResponseEntity<Object> get(@RequestHeader(name = HEADER_TOKEN) String token,
+			@PathVariable(name = "id") Long id) {
 		try {
 			JWTManager.validateToken(token, Authority.ADMINISTRATOR);
 			//
@@ -110,20 +125,29 @@ public class PatrimonyController extends TemplateController {
 			return unauthorized(e);
 		}
 	}
-	
+
 	@PutMapping("/{id}")
-	public ResponseEntity<Object> update(@RequestHeader(name = HEADER_TOKEN) String token, @PathVariable(name = "id") Long id, @RequestBody @Valid Patrimony patrimony, BindingResult br) {
+	public ResponseEntity<Object> update(@RequestHeader(name = HEADER_TOKEN) String token,
+			@PathVariable(name = "id") Long id, @RequestBody @Valid Patrimony patrimony, BindingResult br) {
 		try {
 			JWTManager.validateToken(token, Authority.ADMINISTRATOR);
 			//
 			try {
+				// Setting user from Token
+				DecodedJWT decoded = JWTManager.decodeToken(token);
+				String userIdString = decoded.getClaim(HEADER_USER_ID).asString();
+				User user = userService.read(Long.parseLong(userIdString));
+				if (patrimony.getUser() == null) {
+					Patrimony fromDb = service.read(id);
+					patrimony.setUser(fromDb.getUser());
+				}
 				Patrimony updated = service.update(id, patrimony, br);
 				//
 				return ResponseEntity.ok(updated);
 			} catch (EntityNotFoundException e) {
 				return entityNotFound(e);
 			} catch (ValidationException e) {
-				return validationError(e);
+				return validationError(e, br);
 			}
 		} catch (UnauthorizedException e) {
 			return unauthorized(e);

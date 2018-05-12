@@ -52,7 +52,7 @@ public class PatrimonyService {
 			throw new EntityNotFoundException("Patrimony ID Not Found");
 		if(br.hasErrors())
 			throw new ValidationException("Validation Exception");
-		BeanUtils.copyProperties(obj, fromDb, "id");
+		BeanUtils.copyProperties(obj, fromDb, "id", "datetime");
 		patrimonyDAO.update(fromDb);
 		return fromDb;
 	}

@@ -49,18 +49,20 @@
                     <div class="card rounded">
                         <div class="card-body pt-4 pb-4 pl-5 grey-text">
                             <div class="mb-4 d-flex flex-row flex-wrap align-items-center">
-                                <h4 class="card-title orange-text w-300px">
-                                    <i class="fa fa-window-restore mr-2"></i>Patrimony Categories</h4>
-                                <a class="e-router router-patcat-form ml-auto mr-3">
-                                    <button type="button" class="btn deep-purple accent-4 rounded">Add Patrimony Category</button>
+                                <h4 class="card-title amber-text">
+                                    <i class="fa fa-dropbox mr-2"></i>Patrimony Items</h4>
+                                <a class="e-router router-patitem-form ml-auto mr-3">
+                                    <button type="button" class="btn deep-purple accent-4 rounded ml-4">Add Patrimony Item</button>
                                 </a>
                             </div>
                             <div class="border-left-deep-purple-accent-4 border-left-2px pl-3 m-2">
-                                <h4>Patrimony Categories</h4>
-                                <table id="patcats-table" class="table table-hover dark-grey-text" data-source="api-patcat">
+                                <h4>Patrimony</h4>
+                                <table id="patitems-table" class="table table-hover dark-grey-text" data-source="api-patitem">
                                     <thead>
                                         <tr>
-                                            <th data-mapping="name">Name</th>
+                                            <th data-mapping="id">Identity</th>
+                                            <th data-mapping="patrimony.name">Patrimony Name</th>
+                                            <th data-mapping="environment.name">Environment</th>
                                             <th data-table-action="edit" data-icon="fa-pencil">Edit</th>
                                             <th data-table-action="delete" data-icon="fa-trash">Delete</th>
                                         </tr>
@@ -71,7 +73,7 @@
                             </div>
                             <a class="e-router router-pats ml-auto">
                                 <button type="button" class="btn amber accent-4 rounded">
-                                    <i class="fa fa-window-maximize mr-2"></i>Access Patrimonies
+                                        <i class="fa fa-window-maximize mr-2"></i>Access Patrimonies
                                 </button>
                             </a>
                         </div>
@@ -113,7 +115,7 @@
     </footer>
 
     <script class="e-router router-js-form"></script>
-    <script class="e-router router-js-users"></script>
+    <script class="e-router router-js-pats"></script>
     <script src="/assets/js/constants.js"></script>
     <script src="/assets/js/universal.js"></script>
     <!-- External -->
