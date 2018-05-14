@@ -13,7 +13,7 @@ import senai.sstorage.models.PatrimonyItem;
 @Repository
 @Transactional
 public class PatrimonyItemJPA implements PatrimonyItemDAO {
-	
+
 	@Autowired
 	private SessionFactory factory;
 
@@ -24,8 +24,9 @@ public class PatrimonyItemJPA implements PatrimonyItemDAO {
 
 	@Override
 	public PatrimonyItem search(Long id) {
-		List<PatrimonyItem> patItems = factory.getCurrentSession().createQuery("FROM PatrimonyItem pi WHERE pi.id = :id").setParameter("id", id).list();
-		if(patItems.size() > 0)
+		List<PatrimonyItem> patItems = factory.getCurrentSession()
+				.createQuery("FROM PatrimonyItem pi WHERE pi.id = :id").setParameter("id", id).list();
+		if (patItems.size() > 0)
 			return patItems.get(0);
 		return null;
 	}
@@ -48,6 +49,17 @@ public class PatrimonyItemJPA implements PatrimonyItemDAO {
 	@Override
 	public void persist(PatrimonyItem obj) {
 		factory.getCurrentSession().persist(obj);
+	}
+
+	@Override
+	public void save(PatrimonyItem obj) {
+		factory.getCurrentSession().save(obj);
+	}
+
+	@Override
+	public List<PatrimonyItem> searchByPatrimony(Long id) {
+		return factory.getCurrentSession().createQuery("FROM PatrimonyItem pi WHERE pi.patrimony.id = :id")
+				.setParameter("id", id).list();
 	}
 
 }

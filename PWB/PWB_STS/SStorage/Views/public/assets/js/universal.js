@@ -18,6 +18,8 @@ function onLoadUniversal(ev) {
     head = document.querySelector("head");
     // Scripts
     // importScripts();
+    // Routers
+    updateRouters();
     // Verifying Access Control
     verifyAccessControl();
     // Title
@@ -30,8 +32,6 @@ function onLoadUniversal(ev) {
     updateTexts();
     // Names
     updateNames();
-    // Routers
-    updateRouters();
     // Forms
     addFormEventHandler();
     // Showing Body
@@ -74,6 +74,12 @@ function performTableLists() {
             console.error(`Invalid 'data-source' specified: ${table.getAttribute("data-source")}`);
             continue;
         }
+        // Verifying if it is a many-to-one table
+        let manyToOneId = new URL(window.location.href).searchParams.get("id");
+        if (manyToOneId && table.getAttribute("data-many-one")) {
+            route = route.replace("{id}", manyToOneId);
+        }
+        //
         let tableHeaders = Array.from(document.querySelectorAll(`#${tableId} > thead > tr > th`));
         let mappings = [];
         let actions = {};
@@ -85,17 +91,32 @@ function performTableLists() {
                 for (let mappingPart of mappingParts) {
                     mappings[index].push(mappingPart);
                 }
+                // Verifying any data-format
+                let dataFormat = header.getAttribute("data-format");
+                if (dataFormat) {
+                    mappings[index].dataFormat = dataFormat;
+                }
+
             } else if (header.getAttribute("data-table-action")) {
-                actions[header.getAttribute("data-table-action")] = header.getAttribute("data-icon");
+                let dataTableAction = header.getAttribute("data-table-action");
+                actions[dataTableAction] = {};
+                //
+                actions[dataTableAction].icon = header.getAttribute("data-icon");
+                // Verifying data-routers
+                let dataRouter = header.getAttribute("data-router");
+                if (dataRouter) {
+                    actions[dataTableAction].dataRouter = dataRouter;
+                }
             }
         }
         // Getting Path to Edit Page, According to the Current Entity
         let location = window.location;
-        let editAddress;
+        let baseAddress;
         if (location.port)
-            editAddress = [location.protocol + "//" + location.hostname + ":" + location.port + location.pathname.substr(0, location.pathname.lastIndexOf("/"))].join("") + EDITPAGE + `?id={0}`;
+            baseAddress = [location.protocol + "//" + location.hostname + ":" + location.port + location.pathname.substr(0, location.pathname.lastIndexOf("/"))].join("")
         else
-            editAddress = [location.protocol + "//" + location.hostname + location.pathname.substr(0, location.pathname.lastIndexOf("/"))].join("") + EDITPAGE + `?id={0}`;
+            baseAddress = [location.protocol + "//" + location.hostname + location.pathname.substr(0, location.pathname.lastIndexOf("/"))].join("");
+        let editAddress = baseAddress + EDITPAGE + `?id={0}`;
         // Getting data from API
         let headers = {};
         headers[XTOKEN] = getToken();
@@ -106,55 +127,111 @@ function performTableLists() {
             response.json()
                 .then(function (data) {
                     for (let item of data) {
+                        // Building the Table Row
                         let tr = document.createElement("tr");
                         tr.setAttribute("data-entity-id", item.id);
                         for (let mapping of mappings) {
                             let td = document.createElement("td");
                             for (let property of mapping) {
                                 let propertyParts = property.split(".");
-                                if(propertyParts.length < 2)
-                                    td.innerText += item[property] + " ";
-                                else {
-                                    let value = item[propertyParts[0]];
-                                    for (let index = 1; index < propertyParts.length; index++) {
-                                        value = value[propertyParts[index]];
-                                    }
-                                    td.innerText += value + " ";
+                                let value = item[propertyParts[0]];
+                                for (let index = 1; index < propertyParts.length; index++) {
+                                    value = value[propertyParts[index]];
                                 }
+                                if (mapping.dataFormat) {
+                                    let dataFormat = mapping.dataFormat;
+                                    //
+                                    switch (dataFormat) {
+                                        case "datetime":
+                                            value = new Date(value).toLocaleString();
+                                            break;
+                                    }
+                                }
+                                td.innerText += value + " ";
                             }
                             tr.appendChild(td);
                         }
-                        for (let action in actions) {
+                        for (let actionName in actions) {
+                            let action = actions[actionName];
                             // Building elements
                             let td = document.createElement("td");
-                            td.setAttribute("data-td-action", action);
+                            td.setAttribute("data-td-action", action.icon);
                             let aEl = document.createElement("a");
                             aEl.classList.add("d-flex");
                             aEl.classList.add("justify-content-center");
                             let fa_Icon = document.createElement("i");
                             fa_Icon.classList.add("fa");
-                            fa_Icon.classList.add(actions[action]);
+                            fa_Icon.classList.add(action.icon);
                             aEl.appendChild(fa_Icon);
                             td.appendChild(aEl);
                             tr.appendChild(td);
                             // Adding custom routes to @EDIT and @DELETE operations
-                            if (action == "edit") {
+                            if (actionName == "edit") {
                                 aEl.setAttribute("href", editAddress.replace("{0}", item.id));
-                            } else if (action == "delete") {
+                            } else if (actionName == "delete") {
                                 aEl.addEventListener("click", function (ev) {
                                     deleteEntity(route, item.id, function (response) {
                                         if (response.status == 200) tr.remove();
                                     });
                                 });
+                            } else {
+                                let dataRouter = action.dataRouter;
+                                if (!dataRouter) {
+                                    throw Error(`You must provide a 'data-router' attribute to use with ${actionName}`);
+                                }
+                                aEl.setAttribute("href", ROUTES[dataRouter] + `?id=${item.id}`);
                             }
                         }
                         tbody.appendChild(tr);
                     }
+                    //
+                    let manyOneElements = Array.from(document.querySelectorAll(".e-many-one"));
+                    if (manyOneElements.length > 0)
+                        performEntityOneOperations(data, manyOneElements, manyToOneId);
                 }, function (error) {
                     console.error(error);
                 })
         }, function (rejected) {
             console.error(rejected);
+        });
+    }
+}
+
+/**
+ * Perform any updates to page with 
+ * @param {Object[]} data 
+ * @param {HTMLElement[]} elements 
+ */
+function performEntityOneOperations(data, elements, oneId) {
+    for (let element of elements) {
+        let fallback = element.getAttribute("data-many-one-fallback");
+        let router = element.getAttribute("data-router-one");
+        getEntity(ROUTES[router], oneId, function (prototype) {
+            let mappings = element.getAttribute("data-mapping").split(" ");
+            let mappingIndex = 0;
+            for (let mapping of mappings) {
+                if (!mapping) {
+                    console.error(`Attribute 'mapping' not found at the following element:`);
+                    console.log(element);
+                } else {
+                    let mappingParts = mapping.split(".");
+                    let value;
+                    if (prototype && prototype.id) {
+                        value = prototype[mappingParts[0]];
+                        for (let index = 1; index < mappingParts.length; index++) {
+                            value = value[mappingParts[index]];
+                        }
+                    } else {
+                        value = fallback;
+                    }
+                    if (value == null || value == undefined) {
+                        throw Error(`Invalid property value at ${mapping}`);
+                    } else {
+                        element.innerText = element.innerText.replace(`{${mappingIndex}}`, value);
+                    }
+                }
+                mappingIndex++;
+            }
         });
     }
 }
@@ -176,10 +253,10 @@ function getEntity(address, id, callback) {
             .then(function (value) {
                 callback(value);
             }, function (rejected) {
-                callback(value);
+                callback(rejected);
             });
     }, function (rejected) {
-        callback(value);
+        callback(rejected);
     });
 }
 
@@ -359,14 +436,14 @@ function onFormSend(e) {
     let payload = {};
     for (let key of keys) {
         let input = form[key];
-        if(input.constructor.name == "RadioNodeList") {
+        if (input.constructor.name == "RadioNodeList") {
             payload[key] = input.value;
-        } else if(input) {
+        } else if (input) {
             let idParts = input.getAttribute("id").split(".");
             if (idParts.length < 2) {
                 payload[key] = formData.get(key);
             } else {
-                if(input.entity && input.entity.id) {                
+                if (input.entity && input.entity.id) {
                     payload[key] = input.entity;
                 } else {
                     addFormError(form, input.getAttribute("name"), "You must fill this field!");
@@ -374,6 +451,14 @@ function onFormSend(e) {
                 }
             }
         }
+    }
+    // Verifying custom send attribute
+    if(form.getAttribute("data-only-callback")) {
+        let customCallback = window[form.getAttribute("data-callback")];
+        if(!customCallback)
+            throw Error(`Invalid function name '${form.getAttribute("data-callback")}'`);
+        customCallback(form, payload);
+        return;
     }
     //
     let router = ROUTES[form.getAttribute("data-router")];
@@ -387,8 +472,8 @@ function onFormSend(e) {
     let hasId = Boolean(form.id.value);
     if (isLoggedIn())
         headers[XTOKEN] = getToken();
-    let method = hasId ? form.getAttribute("data-update-method") : form.getAttribute("data-method");
-    if (hasId && form.id.value.toString().trim())
+    let method = (form.getAttribute("data-manual-id") || !hasId) ? form.getAttribute("data-method") : form.getAttribute("data-update-method");
+    if (hasId && form.id.value.toString().trim() && !form.getAttribute("data-manual-id"))
         router += `/${form.id.value.toString().trim()}`;
     fetch(router, {
             headers,

@@ -40,10 +40,12 @@ const ROUTES = {
   "router-movs": "/views/movs/movs.html",
   "router-mov-form": "/views/movs/form.html",
   "router-pats": "/views/pats/pats.html",
+  "router-patsitems": "/views/pats/patitems.html",
   "router-pat-form": "/views/pats/form.html",
   "router-patcats": "/views/patcats/patcats.html",
   "router-patcat-form": "/views/patcats/form.html",
   "router-patitems": "/views/patitems/patitems.html",
+  "router-patitem-move": "/views/patitems/move.html",
   "router-patitem-form": "/views/patitems/form.html",
   // CSS
   "router-css-main": "/assets/css/main.css",
@@ -61,6 +63,9 @@ const ROUTES = {
   "router-js-envs": "/assets/js/envs.js",
   "router-js-patcats": "/assets/js/patcats.js",
   "router-js-pats": "/assets/js/pats.js",
+  "router-js-patsitems": "/assets/js/patsitems.js",
+  "router-js-patitems": "/assets/js/patitems.js",
+  "router-js-patitem-move": "/assets/js/patitem-move.js",
   // API
   "api-login": SERVER + API_PREFIX + USERS_PREFIX + "/authenticate",
   "api-logout": SERVER + API_PREFIX + USERS_PREFIX + "/logout",
@@ -68,8 +73,10 @@ const ROUTES = {
   "api-env": SERVER + API_PREFIX + ENV_PREFIX,
   "api-mov": SERVER + API_PREFIX + MOV_PREFIX,
   "api-pat": SERVER + API_PREFIX + PAT_PREFIX,
+  "api-patsitems": SERVER + API_PREFIX + PAT_PREFIX + "/items/{id}",
   "api-patcat": SERVER + API_PREFIX + PATCAT_PREFIX,
   "api-patitem": SERVER + API_PREFIX + PATITEM_PREFIX,
+  "api-patitem-move": SERVER + API_PREFIX + PATITEM_PREFIX + "/{0}/{1}/{2}",
 };
 //#endregion
 

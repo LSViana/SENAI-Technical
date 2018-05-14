@@ -1,5 +1,9 @@
 package senai.sstorage.models;
 
+import java.util.Date;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,15 +17,14 @@ import javax.persistence.Table;
 public class PatrimonyItem {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "id_patrimony")
 	@javax.validation.constraints.NotNull
 	private Patrimony patrimony;
 	
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "id_environment")
 	@javax.validation.constraints.NotNull
 	private Environment environment;
@@ -29,6 +32,17 @@ public class PatrimonyItem {
 	@ManyToOne
 	@JoinColumn(name = "id_user")
 	private User user;
+	
+	@Column(nullable = false)
+	private Date lastMovement;
+
+	public Date getLastMovement() {
+		return lastMovement;
+	}
+
+	public void setLastMovement(Date lastMovement) {
+		this.lastMovement = lastMovement;
+	}
 
 	public Long getId() {
 		return id;

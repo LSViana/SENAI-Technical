@@ -104,6 +104,10 @@ table td:first-child {
     font-weight: 900;
 }
 
+table td:not(:first-child), table td:not(:first-child) a i {
+    color: dimgray !important;
+}
+
 .form-check-input {
     font-family: Arial !important;
 }

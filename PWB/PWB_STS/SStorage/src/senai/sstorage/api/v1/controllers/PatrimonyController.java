@@ -1,6 +1,7 @@
 package senai.sstorage.api.v1.controllers;
 
 import java.net.URISyntaxException;
+import java.util.List;
 
 import javax.validation.Valid;
 
@@ -26,7 +27,9 @@ import senai.sstorage.exceptions.EntityNotFoundException;
 import senai.sstorage.exceptions.UnauthorizedException;
 import senai.sstorage.exceptions.ValidationException;
 import senai.sstorage.models.Patrimony;
+import senai.sstorage.models.PatrimonyItem;
 import senai.sstorage.models.User;
+import senai.sstorage.service.PatrimonyItemService;
 import senai.sstorage.service.PatrimonyService;
 import senai.sstorage.service.UserService;
 import senai.sstorage.utils.WebUtils;
@@ -39,6 +42,9 @@ public class PatrimonyController extends TemplateController {
 
 	@Autowired
 	public PatrimonyService service;
+	
+	@Autowired
+	public PatrimonyItemService patrimonyItemservice;
 
 	@Autowired
 	public UserService userService;
@@ -123,6 +129,22 @@ public class PatrimonyController extends TemplateController {
 			}
 		} catch (UnauthorizedException e) {
 			return unauthorized(e);
+		} catch (Exception e) {
+			return internalError(e);
+		}
+	}
+	
+	@GetMapping("/items/{id}")
+	public ResponseEntity<Object> getItems(@RequestHeader(name = HEADER_TOKEN) String token,
+			@PathVariable(name = "id") Long id) {
+		try {
+			JWTManager.validateToken(token, Authority.ADMINISTRATOR);
+			List<PatrimonyItem> items = patrimonyItemservice.searchByPatrimony(id);
+			return ResponseEntity.ok(items);
+		} catch (UnauthorizedException e) {
+			return unauthorized(e);
+		} catch (Exception e) {
+			return internalError(e);
 		}
 	}
 

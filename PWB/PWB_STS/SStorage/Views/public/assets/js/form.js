@@ -146,7 +146,7 @@ function fillForm(form, value) {
                 } else {
                     // Adding options to DropDown
                     fillInputDropdown(input, function () {
-                        let aEl = document.querySelector(`a[data-entity-item="${property}"][data-entity-id="${value[property].id}"]`);
+                        let aEl = document.querySelector(`a[data-entity-item="${property}"][data-entity-id="${value[property].id}"][data-input-id="${input.getAttribute("id")}"]`);
                         selectDropDownItem(aEl);
                     });
                 }
@@ -183,50 +183,57 @@ function fillForm(form, value) {
  * @param {()} callback
  */
 function fillInputDropdown(input, callback) {
-    let buttonDropdown = Array.from(document.querySelectorAll(`*[data-input-id="${input.getAttribute("id")}"]`))[0];
-    let entityRouter = ROUTES[buttonDropdown.getAttribute("data-router")];
-    let propertyLabels = buttonDropdown.getAttribute("data-element-label").split(" ");
-    let listElement = document.getElementById(`${buttonDropdown.getAttribute("data-list-element")}`);
-    if (!listElement)
-        throw Error(`ID not found: ${buttonDropdown.getAttribute("data-list-element")}`);
-    let token = getToken();
-    let headers = {};
-    headers[XTOKEN] = token;
-    fetch(entityRouter, {
-        headers,
-        method: "GET"
-    }).then(function (response) {
-        response.json().then(function (value) {
-            for (let item of value) {
-                let text = "";
-                for (let property of propertyLabels)
-                    text += item[property] + " ";
-                let aEl = document.createElement("a");
-                aEl.setAttribute("class", "dropdown-item");
-                aEl.innerText = text;
-                aEl.setAttribute("data-entity-id", item.id);
-                aEl.setAttribute("data-entity-item", input.name);
-                aEl.options = {
-                    button: buttonDropdown,
-                    input: input,
-                    item: item
-                };
-                // Adding handlers
-                aEl.addEventListener("click", function () {
-                    selectDropDownItem(aEl);
-                });
-                // Appending elements to the List Element
-                listElement.appendChild(aEl);
-            }
-            // End fill of operations
-            if (callback)
-                callback();
+    let entityManyIdentifier = input.getAttribute("data-many-identifier");
+    let buttonsDropdown = Array.from(document.querySelectorAll(`*[data-input-many-identifier="${entityManyIdentifier}"]`));
+    for (let buttonDropdown of buttonsDropdown) {
+        let input = document.getElementById(buttonDropdown.getAttribute("data-input-id"));
+        if (!input)
+            throw Error(`Invalid 'data-input-id' attribute: ${buttonDropdown.getAttribute("data-input-id")}`);
+        let entityRouter = ROUTES[buttonDropdown.getAttribute("data-router")];
+        let propertyLabels = buttonDropdown.getAttribute("data-element-label").split(" ");
+        let listElement = document.getElementById(`${buttonDropdown.getAttribute("data-list-element")}`);
+        if (!listElement)
+            throw Error(`ID not found: ${buttonDropdown.getAttribute("data-list-element")}`);
+        let token = getToken();
+        let headers = {};
+        headers[XTOKEN] = token;
+        fetch(entityRouter, {
+            headers,
+            method: "GET"
+        }).then(function (response) {
+            response.json().then(function (value) {
+                for (let item of value) {
+                    let text = "";
+                    for (let property of propertyLabels)
+                        text += item[property] + " ";
+                    let aEl = document.createElement("a");
+                    aEl.setAttribute("class", "dropdown-item");
+                    aEl.innerText = text;
+                    aEl.setAttribute("data-input-id", input.getAttribute("id"));
+                    aEl.setAttribute("data-entity-id", item.id);
+                    aEl.setAttribute("data-entity-item", entityManyIdentifier);
+                    aEl.options = {
+                        button: buttonDropdown,
+                        input: input,
+                        item: item
+                    };
+                    // Adding handlers
+                    aEl.addEventListener("click", function () {
+                        selectDropDownItem(aEl);
+                    });
+                    // Appending elements to the List Element
+                    listElement.appendChild(aEl);
+                }
+                // End fill of operations
+                if (callback)
+                    callback();
+            }, function (rejected) {
+                console.error(rejected);
+            });
         }, function (rejected) {
             console.error(rejected);
         });
-    }, function (rejected) {
-        console.error(rejected);
-    });
+    }
 }
 
 /**
@@ -235,7 +242,7 @@ function fillInputDropdown(input, callback) {
  */
 function selectDropDownItem(aEl) {
     aEl.options.button.innerText = aEl.innerText;
-    aEl.options.input.value = aEl.getAttribute("data-entity-id");
+    aEl.options.input.setAttribute("value", aEl.getAttribute("data-entity-id"));
     aEl.options.input.entity = aEl.options.item;
 }
 

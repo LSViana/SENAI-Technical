@@ -1,11 +1,15 @@
 package senai.sstorage.service;
 
-import java.util.Collection;
+import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 
+import senai.sstorage.dao.EnvironmentDAO;
+import senai.sstorage.dao.PatrimonyDAO;
 import senai.sstorage.dao.PatrimonyItemDAO;
 import senai.sstorage.exceptions.EntityNotFoundException;
 import senai.sstorage.exceptions.NotAllowedException;
@@ -21,11 +25,20 @@ public class PatrimonyItemService {
 	public PatrimonyItem create(PatrimonyItem obj, BindingResult br) throws ValidationException {
 		if(br.hasErrors())
 			throw new ValidationException("Validation Exception");
-		piDAO.persist(obj);
+		// Verifying if the supplied ID already exists
+		PatrimonyItem fromDb = piDAO.search(obj.getId());
+		if(fromDb != null) {
+			br.addError(new FieldError("environment", "id", "ID already in use"));
+			throw new ValidationException("ID already in use");
+		}
+		// Updating Last Movement Date
+		obj.setLastMovement(new Date());
+		//
+		piDAO.save(obj);
 		return obj;
 	}
 	
-	public Collection<PatrimonyItem> read() {
+	public List<PatrimonyItem> read() {
 		return piDAO.searchAll();
 	}
 	
@@ -34,6 +47,10 @@ public class PatrimonyItemService {
 		if(fromDb == null)
 			throw new EntityNotFoundException("ID not found");
 		return fromDb;
+	}
+	
+	public List<PatrimonyItem> searchByPatrimony(Long patrimonyId) {
+		return piDAO.searchByPatrimony(patrimonyId);
 	}
 	
 	public PatrimonyItem update(Long id, PatrimonyItem obj, BindingResult br) throws NotAllowedException {
