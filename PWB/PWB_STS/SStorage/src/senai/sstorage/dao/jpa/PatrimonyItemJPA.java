@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import senai.sstorage.dao.PatrimonyItemDAO;
+import senai.sstorage.models.ItemState;
 import senai.sstorage.models.PatrimonyItem;
 
 @Repository
@@ -19,7 +20,7 @@ public class PatrimonyItemJPA implements PatrimonyItemDAO {
 
 	@Override
 	public void update(PatrimonyItem obj) {
-		throw new IllegalAccessError();
+		factory.getCurrentSession().update(obj);
 	}
 
 	@Override
@@ -60,6 +61,54 @@ public class PatrimonyItemJPA implements PatrimonyItemDAO {
 	public List<PatrimonyItem> searchByPatrimony(Long id) {
 		return factory.getCurrentSession().createQuery("FROM PatrimonyItem pi WHERE pi.patrimony.id = :id")
 				.setParameter("id", id).list();
+	}
+
+	@Override
+	public List<PatrimonyItem> searchRemoveRequested() {
+		List<PatrimonyItem> result = (List<PatrimonyItem>) factory.getCurrentSession().createQuery("FROM PatrimonyItem pi").list();
+		//
+		for (int i = 0; i < result.size(); i++) {
+			PatrimonyItem item = result.get(i);
+			if(item.getState() != ItemState.REMOVE_REQUESTED) {
+				result.remove(i);
+				// Going back one item, to avoid skipping any item
+				i--;
+			}
+		}
+		//
+		return result;
+	}
+
+	@Override
+	public List<PatrimonyItem> searchRemoved() {
+		List<PatrimonyItem> result = (List<PatrimonyItem>) factory.getCurrentSession().createQuery("FROM PatrimonyItem pi").list();
+		//
+		for (int i = 0; i < result.size(); i++) {
+			PatrimonyItem item = result.get(i);
+			if(item.getState() != ItemState.REMOVED) {
+				result.remove(i);
+				// Going back one item, to avoid skipping any item
+				i--;
+			}
+		}
+		//
+		return result;
+	}
+
+	@Override
+	public List<PatrimonyItem> searchActive() {
+		List<PatrimonyItem> result = (List<PatrimonyItem>) factory.getCurrentSession().createQuery("FROM PatrimonyItem pi").list();
+		//
+		for (int i = 0; i < result.size(); i++) {
+			PatrimonyItem item = result.get(i);
+			if(item.getState() != ItemState.ACTIVE) {
+				result.remove(i);
+				// Going back one item, to avoid skipping any item
+				i--;
+			}
+		}
+		//
+		return result;
 	}
 
 }

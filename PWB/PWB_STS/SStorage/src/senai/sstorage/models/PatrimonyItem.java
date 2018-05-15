@@ -19,12 +19,12 @@ public class PatrimonyItem {
 	@Id
 	private Long id;
 	
-	@ManyToOne(cascade = CascadeType.MERGE)
+	@ManyToOne(cascade = CascadeType.REMOVE)
 	@JoinColumn(name = "id_patrimony")
 	@javax.validation.constraints.NotNull
 	private Patrimony patrimony;
 	
-	@ManyToOne(cascade = CascadeType.MERGE)
+	@ManyToOne(cascade = CascadeType.REMOVE)
 	@JoinColumn(name = "id_environment")
 	@javax.validation.constraints.NotNull
 	private Environment environment;
@@ -34,7 +34,18 @@ public class PatrimonyItem {
 	private User user;
 	
 	@Column(nullable = false)
+	private ItemState state = ItemState.ACTIVE;
+	
+	@Column(nullable = false)
 	private Date lastMovement;
+
+	public ItemState getState() {
+		return state;
+	}
+
+	public void setState(ItemState state) {
+		this.state = state;
+	}
 
 	public Date getLastMovement() {
 		return lastMovement;

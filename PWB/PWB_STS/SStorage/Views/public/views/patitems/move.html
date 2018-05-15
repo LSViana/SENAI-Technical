@@ -15,7 +15,7 @@
     <title>{0} – Welcome</title>
 </head>
 
-<body style="display: none" class="min-height-100vh d-flex flex-column" only-in="router-main" min-auth="2" min-auth-router="router-main">
+<body style="display: none" class="min-height-100vh d-flex flex-column" only-in="router-main" min-auth="1" min-auth-router="router-main">
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark deep-purple accent-3">
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
@@ -42,22 +42,23 @@
                     <img class="e-logo form-top-image img-w-small img-h-small mr-auto ml-auto p-2 white material-shadow-dark rounded-circle">
                     <div class="card rounded">
                         <div class="card-body pt-5">
-                            <form id="register-form" data-manual-id="true" data-automate data-method="POST" data-update-method="POST" data-router="api-patitem" data-only-callback="true"
-                                data-callback="handleMovePatrimonyItem">
+                            <form id="register-form" data-manual-id="true" data-automate data-method="POST" data-update-method="POST" data-router="api-patitem"
+                                data-only-callback="true" data-callback="handleMovePatrimonyItem">
                                 <input type="number" name="id" id="id" style="display: none;" required maxlength="40" />
-                                <div class="d-flex flex-row align-items-center">
+                                <p class="dark-grey-text text-center">Select the new <span class="font-weight-bold">environment</span> as destiny</p>
+                                <div class="d-flex flex-row align-items-center justify-content-center">
                                     <i class="fa fa-envira md-form-font-size dark-grey-text"></i>
                                     <input type="text" name="environment" id="env.id" data-many-identifier="environment" style="display: none" />
                                     <div class="dropdown ml-2">
                                         <button class="btn deep-purple accent-4" type="button" id="dropDownEnvironments" data-toggle="dropdown" aria-haspopup="true"
-                                            aria-expanded="false" data-input-many-identifier="environment" data-input-id="env.id" data-router="api-env"
-                                            data-list-element="envs.list" data-element-label="name">Select an Environment</button>
+                                            aria-expanded="false" data-input-many-identifier="environment" data-input-id="env.id"
+                                            data-router="api-env" data-list-element="envs.list" data-element-label="name">Select an Environment</button>
                                         <div id="envs.list" class="dropdown-menu dropdown-primary">
 
                                         </div>
                                     </div>
                                 </div>
-                                <div class="d-flex flex-row align-items-center">
+                                <!-- <div class="d-flex flex-row align-items-center">
                                     <i class="fa fa-envira md-form-font-size amber-text"></i>
                                     <input type="text" name="freshenvironment" id="freshenv.id" style="display: none" />
                                     <div class="dropdown ml-2">
@@ -68,7 +69,7 @@
 
                                         </div>
                                     </div>
-                                </div>
+                                </div> -->
                                 <div class="text-center py-4">
                                     <a class="btn deep-purple accent-4 e-router router-patitems" type="none">Back</a>
                                     <button class="btn deep-purple accent-4" type="submit" data-update-text="Update">Register</button>

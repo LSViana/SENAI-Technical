@@ -49,32 +49,33 @@
                     <div class="card rounded">
                         <div class="card-body pt-4 pb-4 pl-5 grey-text">
                             <div class="mb-4 d-flex flex-row flex-wrap align-items-center">
-                                <h4 class="card-title amber-text mb-0">
-                                    <i class="fa fa-dropbox mr-2"></i>Patrimony Items</h4>
-                                <a class="e-router router-patitem-form ml-auto mr-3">
-                                    <button type="button" class="btn deep-purple accent-4 rounded ml-4">Add Patrimony Item</button>
-                                </a>
+                                <h4 class="card-title deep-orange-text font-weight-bold">
+                                    <i class="fa fa-arrows-alt mr-2"></i>Movements</h4>
                             </div>
                             <div class="border-left-deep-purple-accent-4 border-left-2px pl-3 m-2">
-                                <h4>Patrimony <span class="amber-text font-weight-bold e-many-one" data-router-one="api-pat" data-mapping="name" data-many-one-fallback="Unknown">{0}</span></h4>
-                                <table id="patitems-table" class="table table-hover dark-grey-text" data-source="api-patsitems" data-many-one="true" >
+                                <h4>Patrimony Item
+                                    <span class="deep-orange-text font-weight-bold e-many-one" data-router-one="api-patitem"
+                                        data-mapping="patrimony.name" data-many-one-fallback="Unknown">{0}</span> // Identification
+                                    <span class="deep-orange-text font-weight-bold e-many-one" data-router-one="api-patitem"
+                                        data-mapping="id" data-many-one-fallback="Unknown">{0}</span>
+                                </h4>
+                                <table id="movs-table" class="table table-hover dark-grey-text" data-source="api-movements-bypat" data-many-one="true">
                                     <thead>
                                         <tr>
                                             <th data-mapping="id">Identity</th>
-                                            <th data-mapping="patrimony.patrimonyCategory.name">Patrimony Category</th>
-                                            <th data-mapping="lastMovement" data-format="datetime">Date</th>
-                                            <th data-mapping="environment.name">Environment</th>
-                                            <th data-table-action="move" data-icon="fa-map-marker" data-router="router-patitem-move">Move</th>
-                                            <th min-auth-show="2" data-table-action="custom_delete" data-icon="fa-trash" data-callback="deletePatrimony">Delete</th>
+                                            <th data-mapping="originEnvironment.name">Origin Environment</th>
+                                            <th data-mapping="destinyEnvironment.name">Destiny Environment</th>
+                                            <th data-mapping="user.firstName user.lastName">User</th>
+                                            <th data-mapping="dateTime" data-format="datetime">Date</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                     </tbody>
                                 </table>
                             </div>
-                            <a class="e-router router-pats ml-auto">
+                            <a class="e-router router-patitems ml-auto">
                                 <button type="button" class="btn amber accent-4 rounded">
-                                        <i class="fa fa-window-maximize mr-2"></i>Access Patrimonies
+                                    <i class="fa fa-window-maximize mr-2"></i>Access Patrimony Items
                                 </button>
                             </a>
                         </div>

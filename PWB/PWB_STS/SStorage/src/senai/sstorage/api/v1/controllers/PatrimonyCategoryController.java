@@ -80,7 +80,7 @@ public class PatrimonyCategoryController extends TemplateController {
 	@GetMapping
 	public ResponseEntity<Object> get(@RequestHeader(name = HEADER_TOKEN) String token) {
 		try {
-			JWTManager.validateToken(token, Authority.ADMINISTRATOR);
+			JWTManager.validateToken(token, Authority.REGULAR);
 			//
 			return ResponseEntity.ok(service.read());
 		} catch (UnauthorizedException e) {
@@ -93,7 +93,7 @@ public class PatrimonyCategoryController extends TemplateController {
 	@GetMapping("/{id}")
 	public ResponseEntity<Object> get(@RequestHeader(name = HEADER_TOKEN) String token, @PathVariable(name = "id") Long id) {
 		try {
-			JWTManager.validateToken(token, Authority.ADMINISTRATOR);
+			JWTManager.validateToken(token, Authority.REGULAR);
 			//
 			try {
 				PatrimonyCategory obj = service.read(id);

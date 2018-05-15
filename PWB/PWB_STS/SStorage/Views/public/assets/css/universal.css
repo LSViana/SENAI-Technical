@@ -13,6 +13,22 @@
     background-color: #f13800 !important;
 }
 
+.amber-dark-text {
+    color: #daa300 !important;
+}
+
+.amber-dark {
+    background-color: #daa300 !important;
+}
+
+.amber-orange-text {
+    color: #ff7f00 !important;
+}
+
+.amber-orange {
+    background-color: #ff7f00 !important;
+}
+
 .dark-orange-text {
     color: #f13800 !important;
 }
@@ -99,6 +115,10 @@ label input[type=radio] {
 }
 
 /* Corporate Identity */
+
+table td {
+    text-align: center;
+}
 
 table td:first-child {
     font-weight: 900;

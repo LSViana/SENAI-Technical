@@ -16,7 +16,7 @@
     <title>{0} – Welcome</title>
 </head>
 
-<body style="display: none" class="min-height-100vh d-flex flex-column" only-in="router-main" min-auth="2" min-auth-router="router-main">
+<body style="display: none" class="min-height-100vh d-flex flex-column" only-in="router-main" min-auth="1" min-auth-router="router-main">
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark deep-purple accent-3">
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
@@ -49,24 +49,63 @@
                     <div class="card rounded">
                         <div class="card-body pt-4 pb-4 pl-5 grey-text">
                             <div class="mb-4 d-flex flex-row flex-wrap align-items-center">
-                                <h4 class="card-title amber-text mb-0">
-                                    <i class="fa fa-dropbox mr-2"></i>Patrimony Items</h4>
+                                <h4 class="card-title amber-dark-text mb-0">
+                                    <i class="fa fa-th-large mr-2"></i>Patrimony Items</h4>
                                 <a class="e-router router-patitem-form ml-auto mr-3">
                                     <button type="button" class="btn deep-purple accent-4 rounded ml-4">Add Patrimony Item</button>
                                 </a>
                             </div>
                             <div class="border-left-deep-purple-accent-4 border-left-2px pl-3 m-2">
-                                <h4>Patrimony</h4>
+                                <h4>Active Patrimony Items</h4>
                                 <table id="patitems-table" class="table table-hover dark-grey-text" data-source="api-patitem">
                                     <thead>
                                         <tr>
                                             <th data-mapping="id">Identity</th>
                                             <th data-mapping="patrimony.name">Patrimony</th>
                                             <th data-mapping="patrimony.patrimonyCategory.name">Patrimony Category</th>
-                                            <th data-mapping="lastMovement" data-format="datetime">Date</th>
+                                            <th data-mapping="lastMovement" data-format="datetime">Last Movement Date</th>
                                             <th data-mapping="environment.name">Environment</th>
+                                            <th data-table-action="movement-history" data-icon="fa-history" data-router="router-movs">Movement History</th>
                                             <th data-table-action="move" data-icon="fa-map-marker" data-router="router-patitem-move">Move</th>
-                                            <th data-table-action="delete" data-icon="fa-trash">Delete</th>
+                                            <th data-table-action="request-removal-usage" data-icon="fa-recycle" data-callback="requestRemoval">Request Removal</th>
+                                            <th min-auth-show="2" data-table-action="remove-usage" data-icon="fa-minus-circle" data-callback="removeUsage">Remove Usage</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="border-left-deep-purple-accent-4 border-left-2px pl-3 m-2">
+                                <h4>Remove Requested Patrimony Items</h4>
+                                <table id="patitems-remove-requested-table" class="table table-hover dark-grey-text" data-source="api-patitem-remove-requested">
+                                    <thead>
+                                        <tr>
+                                            <th data-mapping="id">Identity</th>
+                                            <th data-mapping="patrimony.name">Patrimony</th>
+                                            <th data-mapping="patrimony.patrimonyCategory.name">Patrimony Category</th>
+                                            <th data-mapping="lastMovement" data-format="datetime">Last Movement Date</th>
+                                            <th data-mapping="environment.name">Environment</th>
+                                            <th data-table-action="movement-history" data-icon="fa-history" data-router="router-movs">Movement History</th>
+                                            <th data-table-action="move" data-icon="fa-map-marker" data-router="router-patitem-move">Move</th>
+                                            <th min-auth-show="2" data-table-action="remove-usage" data-icon="fa-minus-circle" data-callback="removeUsage">Remove Usage</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="border-left-deep-purple-accent-4 border-left-2px pl-3 m-2">
+                                <h4>Removed Patrimony Items</h4>
+                                <table id="patitems-removed-table" class="table table-hover dark-grey-text" data-source="api-patitem-removed">
+                                    <thead>
+                                        <tr>
+                                            <th data-mapping="id">Identity</th>
+                                            <th data-mapping="patrimony.name">Patrimony</th>
+                                            <th data-mapping="patrimony.patrimonyCategory.name">Patrimony Category</th>
+                                            <th data-mapping="lastMovement" data-format="datetime">Last Movement Date</th>
+                                            <th data-mapping="environment.name">Environment</th>
+                                            <th data-table-action="movement-history" data-icon="fa-history" data-router="router-movs">Movement History</th>
+                                            <th min-auth-show="2" data-table-action="activate-usage" data-icon="fa-plus-circle" data-callback="activateItem">Activate Usage</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -74,8 +113,8 @@
                                 </table>
                             </div>
                             <a class="e-router router-pats ml-auto">
-                                <button type="button" class="btn amber accent-4 rounded">
-                                        <i class="fa fa-window-maximize mr-2"></i>Access Patrimonies
+                                <button type="button" class="btn amber-dark accent-4 rounded">
+                                    <i class="fa fa-window-maximize mr-2"></i>Access Patrimonies
                                 </button>
                             </a>
                         </div>
@@ -117,7 +156,7 @@
     </footer>
 
     <script class="e-router router-js-form"></script>
-    <script class="e-router router-js-pats"></script>
+    <script class="e-router router-js-patitems"></script>
     <script src="/assets/js/constants.js"></script>
     <script src="/assets/js/universal.js"></script>
     <!-- External -->

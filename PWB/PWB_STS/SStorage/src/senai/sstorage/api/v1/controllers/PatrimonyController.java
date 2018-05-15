@@ -105,7 +105,7 @@ public class PatrimonyController extends TemplateController {
 	@GetMapping
 	public ResponseEntity<Object> get(@RequestHeader(name = HEADER_TOKEN) String token) {
 		try {
-			JWTManager.validateToken(token, Authority.ADMINISTRATOR);
+			JWTManager.validateToken(token, Authority.REGULAR);
 			//
 			return ResponseEntity.ok(service.read());
 		} catch (UnauthorizedException e) {
@@ -119,7 +119,7 @@ public class PatrimonyController extends TemplateController {
 	public ResponseEntity<Object> get(@RequestHeader(name = HEADER_TOKEN) String token,
 			@PathVariable(name = "id") Long id) {
 		try {
-			JWTManager.validateToken(token, Authority.ADMINISTRATOR);
+			JWTManager.validateToken(token, Authority.REGULAR);
 			//
 			try {
 				Patrimony obj = service.read(id);
@@ -138,7 +138,7 @@ public class PatrimonyController extends TemplateController {
 	public ResponseEntity<Object> getItems(@RequestHeader(name = HEADER_TOKEN) String token,
 			@PathVariable(name = "id") Long id) {
 		try {
-			JWTManager.validateToken(token, Authority.ADMINISTRATOR);
+			JWTManager.validateToken(token, Authority.REGULAR);
 			List<PatrimonyItem> items = patrimonyItemservice.searchByPatrimony(id);
 			return ResponseEntity.ok(items);
 		} catch (UnauthorizedException e) {

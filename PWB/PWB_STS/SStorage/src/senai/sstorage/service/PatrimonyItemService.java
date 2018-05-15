@@ -14,6 +14,7 @@ import senai.sstorage.dao.PatrimonyItemDAO;
 import senai.sstorage.exceptions.EntityNotFoundException;
 import senai.sstorage.exceptions.NotAllowedException;
 import senai.sstorage.exceptions.ValidationException;
+import senai.sstorage.models.ItemState;
 import senai.sstorage.models.PatrimonyItem;
 
 @Service
@@ -39,7 +40,7 @@ public class PatrimonyItemService {
 	}
 	
 	public List<PatrimonyItem> read() {
-		return piDAO.searchAll();
+		return piDAO.searchActive();
 	}
 	
 	public PatrimonyItem read(Long id) throws EntityNotFoundException {
@@ -70,6 +71,41 @@ public class PatrimonyItemService {
 		if(fromDb == null)
 			throw new EntityNotFoundException("ID not found");
 		piDAO.delete(fromDb);
+	}
+
+	public List<PatrimonyItem> readRemoveRequested() {
+		return piDAO.searchRemoveRequested();
+	}
+	
+	public List<PatrimonyItem> readRemoved() {
+		return piDAO.searchRemoved();
+	}
+
+	public PatrimonyItem requestRemoval(Long id) throws EntityNotFoundException {
+		PatrimonyItem fromDb = piDAO.search(id);
+		if(fromDb == null)
+			throw new EntityNotFoundException("ID not found");
+		fromDb.setState(ItemState.REMOVE_REQUESTED);
+		piDAO.update(fromDb);
+		return fromDb;
+	}
+	
+	public PatrimonyItem remove(Long id) throws EntityNotFoundException {
+		PatrimonyItem fromDb = piDAO.search(id);
+		if(fromDb == null)
+			throw new EntityNotFoundException("ID not found");
+		fromDb.setState(ItemState.REMOVED);
+		piDAO.update(fromDb);
+		return fromDb;
+	}
+
+	public Object activate(Long id) throws EntityNotFoundException {
+		PatrimonyItem fromDb = piDAO.search(id);
+		if(fromDb == null)
+			throw new EntityNotFoundException("ID not found");
+		fromDb.setState(ItemState.ACTIVE);
+		piDAO.update(fromDb);
+		return fromDb;
 	}
 
 }

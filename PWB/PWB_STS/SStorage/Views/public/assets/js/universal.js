@@ -84,6 +84,13 @@ function performTableLists() {
         let mappings = [];
         let actions = {};
         for (let header of tableHeaders) {
+            // Verifying permissions to this header
+            let minAuthShow = header.getAttribute("min-auth-show");
+            if (minAuthShow) {
+                if (Number(minAuthShow) > getAuthLevel()) {
+                    continue;
+                }
+            }
             if (header.getAttribute("data-mapping")) {
                 // Starts from 1
                 let index = mappings.push([]) - 1;
@@ -106,6 +113,10 @@ function performTableLists() {
                 let dataRouter = header.getAttribute("data-router");
                 if (dataRouter) {
                     actions[dataTableAction].dataRouter = dataRouter;
+                }
+                let dataCallback = header.getAttribute("data-callback");
+                if(dataCallback) {
+                    actions[dataTableAction].dataCallback = dataCallback;
                 }
             }
         }
@@ -175,11 +186,19 @@ function performTableLists() {
                                     });
                                 });
                             } else {
+                                // Data router
                                 let dataRouter = action.dataRouter;
-                                if (!dataRouter) {
-                                    throw Error(`You must provide a 'data-router' attribute to use with ${actionName}`);
+                                if (dataRouter) {
+                                    aEl.setAttribute("href", ROUTES[dataRouter] + `?id=${item.id}`);
                                 }
-                                aEl.setAttribute("href", ROUTES[dataRouter] + `?id=${item.id}`);
+                                // Data callback
+                                let dataCallback = action.dataCallback;
+                                if (dataCallback) {
+                                    aEl.addEventListener("click", function(ev) {
+                                        let callback = window[dataCallback];
+                                        callback(item.id);
+                                    })
+                                }
                             }
                         }
                         tbody.appendChild(tr);
@@ -190,7 +209,7 @@ function performTableLists() {
                         performEntityOneOperations(data, manyOneElements, manyToOneId);
                 }, function (error) {
                     console.error(error);
-                })
+                });
         }, function (rejected) {
             console.error(rejected);
         });
@@ -453,9 +472,9 @@ function onFormSend(e) {
         }
     }
     // Verifying custom send attribute
-    if(form.getAttribute("data-only-callback")) {
+    if (form.getAttribute("data-only-callback")) {
         let customCallback = window[form.getAttribute("data-callback")];
-        if(!customCallback)
+        if (!customCallback)
             throw Error(`Invalid function name '${form.getAttribute("data-callback")}'`);
         customCallback(form, payload);
         return;

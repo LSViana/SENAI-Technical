@@ -22,18 +22,19 @@ public class MovementService {
 	@Autowired
 	private PatrimonyItemDAO patDAO;
 	
-	public Movement movement(PatrimonyItem patrimonyItem, Environment origin, Environment destiny, User user) {
+	public Movement movement(PatrimonyItem patrimonyItem, Environment destiny, User user) {
 		Movement mov = new Movement();
 		// Attributes
 		mov.setDateTime(new Date());
 		mov.setDestinyEnvironment(destiny);
-		mov.setOriginEnvironment(origin);
+		mov.setOriginEnvironment(patrimonyItem.getEnvironment());
 		mov.setPatrimonyItem(patrimonyItem);
 		mov.setUser(user);
 		// Saving to database
 		movDAO.persist(mov);
 		// Updating last movement time at PatrimonyItem
 		patrimonyItem.setLastMovement(new Date());
+		patrimonyItem.setEnvironment(destiny);
 		patDAO.update(patrimonyItem);
 		// Returning the movement object
 		return mov;

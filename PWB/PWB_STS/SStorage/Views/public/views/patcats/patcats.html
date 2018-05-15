@@ -16,7 +16,7 @@
     <title>{0} – Welcome</title>
 </head>
 
-<body style="display: none" class="min-height-100vh d-flex flex-column" only-in="router-main" min-auth="2" min-auth-router="router-main">
+<body style="display: none" class="min-height-100vh d-flex flex-column" only-in="router-main" min-auth="1" min-auth-router="router-main">
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark deep-purple accent-3">
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
@@ -49,7 +49,7 @@
                     <div class="card rounded">
                         <div class="card-body pt-4 pb-4 pl-5 grey-text">
                             <div class="mb-4 d-flex flex-row flex-wrap align-items-center">
-                                <h4 class="card-title orange-text w-300px">
+                                <h4 class="card-title amber-orange-text w-300px">
                                     <i class="fa fa-window-restore mr-2"></i>Patrimony Categories</h4>
                                 <a class="e-router router-patcat-form ml-auto mr-3">
                                     <button type="button" class="btn deep-purple accent-4 rounded">Add Patrimony Category</button>
@@ -61,8 +61,8 @@
                                     <thead>
                                         <tr>
                                             <th data-mapping="name">Name</th>
-                                            <th data-table-action="edit" data-icon="fa-pencil">Edit</th>
-                                            <th data-table-action="delete" data-icon="fa-trash">Delete</th>
+                                            <th min-auth-show="2" data-table-action="edit" data-icon="fa-pencil">Edit</th>
+                                            <th min-auth-show="2" data-table-action="delete" data-icon="fa-trash">Delete</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -70,7 +70,7 @@
                                 </table>
                             </div>
                             <a class="e-router router-pats ml-auto">
-                                <button type="button" class="btn amber accent-4 rounded">
+                                <button type="button" class="btn amber-orange accent-4 rounded">
                                     <i class="fa fa-window-maximize mr-2"></i>Access Patrimonies
                                 </button>
                             </a>

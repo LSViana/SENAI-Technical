@@ -10,3 +10,18 @@ function handleLoadPatsItems(data) {
     }
     console.log(data);
 }
+
+function deletePatrimony(id) {
+    let route = ROUTES["api-patitem"] + `/${id}`;
+    let headers = {};
+    headers[XTOKEN] = getToken();
+    //
+    fetch(route, {
+        headers,
+        method: "DELETE"
+    }).then(function(response) {
+        if(response.ok) {
+            // window.location.reload();
+        }
+    });
+}

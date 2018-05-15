@@ -17,6 +17,7 @@ import senai.sstorage.exceptions.BadRequestException;
 import senai.sstorage.exceptions.EntityNotFoundException;
 import senai.sstorage.exceptions.UnauthorizedException;
 import senai.sstorage.models.Environment;
+import senai.sstorage.models.ItemState;
 import senai.sstorage.models.Movement;
 import senai.sstorage.models.PatrimonyItem;
 import senai.sstorage.models.User;
@@ -47,21 +48,23 @@ public class MovementController extends TemplateController {
 	@Autowired
 	private WebUtils webUtils;
 	
-	@GetMapping("/{idPatrimonyItem}/{idEnvOrigin}/{idEnvDestiny}")
-	public ResponseEntity<Object> movement(@RequestHeader(name = HEADER_TOKEN) String token, @PathVariable(name = "idPatrimonyItem") Long idPatrimonyItem, @PathVariable(name = "idEnvOrigin") Long idEnvOrigin, @PathVariable(name = "idEnvDestiny") Long idEnvDestiny) {
+	@GetMapping("/move/{idPatrimonyItem}/{idEnvDestiny}")
+	public ResponseEntity<Object> movement(@RequestHeader(name = HEADER_TOKEN) String token, @PathVariable(name = "idPatrimonyItem") Long idPatrimonyItem, @PathVariable(name = "idEnvDestiny") Long idEnvDestiny) {
 		try {
-			JWTManager.validateToken(token, Authority.ADMINISTRATOR);
+			JWTManager.validateToken(token, Authority.REGULAR);
 			DecodedJWT decodedJWT = JWTManager.decodeToken(token);
 			Long userId = Long.parseLong(decodedJWT.getClaim(HEADER_USER_ID).asString());
 			// Getting Relationed Entities
 			User loggedUser = userService.read(userId);
 			PatrimonyItem pi = piService.read(idPatrimonyItem);
-			Environment origin = envService.read(idEnvOrigin);
+			if(pi.getState() == ItemState.REMOVED) {
+				throw new UnauthorizedException("You can't move a removed item");
+			}
 			Environment destiny = envService.read(idEnvDestiny);
 			if(loggedUser == null) {
 				throw new BadRequestException("Invalid Token Supplied");
 			}
-			Movement movement = service.movement(pi, origin, destiny, loggedUser);
+			Movement movement = service.movement(pi, destiny, loggedUser);
 			return ResponseEntity.created(webUtils.getUri(API_V1 + ADDRESS + "/" + movement.getId())).body(movement);
 		} catch (UnauthorizedException e) {
 			return unauthorized(e);
@@ -75,7 +78,7 @@ public class MovementController extends TemplateController {
 	@GetMapping("/bypatrimony/{id}")
 	public ResponseEntity<Object> searchByPatrimonyItem(@RequestHeader(name = HEADER_TOKEN) String token, @PathVariable(name = "id") Long id) {
 		try {
-			JWTManager.validateToken(token, Authority.ADMINISTRATOR);
+			JWTManager.validateToken(token, Authority.REGULAR);
 			//
 			PatrimonyItem patrimonyItem;
 			try {
@@ -92,7 +95,7 @@ public class MovementController extends TemplateController {
 	@GetMapping("/{id}")
 	public ResponseEntity<Object> get(@RequestHeader(name = HEADER_TOKEN) String token, @PathVariable(name = "id") Long id) {
 		try {
-			JWTManager.validateToken(token, Authority.ADMINISTRATOR);
+			JWTManager.validateToken(token, Authority.REGULAR);
 			//
 			return ResponseEntity.ok(service.read(id));
 		} catch (UnauthorizedException e) {

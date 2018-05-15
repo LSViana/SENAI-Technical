@@ -78,12 +78,92 @@ public class PatrimonyItemController extends TemplateController {
 		}
 	}
 
-	@GetMapping
-	public ResponseEntity<Object> get(@RequestHeader(name = HEADER_TOKEN) String token) {
+	@GetMapping("/requestremoval/{id}")
+	public ResponseEntity<Object> performRequestRemoval(@RequestHeader(name = HEADER_TOKEN) String token,
+			@PathVariable(name = "id") Long id) {
+		try {
+			JWTManager.validateToken(token, Authority.REGULAR);
+			//
+			try {
+				return ResponseEntity.ok(service.requestRemoval(id));
+			} catch (EntityNotFoundException e) {
+				return entityNotFound(e);
+			}
+		} catch (UnauthorizedException e) {
+			return unauthorized(e);
+		} catch (Exception e) {
+			return internalError(e);
+		}
+	}
+	
+	@GetMapping("/activate/{id}")
+	public ResponseEntity<Object> performActivation(@RequestHeader(name = HEADER_TOKEN) String token,
+			@PathVariable(name = "id") Long id) {
 		try {
 			JWTManager.validateToken(token, Authority.ADMINISTRATOR);
 			//
+			try {
+				return ResponseEntity.ok(service.activate(id));
+			} catch (EntityNotFoundException e) {
+				return entityNotFound(e);
+			}
+		} catch (UnauthorizedException e) {
+			return unauthorized(e);
+		} catch (Exception e) {
+			return internalError(e);
+		}
+	}
+
+	@GetMapping("/remove/{id}")
+	public ResponseEntity<Object> performRemoval(@RequestHeader(name = HEADER_TOKEN) String token,
+			@PathVariable(name = "id") Long id) {
+		try {
+			JWTManager.validateToken(token, Authority.ADMINISTRATOR);
+			//
+			try {
+				return ResponseEntity.ok(service.remove(id));
+			} catch (EntityNotFoundException e) {
+				return entityNotFound(e);
+			}
+		} catch (UnauthorizedException e) {
+			return unauthorized(e);
+		} catch (Exception e) {
+			return internalError(e);
+		}
+	}
+
+	@GetMapping
+	public ResponseEntity<Object> get(@RequestHeader(name = HEADER_TOKEN) String token) {
+		try {
+			JWTManager.validateToken(token, Authority.REGULAR);
+			//
 			return ResponseEntity.ok(service.read());
+		} catch (UnauthorizedException e) {
+			return unauthorized(e);
+		} catch (Exception e) {
+			return internalError(e);
+		}
+	}
+
+	@GetMapping("/removerequested")
+	public ResponseEntity<Object> getRemoveRequested(@RequestHeader(name = HEADER_TOKEN) String token) {
+		try {
+			JWTManager.validateToken(token, Authority.REGULAR);
+			//
+			return ResponseEntity.ok(service.readRemoveRequested());
+		} catch (UnauthorizedException e) {
+			return unauthorized(e);
+		} catch (Exception e) {
+			return internalError(e);
+		}
+	}
+
+	@GetMapping("/removed")
+	public ResponseEntity<Object> getRemoved(@RequestHeader(name = HEADER_TOKEN) String token) {
+		try {
+			JWTManager.validateToken(token, Authority.REGULAR);
+			//
+			return ResponseEntity.ok(service.readRemoved());
 		} catch (UnauthorizedException e) {
 			return unauthorized(e);
 		} catch (Exception e) {
@@ -95,7 +175,7 @@ public class PatrimonyItemController extends TemplateController {
 	public ResponseEntity<Object> get(@RequestHeader(name = HEADER_TOKEN) String token,
 			@PathVariable(name = "id") Long id) {
 		try {
-			JWTManager.validateToken(token, Authority.ADMINISTRATOR);
+			JWTManager.validateToken(token, Authority.REGULAR);
 			//
 			try {
 				PatrimonyItem obj = service.read(id);

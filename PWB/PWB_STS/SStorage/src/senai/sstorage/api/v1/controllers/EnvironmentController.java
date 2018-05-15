@@ -52,7 +52,7 @@ public class EnvironmentController extends TemplateController {
 					return internalError(e);
 				}
 			} catch (ValidationException e) {
-				return validationError(e);
+				return validationError(e, br);
 			}
 		} catch (UnauthorizedException e) {
 			return unauthorized(e);
@@ -82,7 +82,7 @@ public class EnvironmentController extends TemplateController {
 	@GetMapping
 	public ResponseEntity<Object> get(@RequestHeader(name = HEADER_TOKEN) String token) {
 		try {
-			JWTManager.validateToken(token, Authority.ADMINISTRATOR);
+			JWTManager.validateToken(token, Authority.REGULAR);
 			//
 			return ResponseEntity.ok(service.read());
 		} catch (UnauthorizedException e) {
@@ -95,7 +95,7 @@ public class EnvironmentController extends TemplateController {
 	@GetMapping("/{id}")
 	public ResponseEntity<Object> get(@RequestHeader(name = HEADER_TOKEN) String token, @PathVariable(name = "id") Long id) {
 		try {
-			JWTManager.validateToken(token, Authority.ADMINISTRATOR);
+			JWTManager.validateToken(token, Authority.REGULAR);
 			//
 			try {
 				Environment obj = service.read(id);

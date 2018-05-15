@@ -16,7 +16,7 @@
     <title>{0} – Welcome</title>
 </head>
 
-<body style="display: none" class="min-height-100vh d-flex flex-column" only-in="router-main" min-auth="2" min-auth-router="router-main">
+<body style="display: none" class="min-height-100vh d-flex flex-column" only-in="router-main" min-auth="1" min-auth-router="router-main">
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark deep-purple accent-3">
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
@@ -49,9 +49,9 @@
                     <div class="card rounded">
                         <div class="card-body pt-4 pb-4 pl-5 grey-text">
                             <div class="mb-4 d-flex flex-row flex-wrap align-items-center">
-                                <h4 class="card-title amber-text">
+                                <h4 class="card-title amber-dark-text font-weight-bold">
                                     <i class="fa fa-dropbox mr-2"></i>Patrimonies</h4>
-                                <a class="e-router router-pat-form ml-auto mr-3">
+                                <a class="e-router router-pat-form ml-auto mr-3" min-auth-show="2">
                                     <button type="button" class="btn deep-purple accent-4 rounded ml-4">Add Patrimony</button>
                                 </a>
                             </div>
@@ -64,8 +64,8 @@
                                             <th data-mapping="patrimonyCategory.name">Patrimony Category</th>
                                             <th data-mapping="user.firstName user.lastName">User Name</th>
                                             <th data-table-action="one-many" data-router="router-patsitems" data-icon="fa-th-large">Patrimony Items</th>
-                                            <th data-table-action="edit" data-icon="fa-pencil">Edit</th>
-                                            <th data-table-action="delete" data-icon="fa-trash">Delete</th>
+                                            <th min-auth-show="2" data-table-action="edit" data-icon="fa-pencil">Edit</th>
+                                            <th min-auth-show="2" data-table-action="delete" data-icon="fa-trash">Delete</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -73,12 +73,12 @@
                                 </table>
                             </div>
                             <a class="e-router router-patcats ml-auto">
-                                <button type="button" class="btn amber accent-4 rounded">
+                                <button type="button" class="btn amber-dark accent-4 rounded">
                                         <i class="fa fa-window-maximize mr-2"></i>Access Patrimony Categories
                                 </button>
                             </a>
                             <a class="e-router router-patitems ml-auto">
-                                    <button type="button" class="btn amber accent-4 rounded">
+                                    <button type="button" class="btn amber-dark accent-4 rounded">
                                             <i class="fa fa-window-maximize mr-2"></i>Access Patrimony Items
                                     </button>
                                 </a>

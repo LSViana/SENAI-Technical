@@ -46,6 +46,7 @@ const ROUTES = {
   "router-patcat-form": "/views/patcats/form.html",
   "router-patitems": "/views/patitems/patitems.html",
   "router-patitem-move": "/views/patitems/move.html",
+  "router-patitem-remove-usage": "/views/patitems/remove-usage.html",
   "router-patitem-form": "/views/patitems/form.html",
   // CSS
   "router-css-main": "/assets/css/main.css",
@@ -74,8 +75,14 @@ const ROUTES = {
   "api-mov": SERVER + API_PREFIX + MOV_PREFIX,
   "api-pat": SERVER + API_PREFIX + PAT_PREFIX,
   "api-patsitems": SERVER + API_PREFIX + PAT_PREFIX + "/items/{id}",
+  "api-movements-bypat": SERVER + API_PREFIX + MOV_PREFIX + "/bypatrimony/{id}",
   "api-patcat": SERVER + API_PREFIX + PATCAT_PREFIX,
   "api-patitem": SERVER + API_PREFIX + PATITEM_PREFIX,
+  "api-patitem-remove-requested": SERVER + API_PREFIX + PATITEM_PREFIX + "/removerequested/",
+  "api-patitem-removed": SERVER + API_PREFIX + PATITEM_PREFIX + "/removed",
+  "api-patitem-request-removal": SERVER + API_PREFIX + PATITEM_PREFIX + "/requestremoval/{id}",
+  "api-patitem-remove": SERVER + API_PREFIX + PATITEM_PREFIX + "/remove/{id}",
+  "api-patitem-activate": SERVER + API_PREFIX + PATITEM_PREFIX + "/activate/{id}",
   "api-patitem-move": SERVER + API_PREFIX + PATITEM_PREFIX + "/{0}/{1}/{2}",
 };
 //#endregion
