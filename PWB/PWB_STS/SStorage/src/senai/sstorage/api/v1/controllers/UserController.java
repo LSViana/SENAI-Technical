@@ -11,6 +11,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.DataBinder;
@@ -25,6 +26,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.auth0.jwt.interfaces.DecodedJWT;
 
 import senai.sstorage.api.TemplateController;
 import senai.sstorage.authentication.Authority;
@@ -55,6 +58,11 @@ public class UserController extends TemplateController {
 	private Validator validator;
 	
 	private Map<String, User> activeTokens = new HashMap<>();
+	
+	@PostMapping("/map")
+	public ResponseEntity<Object> testMap(@RequestBody Map<String, String> maps) {
+		return ResponseEntity.ok().build();
+	}
 
 	@PostMapping("/authenticate")
 	public ResponseEntity<Object> authenticate(@RequestBody(required = true) User user) {
@@ -120,15 +128,18 @@ public class UserController extends TemplateController {
 	public ResponseEntity<Object> logout(
 			@RequestHeader(name = HEADER_TOKEN, required = true) String token,
 			@RequestBody(required = true) ChangeNames changeNames) {
+		BindingResult br;
 		try {
 			JWTManager.validateToken(token, Authority.REGULAR);
+			br = new DataBinder(changeNames).getBindingResult();
 			//
-			User currentUser = activeTokens.get(token);
+			DecodedJWT decoded = JWTManager.decodeToken(token);
+			User currentUser = service.read(Long.parseLong(decoded.getClaim(HEADER_USER_ID).asString()));
 			try {
-				service.changeNames(currentUser, changeNames);
+				service.changeNames(currentUser, changeNames, br);
 				return ResponseEntity.ok(currentUser);
 			} catch (ValidationException e) {
-				return validationError(e);
+				return validationError(e, br);
 			}
 		} catch (UnauthorizedException e) {
 			return unauthorized(e);
@@ -141,15 +152,18 @@ public class UserController extends TemplateController {
 	public ResponseEntity<Object> logout(
 			@RequestHeader(name = HEADER_TOKEN, required = true) String token,
 			@RequestBody(required = true) ChangePassword changePassword) {
+		BindingResult br;
 		try {
 			JWTManager.validateToken(token, Authority.REGULAR);
+			br = new DataBinder(changePassword).getBindingResult();
 			//
-			User currentUser = activeTokens.get(token);
+			DecodedJWT decoded = JWTManager.decodeToken(token);
+			User currentUser = service.read(Long.parseLong(decoded.getClaim(HEADER_USER_ID).asString()));
 			try {
-				service.changePassword(currentUser, changePassword);
+				service.changePassword(currentUser, changePassword, br);
 				return ResponseEntity.ok(currentUser);
 			} catch (ValidationException e) {
-				return validationError(e);
+				return validationError(e, br);
 			}
 		} catch (UnauthorizedException e) {
 			return unauthorized(e);

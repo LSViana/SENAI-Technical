@@ -59,6 +59,10 @@
     width: 300px;
 }
 
+.w-500px {
+    width: 500px;
+}
+
 .min-height-100vh {
     min-height: 100vh;
 }

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link class="e-router router-css-main" rel="stylesheet" type="text/css">
+    <link class="e-router router-css-login" rel="stylesheet" type="text/css">
+    <link class="e-router router-css-constants" rel="stylesheet" type="text/css">
+    <link class="e-router router-css-universal" rel="stylesheet" type="text/css">
+    <link class="e-router router-css-fa" rel="stylesheet" type="text/css">
+    <link class="e-router router-css-bs" rel="stylesheet" type="text/css">
+    <link class="e-router router-css-mdb" rel="stylesheet" type="text/css">
+    <title>{0} – Welcome</title>
+</head>
+
+<body style="display: none" class="min-height-100vh d-flex flex-column" only-in="router-main" min-auth="1" min-auth-router="router-main">
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark deep-purple accent-3">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
+                aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <a class="navbar-brand e-router router-main e-name font-weight-bold">{0}</a>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a class="nav-item nav-link active e-router router-main">Home</a>
+                    <a class="nav-item nav-link e-router router-about">About</a>
+                </div>
+                <div class="collapse navbar-collapse ml-auto p-0 m-0 d-flex flex-row align-items-center justify-content-end white-text">
+                    <p class="nav-item nav-link e-text m-0 p-0 font-weight-bold" data-text-in="username">{0}</p>
+                    <a class="nav-item nav-link active e-router router-login" data-action-in="performLogout">Logout</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main class="d-flex flex-column flex-grow-1">
+        <section class="pres white-text flex-grow-1">
+            <div class="pres-background-outer">
+                <div class="pres-background-inner">
+                </div>
+            </div>
+            <section class="d-flex justify-content-center align-items-center w-100 p-4 position-relative">
+                <div class="d-flex flex-column justify-content-center m-4">
+                    <img class="e-logo form-top-image img-w-small img-h-small mr-auto ml-auto p-2 white material-shadow-dark rounded-circle">
+                    <div class="card rounded">
+                        <div class="card-body pt-5">
+                            <form id="changenames-form" data-automate data-method="PATCH" data-update-method="PATCH" data-router="api-user-changenames"
+                                data-callback="handleChangeName">
+                                <p class="h4 text-center deep-purple-text">Change First and Last Name</p>
+                                <div class="md-form">
+                                    <i class="fa fa-align-left prefix dark-grey-text"></i>
+                                    <input type="text" id="firstName" name="firstName" class="form-control" required maxlength="20">
+                                    <label for="firstName" class="font-weight-normal">Your fresh first name</label>
+                                </div>
+                                <div class="md-form">
+                                    <i class="fa fa-align-right prefix dark-grey-text"></i>
+                                    <input type="text" id="lastName" name="lastName" class="form-control" required maxlength="40">
+                                    <label for="lastName" class="font-weight-normal">Your fresh last name</label>
+                                </div>
+                                <div class="md-form">
+                                    <i class="fa fa-lock prefix dark-grey-text"></i>
+                                    <input type="password" id="password" name="password" class="form-control" required minlength="5" maxlength="20">
+                                    <label for="password" class="font-weight-normal">Your current password</label>
+                                </div>
+                                <div class="text-center py-4">
+                                    <button class="btn deep-purple accent-4" type="submit" data-update-text="Update">Change Name</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="d-flex flex-column justify-content-center m-4">
+                    <img class="e-logo form-top-image img-w-small img-h-small mr-auto ml-auto p-2 white material-shadow-dark rounded-circle">
+                    <div class="card rounded">
+                        <div class="card-body pt-5">
+                            <form id="changepassword-form" data-automate data-method="PATCH" data-update-method="PATCH" data-router="api-user-changepassword"
+                                data-callback="handleChangePassword">
+                                <p class="h4 text-center deep-purple-text">Change Password</p>
+                                <div class="md-form">
+                                    <i class="fa fa-unlock prefix dark-grey-text"></i>
+                                    <input type="password" id="change-password" name="password" class="form-control" required maxlength="40">
+                                    <label for="change-password" class="font-weight-normal">Your fresh password</label>
+                                </div>
+                                <div class="md-form">
+                                    <i class="fa fa-lock prefix dark-grey-text"></i>
+                                    <input type="password" id="currentPassword" name="currentPassword" class="form-control" required maxlength="20">
+                                    <label for="currentPassword" class="font-weight-normal">Your current password
+                                        <label>
+                                </div>
+                                <div class="text-center py-4">
+                                    <button class="btn deep-purple accent-4" type="submit" data-update-text="Update">Change Password</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </section>
+    </main>
+    <footer>
+        <footer class="page-footer font-small deep-purple accent-4 pt-0">
+            <div class="container">
+                <div class="row d-flex flex-wrap flex-row justify-content-center align-items-center">
+                    <a class="fb-ic m-3">
+                        <i class="fa fa-facebook fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
+                    </a>
+                    <a class="tw-ic m-3">
+                        <i class="fa fa-twitter fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
+                    </a>
+                    <a class="gplus-ic m-3">
+                        <i class="fa fa-google-plus fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
+                    </a>
+                    <a class="li-ic m-3">
+                        <i class="fa fa-linkedin fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
+                    </a>
+                    <a class="ins-ic m-3">
+                        <i class="fa fa-instagram fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
+                    </a>
+                    <a class="pin-ic m-3">
+                        <i class="fa fa-pinterest fa-lg white-text fa-2x"> </i>
+                    </a>
+                </div>
+            </div>
+            <div class="footer-copyright py-3 text-center">
+                <p>
+                    <span class="font-weight-bold e-name">{0}</span> is a
+                    <span class="font-weight-bold">SENAI</span> Software</p>
+            </div>
+        </footer>
+    </footer>
+
+    <script class="e-router router-js-form"></script>
+    <script class="e-router router-js-profile"></script>
+    <script src="/assets/js/constants.js"></script>
+    <script src="/assets/js/universal.js"></script>
+    <!-- External -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.13.0/umd/popper.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.4.5/js/mdb.min.js"></script>
+</body>
+
+</html>

@@ -3,7 +3,7 @@ package senai.sstorage.service.models;
 public class ChangePassword {
 	
 	private String currentPassword;
-	private String freshPassword;
+	private String password;
 	
 	public String getCurrentPassword() {
 		return currentPassword;
@@ -11,11 +11,11 @@ public class ChangePassword {
 	public void setCurrentPassword(String currentPassword) {
 		this.currentPassword = currentPassword;
 	}
-	public String getFreshPassword() {
-		return freshPassword;
+	public String getPassword() {
+		return password;
 	}
-	public void setFreshPassword(String freshPassword) {
-		this.freshPassword = freshPassword;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 }

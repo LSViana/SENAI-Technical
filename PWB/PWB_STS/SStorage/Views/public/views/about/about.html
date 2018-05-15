@@ -24,70 +24,51 @@
             <a class="navbar-brand e-router router-main e-name font-weight-bold">{0}</a>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
-                    <a class="nav-item nav-link active e-router router-main">Home</a>
-                    <a class="nav-item nav-link e-router router-about">About</a>
+                    <a class="nav-item nav-link e-router router-main">Home</a>
+                    <a class="nav-item nav-link active e-router router-about">About</a>
                 </div>
             </div>
             <div>
                 <div class="navbar-nav">
-                    <p class="nav-item nav-link e-text m-0 white-text" data-text-in="username" data-text-out="slogan">{0}</p>
-                    <span style="width: 2px; background: rgba(255, 255, 255, .5); margin: 6px 4px"></span>
-                    <a class="nav-item nav-link active e-router router-profile font-weight-bold" min-auth-show="1">Profile</a>
                     <a class="nav-item nav-link active e-router router-login e-text" data-text-out="login" data-text-in="logout" data-action-in="performLogout">{0}</a>
                 </div>
             </div>
         </nav>
     </header>
     <main class="d-flex flex-column flex-grow-1">
-        <section class="pres white-text flex-grow-1">
+        <section class="d-flex flex-column justify-content-center align-items-center white-text">
             <div class="pres-background-outer">
                 <div class="pres-background-inner">
                 </div>
             </div>
-            <div class="pres-header rounded ml-5 mr-5">
-                <h3 class="m-0">
-                    <span class="e-name font-weight-bold fa-2x">{0}</span>
-                </h3>
-                <img class="e-logo img-w-medium m-1 p-2 white rounded-circle material-shadow">
-                <h3 class="fa-2x m-0">stores more than items.</h3>
-            </div>
-            <div class="pres-main">
-                <div class="card mt-auto mb-auto w-100 max-width-400px m-4 vanish-login">
-                    <div class="card-header deep-purple accent-4 white-text e-name">{0} is the
-                        <span class="font-weight-bold">ready-to-go</span> solution</div>
-                    <div class="card-body d-flex flex-column">
-                        <p class="card-text dark-grey-text">We handle services relative to hosting patrimonies and managing
-                            <span class="font-weight-bold">movements</span> through
-                            <span class="font-weight-bold">environments</span>.</p>
-                        <a class="btn deep-purple accent-4 mt-auto e-router router-register">Create Account</a>
+
+            <div class="card card-body dark-grey-text m-2 d-flex flex-column">
+                <div class="d-flex flex-row">
+                    <div class="pres-header rounded">
+                        <h3 class="m-0">
+                            <span class="e-name font-weight-bold fa-2x">{0}</span>
+                        </h3>
+                        <img class="e-logo img-w-medium m-1 p-2 white rounded-circle material-shadow">
+                        <h3 class="fa-2x m-0">stores more than items.</h3>
+                    </div>
+                    <div>
+                        <div class="d-flex flex-column">
+                            <h4 class="card-title amber-dark-text accent-1 font-weight-bold">
+                                <i class="fa fa-dropbox mr-2"></i>Patrimonies</h4>
+                            <h4 class="card-title amber-orange-text w-300px font-weight-bold">
+                                <i class="fa fa-envira mr-2"></i>Environments</h4>
+                            <h4 class="card-title deep-orange-text font-weight-bold">
+                                <i class="fa fa-arrows-alt mr-2"></i>Movements</h4>
+                            <h4 class="card-title dark-orange-text accent-4 font-weight-bold">
+                                <i class="fa fa-lock mr-2"></i>Access Control</h4>
+                        </div>
+                        <p class="card-text">Our platform allows you keep your warehouse working through the help of a dedicated WebService and
+                            much care.
+                            <strong>&lt;3</strong>
+                        </p>
                     </div>
                 </div>
-                <div class="features p-3">
-                    <div class="card card-body dark-grey-text w-300px m-2">
-                        <h4 class="card-title amber-dark-text accent-1 font-weight-bold">
-                            <i class="fa fa-dropbox mr-2"></i>Patrimonies</h4>
-                        <p class="card-text">Our platform allows you to simply register and edit items in a blink of eye.</p>
-                        <a class="btn amber-dark e-router router-login mt-auto e-text" data-text-out="explore" data-text-in="manage" data-router-in="router-pats">{0} Patrimonies</a>
-                    </div>
-                    <div class="card card-body dark-grey-text w-300px m-2" min-auth-show="2">
-                        <h4 class="card-title amber-orange-text w-300px font-weight-bold">
-                            <i class="fa fa-envira mr-2"></i>Environments</h4>
-                        <p class="card-text">You can manage your patrimonies through environments, recovering or sending them to there.</p>
-                        <a class="btn amber-orange e-router router-login mt-auto e-text" data-text-out="explore" data-text-in="manage" data-router-in="router-envs">{0} Environments</a>
-                    </div>
-                    <div class="card card-body dark-grey-text w-300px m-2">
-                        <h4 class="card-title deep-orange-text font-weight-bold">
-                            <i class="fa fa-arrows-alt mr-2"></i>Movements</h4>
-                        <p class="card-text e-name">The old paper sheets to register are now handled by us, leave the {0} makes it for you.</p>
-                        <a class="btn deep-orange e-router router-login mt-auto e-text" data-text-out="explore" data-text-in="manage" data-router-in="router-patitems">{0} Movements</a>
-                    </div>
-                    <div class="card card-body dark-grey-text w-300px m-2" min-auth-show="2">
-                        <h4 class="card-title dark-orange-text accent-4 font-weight-bold">
-                            <i class="fa fa-lock mr-2"></i>Access Control</h4>
-                        <p class="card-text">Our automated system provides you a clear manage system to your users.</p>
-                        <a class="btn dark-orange e-router router-login mt-auto e-text" data-text-out="explore" data-text-in="manage" data-router-in="router-users">{0} Access Control</a>
-                    </div>
-                </div>
+                <a class="btn deep-purple accent-4 e-router router-main mt-auto">Go to Home</a>
             </div>
         </section>
     </main>

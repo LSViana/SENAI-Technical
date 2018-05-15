@@ -25,25 +25,41 @@ public class UserService {
 	@Autowired
 	private UserDAO userDAO;
 	
-	public User changeNames(User obj, ChangeNames changeNames) throws ValidationException {
-		String hashPassword = PasswordUtils.hashString(changeNames.getCurrentPassword());
-		if(obj.getPassword().equals(hashPassword)) {
-			obj.setFirstName(changeNames.getFreshFirstName());
-			obj.setLastName(changeNames.getFreshLastName());
-			userDAO.update(obj);
-			return obj;
+	public User changeNames(User obj, ChangeNames changeNames, BindingResult br) throws ValidationException, EntityNotFoundException {
+		Integer freshFirstNameLength = changeNames.getFirstName().length(), freshLastNameLength = changeNames.getLastName().length();
+		if(freshFirstNameLength < 1 || freshFirstNameLength > 20) {
+			br.addError(new FieldError("changeNames", "firstName", "size must be between 1 and 20"));
+			throw new ValidationException("size must be between 1 and 20");
 		}
+		if(freshLastNameLength < 1 || freshLastNameLength > 40) {
+			br.addError(new FieldError("changeNames", "lastName", "size must be between 1 and 40"));
+			throw new ValidationException("size must be between 1 and 40");
+		}
+		//
+		String hashPassword = PasswordUtils.hashString(changeNames.getPassword());
+		if(obj.getPassword().equals(hashPassword)) {
+			obj.setFirstName(changeNames.getFirstName());
+			obj.setLastName(changeNames.getLastName());
+			return update(obj.getId(), obj, br);
+		}  
+		br.addError(new FieldError("changeNames", "password", "Invalid password verification"));
 		throw new ValidationException("Invalid password verification");
 	}
 	
-	public User changePassword(User obj, ChangePassword ChangePassword) throws ValidationException {
-		String hashPassword = PasswordUtils.hashString(ChangePassword.getCurrentPassword());
-		if(obj.getPassword().equals(hashPassword)) {
-			obj.setPassword(ChangePassword.getFreshPassword());
-			obj.hashPassword();
-			userDAO.update(obj);
-			return obj;
+	public User changePassword(User obj, ChangePassword changePassword, BindingResult br) throws ValidationException, EntityNotFoundException {
+		Integer freshPasswordLength = changePassword.getPassword().length();
+		if(freshPasswordLength < 6 || freshPasswordLength > 20) {
+			br.addError(new FieldError("changePassword", "password", "size must be between 6 and 20"));
+			throw new ValidationException("size must be between 6 and 20");
 		}
+		//
+		String hashPassword = PasswordUtils.hashString(changePassword.getCurrentPassword());
+		if(obj.getPassword().equals(hashPassword)) {
+			obj.setPassword(changePassword.getPassword());
+			obj.hashPassword();
+			return update(obj.getId(), obj, br);
+		}
+		br.addError(new FieldError("changePassword", "currentPassword", "Invalid password verification"));
 		throw new ValidationException("Invalid password verification");
 	}
 

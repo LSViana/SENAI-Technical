@@ -30,6 +30,7 @@ const EDITPAGE = "/form.html";
 const ROUTES = {
   // Pages
   "router-login": "/views/users/login.html",
+  "router-profile": "/views/profile/profile.html",
   "router-main": "/views/main/main.html",
   "router-register": "/views/users/register.html",
   "router-about": "/views/about/about.html",
@@ -60,6 +61,7 @@ const ROUTES = {
   // JS
   "router-js-form": "/assets/js/form.js",
   "router-js-login": "/assets/js/login.js",
+  "router-js-profile": "/assets/js/profile.js",
   "router-js-users": "/assets/js/users.js",
   "router-js-envs": "/assets/js/envs.js",
   "router-js-patcats": "/assets/js/patcats.js",
@@ -69,6 +71,8 @@ const ROUTES = {
   "router-js-patitem-move": "/assets/js/patitem-move.js",
   // API
   "api-login": SERVER + API_PREFIX + USERS_PREFIX + "/authenticate",
+  "api-user-changenames": SERVER + API_PREFIX + USERS_PREFIX + "/changenames",
+  "api-user-changepassword": SERVER + API_PREFIX + USERS_PREFIX + "/changepassword",
   "api-logout": SERVER + API_PREFIX + USERS_PREFIX + "/logout",
   "api-user": SERVER + API_PREFIX + USERS_PREFIX,
   "api-env": SERVER + API_PREFIX + ENV_PREFIX,
@@ -90,12 +94,17 @@ const ROUTES = {
 //#region Texts
 const TEXTS = {
   "explore": "Explore",
+  "slogan": "Stores more than items",
   "manage": "Manage",
+  "go": "Go",
   "login": "Login",
-  "logout": "Logout"
+  "logout": "Logout",
+  "username": localStorage.getItem(XUSERNAME)
 }
 //#endregion
 
 //#region CSS Classes
 const FORM_ERROR = "form-error";
+const FORM_SUCCESS = "form-success";
+const FORM_WARNING = "form-warning";
 //#endregion

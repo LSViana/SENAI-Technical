@@ -2,29 +2,27 @@ package senai.sstorage.service.models;
 
 public class ChangeNames {
 	
-	private String currentPassword;
-	private String freshFirstName;
-	private String freshLastName;
+	private String password;
+	private String firstName;
+	private String lastName;
 	
-	public String getCurrentPassword() {
-		return currentPassword;
+	public String getPassword() {
+		return password;
 	}
-	
-	public void setCurrentPassword(String currentPassword) {
-		this.currentPassword = currentPassword;
+	public void setPassword(String password) {
+		this.password = password;
 	}
-	
-	public String getFreshFirstName() {
-		return freshFirstName;
+	public String getFirstName() {
+		return firstName;
 	}
-	public void setFreshFirstName(String freshFirstName) {
-		this.freshFirstName = freshFirstName;
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
 	}
-	public String getFreshLastName() {
-		return freshLastName;
+	public String getLastName() {
+		return lastName;
 	}
-	public void setFreshLastName(String freshLastName) {
-		this.freshLastName = freshLastName;
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
 
 }

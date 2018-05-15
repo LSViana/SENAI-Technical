@@ -328,20 +328,20 @@ function updateDOMWithAuthLevel() {
         for (let vanish of vanishLogin) {
             vanish.style.display = "none";
         }
-        // Removing elements that shouldn't be shown according to auth level
-        let authLevel = getAuthLevel();
-        let unauthorizedElements = Array.from(document.querySelectorAll(`*[min-auth-show]`)).filter(function (el) {
-            return Number(el.getAttribute("min-auth-show")) > authLevel
-        });
-        for (let el of unauthorizedElements) {
-            el.style.display = "none";
-        }
     } else {
         // Showing components that shouldn't be shown on LoggedIn
         let showLogin = Array.from(document.querySelectorAll(".show-login"));
         for (let show of showLogin) {
             show.style.display = "unset";
         }
+    }
+    // Removing elements that shouldn't be shown according to auth level
+    let authLevel = getAuthLevel();
+    let unauthorizedElements = Array.from(document.querySelectorAll(`*[min-auth-show]`)).filter(function (el) {
+        return Number(el.getAttribute("min-auth-show")) > authLevel
+    });
+    for (let el of unauthorizedElements) {
+        el.style.display = "none";
     }
 }
 
@@ -501,9 +501,9 @@ function onFormSend(e) {
             body: JSON.stringify(payload)
         })
         .then(function (response) {
-            callback(response, form);
+            callback(response, form, payload);
         }, function (rejected) {
-            callback(rejected, form);
+            callback(rejected, form, payload);
         });
 }
 
@@ -525,7 +525,10 @@ function getToken() {
  * @returns {Number}
  */
 function getAuthLevel() {
-    return Number(localStorage.getItem(XAUTHLEVEL));
+    let authLevel = localStorage.getItem(XAUTHLEVEL);
+    if(authLevel)
+        return Number(authLevel);
+    return 0;
 }
 
 /**

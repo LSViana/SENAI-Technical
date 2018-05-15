@@ -1,11 +1,10 @@
 // This JS file is added to pages after window.onload event
 
-const FORM_ERROR_HTML = `<div class="card bg-danger m-0">
-<div class="card-body p-2 d-flex flex-row align-items-center">
-    <i class="fa fa-exclamation m-2 mt-1"></i>
-    <p class="text-center m-0 font-small">{0}</p>
-</div>
-</div>`;
+const FORM_ERROR_HTML = `<div class="card bg-danger m-0"><div class="card-body p-2 d-flex flex-row align-items-center"><i class="fa fa-exclamation m-2 mt-1"></i><p class="text-center m-0 font-small">{0}</p></div></div>`;
+
+const FORM_SUCCESS_HTML = `<div class="card bg-success m-0"><div class="card-body p-2 d-flex flex-row align-items-center"><i class="fa fa-exclamation m-2 mt-1"></i><p class="text-center m-0 font-small">{0}</p></div></div>`;
+
+const FORM_WARNING_HTML = `<div class="card bg-warning m-0"><div class="card-body p-2 d-flex flex-row align-items-center"><i class="fa fa-exclamation m-2 mt-1"></i><p class="text-center m-0 font-small">{0}</p></div></div>`;
 
 /**
  * Add a error descriptor next to the form element
@@ -14,6 +13,33 @@ const FORM_ERROR_HTML = `<div class="card bg-danger m-0">
  * @param {String} message
  */
 function addFormError(form, inputName, message) {
+    addFormMessage(form, inputName, message, FORM_ERROR, FORM_ERROR_HTML);
+    // let inputNameLC = inputName.toLowerCase();
+    // // Getting input
+    // let input = Array.from(document.querySelectorAll(`#${form.getAttribute("id")} *[name]`)).filter(function (el) {
+    //     return el.getAttribute("name").toLowerCase() == inputNameLC;
+    // })[0];
+    // if (!input)
+    //     return;
+    // // Removing old errors
+    // removeFormInputErrors(form, inputName);
+    // //
+    // if (!form.getAttribute("id")) {
+    //     console.log(form);
+    //     throw Error("The Form must have an ID");
+    // }
+    // //
+    // let divEl = document.createElement("div");
+    // let formattedText = FORM_ERROR_HTML;
+    // formattedText = formattedText.replace("{0}", message);
+    // divEl.innerHTML = formattedText;
+    // input.parentElement.appendChild(divEl);
+    // //
+    // divEl.setAttribute("data-entity-message", inputName);
+    // divEl.classList.add(FORM_ERROR);
+}
+
+function addFormMessage(form, inputName, message, messageType, html) {
     let inputNameLC = inputName.toLowerCase();
     // Getting input
     let input = Array.from(document.querySelectorAll(`#${form.getAttribute("id")} *[name]`)).filter(function (el) {
@@ -30,13 +56,13 @@ function addFormError(form, inputName, message) {
     }
     //
     let divEl = document.createElement("div");
-    let formattedText = FORM_ERROR_HTML;
+    let formattedText = html;
     formattedText = formattedText.replace("{0}", message);
     divEl.innerHTML = formattedText;
     input.parentElement.appendChild(divEl);
     //
-    divEl.setAttribute("data-entity-error", inputName);
-    divEl.classList.add(FORM_ERROR);
+    divEl.setAttribute("data-entity-message", inputName);
+    divEl.classList.add(messageType);
 }
 
 let inputRadios = Array.from(document.querySelectorAll("label input[type=radio]")).map(function (el) {
@@ -47,14 +73,14 @@ for (let input of inputRadios) {
 }
 
 function removeFormErrors(form) {
-    let oldErrors = Array.from(document.querySelectorAll(`#${form.getAttribute("id")} div[data-entity-error]`));
+    let oldErrors = Array.from(document.querySelectorAll(`#${form.getAttribute("id")} div[data-entity-message]`));
     for (let oldError of oldErrors) {
         oldError.remove();
     }
 }
 
 function removeFormInputErrors(form, inputName) {
-    let oldErrors = Array.from(document.querySelectorAll(`#${form.getAttribute("id")} div[data-entity-error=${inputName}]`));
+    let oldErrors = Array.from(document.querySelectorAll(`#${form.getAttribute("id")} div[data-entity-message=${inputName}]`));
     for (let oldError of oldErrors) {
         oldError.remove();
     }
