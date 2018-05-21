@@ -14,7 +14,7 @@ function handleRegisterUser(response, form) {
                     })
             }
         } else {
-            window.location.href = ROUTES["router-users"];
+            window.location.href = ROUTES["router-main"];
         }
     } else {
         let customHeaderKeys = Array.from(response.headers.keys()).filter(function(key) { return key.toLowerCase().startsWith("x-") });

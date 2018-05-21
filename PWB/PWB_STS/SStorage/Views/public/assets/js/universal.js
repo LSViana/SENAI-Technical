@@ -115,7 +115,7 @@ function performTableLists() {
                     actions[dataTableAction].dataRouter = dataRouter;
                 }
                 let dataCallback = header.getAttribute("data-callback");
-                if(dataCallback) {
+                if (dataCallback) {
                     actions[dataTableAction].dataCallback = dataCallback;
                 }
             }
@@ -140,12 +140,19 @@ function performTableLists() {
                     for (let item of data) {
                         // Building the Table Row
                         let tr = document.createElement("tr");
+                        tbody.appendChild(tr);
                         tr.setAttribute("data-entity-id", item.id);
                         for (let mapping of mappings) {
                             let td = document.createElement("td");
+                            tr.appendChild(td);
                             for (let property of mapping) {
                                 let propertyParts = property.split(".");
                                 let value = item[propertyParts[0]];
+                                let directText = true;
+                                if (property.indexOf("image") != -1) {
+                                    // Image treatment
+                                    directText = false;
+                                }
                                 for (let index = 1; index < propertyParts.length; index++) {
                                     value = value[propertyParts[index]];
                                 }
@@ -156,11 +163,27 @@ function performTableLists() {
                                         case "datetime":
                                             value = new Date(value).toLocaleString();
                                             break;
+                                        case "image":
+                                            let img = document.createElement("img");
+                                            let bounds = td.getBoundingClientRect();
+                                            td.classList.add("p-1");
+                                            img.addEventListener("error", function (ev) {
+                                                td.removeChild(img);
+                                            });
+                                            img.setAttribute("alt", property);
+                                            img.setAttribute("src", value);
+                                            img.style.height = bounds.height + "px";
+                                            td.appendChild(img);
+                                            break;
                                     }
                                 }
-                                td.innerText += value + " ";
+                                if (directText) {
+                                    if (td.innerText) {
+                                        value = " " + value;
+                                    }
+                                    td.innerText += value;
+                                }
                             }
-                            tr.appendChild(td);
                         }
                         for (let actionName in actions) {
                             let action = actions[actionName];
@@ -194,14 +217,13 @@ function performTableLists() {
                                 // Data callback
                                 let dataCallback = action.dataCallback;
                                 if (dataCallback) {
-                                    aEl.addEventListener("click", function(ev) {
+                                    aEl.addEventListener("click", function (ev) {
                                         let callback = window[dataCallback];
                                         callback(item.id);
                                     })
                                 }
                             }
                         }
-                        tbody.appendChild(tr);
                     }
                     //
                     let manyOneElements = Array.from(document.querySelectorAll(".e-many-one"));
@@ -458,15 +480,19 @@ function onFormSend(e) {
         if (input.constructor.name == "RadioNodeList") {
             payload[key] = input.value;
         } else if (input) {
-            let idParts = input.getAttribute("id").split(".");
-            if (idParts.length < 2) {
-                payload[key] = formData.get(key);
+            if (input.getAttribute("type").toLowerCase() == "file") {
+                payload[key] = input.result;
             } else {
-                if (input.entity && input.entity.id) {
-                    payload[key] = input.entity;
+                let idParts = input.getAttribute("id").split(".");
+                if (idParts.length < 2) {
+                    payload[key] = formData.get(key);
                 } else {
-                    addFormError(form, input.getAttribute("name"), "You must fill this field!");
-                    return;
+                    if (input.entity && input.entity.id) {
+                        payload[key] = input.entity;
+                    } else {
+                        addFormError(form, input.getAttribute("name"), "You must fill this field!");
+                        return;
+                    }
                 }
             }
         }
@@ -526,7 +552,7 @@ function getToken() {
  */
 function getAuthLevel() {
     let authLevel = localStorage.getItem(XAUTHLEVEL);
-    if(authLevel)
+    if (authLevel)
         return Number(authLevel);
     return 0;
 }

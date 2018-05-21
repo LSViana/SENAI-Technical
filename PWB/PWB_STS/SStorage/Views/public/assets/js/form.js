@@ -303,4 +303,18 @@ function verifyEntityIdPresence() {
     }
 }
 
+function registerInputFileHandlers() {
+    let inputsFile = Array.from(document.querySelectorAll("input[type='file'"));
+    for(let inputFile of inputsFile) {
+        inputFile.addEventListener("input", function(listener) {
+            let fr = new FileReader();
+            fr.addEventListener("loadend", function(ev) {
+                inputFile.result = fr.result;
+            });
+            fr.readAsDataURL(inputFile.files[0]);
+        });
+    }
+}
+
 verifyEntityIdPresence();
+registerInputFileHandlers();

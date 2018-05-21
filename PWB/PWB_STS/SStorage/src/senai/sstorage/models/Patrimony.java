@@ -11,9 +11,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -38,6 +40,10 @@ public class Patrimony {
 	@JoinColumn(nullable = false, name = "id_patrimony_category")
 	@NotNull
 	private PatrimonyCategory patrimonyCategory;
+
+	@NotNull
+	@Lob
+	private String imageB64;
 
 	@Column(nullable = false)
 	private Date datetime;
@@ -80,6 +86,14 @@ public class Patrimony {
 
 	public void setDatetime(Date datetime) {
 		this.datetime = datetime;
+	}
+
+	public String getImageB64() {
+		return imageB64;
+	}
+
+	public void setImageB64(String imageB64) {
+		this.imageB64 = imageB64;
 	}
 
 }

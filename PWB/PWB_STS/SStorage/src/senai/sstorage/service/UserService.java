@@ -69,6 +69,7 @@ public class UserService {
 			br.addError(new FieldError("user", "password", "size must be between 6 and 20"));
 			throw new ValidationException("size must be between 6 and 20");
 		}
+		obj.hashPassword();
 		if(userDAO.searchByEmail(obj.getEmail()) != null) {
 			br.addError(new FieldError("user", "email", "E-mail already in use"));
 			throw new ValidationException("E-mail already in use");

@@ -132,6 +132,11 @@ table td:not(:first-child), table td:not(:first-child) a i {
     color: dimgray !important;
 }
 
+table td img {
+    max-width: 100% !important;
+    max-height: 100% !important;
+}
+
 .form-check-input {
     font-family: Arial !important;
 }

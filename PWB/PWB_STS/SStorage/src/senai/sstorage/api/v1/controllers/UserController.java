@@ -40,6 +40,7 @@ import senai.sstorage.models.User;
 import senai.sstorage.service.UserService;
 import senai.sstorage.service.models.ChangeNames;
 import senai.sstorage.service.models.ChangePassword;
+import senai.sstorage.utils.EmailUtils;
 import senai.sstorage.utils.WebUtils;
 
 @RestController
@@ -194,8 +195,10 @@ public class UserController extends TemplateController {
 			// Authenticate Administrator
 			JWTManager.validateToken(token, Authority.ADMINISTRATOR);
 			//
-			user.hashPassword();
 			User created = service.create(user, br);
+			// Sending email to the newly registered user
+			EmailUtils.sendEmail("Welcome to SStorage! The SENAI Software to manage patrimonies", "You've been successfully registered, you can go to our login page and start your experience.", user.getEmail());
+			//
 			return ResponseEntity.created(webUtils.getUri(API_V1 + ADDRESS + "/" + created.getId())).body(created);
 		} catch (UnauthorizedException e) {
 			return unauthorized(e);
