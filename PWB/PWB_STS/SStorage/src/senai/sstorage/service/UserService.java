@@ -56,8 +56,7 @@ public class UserService {
 		String hashPassword = PasswordUtils.hashString(changePassword.getCurrentPassword());
 		if(obj.getPassword().equals(hashPassword)) {
 			obj.setPassword(changePassword.getPassword());
-			obj.hashPassword();
-			return update(obj.getId(), obj, br);
+			return updateWithHash(obj.getId(), obj, br);
 		}
 		br.addError(new FieldError("changePassword", "currentPassword", "Invalid password verification"));
 		throw new ValidationException("Invalid password verification");
@@ -66,6 +65,10 @@ public class UserService {
 	public User create(User obj, BindingResult br) throws ValidationException {
 		if(br.hasErrors())
 			throw new ValidationException();
+		if(obj.getPassword().length() > 20) {
+			br.addError(new FieldError("user", "password", "size must be between 6 and 20"));
+			throw new ValidationException("size must be between 6 and 20");
+		}
 		if(userDAO.searchByEmail(obj.getEmail()) != null) {
 			br.addError(new FieldError("user", "email", "E-mail already in use"));
 			throw new ValidationException("E-mail already in use");
@@ -89,6 +92,32 @@ public class UserService {
 	public User update(Long id, User obj, BindingResult br) throws ValidationException, EntityNotFoundException {
 		if(br.hasErrors())
 			throw new ValidationException("Validation exception");
+		if(obj.getPassword().length() > 20) {
+			br.addError(new FieldError("user", "password", "size must be between 6 and 20"));
+			throw new ValidationException("size must be between 6 and 20");
+		}
+		User fromDb = userDAO.search(id);
+		if(fromDb == null)
+			throw new EntityNotFoundException();
+		fromDb = userDAO.searchByEmail(obj.getEmail());
+		if(fromDb != null && fromDb.getId() != id) {
+			br.addError(new FieldError("user", "email", "E-mail already in use"));
+			throw new ValidationException("E-mail already in use");
+		}
+		fromDb = userDAO.search(id);
+		BeanUtils.copyProperties(obj, fromDb, "id");
+		userDAO.update(fromDb);
+		return fromDb;
+	}
+	
+	public User updateWithHash(Long id, User obj, BindingResult br) throws ValidationException, EntityNotFoundException {
+		if(br.hasErrors())
+			throw new ValidationException("Validation exception");
+		if(obj.getPassword().length() > 20) {
+			br.addError(new FieldError("user", "password", "size must be between 6 and 20"));
+			throw new ValidationException("size must be between 6 and 20");
+		}
+		obj.hashPassword();
 		User fromDb = userDAO.search(id);
 		if(fromDb == null)
 			throw new EntityNotFoundException();
