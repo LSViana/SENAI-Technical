@@ -18,11 +18,9 @@ namespace SStorage.Data
         {
             // Configuring Relationships
             modelBuilder.Entity<Movement>()
-                .HasOne(mov => mov.OriginEnvironment)
-                .WithMany(env => env.OriginMovements);
+                .HasOne(mov => mov.OriginEnvironment);
             modelBuilder.Entity<Movement>()
-                .HasOne(mov => mov.DestinyEnvironment)
-                .WithMany(env => env.DestinyMovements);
+                .HasOne(mov => mov.DestinyEnvironment);
 
             var fks = modelBuilder.Model
                 .GetEntityTypes()

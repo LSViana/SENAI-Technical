@@ -18,10 +18,9 @@ namespace SStorage.Data
                 Email = "admin@email.com",
                 LastName = "System",
                 Name = "Administrator",
-                Password = "admin",
+                Password = "admin1",
                 UserType = UserType.ADMINISTRATOR
             };
-            admin.Password = User.Hash(admin.Password);
             context.Users.Add(admin);
             context.SaveChanges(); // Not async, because it will be run at the startup, and the server can't start while the seeding operation happens
         }

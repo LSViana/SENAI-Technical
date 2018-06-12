@@ -32,25 +32,31 @@ namespace SStorage.Models
         public string Password {
             get
             {
-                return PasswordDatabase;
+                return _password;
             }
             set {
-                PasswordDatabase = value;
+                _password = value;
+                PasswordDatabase = Hash(value);
             }
         }
 
+        private string _password;
+
+        // Validation here is never used because the Json.NET is disabled here
         [Required]
-        [StringLength(256, MinimumLength = 128)]
+        [StringLength(128)]
         public string PasswordDatabase { get; private set; }
 
         [Required]
         public UserType UserType { get; set; }
 
-        public ICollection<Movement> Movements { get; set; }
+        //public ICollection<Movement> Movements { get; set; }
 
-        public ICollection<PatrimonyItem> PatrimonyItems { get; set; }
+        //public ICollection<PatrimonyItem> PatrimonyItems { get; set; }
 
-        public ICollection<Patrimony> Patrimonies { get; set; }
+        //public ICollection<Patrimony> Patrimonies { get; set; }
+
+        public static string[] PropertiesNotToUpdate = new string[] { nameof(Id), nameof(Password), nameof(PasswordDatabase) };
 
         public static String Hash(String value)
         {
@@ -58,11 +64,18 @@ namespace SStorage.Models
             return Encoding.UTF8.GetString(alg.ComputeHash(Encoding.UTF8.GetBytes(value)));
         }
 
+        // It avoids the JSON Serialization of PasswordDatabase, because of the name [ShouldSerialize?]PasswordDatabase
         public bool ShouldSerializePasswordDatabase() {
             return false;
         }
 
+        // Same as ShouldSerializePasswordDatabase
         public bool ShouldSerializePassword() {
+            return false;
+        }
+
+        public bool ShouldDeserializePasswordDatabase()
+        {
             return false;
         }
     }

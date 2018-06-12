@@ -9,9 +9,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using SStorage.Data;
-using SStorage.Exceptions;
 using SStorage.Models;
-using SStorage.Models.API;
+using SStorage.Models.ViewModels;
 using SStorage.Utils;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -37,13 +36,11 @@ namespace SStorage.Controllers.V1
             if (login is null)
                 return BadRequest();
             if (login.Email is null || login.Password is null)
-            {
-                throw new UnprocessableEntityException(ModelState);
-            }
+                return UnprocessableEntity(ModelState);
 
             login.Password = Models.User.Hash(login.Password);
 
-            var user = Context.Users.FirstOrDefault(x => x.Email == login.Email && x.Password == login.Password);
+            var user = Context.Users.Where(x => x.Email == login.Email && x.PasswordDatabase == login.Password).FirstOrDefault();
 
             if (user is null)
                 return NotFound();
@@ -53,9 +50,9 @@ namespace SStorage.Controllers.V1
             var claims = new Claim[]
             {
                 new Claim(ClaimTypes.Email, user.Email, ClaimValueTypes.String),
-                new Claim(ClaimTypes.Authentication, user.Password, ClaimValueTypes.String),
+                new Claim(ClaimTypes.Authentication, user.PasswordDatabase, ClaimValueTypes.String),
                 new Claim(CustomClaimTypes.Subject, user.Email, ClaimValueTypes.String),
-                new Claim(CustomClaimTypes.Hash, user.Password, ClaimValueTypes.String),
+                new Claim(CustomClaimTypes.Hash, user.PasswordDatabase, ClaimValueTypes.String),
                 new Claim(CustomClaimTypes.Extra, user.UserType.ToString(), ClaimValueTypes.String)
             };
 

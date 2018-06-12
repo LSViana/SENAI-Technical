@@ -43,7 +43,7 @@ namespace SStorage.Migrations
                     Name = table.Column<string>(maxLength: 20, nullable: false),
                     LastName = table.Column<string>(maxLength: 40, nullable: false),
                     Email = table.Column<string>(nullable: false),
-                    PasswordDatabase = table.Column<string>(maxLength: 256, nullable: false),
+                    PasswordDatabase = table.Column<string>(maxLength: 128, nullable: false),
                     UserType = table.Column<int>(nullable: false)
                 },
                 constraints: table =>

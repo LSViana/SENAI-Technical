@@ -14,10 +14,10 @@ namespace SStorage.Models
         [StringLength(40, MinimumLength = 1)]
         public string Name { get; set; }
 
-        public ICollection<Movement> OriginMovements { get; set; }
+        //public ICollection<Movement> OriginMovements { get; set; }
 
-        public ICollection<Movement> DestinyMovements { get; set; }
+        //public ICollection<Movement> DestinyMovements { get; set; }
 
-        public ICollection<PatrimonyItem> PatrimonyItems { get; set; }
+        //public ICollection<PatrimonyItem> PatrimonyItems { get; set; }
     }
 }

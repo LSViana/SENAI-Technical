@@ -143,7 +143,7 @@ namespace SStorage.Migrations
 
                     b.Property<string>("PasswordDatabase")
                         .IsRequired()
-                        .HasMaxLength(256);
+                        .HasMaxLength(128);
 
                     b.Property<int>("UserType");
 
@@ -155,22 +155,22 @@ namespace SStorage.Migrations
             modelBuilder.Entity("SStorage.Models.Movement", b =>
                 {
                     b.HasOne("SStorage.Models.Environment", "DestinyEnvironment")
-                        .WithMany("DestinyMovements")
+                        .WithMany()
                         .HasForeignKey("DestinyEnvironmentId")
                         .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("SStorage.Models.Environment", "OriginEnvironment")
-                        .WithMany("OriginMovements")
+                        .WithMany()
                         .HasForeignKey("OriginEnvironmentId")
                         .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("SStorage.Models.PatrimonyItem", "PatrimonyItem")
-                        .WithMany("Movements")
+                        .WithMany()
                         .HasForeignKey("PatrimonyItemId")
                         .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("SStorage.Models.User", "User")
-                        .WithMany("Movements")
+                        .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Restrict);
                 });
@@ -178,12 +178,12 @@ namespace SStorage.Migrations
             modelBuilder.Entity("SStorage.Models.Patrimony", b =>
                 {
                     b.HasOne("SStorage.Models.PatrimonyCategory", "PatrimonyCategory")
-                        .WithMany("Patrimonies")
+                        .WithMany()
                         .HasForeignKey("PatrimonyCategoryId")
                         .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("SStorage.Models.User", "User")
-                        .WithMany("Patrimonies")
+                        .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Restrict);
                 });
@@ -191,17 +191,17 @@ namespace SStorage.Migrations
             modelBuilder.Entity("SStorage.Models.PatrimonyItem", b =>
                 {
                     b.HasOne("SStorage.Models.Environment", "Environment")
-                        .WithMany("PatrimonyItems")
+                        .WithMany()
                         .HasForeignKey("EnvironmentId")
                         .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("SStorage.Models.Patrimony", "Patrimony")
-                        .WithMany("PatrimonyItems")
+                        .WithMany()
                         .HasForeignKey("PatrimonyId")
                         .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("SStorage.Models.User", "User")
-                        .WithMany("PatrimonyItems")
+                        .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Restrict);
                 });

@@ -8,6 +8,8 @@ namespace SStorage.Models
 {
     public class Patrimony
     {
+        public static string[] PropertiesNotToUpdate = new string[] { nameof(Id), nameof(PatrimonyCategory), nameof(User), nameof(DateTime) };
+
         public long Id { get; set; }
 
         [Required]
@@ -22,6 +24,6 @@ namespace SStorage.Models
 
         public DateTime DateTime { get; set; }
 
-        public ICollection<PatrimonyItem> PatrimonyItems { get; set; }
+        //public ICollection<PatrimonyItem> PatrimonyItems { get; set; }
     }
 }

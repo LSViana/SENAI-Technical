@@ -20,6 +20,6 @@ namespace SStorage.Models
         public User User { get; set; }
         public long UserId { get; set; }
 
-        public ICollection<Movement> Movements { get; set; }
+        //public ICollection<Movement> Movements { get; set; }
     }
 }
