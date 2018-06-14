@@ -146,7 +146,7 @@ namespace SStorage.Controllers.V1
             if (user is null)
                 return BadRequest();
             userPasswords.Current = Models.User.Hash(userPasswords.Current);
-            if (userPasswords.Current != user.Password)
+            if (userPasswords.Current != user.PasswordDatabase)
                 return BadRequest(new { Reason = "Current password doesn't match with password stored" });
             user.Password = userPasswords.Password;
             Context.Users.Update(user);

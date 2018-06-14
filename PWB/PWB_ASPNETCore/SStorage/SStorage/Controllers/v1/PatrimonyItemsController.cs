@@ -124,11 +124,14 @@ namespace SStorage.Controllers.v1
         }
 
         [HttpPost("{patrimonyItemId}/moveto/{environmentId}")]
-        [Authorize(Policies.Administrator)]
         public async Task<IActionResult> Move(long patrimonyItemId, long environmentId)
         {
             // Getting values supplied from URL
-            var item = await Context.PatrimonyItems.Where(a => a.Id == patrimonyItemId).FirstOrDefaultAsync();
+            var item = await Context.PatrimonyItems
+                .Where(a => a.Id == patrimonyItemId)
+                // This line loads from the database the Environment that will be filled, by EF, at Movement object
+                .Include(a => a.Environment)
+                .FirstOrDefaultAsync();
             if (item is null)
                 return NotFound(new { Reason = String.Format(Strings.NotFound, nameof(patrimonyItemId)) });
             var environment = await Context.Environments.Where(a => a.Id == environmentId).FirstOrDefaultAsync();
@@ -161,7 +164,6 @@ namespace SStorage.Controllers.v1
         }
 
         [HttpGet("{id}/moves")]
-        [Authorize(Policies.Administrator)]
         public async Task<IActionResult> GetMovements(long id)
         {
             var patrimonyItem = await Context.PatrimonyItems.Where(a => a.Id == id).AsNoTracking().FirstOrDefaultAsync();
@@ -190,6 +192,7 @@ namespace SStorage.Controllers.v1
         }
 
         [HttpGet("{id}/turndown")]
+        [Authorize(Policies.Administrator)]
         public async Task<IActionResult> TurnDown(long id)
         {
             var patrimonyItem = await Context.PatrimonyItems.Where(a => a.Id == id).FirstOrDefaultAsync();
@@ -197,7 +200,7 @@ namespace SStorage.Controllers.v1
                 return NotFound();
             if (patrimonyItem.State != PatrimonyItemState.Requested)
             {
-                return Conflict(new { Reason = String.Format(Strings.CantChange, patrimonyItem.State, PatrimonyItemState.Requested) });
+                return Conflict(new { Reason = String.Format(Strings.CantChange, patrimonyItem.State, PatrimonyItemState.Removed) });
             }
             patrimonyItem.State = PatrimonyItemState.Removed;
             await Context.SaveChangesAsync();

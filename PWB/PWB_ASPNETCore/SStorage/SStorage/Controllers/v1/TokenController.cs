@@ -66,7 +66,10 @@ namespace SStorage.Controllers.V1
 
             return Ok(new
             {
-                Username = $"{user.Name} {user.LastName}",
+                user.Name,
+                user.LastName,
+                UserId = user.Id,
+                user.UserType,
                 Token = new JwtSecurityTokenHandler().WriteToken(jwt)
             });
         }
