@@ -10,25 +10,43 @@ using System.Threading.Tasks;
 namespace SStorage.Controllers.v1
 {
     [Route("rest/v1/[controller]")]
-    [Authorize(Policies.Administrator)]
-    public class PatrimonyCategoryController : Controller
+    [Authorize]
+    public class PatrimonyCategoriesController : Controller
     {
 
-        public PatrimonyCategoryController(SStorageDbContext context)
+        public PatrimonyCategoriesController(SStorageDbContext context)
         {
             Context = context;
         }
 
         public SStorageDbContext Context { get; }
 
-        [Authorize]
+        [NonAction]
+        private async Task<bool> IsValid(PatrimonyCategory patrimonyCategory, long? Id = null)
+        {
+            if (!ModelState.IsValid)
+                return false;
+            var sameName = await Context.PatrimonyCategories.Where(a => a.Name == patrimonyCategory.Name).FirstOrDefaultAsync();
+            if (sameName != null && sameName.Id != patrimonyCategory.Id)
+            {
+                ModelState.AddModelError(nameof(PatrimonyCategory.Name), "Name is already in use");
+                return false;
+            }
+            if (Id.HasValue && patrimonyCategory.Id != Id)
+            {
+                ModelState.AddModelError(nameof(PatrimonyCategory.Id), "ID at query string doesn't match with body");
+                return false;
+            }
+            return true;
+        }
+
+        [HttpGet]
         public async Task<IActionResult> Get()
         {
             return Ok(await Context.PatrimonyCategories.AsNoTracking().ToListAsync());
         }
 
-        [HttpGet("{id}", Name = "GetPatrimonyCategoryById")]
-        [Authorize]
+        [HttpGet("{id}")]
         public async Task<IActionResult> Get(long id)
         {
             var patrimonyCategory = await Context.PatrimonyCategories.AsNoTracking().Where(a => a.Id == id).FirstOrDefaultAsync();
@@ -38,25 +56,25 @@ namespace SStorage.Controllers.v1
         }
 
         [HttpPost]
+        [Authorize(Policies.Administrator)]
         public async Task<IActionResult> Create([FromBody] PatrimonyCategory patrimonyCategory)
         {
-            if (!ModelState.IsValid)
+            if (!await IsValid(patrimonyCategory))
                 return UnprocessableEntity(ModelState);
             await Context.PatrimonyCategories.AddAsync(patrimonyCategory);
             await Context.SaveChangesAsync();
-            return CreatedAtAction("GetPatrimonyCategoryById", new { id = patrimonyCategory.Id }, patrimonyCategory);
+            return CreatedAtAction(nameof(Get), new { id = patrimonyCategory.Id }, patrimonyCategory);
         }
 
         [HttpPut("{id}")]
+        [Authorize(Policies.Administrator)]
         public async Task<IActionResult> Update(long id, [FromBody] PatrimonyCategory patrimonyCategory)
         {
-            if (id != patrimonyCategory.Id)
-                return BadRequest(new { Reason = "ID supplied at query string doesn't match entity at body" });
             foreach (var prop in PatrimonyCategory.PropertiesNotToUpdate)
             {
                 ModelState.Remove(prop);
             }
-            if (!ModelState.IsValid)
+            if (!await IsValid(patrimonyCategory))
                 return UnprocessableEntity(ModelState);
             // Updating from Database
             var fromDb = await Context.PatrimonyCategories.Where(a => a.Id == id).FirstOrDefaultAsync();
@@ -69,6 +87,7 @@ namespace SStorage.Controllers.v1
         }
 
         [HttpDelete("{id}")]
+        [Authorize(Policies.Administrator)]
         public async Task<IActionResult> Delete(long id)
         {
             var patrimonyCategory = await Context.PatrimonyCategories.Where(a => a.Id == id).FirstOrDefaultAsync();

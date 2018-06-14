@@ -10,7 +10,7 @@ using SStorage.Data;
 namespace SStorage.Migrations
 {
     [DbContext(typeof(SStorageDbContext))]
-    [Migration("20180612193045_Initial")]
+    [Migration("20180614163259_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -111,7 +111,11 @@ namespace SStorage.Migrations
 
                     b.Property<long>("EnvironmentId");
 
+                    b.Property<DateTime>("LastMovement");
+
                     b.Property<long>("PatrimonyId");
+
+                    b.Property<int>("State");
 
                     b.Property<long>("UserId");
 

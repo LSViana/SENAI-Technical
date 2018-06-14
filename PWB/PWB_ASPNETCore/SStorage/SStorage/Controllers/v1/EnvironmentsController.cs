@@ -13,7 +13,7 @@ using SStorage.Utils;
 namespace SStorage.Controllers.v1
 {
     [Route("rest/v1/[controller]")]
-    [Authorize(Policies.Administrator)]
+    [Authorize]
     public class EnvironmentsController : Controller
     {
 
@@ -24,16 +24,38 @@ namespace SStorage.Controllers.v1
 
         public SStorageDbContext Context { get; }
 
+        [NonAction]
+        public async Task<bool> IsValid(Models.Environment environment, long? Id = null)
+        {
+            if (!ModelState.IsValid)
+                return false;
+            var sameName = await Context.Environments.Where(a => a.Name == environment.Name).FirstOrDefaultAsync();
+            if (sameName != null && sameName.Id != environment.Id)
+            {
+                var _name = nameof(Models.Environment.Name);
+                ModelState.AddModelError(_name, String.Format(Strings.AlreadyInUse, _name));
+                return false;
+            }
+            if (Id.HasValue)
+            {
+                if (environment.Id != Id)
+                {
+                    var _id = nameof(Models.Environment.Id);
+                    ModelState.AddModelError(_id, String.Format(Strings.NoMatch, _id, _id));
+                    return false;
+                }
+            }
+            return true;
+        }
+
         [HttpGet]
-        [Authorize]
         public async Task<IActionResult> Get()
         {
             var environments = await Context.Environments.AsNoTracking().ToListAsync();
             return Ok(environments);
         }
 
-        [HttpGet("{id}", Name = "GetEnvironmentById")]
-        [Authorize]
+        [HttpGet("{id}")]
         public async Task<IActionResult> Get(long id)
         {
             var environment = await Context.Environments.FindAsync(id);
@@ -43,25 +65,39 @@ namespace SStorage.Controllers.v1
         }
 
         [HttpPost]
+        [Authorize(Policies.Administrator)]
         public async Task<IActionResult> Create([FromBody] Models.Environment environment)
         {
-            if (!ModelState.IsValid)
+            if (!await IsValid(environment))
                 return UnprocessableEntity(ModelState);
+            //
             await Context.Environments.AddAsync(environment);
             await Context.SaveChangesAsync();
-            return CreatedAtAction("GetEnvironmentById", new { id = environment.Id }, environment);
+            return CreatedAtAction(nameof(Get), new { id = environment.Id }, environment);
         }
 
         [HttpPut("{id}")]
+        [Authorize(Policies.Administrator)]
         public async Task<IActionResult> Update(long id, [FromBody] Models.Environment environment)
         {
-            if (!ModelState.IsValid)
+            if (!await IsValid(environment))
                 return UnprocessableEntity(ModelState);
-            if (id != environment.Id)
-                return BadRequest(new { Reason = "ID supplied at query string doesn't match entity at body" });
+            //
             Context.Environments.Update(environment);
             await Context.SaveChangesAsync();
             return Ok(environment);
+        }
+
+        [HttpDelete("{id}")]
+        [Authorize(Policies.Administrator)]
+        public async Task<IActionResult> Delete(long id)
+        {
+            var environment = await Context.Environments.FindAsync(id);
+            if (environment is null)
+                return NotFound();
+            Context.Environments.Remove(environment);
+            await Context.SaveChangesAsync();
+            return Ok();
         }
 
     }

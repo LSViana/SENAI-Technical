@@ -86,7 +86,9 @@ namespace SStorage.Migrations
                     Id = table.Column<long>(nullable: false),
                     PatrimonyId = table.Column<long>(nullable: false),
                     EnvironmentId = table.Column<long>(nullable: false),
-                    UserId = table.Column<long>(nullable: false)
+                    UserId = table.Column<long>(nullable: false),
+                    LastMovement = table.Column<DateTime>(nullable: false),
+                    State = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {

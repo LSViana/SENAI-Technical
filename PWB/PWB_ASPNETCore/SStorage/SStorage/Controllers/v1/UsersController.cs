@@ -27,6 +27,29 @@ namespace SStorage.Controllers.V1
 
         public SStorageDbContext Context { get; }
 
+        [NonAction]
+        public async Task<bool> IsValid(User user, long? Id = null)
+        {
+            if (!ModelState.IsValid)
+                return false;
+            //
+            if(Id.HasValue && Id != user.Id)
+            {
+                var _id = nameof(Models.User.Id);
+                ModelState.AddModelError(_id, String.Format(Strings.NoMatch, _id));
+                return false;
+            }
+            //
+            var sameEmail = await Context.Users.Where(a => a.Email == user.Email).FirstOrDefaultAsync();
+            if (sameEmail != null && sameEmail.Id != user.Id)
+            {
+                var _email = nameof(Models.User.Email);
+                ModelState.AddModelError(_email, String.Format(Strings.AlreadyInUse, _email));
+                return false;
+            }
+            return true;
+        }
+
         [HttpGet]
         [Authorize(Policies.Administrator)]
         public async Task<IActionResult> Get()
@@ -48,7 +71,7 @@ namespace SStorage.Controllers.V1
         [Authorize(Policies.Administrator)]
         public async Task<IActionResult> Create([FromBody] User user)
         {
-            if (!ModelState.IsValid)
+            if (!await IsValid(user))
                 return UnprocessableEntity(ModelState);
             await Context.Users.AddAsync(user);
             await Context.SaveChangesAsync();
@@ -59,13 +82,11 @@ namespace SStorage.Controllers.V1
         [Authorize(Policies.Administrator)]
         public async Task<IActionResult> Update(long id, [FromBody] User user)
         {
-            if (id != user.Id)
-                return BadRequest(new { Reason = "ID supplied at query string doesn't match entity at body" });
             foreach (var prop in Models.User.PropertiesNotToUpdate)
             {
                 ModelState.Remove(prop);
             }
-            if (!ModelState.IsValid)
+            if (!await IsValid(user, id))
                 return UnprocessableEntity(ModelState);
             // Updating from Database
             var fromDb = await Context.Users.FindAsync(id);

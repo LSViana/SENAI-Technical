@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -10,7 +11,7 @@ namespace SStorage.Models
         public long Id { get; set; }
 
         public DateTime DateTime { get; set; }
-
+        
         public PatrimonyItem PatrimonyItem { get; set; }
         public long PatrimonyItemId { get; set; }
 

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -9,7 +10,7 @@ namespace SStorage.Models
     public class Patrimony
     {
         public static string[] PropertiesNotToUpdate = new string[] { nameof(Id), nameof(PatrimonyCategory), nameof(User), nameof(DateTime) };
-
+        
         public long Id { get; set; }
 
         [Required]

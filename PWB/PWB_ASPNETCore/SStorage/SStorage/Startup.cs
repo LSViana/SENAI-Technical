@@ -15,6 +15,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using SStorage.Data;
+using SStorage.Models;
 using SStorage.Utils;
 
 namespace SStorage
@@ -63,7 +64,7 @@ namespace SStorage
             // Configuring Different Levels of Authorization
             services.AddAuthorization(opt => {
                 opt.AddPolicy(Policies.Administrator, policyBuilder => {
-                   policyBuilder.RequireClaim("extra", "ADMINISTRATOR");
+                   policyBuilder.RequireClaim(CustomClaimTypes.Extra, nameof(UserType.ADMINISTRATOR));
                 });
             });
         }
