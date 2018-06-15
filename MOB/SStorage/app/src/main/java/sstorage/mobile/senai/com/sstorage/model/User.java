@@ -6,7 +6,7 @@ public class User {
     private String name;
     private String lastName;
     private String email;
-    private UserType userType;
+    private Integer userType;
 
     public User() {
     }
@@ -43,11 +43,11 @@ public class User {
         this.email = email;
     }
 
-    public UserType getUserType() {
+    public Integer getUserType() {
         return userType;
     }
 
-    public void setUserType(UserType userType) {
+    public void setUserType(Integer userType) {
         this.userType = userType;
     }
 }

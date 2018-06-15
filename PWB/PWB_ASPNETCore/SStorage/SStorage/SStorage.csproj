@@ -5,8 +5,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Validations\" />
-    <Folder Include="wwwroot\" />
+    <Compile Remove="Validations\**" />
+    <Compile Remove="wwwroot\**" />
+    <Content Remove="Validations\**" />
+    <Content Remove="wwwroot\**" />
+    <EmbeddedResource Remove="Validations\**" />
+    <EmbeddedResource Remove="wwwroot\**" />
+    <None Remove="Validations\**" />
+    <None Remove="wwwroot\**" />
   </ItemGroup>
 
   <ItemGroup>

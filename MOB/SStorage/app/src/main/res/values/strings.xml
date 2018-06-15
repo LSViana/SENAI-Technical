@@ -10,4 +10,12 @@
     <string name="field_email">E-mail</string>
     <string name="field_password">Password</string>
     <string name="action_login">Login</string>
+    <string name="message_error">Error</string>
+    <string name="error_servercontact">Couldn\'t contact the server</string>
+    <string name="error_invalidcredentials">Invalid credentials</string>
+    <string name="message_welcome">Welcome,</string>
+    <string name="message_logout">Logout</string>
+    <string name="message_fallbacklogin">Your credentials were not accepted</string>
+    <string name="message_reinstall">Couldn\'t retrieve data from Application Data, try reinstalling</string>
+    <string name="message_environment">Environments</string>
 </resources>

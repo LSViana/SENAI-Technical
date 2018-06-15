@@ -29,6 +29,12 @@ namespace SStorage.Controllers.V1
         public IConfiguration Configuration { get; }
         public SStorageDbContext Context { get; }
 
+        [HttpGet]
+        public IActionResult Dummy()
+        {
+            return Ok("oi");
+        }
+
         // GET: api/<controller>
         [HttpPost("jwt")]
         public IActionResult GetToken([FromBody] Login login)
@@ -66,8 +72,8 @@ namespace SStorage.Controllers.V1
 
             return Ok(new
             {
-                user.Name,
-                user.LastName,
+                UserName = user.Name,
+                UserLastName = user.LastName,
                 UserId = user.Id,
                 user.UserType,
                 Token = new JwtSecurityTokenHandler().WriteToken(jwt)

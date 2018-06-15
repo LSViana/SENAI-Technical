@@ -8,7 +8,7 @@ public class Authentication {
     private String userName;
     private String userLastName;
     private Long userId;
-    private UserType userType;
+    private Integer userType;
     private String token;
 
     public Authentication() {
@@ -47,11 +47,11 @@ public class Authentication {
         this.userId = userId;
     }
 
-    public UserType getUserType() {
+    public Integer getUserType() {
         return userType;
     }
 
-    public void setUserType(UserType userType) {
+    public void setUserType(Integer userType) {
         this.userType = userType;
     }
 
