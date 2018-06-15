@@ -1,5 +1,7 @@
 package br.senai.sp.info.pweb.jucacontrol.models;
 
+import java.io.File;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -18,7 +20,6 @@ import org.springframework.util.DigestUtils;
 public class Usuario {
 	
 	@Id
-	//Determina que o campo id é AUTO_INCREMENT
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
@@ -36,14 +37,14 @@ public class Usuario {
 	private String sobrenome;
 	
 	@Column(length = 120, nullable = false, unique = true)
-	@Email //DEve ser um email valido
 	@NotNull
-	@Size(min = 1, max = 120)
+	@Email //Valida se o campo é um e-mail válido
+	@Size(max = 120)
 	private String email;
 	
 	@Column(length = 64, nullable = false, unique = false)
 	@NotNull
-	@Size(min = 5, max = 64)
+	@Size(min = 1, max = 64)
 	private String senha;
 	
 	@Transient
@@ -107,9 +108,5 @@ public class Usuario {
 	
 	public void setCaminhoFoto(String caminhoFoto) {
 		this.caminhoFoto = caminhoFoto;
-	}
-	
-	public boolean isAdministrador() {
-		return this.tipo.equals(TiposUsuario.ADMINISTRADOR);
 	}
 }

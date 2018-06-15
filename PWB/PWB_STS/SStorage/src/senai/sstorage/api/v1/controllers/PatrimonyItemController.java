@@ -6,6 +6,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,7 +21,7 @@ import com.auth0.jwt.interfaces.DecodedJWT;
 
 import senai.sstorage.api.TemplateController;
 import senai.sstorage.authentication.Authority;
-import senai.sstorage.authentication.JWTManager;
+import senai.sstorage.authentication.JwtManager;
 import senai.sstorage.exceptions.EntityNotFoundException;
 import senai.sstorage.exceptions.UnauthorizedException;
 import senai.sstorage.exceptions.ValidationException;
@@ -42,23 +43,16 @@ public class PatrimonyItemController extends TemplateController {
 	private PatrimonyItemService service;
 
 	@Autowired
-	private UserService userService;
-
-	@Autowired
 	private WebUtils webUtils;
 
 	@PostMapping
-	public ResponseEntity<Object> create(@RequestHeader(name = HEADER_TOKEN) String token,
+	public ResponseEntity<Object> create(
 			@RequestBody @Valid PatrimonyItem pi, BindingResult br) {
 		try {
-			JWTManager.validateToken(token, Authority.ADMINISTRATOR);
-			//
 			try {
 				if (pi.getUser() == null) {
 					// Setting user from Token
-					DecodedJWT decoded = JWTManager.decodeToken(token);
-					String userIdString = decoded.getClaim(HEADER_USER_ID).asString();
-					User user = userService.read(Long.parseLong(userIdString));
+					User user = (User) SecurityContextHolder.getContext().getAuthentication();
 					pi.setUser(user);
 				}
 				PatrimonyItem created = service.create(pi, br);
@@ -71,128 +65,99 @@ public class PatrimonyItemController extends TemplateController {
 			} catch (ValidationException e) {
 				return validationError(e, br);
 			}
-		} catch (UnauthorizedException e) {
-			return unauthorized(e);
 		} catch (Exception e) {
 			return internalError(e);
 		}
 	}
 
 	@GetMapping("/requestremoval/{id}")
-	public ResponseEntity<Object> performRequestRemoval(@RequestHeader(name = HEADER_TOKEN) String token,
+	public ResponseEntity<Object> performRequestRemoval(
 			@PathVariable(name = "id") Long id) {
 		try {
-			JWTManager.validateToken(token, Authority.REGULAR);
-			//
 			try {
 				return ResponseEntity.ok(service.requestRemoval(id));
 			} catch (EntityNotFoundException e) {
 				return entityNotFound(e);
 			}
-		} catch (UnauthorizedException e) {
-			return unauthorized(e);
 		} catch (Exception e) {
 			return internalError(e);
 		}
 	}
 	
 	@GetMapping("/activate/{id}")
-	public ResponseEntity<Object> performActivation(@RequestHeader(name = HEADER_TOKEN) String token,
+	public ResponseEntity<Object> performActivation(
 			@PathVariable(name = "id") Long id) {
 		try {
-			JWTManager.validateToken(token, Authority.ADMINISTRATOR);
-			//
 			try {
 				return ResponseEntity.ok(service.activate(id));
 			} catch (EntityNotFoundException e) {
 				return entityNotFound(e);
 			}
-		} catch (UnauthorizedException e) {
-			return unauthorized(e);
 		} catch (Exception e) {
 			return internalError(e);
 		}
 	}
 
 	@GetMapping("/remove/{id}")
-	public ResponseEntity<Object> performRemoval(@RequestHeader(name = HEADER_TOKEN) String token,
+	public ResponseEntity<Object> performRemoval(
 			@PathVariable(name = "id") Long id) {
 		try {
-			JWTManager.validateToken(token, Authority.ADMINISTRATOR);
-			//
 			try {
 				return ResponseEntity.ok(service.remove(id));
 			} catch (EntityNotFoundException e) {
 				return entityNotFound(e);
 			}
-		} catch (UnauthorizedException e) {
-			return unauthorized(e);
 		} catch (Exception e) {
 			return internalError(e);
 		}
 	}
 
 	@GetMapping
-	public ResponseEntity<Object> get(@RequestHeader(name = HEADER_TOKEN) String token) {
+	public ResponseEntity<Object> get() {
 		try {
-			JWTManager.validateToken(token, Authority.REGULAR);
-			//
 			return ResponseEntity.ok(service.read());
-		} catch (UnauthorizedException e) {
-			return unauthorized(e);
 		} catch (Exception e) {
 			return internalError(e);
 		}
 	}
 
 	@GetMapping("/removerequested")
-	public ResponseEntity<Object> getRemoveRequested(@RequestHeader(name = HEADER_TOKEN) String token) {
+	public ResponseEntity<Object> getRemoveRequested() {
 		try {
-			JWTManager.validateToken(token, Authority.REGULAR);
-			//
 			return ResponseEntity.ok(service.readRemoveRequested());
-		} catch (UnauthorizedException e) {
-			return unauthorized(e);
 		} catch (Exception e) {
 			return internalError(e);
 		}
 	}
 
 	@GetMapping("/removed")
-	public ResponseEntity<Object> getRemoved(@RequestHeader(name = HEADER_TOKEN) String token) {
+	public ResponseEntity<Object> getRemoved() {
 		try {
-			JWTManager.validateToken(token, Authority.REGULAR);
-			//
 			return ResponseEntity.ok(service.readRemoved());
-		} catch (UnauthorizedException e) {
-			return unauthorized(e);
 		} catch (Exception e) {
 			return internalError(e);
 		}
 	}
 
 	@GetMapping("/{id}")
-	public ResponseEntity<Object> get(@RequestHeader(name = HEADER_TOKEN) String token,
+	public ResponseEntity<Object> get(
 			@PathVariable(name = "id") Long id) {
 		try {
-			JWTManager.validateToken(token, Authority.REGULAR);
-			//
 			try {
 				PatrimonyItem obj = service.read(id);
 				return ResponseEntity.ok(obj);
 			} catch (EntityNotFoundException e) {
 				return entityNotFound(e);
 			}
-		} catch (UnauthorizedException e) {
-			return unauthorized(e);
+		} catch (Exception e) {
+			return internalError(e);
 		}
 	}
 
 	@DeleteMapping("/{id}")
-	public ResponseEntity<Object> delete(@RequestHeader(name = HEADER_TOKEN) String token,
+	public ResponseEntity<Object> delete(
 			@PathVariable(name = "id") Long id) {
 		try {
-			JWTManager.validateToken(token, Authority.ADMINISTRATOR);
 			// Getting entity from database
 			try {
 				service.delete(id);
@@ -200,8 +165,6 @@ public class PatrimonyItemController extends TemplateController {
 			} catch (EntityNotFoundException e) {
 				return entityNotFound(e);
 			}
-		} catch (UnauthorizedException e) {
-			return unauthorized(e);
 		} catch (Exception e) {
 			return internalError(e);
 		}

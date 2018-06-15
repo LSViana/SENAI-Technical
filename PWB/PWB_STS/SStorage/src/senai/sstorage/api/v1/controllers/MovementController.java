@@ -1,7 +1,10 @@
 package senai.sstorage.api.v1.controllers;
 
+import javax.validation.ValidationException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestHeader;
@@ -12,7 +15,7 @@ import com.auth0.jwt.interfaces.DecodedJWT;
 
 import senai.sstorage.api.TemplateController;
 import senai.sstorage.authentication.Authority;
-import senai.sstorage.authentication.JWTManager;
+import senai.sstorage.authentication.JwtManager;
 import senai.sstorage.exceptions.BadRequestException;
 import senai.sstorage.exceptions.EntityNotFoundException;
 import senai.sstorage.exceptions.UnauthorizedException;
@@ -49,11 +52,9 @@ public class MovementController extends TemplateController {
 	private WebUtils webUtils;
 	
 	@GetMapping("/move/{idPatrimonyItem}/{idEnvDestiny}")
-	public ResponseEntity<Object> movement(@RequestHeader(name = HEADER_TOKEN) String token, @PathVariable(name = "idPatrimonyItem") Long idPatrimonyItem, @PathVariable(name = "idEnvDestiny") Long idEnvDestiny) {
+	public ResponseEntity<Object> movement(@PathVariable(name = "idPatrimonyItem") Long idPatrimonyItem, @PathVariable(name = "idEnvDestiny") Long idEnvDestiny) {
 		try {
-			JWTManager.validateToken(token, Authority.REGULAR);
-			DecodedJWT decodedJWT = JWTManager.decodeToken(token);
-			Long userId = Long.parseLong(decodedJWT.getClaim(HEADER_USER_ID).asString());
+			Long userId = ((User)SecurityContextHolder.getContext().getAuthentication()).getId();
 			// Getting Relationed Entities
 			User loggedUser = userService.read(userId);
 			PatrimonyItem pi = piService.read(idPatrimonyItem);
@@ -61,25 +62,27 @@ public class MovementController extends TemplateController {
 				throw new UnauthorizedException("You can't move a removed item");
 			}
 			Environment destiny = envService.read(idEnvDestiny);
+			if(destiny == null) {
+				return entityNotFound(new Exception("Destiny environment not found"));
+			}
+			//
 			if(loggedUser == null) {
 				throw new BadRequestException("Invalid Token Supplied");
 			}
 			Movement movement = service.movement(pi, destiny, loggedUser);
 			return ResponseEntity.created(webUtils.getUri(API_V1 + ADDRESS + "/" + movement.getId())).body(movement);
-		} catch (UnauthorizedException e) {
-			return unauthorized(e);
 		} catch (BadRequestException e) {
 			return ResponseEntity.badRequest().header(HEADER_XEXCEPTIONMESSAGE, e.getMessage()).build();
+		} catch (ValidationException e) {
+			return ResponseEntity.unprocessableEntity().header(HEADER_XEXCEPTIONMESSAGE, e.getMessage()).build();
 		} catch (Exception e) {
 			return internalError(e);
 		}
 	}
 
 	@GetMapping("/bypatrimony/{id}")
-	public ResponseEntity<Object> searchByPatrimonyItem(@RequestHeader(name = HEADER_TOKEN) String token, @PathVariable(name = "id") Long id) {
+	public ResponseEntity<Object> searchByPatrimonyItem(@PathVariable(name = "id") Long id) {
 		try {
-			JWTManager.validateToken(token, Authority.REGULAR);
-			//
 			PatrimonyItem patrimonyItem;
 			try {
 				patrimonyItem = piService.read(id);
@@ -87,19 +90,15 @@ public class MovementController extends TemplateController {
 				return entityNotFound(e);
 			}
 			return ResponseEntity.ok(service.searchByPatrimonyItem(patrimonyItem));
-		} catch (UnauthorizedException e) {
-			return unauthorized(e);
+		} catch (Exception e) {
+			return internalError(e);
 		}
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<Object> get(@RequestHeader(name = HEADER_TOKEN) String token, @PathVariable(name = "id") Long id) {
+	public ResponseEntity<Object> get(@PathVariable(name = "id") Long id) {
 		try {
-			JWTManager.validateToken(token, Authority.REGULAR);
-			//
 			return ResponseEntity.ok(service.read(id));
-		} catch (UnauthorizedException e) {
-			return unauthorized(e);
 		} catch (Exception e) {
 			return internalError(e);
 		}

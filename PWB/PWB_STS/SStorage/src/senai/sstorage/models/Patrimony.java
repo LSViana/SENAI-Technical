@@ -41,9 +41,9 @@ public class Patrimony {
 	@NotNull
 	private PatrimonyCategory patrimonyCategory;
 
-	@NotNull
-	@Lob
-	private String imageB64;
+//	@NotNull
+//	@Lob
+//	private String imageB64;
 
 	@Column(nullable = false)
 	private Date datetime;
@@ -88,12 +88,12 @@ public class Patrimony {
 		this.datetime = datetime;
 	}
 
-	public String getImageB64() {
-		return imageB64;
-	}
-
-	public void setImageB64(String imageB64) {
-		this.imageB64 = imageB64;
-	}
+//	public String getImageB64() {
+//		return imageB64;
+//	}
+//
+//	public void setImageB64(String imageB64) {
+//		this.imageB64 = imageB64;
+//	}
 
 }

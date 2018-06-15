@@ -15,12 +15,13 @@ import br.senai.sp.info.pweb.jucacontrol.models.Usuario;
 @Transactional
 public class UsuarioJPA implements UsuarioDAO{
 	
+	//Objeto que utilizamos para manipular o banco de dados atraves do HIbernate
 	@Autowired
 	private SessionFactory sessionFactory;
 
 	@Override
 	public void alterar(Usuario obj) {
-		sessionFactory.getCurrentSession().update(obj);
+		sessionFactory.getCurrentSession().update(obj);		
 	}
 
 	@Override
@@ -29,30 +30,31 @@ public class UsuarioJPA implements UsuarioDAO{
 		Query query = sessionFactory.getCurrentSession().createQuery(hql);
 		query.setParameter("id", id);
 		
-		List<Usuario> resultados = query.list();
+		//Pegando o primeiro resultado
+		List<Usuario> resultado = query.list();
 		
-		//Pega o primeiro ou nulo
-		if(!resultados.isEmpty()) {
-			return resultados.get(0);
+		if(!resultado.isEmpty()) {
+			return resultado.get(0);
 		}else {
 			return null;
 		}
+		
 	}
 
 	@Override
 	public List<Usuario> buscarTodos() {
-		String hql = "FROM Usuario u";
-		Query query = sessionFactory.getCurrentSession().createQuery(hql);
-		
+		String hql = "FROM Usuario";
+		Query query  = sessionFactory.getCurrentSession().createQuery(hql);
 		return query.list();
 	}
 
 	@Override
-	public void deletar(Usuario obj) {
-		sessionFactory.getCurrentSession().delete(obj);
+	public void deletar(Usuario usuario) {
+		sessionFactory.getCurrentSession().delete(usuario);		
 	}
 
 	@Override
+	 //Determina que este método precisa ter uma transação aberta antes de ser chamado
 	public void persistir(Usuario obj) {
 		sessionFactory.getCurrentSession().persist(obj);
 	}
@@ -60,45 +62,49 @@ public class UsuarioJPA implements UsuarioDAO{
 	@Override
 	public Usuario buscarPorEmail(String email) {
 		//HQL - Hibernate Query Language
-		//Mistura elementos de orientação a objetos com SQL
+		//Linguagem que mistura elementos orientado a objetos e SQL
 		String hql = "FROM Usuario u WHERE u.email = :email";
 		
-		//Cria objeto que realiza buscas
 		Query query = sessionFactory.getCurrentSession().createQuery(hql);
+		
+		//Trocando os valores dos coringas
 		query.setParameter("email", email);
 		
-		//Executa e armazena o resultado
-		List<Usuario> resultados = query.list();
+		//Disparada a busca e guarda o resultado em lista
+		List<Usuario> resultado =  query.list();
 		
-		//Já que queremos um resultado, devemos realizar a seguinte tratativa...
-		if(!resultados.isEmpty()) {
-			return resultados.get(0);
+		
+		//Ja que queremos apenas um objeto, devemos verificar se a lista NÃO é vazia
+		if(!resultado.isEmpty()) {
+			return resultado.get(0);
 		}else {
 			return null;
 		}
+		
 	}
-	
+
 	@Override
 	public Usuario buscarPorEmailESenha(String email, String senha) {
 		//HQL - Hibernate Query Language
-		//Mistura elementos de orientação a objetos com SQL
+		//Linguagem que mistura elementos orientado a objetos e SQL
 		String hql = "FROM Usuario u WHERE u.email = :email AND u.senha = :senha";
 		
-		//Cria objeto que realiza buscas
 		Query query = sessionFactory.getCurrentSession().createQuery(hql);
+		
+		//Trocando os valores dos coringas
 		query.setParameter("email", email);
 		query.setParameter("senha", senha);
 		
-		//Executa e armazena o resultado
-		List<Usuario> resultados = query.list();
+		//Disparada a busca e guarda o resultado em lista
+		List<Usuario> resultado =  query.list();
 		
-		//Já que queremos um resultado, devemos realizar a seguinte tratativa...
-		if(!resultados.isEmpty()) {
-			return resultados.get(0);
+		
+		//Ja que queremos apenas um objeto, devemos verificar se a lista NÃO é vazia
+		if(!resultado.isEmpty()) {
+			return resultado.get(0);
 		}else {
 			return null;
-		}	
-		
+		}
 	}
 
 }

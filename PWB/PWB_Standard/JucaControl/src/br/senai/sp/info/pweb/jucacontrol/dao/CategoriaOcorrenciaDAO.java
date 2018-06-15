@@ -8,5 +8,4 @@ import br.senai.sp.info.pweb.jucacontrol.models.Usuario;
 public interface CategoriaOcorrenciaDAO extends DAO<CategoriaOcorrencia> {
 	
 	public CategoriaOcorrencia buscarPorNome(String nome);
-
 }

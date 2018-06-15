@@ -21,7 +21,7 @@ public class PersistenceConfig {
 	public DataSource getDataSource() {
 		BasicDataSource dataSource = new BasicDataSource();
 		dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
-		dataSource.setUrl("jdbc:mysql://localhost:3306/jucacontrol_production?serverTimezone=UTC&useTimezone=true");
+		dataSource.setUrl("jdbc:mysql://localhost:3306/jucacontrol_mt3?serverTimezone=UTC");
 		dataSource.setUsername("root");
 		dataSource.setPassword("root132");
 		
@@ -33,7 +33,6 @@ public class PersistenceConfig {
 		properties.setProperty("hibernate.show_sql", "true");
 		properties.setProperty("hibernate.hbm2ddl.auto", "update");
 		properties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
-		properties.setProperty("hibernate.connection.characterEncoding", "utf8mb4");
 		
 		return properties;
 	}

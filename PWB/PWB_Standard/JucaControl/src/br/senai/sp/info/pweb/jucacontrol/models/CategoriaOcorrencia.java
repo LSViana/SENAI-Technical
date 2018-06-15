@@ -18,8 +18,8 @@ public class CategoriaOcorrencia {
 	private Long id;
 	
 	@Column(length = 40, nullable = false, unique = true)
-	@NotNull
-	@Size(min = 1, max = 40)
+	@Size(min = 1, max = 40, message = "{Size}")
+	@NotNull(message = "{NotNull}")
 	private String nome;
 
 	public Long getId() {

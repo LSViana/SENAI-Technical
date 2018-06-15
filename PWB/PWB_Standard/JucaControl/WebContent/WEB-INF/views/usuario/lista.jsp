@@ -26,7 +26,7 @@
 					<a class="card" href="${urlEditarUsuario}?id=${usuario.id}">
 						<div class="card-header">${usuario.nome} ${usuario.sobrenome}</div>
 						<div class="card-main">
-							<img class="card-cover" alt="Foto do usuário" src="${usuario.caminhoFoto}">
+							<img class="card-cover" alt="Foto do usuário" src="${assets}/fotos/foto_${usuario.id}">
 						</div>
 					</a>
 				</c:forEach>
