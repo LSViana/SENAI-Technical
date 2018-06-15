@@ -41,9 +41,16 @@ public class Patrimony {
 	@NotNull
 	private PatrimonyCategory patrimonyCategory;
 
+<<<<<<< HEAD
 //	@NotNull
 //	@Lob
 //	private String imageB64;
+=======
+	//@NotNull
+	//@Lob
+	//@Transient
+	//private String imageB64;
+>>>>>>> 70f1162a000eec53419ce9dcabb9589b69c285fe
 
 	@Column(nullable = false)
 	private Date datetime;
