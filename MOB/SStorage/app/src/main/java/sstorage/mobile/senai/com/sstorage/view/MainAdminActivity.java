@@ -1,6 +1,7 @@
 package sstorage.mobile.senai.com.sstorage.view;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -26,11 +27,7 @@ public class MainAdminActivity extends AppCompatActivity {
 
     private Button btnLogout;
     private TextView tvUserName;
-    private RecyclerView rvEnvironments;
-    private ArrayList<sstorage.mobile.senai.com.sstorage.model.Environment> environmentList;
-    private EnvironmentAdapter environmentAdapter;
-    private SharedPreferences sharedPreferences;
-    private ApiContext apiContext;
+    private Button btnManageEnvironments;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -40,17 +37,21 @@ public class MainAdminActivity extends AppCompatActivity {
         getComponents();
         setUserData();
         addLogout();
-        addRecyclerView();
+        addManageIntents();
     }
 
-    private void addRecyclerView() {
-        // Configuring variables
-        LinearLayoutManager llm = new LinearLayoutManager(this);
-        environmentList = new ArrayList<>();
-        environmentAdapter = new EnvironmentAdapter(environmentList, getApplicationContext());
-        rvEnvironments.setLayoutManager(llm);
-        rvEnvironments.setAdapter(environmentAdapter);
-        listEnvironments();
+    private void addManageIntents() {
+        // Environments
+        btnManageEnvironments.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainAdminActivity.this, EnvironmentsActivity.class);
+                startActivity(intent);
+            }
+        });
+        // Movements
+        // Patrimonies
+        // Access Control
     }
 
     private void addLogout() {
@@ -75,34 +76,8 @@ public class MainAdminActivity extends AppCompatActivity {
     private void getComponents() {
         btnLogout = findViewById(R.id.btnLogout);
         tvUserName = findViewById(R.id.tvUserName);
-        rvEnvironments = findViewById(R.id.rvEnvironments);
-        sharedPreferences = getSharedPreferences(AppUtils.SHARED_PREFERENCES, Context.MODE_PRIVATE);
+        // Getting Manage buttons
+        btnManageEnvironments = findViewById(R.id.btnManageEnvironments);
     }
 
-    private void listEnvironments() {
-        String token = sharedPreferences.getString(AppUtils.SP_TOKEN, null);
-        if(token != null) {
-            // There is a token available
-            apiContext = new RetrofitConfig(token)
-                    .getApiContext();
-            Call<sstorage.mobile.senai.com.sstorage.model.Environment[]> call = apiContext.getEnvironments();
-            call.enqueue(new Callback<sstorage.mobile.senai.com.sstorage.model.Environment[]>() {
-                @Override
-                public void onResponse(Call<sstorage.mobile.senai.com.sstorage.model.Environment[]> call, Response<sstorage.mobile.senai.com.sstorage.model.Environment[]> response) {
-                    if(response.isSuccessful()) {
-                        sstorage.mobile.senai.com.sstorage.model.Environment[] envArray = response.body();
-                        for(sstorage.mobile.senai.com.sstorage.model.Environment env : envArray) {
-                            environmentList.add(env);
-                        }
-                        environmentAdapter.notifyDataSetChanged();
-                    }
-                }
-
-                @Override
-                public void onFailure(Call<sstorage.mobile.senai.com.sstorage.model.Environment[]> call, Throwable t) {
-                    Toast.makeText(MainAdminActivity.this, getString(R.string.error_servercontact), Toast.LENGTH_SHORT).show();
-                }
-            });
-        }
-    }
 }

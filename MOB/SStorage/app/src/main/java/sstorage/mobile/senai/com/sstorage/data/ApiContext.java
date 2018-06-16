@@ -55,7 +55,7 @@ public interface ApiContext {
     @DELETE("environments/{id}")
     Call<ResponseBody> deleteEnvironment(@Path("id") Long id);
 
-    @PUT("environment/{id}")
+    @PUT("environments/{id}")
     Call<Environment> updateEnvironment(@Path("id") Long id, @Body Environment environment);
 
     // Patrimony Categories

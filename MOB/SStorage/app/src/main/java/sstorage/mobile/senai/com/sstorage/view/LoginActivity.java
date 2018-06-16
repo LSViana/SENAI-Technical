@@ -73,16 +73,16 @@ public class LoginActivity extends AppCompatActivity {
                             // Starting the main screen
                             openMainActivity();
                         } else if(response.code() == 404) {
-                            Toast.makeText(LoginActivity.this, getString(R.string.error_invalidcredentials), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoginActivity.this, getString(R.string.error_invalid_credentials), Toast.LENGTH_SHORT).show();
                         } else {
-                            Toast.makeText(LoginActivity.this, R.string.message_fallbacklogin, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoginActivity.this, R.string.message_fallback_login, Toast.LENGTH_SHORT).show();
                             AppUtils.logout(editor);
                         }
                     }
 
                     @Override
                     public void onFailure(Call<Authentication> call, Throwable t) {
-                        Toast.makeText(LoginActivity.this, getString(R.string.error_servercontact), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LoginActivity.this, getString(R.string.error_server_contact), Toast.LENGTH_SHORT).show();
                     }
                 });
             }

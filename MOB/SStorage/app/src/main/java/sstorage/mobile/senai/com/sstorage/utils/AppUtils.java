@@ -6,7 +6,8 @@ import sstorage.mobile.senai.com.sstorage.model.ViewModel.Authentication;
 
 public class AppUtils {
 
-    public static final String API_ROOT = "http://10.0.2.2:50939/rest/v1/";
+//    public static final String API_ROOT = "http://10.0.3.2:50939/rest/v1/";
+    public static final String API_ROOT = "http://192.168.1.35:50939/rest/v1/";
 
     public static final String SHARED_PREFERENCES = "SStorage";
 
