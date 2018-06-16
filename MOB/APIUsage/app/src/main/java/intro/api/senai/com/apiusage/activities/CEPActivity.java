@@ -31,7 +31,6 @@ public class CEPActivity extends AppCompatActivity {
         // Starting fields
         retroFitConfig = new RetrofitConfig();
         cepRestService = retroFitConfig.getCEPRest();
-
         // Getting Components
         etCEP = findViewById(R.id.etCEP);
         btnQuery = findViewById(R.id.btnQuery);

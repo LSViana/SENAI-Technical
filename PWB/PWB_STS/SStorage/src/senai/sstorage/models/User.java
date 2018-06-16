@@ -1,5 +1,7 @@
 package senai.sstorage.models;
 
+import java.util.Collection;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,6 +12,9 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
@@ -18,7 +23,7 @@ import senai.sstorage.utils.PasswordUtils;
 
 @Entity
 @Table(name = "user")
-public class User {
+public class User implements Authentication {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -104,6 +109,49 @@ public class User {
 	
 	public void hashPassword() {
 		this.password = PasswordUtils.hashString(this.password);
+	}
+
+	@JsonIgnore
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@JsonIgnore
+	@Override
+	public Object getCredentials() {
+		return null;
+	}
+
+	@JsonIgnore
+	@Override
+	public Object getDetails() {
+		return null;
+	}
+
+	@JsonIgnore
+	@Override
+	public Object getPrincipal() {
+		return this;
+	}
+
+	@JsonIgnore
+	@Override
+	public boolean isAuthenticated() {
+		return true;
+	}
+
+	@JsonIgnore
+	@Override
+	public void setAuthenticated(boolean isAuthenticated) throws IllegalArgumentException {
+		// Nothing here
+	}
+
+	@JsonIgnore
+	@Override
+	public String getName() {
+		return email;
 	}
 
 }

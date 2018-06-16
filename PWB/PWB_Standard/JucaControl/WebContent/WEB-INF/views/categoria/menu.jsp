@@ -31,14 +31,14 @@
 						</c:otherwise>
 					</c:choose>
 					<form:form modelAttribute="categoriaOcorrencia" action="${urlSalvarCategoria}" method="post">
-						<form:hidden path="id"/>
+						<form:hidden path="id" />
 						<div class="flex-grid">
 							<div class="row">
 								<div class="col flex-1">
 									<label>
 										Nome
 										<form:input path="nome"/>
-										<form:errors path="nome" />
+										<form:errors path="nome" element="div" cssClass="error" />
 									</label>
 								</div>
 							</div>

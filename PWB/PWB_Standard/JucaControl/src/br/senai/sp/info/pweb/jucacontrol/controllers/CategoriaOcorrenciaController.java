@@ -1,8 +1,8 @@
 package br.senai.sp.info.pweb.jucacontrol.controllers;
 
-import javax.naming.Binding;
 import javax.validation.Valid;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,11 +14,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import br.senai.sp.info.pweb.jucacontrol.dao.CategoriaOcorrenciaDAO;
-import br.senai.sp.info.pweb.jucacontrol.dao.jpa.CategoriaOcorrenciaJPA;
 import br.senai.sp.info.pweb.jucacontrol.models.CategoriaOcorrencia;
 
-@Controller
-@RequestMapping("/app/adm")
+//@Controller
+//@RequestMapping("/app/adm")
 public class CategoriaOcorrenciaController {
 	
 	@Autowired
@@ -28,14 +27,18 @@ public class CategoriaOcorrenciaController {
 	public String abrirMenuCategorias(@RequestParam(name = "id", required = false) Long id,
 										Model model) {
 		
-		if(id != null) {
-			model.addAttribute("categoriaOcorrencia", categoriaOcorrenciaDAO.buscar(id));
-		}else {
+		if(id == null) {
+			//Passa o objeto novo de categoria
 			model.addAttribute("categoriaOcorrencia", new CategoriaOcorrencia());
+		}else {
+			//Passa a categoria buscando pelo id
+			model.addAttribute("categoriaOcorrencia", categoriaOcorrenciaDAO.buscar(id));
 		}
 		
-		
+		//Buscar todas as categorias
 		model.addAttribute("categorias", categoriaOcorrenciaDAO.buscarTodos());
+		
+		
 		return "categoria/menu";
 	}
 
@@ -43,32 +46,38 @@ public class CategoriaOcorrenciaController {
 	public String deletar(@RequestParam(name = "id", required = true) Long id) {
 		
 		categoriaOcorrenciaDAO.deletar(categoriaOcorrenciaDAO.buscar(id));
-		
 		return "redirect:/app/adm/categoria";
 	}
 	
 	
 	@PostMapping("/categoria/salvar")
-	public String salvar(@Valid CategoriaOcorrencia categoriaOcorrencia, BindingResult brCategoria) {
+	public String salvar(@Valid CategoriaOcorrencia categoriaOcorrencia, BindingResult brCategoriaOcorrencia,
+						Model model) {		
 		
+		//Verificando se o nome já existe
 		if(categoriaOcorrenciaDAO.buscarPorNome(categoriaOcorrencia.getNome()) != null) {
-			brCategoria.addError(new FieldError("categoriaOcorrencia", "nome", 
-						"O nome '" + categoriaOcorrencia.getNome() + "' já esta em uso. Escolha outro"));
+			brCategoriaOcorrencia.addError(new FieldError("categoriaOcorrencia", "nome", "O nome já existe"));
 		}
 		
-		//Verificar se houve erros
-		if(brCategoria.hasErrors()) {
+		//Reaizando validações dos campos
+		if(brCategoriaOcorrencia.hasErrors()) {
+			//Passamos o objeto pelo Model pois o nome do modelAttribute no  menu.jsp é "categoria"
+			model.addAttribute("categoriaOcorrencia", categoriaOcorrencia);
+			model.addAttribute("categorias", categoriaOcorrenciaDAO.buscarTodos());
 			return "categoria/menu";
 		}
 		
-
+		///Persistindo no banco de dados
 		if(categoriaOcorrencia.getId() == null) {
 			categoriaOcorrenciaDAO.persistir(categoriaOcorrencia);
 		}else {
-			categoriaOcorrenciaDAO.alterar(categoriaOcorrencia);
+			CategoriaOcorrencia categoriaBanco = categoriaOcorrenciaDAO.buscar(categoriaOcorrencia.getId());
+			BeanUtils.copyProperties(categoriaOcorrencia, categoriaBanco, "id");
+			categoriaOcorrenciaDAO.alterar(categoriaBanco);
 		}
 		
 		
+		//Redireciona para pagina de categorias
 		return "redirect:/app/adm/categoria";
 	}
 

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#673ab7</color>
+    <color name="colorPrimaryDark">#4e359c</color>
+    <color name="colorAccent">#ffab40</color>
+    <color name="environmentColor">#ff7f00</color>
+    <color name="movementColor">#ff5722</color>
+    <color name="patrimonyColor">#ffc929</color>
+    <color name="userControlColor">#f13800</color>
+</resources>

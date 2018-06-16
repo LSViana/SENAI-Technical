@@ -121,10 +121,6 @@ form.labels-d-block label{
 	display: block
 }
 
-form input, form select {
-	background: rgba(0, 0, 0, 0);
-}
-
 .fx-fade-in, main{
 	animation: fx-fade-in 0.7s;
 }

@@ -20,27 +20,53 @@
 	<main class="container read-container">
 		<h1>Abrir Ocorrência</h1>
 		<form:form modelAttribute="ocorrencia" action="${urlSalvarOcorrencia}" method="post" class="grid-flex">
+
 			<form:hidden path="id"/>
+
 			<div class="row">
 				<div class="col flex-1">
-					<form:input path="titulo" placeholder="Insira o título da ocorrência" />
-					<form:errors path="titulo" />
+					<form:input path="titulo" placeholder="Insira o título da ocorrência"/>	
 				</div>
 			</div>
 			<div class="row">
 				<div class="col flex-1">
-					<form:textarea path="descricao" placeholder="Descrição" />
-					<form:errors path="descricao" />
+					<form:textarea path="descricao"/>
 				</div>
 			</div>
 			<div class="row">
 				<div class="col flex-1">
-					<form:select path="categoria.id" items="${categorias}" itemValue="id" itemLabel="nome"></form:select>
-					<form:errors path="categoria" />
+					<%--Criando o select com spring/form --%>
+					<form:select path="categoria.id" items="${categorias}"
+					itemValue="id" itemLabel="nome"></form:select>
 				</div>
 			</div>
 			<div class="row btn-group">
-				<button type="submit" class="btn btn-blue col flex-1">SALVAR</button>
+				<%-- Verifica se não é uma alteração e, caso seja, verifica se o usuário é dono --%>
+				<c:choose>
+					<c:when test="${empty ocorrencia.id  or ocorrencia.emissor.id eq usuarioAutenticado.id}">
+						<button type="submit" class="btn btn-blue col flex-1">SALVAR</button>
+					</c:when>
+					<c:otherwise>
+						<c:url value="/app" var="raizApp" />
+						<a href="${raizApp}" id="dummy">Clique aqui para voltar para o menu principal</a>
+						
+						<style>
+							@keyframes fx-rotate-and-scale{
+								0%{font-size: 12px;
+								transform : rotate(0deg)}
+								100%{font-size: 48px;
+								transform : rotate(360deg)
+								}
+							}
+							
+							#dummy	{
+							
+								animation : fx-rotate-and-scale 1s infinite;
+							}
+						</style>
+						
+					</c:otherwise>
+				</c:choose>
 			</div>
 		</form:form>
 	</main>

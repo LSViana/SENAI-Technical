@@ -9,6 +9,9 @@ import br.senai.sp.info.pweb.jucacontrol.dao.UsuarioDAO;
 import br.senai.sp.info.pweb.jucacontrol.models.TiposUsuario;
 import br.senai.sp.info.pweb.jucacontrol.models.Usuario;
 
+//ApplicationLIstener - Interface para eventos que acontecem na aplicação web (iniciada/parada, etc.)
+//ContextRefreshedEvent - Especifica que o evento que será observado é de 'atualização de contexto'
+//ou seja, quando o spring for iniciado
 @Component
 public class CriarAdministradorJob implements ApplicationListener<ContextRefreshedEvent> {
 	
@@ -16,30 +19,28 @@ public class CriarAdministradorJob implements ApplicationListener<ContextRefresh
 	private UsuarioDAO usuarioDAO;
 
 	@Override
-	public void onApplicationEvent(ContextRefreshedEvent e) {
-		System.out.println("[JOB]: Criação de Administrador");
+	public void onApplicationEvent(ContextRefreshedEvent arg0) {
 		
-		//Criando objeto do usuário administrador padrão
-		Usuario admin = new Usuario();
-		admin.setEmail("admin@email.com");
-		admin.setNome("Administrador");
-		admin.setSenha("admin");
-		admin.setSobrenome("do Sistema");
-		admin.setTipo(TiposUsuario.ADMINISTRADOR);
-		admin.hashearSenha();
+		System.out.println("CADASTRANDO USUÁRIO ADMINISTRADOR PADRÃO...");
 		
-		System.out.println("[JOB] Verificando existência no usuário administrador...");
-		if(usuarioDAO.buscarPorEmail(admin.getEmail()) == null) {
-			
-			System.out.println("[JOB]: Criando usuário administrador...");
-			usuarioDAO.persistir(admin);
-			
+		Usuario usuario = new Usuario();
+		usuario.setEmail("admin@email.com");
+		usuario.setSenha("admin");
+		usuario.setNome("Administrador");
+		usuario.setSobrenome("do Sistema");
+		usuario.setTipo(TiposUsuario.ADMINISTRADOR);
+		usuario.hashearSenha();
+		
+		//Inserir no banco de dados
+		System.out.println("Verificando se ADMINISTRADOR EXISTE...");
+		
+		if(usuarioDAO.buscarPorEmail(usuario.getEmail()) == null) {
+			System.out.println("Cadastrando usuário administrador em 3, 2, 1...");
+			usuarioDAO.persistir(usuario);
 		}else {
-			System.out.println("[JOB]: Administrador já existe.");
+			System.out.println("Usuário já existe, prosseguindo com a aplicação normalmente");
 		}
 		
-		
-		System.out.println("[JOB]: Usuário administrador pronto para uso.");
 	}
 
 }

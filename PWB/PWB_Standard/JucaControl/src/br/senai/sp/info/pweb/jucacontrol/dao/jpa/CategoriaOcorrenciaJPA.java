@@ -14,42 +14,26 @@ import br.senai.sp.info.pweb.jucacontrol.models.CategoriaOcorrencia;
 @Repository
 @Transactional
 public class CategoriaOcorrenciaJPA implements CategoriaOcorrenciaDAO {
-
+	
 	@Autowired
-	private SessionFactory sessionFactory;
+	private SessionFactory session;
+	
 
 	@Override
 	public void alterar(CategoriaOcorrencia obj) {
-		sessionFactory.getCurrentSession().update(obj);
+		session.getCurrentSession().update(obj);
 	}
 
 	@Override
 	public CategoriaOcorrencia buscar(Long id) {
-		String hql = "FROM CategoriaOcorrencia c WHERE c.id = :id";
-		Query query = sessionFactory.getCurrentSession().createQuery(hql);
+		String hql = "FROM CategoriaOcorrencia co WHERE co.id = :id";
+		Query query = session.getCurrentSession().createQuery(hql);
 		query.setParameter("id", id);
-
-		//Executa e armazena o resultado
-		List<CategoriaOcorrencia> resultado = query.list();
-
-		if(!resultado.isEmpty()) {
-			return resultado.get(0);
-		} else {
-			return null;
-		}
-	}
-
-	@Override
-	public CategoriaOcorrencia buscarPorNome(String nome) {
-		String hql = "FROM CategoriaOcorrencia c WHERE c.nome = :nome";
-		Query query = sessionFactory.getCurrentSession().createQuery(hql);
-		query.setParameter("nome", nome);
-
-		//Executa e armazena o resultado
-		List<CategoriaOcorrencia> resultado = query.list();
-
-		if(!resultado.isEmpty()) {
-			return resultado.get(0);
+		
+		List<CategoriaOcorrencia> resultados = query.list();
+		
+		if(!resultados.isEmpty()) {
+			return resultados.get(0);
 		}else {
 			return null;
 		}
@@ -58,18 +42,34 @@ public class CategoriaOcorrenciaJPA implements CategoriaOcorrenciaDAO {
 	@Override
 	public List<CategoriaOcorrencia> buscarTodos() {
 		String hql = "FROM CategoriaOcorrencia";
-		Query query = sessionFactory.getCurrentSession().createQuery(hql);
+		Query query = session.getCurrentSession().createQuery(hql);
+		
 		return query.list();
 	}
 
 	@Override
 	public void deletar(CategoriaOcorrencia obj) {
-		sessionFactory.getCurrentSession().delete(obj);
+		session.getCurrentSession().delete(obj);
 	}
 
 	@Override
 	public void persistir(CategoriaOcorrencia obj) {
-		sessionFactory.getCurrentSession().persist(obj);
+		session.getCurrentSession().persist(obj);
+	}
+
+	@Override
+	public CategoriaOcorrencia buscarPorNome(String nome) {
+		String hql = "FROM CategoriaOcorrencia co WHERE co.nome = :nome";
+		Query query = session.getCurrentSession().createQuery(hql);
+		query.setParameter("nome", nome);
+		
+		List<CategoriaOcorrencia> resultados = query.list();
+		
+		if(!resultados.isEmpty()) {
+			return resultados.get(0);
+		}else {
+			return null;
+		}
 	}
 
 }

@@ -2,6 +2,7 @@ package br.senai.sp.info.pweb.jucacontrol.models;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,6 +12,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -22,9 +24,9 @@ public class Ocorrencia {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@ManyToOne
+	//cascade = Determina o que acontece caso o registro pai seja deletado ou alterado
+	@ManyToOne(/*cascade = CascadeType.REMOVE*/)
 	@JoinColumn(nullable = false, name = "categoria_id")
-	@NotNull
 	private CategoriaOcorrencia categoria;
 	
 	@ManyToOne
@@ -36,13 +38,13 @@ public class Ocorrencia {
 	private Usuario tecnico;
 	
 	@Column(length = 30, nullable = false, unique = false)
-	@Size(min=1, max=30)
+	@Size(min = 1, max = 30, message = "{Size}")
 	@NotNull
 	private String titulo;
 	
 	@Column(nullable = false, unique = false)
-	@Lob // Long Object, changes from VARCHAR(n) to TEXT at database
-	@NotNull
+	@Lob
+	@NotNull(message = "{NotNull}")
 	private String descricao;
 	
 	@Column(nullable = false)
@@ -52,7 +54,26 @@ public class Ocorrencia {
 	private Date dataModificacao;
 
 	@Column(nullable = true)
-	private Date dataConclusao;
+	private Date dataConclusaoTecnico;
+	
+	@Column(nullable = true)
+	private Date dataConclusaoEmissor;
+	
+	public Date getDataConclusaoEmissor() {
+		return dataConclusaoEmissor;
+	}
+	
+	public void setDataConclusaoEmissor(Date dataConclusaoEmissor) {
+		this.dataConclusaoEmissor = dataConclusaoEmissor;
+	}
+	
+	public Date getDataConclusaoTecnico() {
+		return dataConclusaoTecnico;
+	}
+	
+	public void setDataConclusaoTecnico(Date dataConclusaoTecnico) {
+		this.dataConclusaoTecnico = dataConclusaoTecnico;
+	}
 
 	public Long getId() {
 		return id;
@@ -110,14 +131,6 @@ public class Ocorrencia {
 		this.dataCadastro = dataCadastro;
 	}
 
-	public Date getDataConclusao() {
-		return dataConclusao;
-	}
-
-	public void setDataConclusao(Date dataConclusao) {
-		this.dataConclusao = dataConclusao;
-	}
-
 	public Date getDataModificacao() {
 		return dataModificacao;
 	}
@@ -125,12 +138,6 @@ public class Ocorrencia {
 	public void setDataModificacao(Date dataModificacao) {
 		this.dataModificacao = dataModificacao;
 	}
-
-	@Override
-	public String toString() {
-		return "Ocorrencia [id=" + id + ", categoria=" + categoria + ", emissor=" + emissor + ", tecnico=" + tecnico
-				+ ", titulo=" + titulo + ", descricao=" + descricao + ", dataCadastro=" + dataCadastro
-				+ ", dataModificacao=" + dataModificacao + ", dataConclusao=" + dataConclusao + "]";
-	}
+	
 	
 }

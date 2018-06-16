@@ -15,12 +15,12 @@ import javax.mail.internet.MimeMessage;
 // Email API
 public class EmailUtils {
 
-	public static final String EMAIL_ADDRESS = "senai132.info.2017.1s@gmail.com";
-	public static final String EMAIL_PASSWORD = "TecInfoManha2017";
+	public static final String EMAIL_ADDRESS = "sstorageteam@gmail.com";
+	public static final String EMAIL_PASSWORD = "ac1ce3ss2";
 	private static Properties props = new Properties();
 	private static Session defaultSession;
 
-	{
+	private static void initializeSession() {
 		// Defining the E-mail Server
 		props.put("mail.smtp.host", "smtp.gmail.com");
 		// Defining the E-mail Server Port
@@ -30,24 +30,24 @@ public class EmailUtils {
 		// Defining the configuration that creates SSL Sockets
 		props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
 		props.put("mail.smtp.socketFactory.port", "465");
+		// Enabling SSL
+		props.put("mail.smtp.EnableSSL.enable", "true");
 		// Defining the Session
-		defaultSession = Session.getDefaultInstance(props, new GmailAuthenticator());
+		defaultSession = Session.getDefaultInstance(props, new GmailAuthenticator(EMAIL_ADDRESS, EMAIL_PASSWORD));
 	}
 
-	// This Session isn't the same from Hibernate, it is the one that keeps the Email Data
+	// This Session isn't the same from Hibernate, it is the one that keeps the
+	// Email Data
 	// ALIAS: getMailConfiguration()
 	private static Session getSession() {
 		return defaultSession;
 	}
 
-	private class GmailAuthenticator extends Authenticator {
-		@Override
-		protected PasswordAuthentication getPasswordAuthentication() {
-			return new PasswordAuthentication(EMAIL_ADDRESS, EMAIL_PASSWORD);
+	public static void sendEmail(String subject, String body, String addressList)
+			throws AddressException, MessagingException {
+		if (getSession() == null) {
+			initializeSession();
 		}
-	}
-
-	public static void sendEmail(String subject, String body, String addressList) throws AddressException, MessagingException {
 		Message msg = new MimeMessage(getSession());
 		msg.setFrom(new InternetAddress(EMAIL_ADDRESS));
 		msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(addressList));
@@ -57,4 +57,27 @@ public class EmailUtils {
 		Transport.send(msg);
 	}
 
+}
+
+class GmailAuthenticator extends Authenticator {
+	
+	private String EMAIL_ADDRESS;
+	private String EMAIL_PASSWORD;
+
+	public GmailAuthenticator() {
+		// TODO Auto-generated constructor stub
+	}
+	
+	public GmailAuthenticator(String EMAIL_ADDRESS, String EMAIL_PASSWORD) {
+		super();
+		this.EMAIL_ADDRESS = EMAIL_ADDRESS;
+		this.EMAIL_PASSWORD = EMAIL_PASSWORD;
+	}
+
+
+
+	@Override
+	protected PasswordAuthentication getPasswordAuthentication() {
+		return new PasswordAuthentication(EMAIL_ADDRESS, EMAIL_PASSWORD);
+	}
 }

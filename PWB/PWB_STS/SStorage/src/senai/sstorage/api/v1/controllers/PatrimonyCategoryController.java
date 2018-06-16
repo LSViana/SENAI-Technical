@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import senai.sstorage.api.TemplateController;
 import senai.sstorage.authentication.Authority;
-import senai.sstorage.authentication.JWTManager;
+import senai.sstorage.authentication.JwtManager;
 import senai.sstorage.exceptions.EntityNotFoundException;
 import senai.sstorage.exceptions.UnauthorizedException;
 import senai.sstorage.exceptions.ValidationException;
@@ -40,10 +40,8 @@ public class PatrimonyCategoryController extends TemplateController {
 	private WebUtils webUtils;
 	
 	@PostMapping
-	public ResponseEntity<Object> create(@RequestHeader(name = HEADER_TOKEN) String token, @RequestBody @Valid PatrimonyCategory patCat, BindingResult br) {
+	public ResponseEntity<Object> create(@RequestBody @Valid PatrimonyCategory patCat, BindingResult br) {
 		try {
-			JWTManager.validateToken(token, Authority.ADMINISTRATOR);
-			//
 			try {
 				PatrimonyCategory created = service.create(patCat, br);
 				try {
@@ -54,24 +52,20 @@ public class PatrimonyCategoryController extends TemplateController {
 			} catch (ValidationException e) {
 				return validationError(e, br);
 			}
-		} catch (UnauthorizedException e) {
-			return unauthorized(e);
+		} catch (Exception e) {
+			return internalError(e);
 		}
 	}
 	
 	@DeleteMapping("/{id}")
-	public ResponseEntity<Object> delete(@RequestHeader(name = HEADER_TOKEN) String token, @PathVariable(name = "id") Long id) {
+	public ResponseEntity<Object> delete(@PathVariable(name = "id") Long id) {
 		try {
-			JWTManager.validateToken(token, Authority.ADMINISTRATOR);
-			//
 			try {
 				service.delete(id);
 				return ResponseEntity.ok().build();
 			} catch (EntityNotFoundException e) {
 				return entityNotFound(e);
 			}
-		} catch (UnauthorizedException e) {
-			return unauthorized(e);
 		} catch (Exception e) {
 			return internalError(e);
 		}
@@ -80,39 +74,31 @@ public class PatrimonyCategoryController extends TemplateController {
 	@GetMapping
 	public ResponseEntity<Object> get(@RequestHeader(name = HEADER_TOKEN) String token) {
 		try {
-			JWTManager.validateToken(token, Authority.REGULAR);
+			JwtManager.validateToken(token, Authority.REGULAR);
 			//
 			return ResponseEntity.ok(service.read());
-		} catch (UnauthorizedException e) {
-			return unauthorized(e);
 		} catch (Exception e) {
 			return internalError(e);
 		}
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<Object> get(@RequestHeader(name = HEADER_TOKEN) String token, @PathVariable(name = "id") Long id) {
+	public ResponseEntity<Object> get(@PathVariable(name = "id") Long id) {
 		try {
-			JWTManager.validateToken(token, Authority.REGULAR);
-			//
 			try {
 				PatrimonyCategory obj = service.read(id);
 				return ResponseEntity.ok(obj);
 			} catch (EntityNotFoundException e) {
 				return entityNotFound(e);
 			}
-		} catch (UnauthorizedException e) {
-			return unauthorized(e);
 		} catch (Exception e) {
 			return internalError(e);
 		}
 	}
 	
 	@PutMapping("/{id}")
-	public ResponseEntity<Object> update(@RequestHeader(name = HEADER_TOKEN) String token, @PathVariable(name = "id") Long id, @RequestBody @Valid PatrimonyCategory patCat, BindingResult br) {
+	public ResponseEntity<Object> update(@PathVariable(name = "id") Long id, @RequestBody @Valid PatrimonyCategory patCat, BindingResult br) {
 		try {
-			JWTManager.validateToken(token, Authority.ADMINISTRATOR);
-			//
 			try {
 				PatrimonyCategory updated = service.update(id, patCat, br);
 				return ResponseEntity.ok(updated);
@@ -121,8 +107,8 @@ public class PatrimonyCategoryController extends TemplateController {
 			} catch (EntityNotFoundException e) {
 				return entityNotFound(e);
 			}
-		} catch (UnauthorizedException e) {
-			return unauthorized(e);
+		} catch (Exception e) {
+			return internalError(e);
 		}
 	}
 

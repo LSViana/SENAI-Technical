@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import senai.sstorage.dao.MovementDAO;
 import senai.sstorage.dao.PatrimonyItemDAO;
+import senai.sstorage.exceptions.ValidationException;
 import senai.sstorage.models.Environment;
 import senai.sstorage.models.Movement;
 import senai.sstorage.models.PatrimonyItem;
@@ -22,7 +23,11 @@ public class MovementService {
 	@Autowired
 	private PatrimonyItemDAO patDAO;
 	
-	public Movement movement(PatrimonyItem patrimonyItem, Environment destiny, User user) {
+	public Movement movement(PatrimonyItem patrimonyItem, Environment destiny, User user) throws ValidationException {
+		// Verifying if it is the same environment or don't
+		if(patrimonyItem.getEnvironment().getId() == destiny.getId())
+			throw new ValidationException("Same environment as destiny");
+		//
 		Movement mov = new Movement();
 		// Attributes
 		mov.setDateTime(new Date());

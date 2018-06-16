@@ -13,6 +13,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.DataBinder;
 import org.springframework.validation.Validator;
@@ -31,7 +32,7 @@ import com.auth0.jwt.interfaces.DecodedJWT;
 
 import senai.sstorage.api.TemplateController;
 import senai.sstorage.authentication.Authority;
-import senai.sstorage.authentication.JWTManager;
+import senai.sstorage.authentication.JwtManager;
 import senai.sstorage.exceptions.BadRequestException;
 import senai.sstorage.exceptions.EntityNotFoundException;
 import senai.sstorage.exceptions.UnauthorizedException;
@@ -40,6 +41,7 @@ import senai.sstorage.models.User;
 import senai.sstorage.service.UserService;
 import senai.sstorage.service.models.ChangeNames;
 import senai.sstorage.service.models.ChangePassword;
+import senai.sstorage.utils.EmailUtils;
 import senai.sstorage.utils.WebUtils;
 
 @RestController
@@ -80,7 +82,7 @@ public class UserController extends TemplateController {
 			payloads.put(HEADER_USER_ID, fromDb.getId().toString());
 			payloads.put(HEADER_USER_EMAIL, fromDb.getEmail());
 			payloads.put(HEADER_USER_AUTH, authority.toString());
-			String token = JWTManager.generateToken(payloads);
+			String token = JwtManager.generateToken(payloads);
 			activeTokens.put(token, fromDb);
 			return ResponseEntity.ok().header(HEADER_TOKEN, token).header(HEADER_USERNAME,  String.format("%s %s", fromDb.getFirstName(), fromDb.getLastName())).header(HEADER_ID, fromDb.getId().toString()).header(HEADER_AUTH_NUMBER, authority.getLevel().toString()).build();
 		} catch (BadRequestException e) {
@@ -93,9 +95,8 @@ public class UserController extends TemplateController {
 	}
 	
 	@PatchMapping("/{id}")
-	public ResponseEntity<Object> updatePartial(@RequestHeader(name = HEADER_TOKEN, required = true) String token, @PathVariable(name = "id") Long id, @RequestBody @Valid User user, BindingResult br) {
+	public ResponseEntity<Object> updatePartial(@PathVariable(name = "id") Long id, @RequestBody @Valid User user, BindingResult br) {
 		try {
-			JWTManager.validateToken(token, Authority.ADMINISTRATOR);
 			User fromDb = service.read(id);
 			//
 			BindingResult freshBr = new DataBinder(user).getBindingResult();
@@ -114,11 +115,9 @@ public class UserController extends TemplateController {
 			//
 			BeanUtils.copyProperties(user, fromDb);
 			// Performing the common changes
-			return update(token, id, fromDb, br);
+			return update(id, fromDb, br);
 		} catch (EntityNotFoundException e) {
 			return entityNotFound(e);
-		} catch (UnauthorizedException e) {
-			return unauthorized(e);
 		} catch (Exception e) {
 			return internalError(e);
 		}
@@ -126,57 +125,47 @@ public class UserController extends TemplateController {
 	
 	@PatchMapping("/changenames")
 	public ResponseEntity<Object> logout(
-			@RequestHeader(name = HEADER_TOKEN, required = true) String token,
 			@RequestBody(required = true) ChangeNames changeNames) {
 		BindingResult br;
 		try {
-			JWTManager.validateToken(token, Authority.REGULAR);
 			br = new DataBinder(changeNames).getBindingResult();
 			//
-			DecodedJWT decoded = JWTManager.decodeToken(token);
-			User currentUser = service.read(Long.parseLong(decoded.getClaim(HEADER_USER_ID).asString()));
+			User currentUser = (User)SecurityContextHolder.getContext().getAuthentication();
 			try {
 				service.changeNames(currentUser, changeNames, br);
 				return ResponseEntity.ok(currentUser);
 			} catch (ValidationException e) {
 				return validationError(e, br);
 			}
-		} catch (UnauthorizedException e) {
-			return unauthorized(e);
 		} catch (Exception e) {
 			return internalError(e);
 		}
 	}
 	
 	@PatchMapping("/changepassword")
-	public ResponseEntity<Object> logout(
-			@RequestHeader(name = HEADER_TOKEN, required = true) String token,
-			@RequestBody(required = true) ChangePassword changePassword) {
+	public ResponseEntity<Object> logout(@RequestBody(required = true) ChangePassword changePassword) {
 		BindingResult br;
 		try {
-			JWTManager.validateToken(token, Authority.REGULAR);
 			br = new DataBinder(changePassword).getBindingResult();
 			//
-			DecodedJWT decoded = JWTManager.decodeToken(token);
-			User currentUser = service.read(Long.parseLong(decoded.getClaim(HEADER_USER_ID).asString()));
+			User currentUser = (User)SecurityContextHolder.getContext().getAuthentication();
 			try {
 				service.changePassword(currentUser, changePassword, br);
 				return ResponseEntity.ok(currentUser);
 			} catch (ValidationException e) {
 				return validationError(e, br);
 			}
-		} catch (UnauthorizedException e) {
-			return unauthorized(e);
 		} catch (Exception e) {
 			return internalError(e);
 		}
 	}
 	
 	@GetMapping("/logout")
-	public ResponseEntity<Object> logout(@RequestHeader(name = HEADER_TOKEN, required = true) String token) {
+	public ResponseEntity<Object> logout(@RequestHeader(name="Authorization") String auth) {
 		try {
+			String token = auth.split(" ")[1];
 			if(activeTokens.containsKey(token)) {
-				JWTManager.devalidateToken(token);
+				JwtManager.devalidateToken(token);
 				activeTokens.remove(token);
 				return ResponseEntity.ok().build();	
 			}
@@ -189,16 +178,13 @@ public class UserController extends TemplateController {
 	}
 	
 	@PostMapping
-	public ResponseEntity<Object> create(@RequestHeader(name = HEADER_TOKEN, required = true) String token, @RequestBody(required = true) @Valid User user, BindingResult br) {
+	public ResponseEntity<Object> create(@RequestBody(required = true) @Valid User user, BindingResult br) {
 		try {
-			// Authenticate Administrator
-			JWTManager.validateToken(token, Authority.ADMINISTRATOR);
-			//
-			user.hashPassword();
 			User created = service.create(user, br);
+			// Sending email to the newly registered user
+			EmailUtils.sendEmail("Welcome to SStorage! The SENAI Software to manage patrimonies", "You've been successfully registered, you can go to our login page and start your experience.", user.getEmail());
+			//
 			return ResponseEntity.created(webUtils.getUri(API_V1 + ADDRESS + "/" + created.getId())).body(created);
-		} catch (UnauthorizedException e) {
-			return unauthorized(e);
 		} catch (ValidationException e) {
 			return validationError(e, br);
 		} catch(Exception e) {
@@ -207,40 +193,33 @@ public class UserController extends TemplateController {
 	}
 	
 	@GetMapping
-	public ResponseEntity<Object> get(@RequestHeader(name = HEADER_TOKEN, required = true) String token) {
+	public ResponseEntity<Object> get() {
 		try {
-			JWTManager.validateToken(token, Authority.ADMINISTRATOR);
 			// Returning User List
 			Collection<User> users = service.read();
 			return ResponseEntity.ok(users);
-		} catch (UnauthorizedException e) {
-			return unauthorized(e);
 		} catch (Exception e) {
 			return internalError(e);
 		}
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<Object> get(@RequestHeader(name = HEADER_TOKEN, required = true) String token, @PathVariable(name = "id") Long id) {
+	public ResponseEntity<Object> get(@PathVariable(name = "id") Long id) {
 		try {
-			JWTManager.validateToken(token, Authority.ADMINISTRATOR);
-			//
 			try {
 				User obj = service.read(id);
 				return ResponseEntity.ok(obj);
 			} catch (EntityNotFoundException e) {
 				return entityNotFound(e);
 			}
-		} catch (UnauthorizedException e) {
-			return unauthorized(e);
+		} catch (Exception e) {
+			return internalError(e);
 		}
 	}
 	
 	@PutMapping("/{id}")
-	public ResponseEntity<Object> update(@RequestHeader(name = HEADER_TOKEN, required = true) String token, @PathVariable(name = "id") Long id, @RequestBody(required = true) @Valid User user, BindingResult br) {
+	public ResponseEntity<Object> update(@PathVariable(name = "id") Long id, @RequestBody(required = true) @Valid User user, BindingResult br) {
 		try {
-			JWTManager.validateToken(token, Authority.ADMINISTRATOR);
-			//
 			try {
 				User updated = service.update(id, user, br);
 				return ResponseEntity.ok(updated);
@@ -249,26 +228,22 @@ public class UserController extends TemplateController {
 			} catch (EntityNotFoundException e) {
 				return entityNotFound(e);
 			}
-		} catch (UnauthorizedException e) {
-			return unauthorized(e);
 		} catch (Exception e) {
 			return internalError(e);
 		}
 	}
 	
 	@DeleteMapping("/{id}")
-	public ResponseEntity<Object> delete(@RequestHeader(name = HEADER_TOKEN, required = true) String token, @PathVariable(name = "id") Long id) {
+	public ResponseEntity<Object> delete(@PathVariable(name = "id") Long id) {
 		try {
-			JWTManager.validateToken(token, Authority.ADMINISTRATOR);
-			//
 			try {
 				service.delete(id);
 				return ResponseEntity.ok().build();
 			} catch (EntityNotFoundException e) {
 				return entityNotFound(e);
 			}
-		} catch (UnauthorizedException e) {
-			return unauthorized(e);
+		} catch (Exception e) {
+			return internalError(e);
 		}
 	}
 	
