@@ -44,4 +44,8 @@
     <string name="action_move">Move</string>
     <string name="message_must_select_environment">You must select an Environment</string>
     <string name="message_item_movedto">Patrimony Item moved to %s</string>
+    <string name="message_movement_history">MOVEMENT HISTORY</string>
+    <string name="message_date">Date</string>
+    <string name="message_from">From</string>
+    <string name="message_to">To</string>
 </resources>

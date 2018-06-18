@@ -26,7 +26,7 @@ public class PatrimonyItemAdapter extends RecyclerView.Adapter<PatrimonyItemView
     @NonNull
     @Override
     public PatrimonyItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.rvitem_simpleitem_font_small, parent, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.rvitem_patrimonyitem, parent, false);
         PatrimonyItemViewHolder patrimonyItemViewHolder = new PatrimonyItemViewHolder(view);
         return patrimonyItemViewHolder;
     }

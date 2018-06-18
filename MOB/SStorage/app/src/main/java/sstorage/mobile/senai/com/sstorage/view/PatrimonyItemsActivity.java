@@ -19,7 +19,6 @@ import retrofit2.Response;
 import sstorage.mobile.senai.com.sstorage.R;
 import sstorage.mobile.senai.com.sstorage.config.RetrofitConfig;
 import sstorage.mobile.senai.com.sstorage.data.ApiContext;
-import sstorage.mobile.senai.com.sstorage.model.Patrimony;
 import sstorage.mobile.senai.com.sstorage.model.PatrimonyItem;
 import sstorage.mobile.senai.com.sstorage.model.PatrimonyItemState;
 import sstorage.mobile.senai.com.sstorage.utils.AppUtils;
@@ -113,7 +112,7 @@ public class PatrimonyItemsActivity extends AppCompatActivity {
                 if(index == -1)
                     return true;
                 PatrimonyItem patrimonyItem = patrimonyItemList.get(index);
-                Intent intent = new Intent(PatrimonyItemsActivity.this, MovePatrimonyItemActivity.class);
+                Intent intent = new Intent(PatrimonyItemsActivity.this, MovementsPatrimonyItemActivity.class);
                 intent.putExtra(AppUtils.INT_PATITEMID, patrimonyItem.getId());
                 intent.putExtra(AppUtils.INT_ENVID, patrimonyItem.getEnvironmentId());
                 startActivity(intent);

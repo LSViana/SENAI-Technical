@@ -38,7 +38,7 @@
             android:label="@string/title_activity_patrimony_items"
             android:theme="@style/PatrimoniesTheme" />
         <activity
-            android:name=".view.MovePatrimonyItemActivity"
+            android:name=".view.MovementsPatrimonyItemActivity"
             android:label="@string/title_activity_move_patitem"
             android:theme="@style/MovementsTheme"
             />
