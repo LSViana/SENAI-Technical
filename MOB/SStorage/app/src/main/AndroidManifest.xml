@@ -24,11 +24,24 @@
         </activity>
         <activity
             android:name=".view.MainAdminActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".view.EnvironmentsActivity"
             android:label="@string/title_activity_environments"
-            android:theme="@style/EnvironmentsTheme"></activity>
+            android:theme="@style/EnvironmentsTheme" />
+        <activity
+            android:name=".view.PatrimoniesActivity"
+            android:label="@string/title_activity_patrimonies"
+            android:theme="@style/PatrimoniesTheme" />
+        <activity
+            android:name=".view.PatrimonyItemsActivity"
+            android:label="@string/title_activity_patrimony_items"
+            android:theme="@style/PatrimoniesTheme" />
+        <activity
+            android:name=".view.MovePatrimonyItemActivity"
+            android:label="@string/title_activity_move_patitem"
+            android:theme="@style/MovementsTheme"
+            />
     </application>
 
 </manifest>

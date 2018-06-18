@@ -195,7 +195,7 @@ public class EnvironmentsActivity extends AppCompatActivity {
     }
 
     private void getComponents() {
-        btnSend = findViewById(R.id.btnSend);
+        btnSend = findViewById(R.id.btnMove);
         btnClear = findViewById(R.id.btnClear);
         tilEnvName = findViewById(R.id.tilEnvName);
         rvEnvironments = findViewById(R.id.rvEnvironments);

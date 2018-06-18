@@ -8,6 +8,8 @@
     <color name="environmentColor">#ff7f00</color>
     <color name="environmentColorDark">#d84315</color>
     <color name="movementColor">#ff5722</color>
+    <color name="movementColorDark">#bf360c</color>
     <color name="patrimonyColor">#ffc929</color>
+    <color name="patrimonyColorDark">#f9a825</color>
     <color name="userControlColor">#f13800</color>
 </resources>

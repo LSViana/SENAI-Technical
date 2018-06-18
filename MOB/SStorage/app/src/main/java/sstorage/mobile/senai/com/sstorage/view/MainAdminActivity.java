@@ -28,6 +28,7 @@ public class MainAdminActivity extends AppCompatActivity {
     private Button btnLogout;
     private TextView tvUserName;
     private Button btnManageEnvironments;
+    private Button btnManagePatrimonies;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -51,6 +52,13 @@ public class MainAdminActivity extends AppCompatActivity {
         });
         // Movements
         // Patrimonies
+        btnManagePatrimonies.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainAdminActivity.this, PatrimoniesActivity.class);
+                startActivity(intent);
+            }
+        });
         // Access Control
     }
 
@@ -78,6 +86,7 @@ public class MainAdminActivity extends AppCompatActivity {
         tvUserName = findViewById(R.id.tvUserName);
         // Getting Manage buttons
         btnManageEnvironments = findViewById(R.id.btnManageEnvironments);
+        btnManagePatrimonies = findViewById(R.id.btnManagePatrimonies);
     }
 
 }

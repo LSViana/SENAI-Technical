@@ -35,4 +35,13 @@
     <string name="action_update">Update</string>
     <string name="action_clear">Clear</string>
     <string name="message_validation_error">Validation error</string>
+    <string name="title_activity_patrimonies">Patrimonies</string>
+    <string name="message_uc_patrimonydata">PATRIMONY DATA</string>
+    <string name="title_activity_patrimony_items">Patrimony Items</string>
+    <string name="title_activity_move_patitem">Move Patrimony Item</string>
+    <string name="activity_patrimony_items_title">%s</string>
+    <string name="message_uc_destiny_environment">DESTINY ENVIRONMENT</string>
+    <string name="action_move">Move</string>
+    <string name="message_must_select_environment">You must select an Environment</string>
+    <string name="message_item_movedto">Patrimony Item moved to %s</string>
 </resources>

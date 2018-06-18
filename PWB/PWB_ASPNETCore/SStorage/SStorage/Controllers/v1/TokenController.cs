@@ -40,7 +40,8 @@ namespace SStorage.Controllers.V1
         public IActionResult GetToken([FromBody] Login login)
         {
             if (login is null)
-                return BadRequest();
+                return BadRequest();,
+            0
             if (login.Email is null || login.Password is null)
                 return UnprocessableEntity(ModelState);
 

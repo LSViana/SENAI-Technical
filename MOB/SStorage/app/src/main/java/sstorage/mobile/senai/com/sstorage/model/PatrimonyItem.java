@@ -1,6 +1,9 @@
 package sstorage.mobile.senai.com.sstorage.model;
 
+import android.content.Intent;
+
 import java.time.LocalDate;
+import java.util.Date;
 
 public class PatrimonyItem {
 
@@ -12,12 +15,12 @@ public class PatrimonyItem {
     private Environment environment;
     private Long environmentId;
 
+    private Long userId;
     private User user;
-    private User userId;
 
-    private LocalDate lastMovement;
+    private Date lastMovement;
 
-    private PatrimonyItemState state;
+    private Integer state;
 
     public PatrimonyItem() {
     }
@@ -70,27 +73,27 @@ public class PatrimonyItem {
         this.user = user;
     }
 
-    public User getUserId() {
+    public Long getUserId() {
         return userId;
     }
 
-    public void setUserId(User userId) {
+    public void setUserId(Long userId) {
         this.userId = userId;
     }
 
-    public LocalDate getLastMovement() {
+    public Date getLastMovement() {
         return lastMovement;
     }
 
-    public void setLastMovement(LocalDate lastMovement) {
+    public void setLastMovement(Date lastMovement) {
         this.lastMovement = lastMovement;
     }
 
-    public PatrimonyItemState getState() {
+    public Integer getState() {
         return state;
     }
 
-    public void setState(PatrimonyItemState state) {
+    public void setState(Integer state) {
         this.state = state;
     }
 }

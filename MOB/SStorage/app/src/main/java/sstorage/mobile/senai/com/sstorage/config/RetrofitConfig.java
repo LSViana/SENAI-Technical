@@ -2,6 +2,9 @@ package sstorage.mobile.senai.com.sstorage.config;
 
 import android.content.SharedPreferences;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 import java.io.IOException;
 
 import okhttp3.Interceptor;
@@ -27,7 +30,11 @@ public class RetrofitConfig {
                 // Defines the base URL to the application
                 .baseUrl(AppUtils.API_ROOT)
                 // Adding the JSON Converter that will work together with Retrofit GSON Converter
-                .addConverterFactory(GsonConverterFactory.create());
+                .addConverterFactory(GsonConverterFactory.create(
+                        new GsonBuilder()
+                                .setDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSSSSS")
+                                .create()
+                ));
         // Dealing with Token
         this.token = token;
         if(token != null) {

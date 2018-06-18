@@ -1,6 +1,8 @@
 package sstorage.mobile.senai.com.sstorage.model;
 
 import java.time.LocalDate;
+import java.util.Date;
+
 
 public class Patrimony {
 
@@ -11,10 +13,10 @@ public class Patrimony {
     private Long patrimonyCategoryId;
     private PatrimonyCategory patrimonyCategory;
 
-    private User userId;
+    private Long userId;
     private User user;
 
-    private LocalDate date;
+    private Date date;
 
     public Patrimony() {
     }
@@ -51,11 +53,11 @@ public class Patrimony {
         this.patrimonyCategory = patrimonyCategory;
     }
 
-    public User getUserId() {
+    public Long getUserId() {
         return userId;
     }
 
-    public void setUserId(User userId) {
+    public void setUserId(Long userId) {
         this.userId = userId;
     }
 
@@ -67,11 +69,11 @@ public class Patrimony {
         this.user = user;
     }
 
-    public LocalDate getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(LocalDate date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 }
